@@ -1,0 +1,193 @@
+.footer {
+  background: var(--navy-950);
+  color: rgba(255, 255, 255, 0.78);
+  padding-block: 72px 80px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1.2fr 0.9fr 1.1fr 1.2fr;
+  gap: 40px;
+}
+
+.brand p {
+  margin: 28px 0 24px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.social {
+  display: flex;
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--white);
+}
+
+.social a:hover {
+  opacity: 0.7;
+}
+
+.col {
+  padding-left: 32px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.col h2 {
+  margin: 0 0 22px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.col ul {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.col a {
+  font-size: 14px;
+  transition: color var(--ease);
+}
+
+.col a:hover {
+  color: var(--white);
+}
+
+.contact li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.btn {
+  margin-top: 26px;
+  padding: 14px 22px;
+  font-size: 14px;
+}
+
+@media (max-width: 1199px) {
+  .footer {
+    padding-block: 52px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 36px 40px;
+  }
+
+  /* kompakter Kopf: Logo + Claim links, Social-Icons rechts */
+  .brand {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 24px;
+    align-items: center;
+  }
+
+  .brand > :first-child,
+  .brand p {
+    grid-column: 1;
+  }
+
+  .brand p {
+    margin: 18px 0 0;
+  }
+
+  .social {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
+  .brand {
+    grid-column: 1 / -1;
+  }
+
+  .col {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+
+/* Tablet: Leistungen | Unternehmen / Kontakt | Rechtliches */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .col:last-child {
+    order: 3;
+  }
+
+  .col:nth-child(4) {
+    order: 4;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer {
+    padding-block: 44px 36px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .brand {
+    display: block;
+  }
+
+  .brand p {
+    margin: 20px 0 18px;
+  }
+
+  .col {
+    padding-top: 22px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .col h2 {
+    margin-bottom: 14px;
+  }
+
+  .col ul {
+    gap: 10px;
+  }
+
+  /* Kontakt vor dem Rechtlichen; große Schaltfläche entfällt (Kontakt-/Standortbereich liegt direkt davor) */
+  .col:last-child {
+    order: 4;
+  }
+
+  .btn {
+    display: none;
+  }
+
+  /* Rechtliches: kompakte, sekundäre Zeile am Ende (Überschrift nur für Screenreader) */
+  .col:nth-child(4) {
+    position: relative;
+    order: 5;
+  }
+
+  .col:nth-child(4) h2 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .col:nth-child(4) ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+  }
+
+  .col:nth-child(4) a {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+}

@@ -1,0 +1,52 @@
+.logo {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 5px;
+  color: var(--navy-900);
+}
+
+.light {
+  color: var(--white);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.name {
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.42em;
+  line-height: 1;
+  margin-right: -0.42em;
+}
+
+.line {
+  width: 44px;
+  height: 2px;
+  background: var(--red);
+}
+
+.sub {
+  font-size: 10.5px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+@media (max-width: 767px) {
+  .name {
+    font-size: 19px;
+  }
+
+  .line {
+    width: 30px;
+  }
+
+  .sub {
+    font-size: 9px;
+    letter-spacing: 0.24em;
+  }
+}

@@ -1,0 +1,14 @@
+.shell {
+  min-height: 60vh;
+  padding: calc(var(--header-h) + clamp(56px, 8vw, 112px)) 0 var(--section-y);
+  background: var(--off-white);
+}
+
+.title {
+  max-width: 860px;
+  margin-bottom: 28px;
+}
+
+.body {
+  max-width: 680px;
+}

@@ -1,0 +1,528 @@
+.header {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  height: var(--header-h);
+  border-bottom: 1px solid rgba(8, 42, 70, 0.14);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  height: 100%;
+}
+
+.nav ul {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 2.4vw, 40px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav a {
+  position: relative;
+  display: block;
+  padding: 8px 0;
+  font-size: 14.5px;
+  color: var(--navy-900);
+  white-space: nowrap;
+  transition: color var(--ease);
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--ease);
+}
+
+.nav a:hover::after,
+.nav a.active::after {
+  transform: scaleX(1);
+}
+
+.groupTrigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 0;
+  background: none;
+  border: 0;
+  font: inherit;
+  font-size: 14.5px;
+  color: var(--navy-900);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.groupTrigger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--ease);
+}
+
+.groupTrigger:hover::after,
+.groupTrigger.active::after,
+.groupTrigger[aria-expanded="true"]::after {
+  transform: scaleX(1);
+}
+
+.flip {
+  transform: rotate(180deg);
+}
+
+.group {
+  position: relative;
+}
+
+/* Wrap ohne Lücke zum Trigger, damit das Menü beim Mausweg nicht schließt */
+.dropdownWrap {
+  position: absolute;
+  top: 100%;
+  left: -16px;
+  z-index: 60;
+  padding-top: 8px;
+}
+
+.dropdown {
+  width: 460px;
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(3, 27, 46, 0.05);
+  overflow: hidden;
+}
+
+.nav ul.dropdownList {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdownList li + li {
+  border-top: 1px solid var(--gray-100);
+}
+
+.nav .dropdownList a {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 22px 24px;
+  font-size: 15px;
+  color: var(--navy-900);
+  transition: background-color 220ms ease;
+}
+
+.nav .dropdownList a::after {
+  display: none;
+}
+
+.nav .dropdownList a:hover,
+.nav .dropdownList a:focus-visible,
+.nav .dropdownList a[aria-current="page"] {
+  background: rgba(8, 42, 70, 0.04);
+}
+
+.dropdownNum {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--gray-300);
+}
+
+.dropdownArrow {
+  color: var(--navy-900);
+  transition: transform 220ms ease, color 220ms ease;
+}
+
+.dropdownList a:hover .dropdownArrow,
+.dropdownList a:focus-visible .dropdownArrow {
+  color: var(--red);
+  transform: translateX(4px);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.cta {
+  padding: 14px 24px;
+  font-size: 14.5px;
+}
+
+.burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0;
+  margin-right: -10px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: var(--navy-900);
+}
+
+.burger svg {
+  width: 20px;
+  height: 20px;
+}
+
+.burger[aria-expanded="true"] svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (min-width: 769px) {
+  .burger {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    margin-right: -14px;
+  }
+
+  .burger svg,
+  .burger[aria-expanded="true"] svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.backdrop {
+  position: fixed;
+  inset: var(--header-h) 0 0 0;
+  z-index: 48;
+  background: rgba(4, 30, 50, 0.12);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 220ms ease, visibility 0s linear 220ms;
+}
+
+.backdropOpen {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 220ms ease;
+}
+
+.panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: auto;
+  z-index: 49;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 24px;
+  width: 50vw;
+  min-width: 480px;
+  max-width: 650px;
+  height: 100dvh;
+  padding: calc(var(--header-h) + 30px) 40px 30px;
+  background: var(--white);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 220ms ease, visibility 0s linear 220ms;
+}
+
+.panelOpen {
+  transform: translateX(0);
+  visibility: visible;
+  transition: transform 220ms ease;
+}
+
+.panel ul {
+  flex: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.panel li a {
+  display: block;
+  min-height: 0;
+  margin: 0;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--gray-100);
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--navy-900);
+}
+
+/* Leistungen als Akkordeon im Burger-Menü */
+.panelGroupBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  margin: 0;
+  padding: 18px 0;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--gray-100);
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  color: var(--navy-900);
+  cursor: pointer;
+}
+
+.panelChevron,
+.panelChevronUp {
+  flex: none;
+  transition: transform 180ms ease;
+}
+
+.panelChevronUp {
+  transform: rotate(180deg);
+}
+
+.panelSub {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 180ms ease, visibility 0s linear 180ms;
+}
+
+.panelSubOpen {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition: grid-template-rows 180ms ease;
+}
+
+.panelSub > ul {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.panel .panelSub li a {
+  min-height: 44px;
+  padding: 12px 0 12px 18px;
+  font-size: 19px;
+}
+
+/* aktive Seite wie die aktive Hauptnavigation: kurzer roter Strich */
+.panel a[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-color: var(--red);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panelChevron,
+  .panelChevronUp,
+  .panelSub,
+  .panelSubOpen {
+    transition: none;
+  }
+}
+
+.panelCta {
+  display: inline-flex;
+  align-items: center;
+  align-self: stretch;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 4px;
+  padding: 15px 26px;
+  background: var(--navy-900);
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+  border-radius: var(--radius);
+}
+
+/* Zwischenbreiten: Header enger setzen, damit alles ohne Überlauf passt */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .inner {
+    gap: 20px;
+  }
+
+  .nav ul {
+    gap: 20px;
+  }
+
+  .actions {
+    gap: 14px;
+  }
+
+  .cta {
+    padding: 14px 20px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1099px) {
+  .nav ul {
+    gap: 16px;
+  }
+
+  .actions {
+    gap: 10px;
+  }
+}
+
+/* Burger-Menü, sobald die volle Navigation nicht mehr sauber passt */
+@media (max-width: 1199px) {
+  .header {
+    position: fixed;
+  }
+
+  /* Hintergrund + Blur auf einem Pseudo-Element: backdrop-filter direkt am Header würde ihn zum
+     Containing Block für das position:fixed-Panel machen und das geöffnete Menü auf 0 Höhe stauchen. */
+  .header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba(250, 249, 246, 0.96);
+    backdrop-filter: blur(6px);
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .burger {
+    display: inline-flex;
+  }
+
+  .actions {
+    gap: 10px;
+  }
+
+  /* CTA, Sprache und X liegen über dem Drawer (er reicht bis y=0) und bleiben sichtbar */
+  .inner > :first-child,
+  .actions > :not(.panel):not(.backdrop) {
+    position: relative;
+    z-index: 50;
+  }
+}
+
+@media (max-width: 767px) {
+  .cta {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .panelGroupBtn {
+    padding: 16px 0;
+    font-size: 21px;
+  }
+
+  .panel .panelSub li a {
+    font-size: 18px;
+  }
+
+  .panel {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    padding: calc(var(--header-h) + 24px) 28px 24px;
+  }
+
+  .panel li a {
+    font-size: 21px;
+    padding: 16px 0;
+  }
+
+  .panelCta {
+    align-self: flex-start;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 599px) {
+  .panelGroupBtn {
+    padding: 11px 0;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  .panel .panelSub li a {
+    padding: 11px 0 11px 16px;
+    font-size: 16px;
+  }
+
+  .burger {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    margin-right: -9px;
+  }
+
+  .burger svg,
+  .burger[aria-expanded="true"] svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .panel {
+    width: 100%;
+    max-width: none;
+    padding: calc(var(--header-h) + 14px) 20px 20px;
+  }
+
+  .panel li a {
+    min-height: 0;
+    margin: 0;
+    padding: 11px 0;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  .panelCta {
+    min-height: 44px;
+    margin-top: 16px;
+    padding: 10px 16px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 390px) {
+  .panelGroupBtn {
+    font-size: 17px;
+  }
+
+  .panel .panelSub li a {
+    font-size: 15px;
+  }
+
+  .panel li a {
+    font-size: 17px;
+  }
+}

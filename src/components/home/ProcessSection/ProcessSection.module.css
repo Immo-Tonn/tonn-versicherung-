@@ -1,0 +1,140 @@
+.section {
+  background: var(--navy-850);
+  color: var(--white);
+  padding-block: clamp(64px, 7vw, 96px);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+  gap: clamp(40px, 6vw, 96px);
+  align-items: center;
+}
+
+.section .title {
+  font-size: clamp(36px, 3.6vw, 50px);
+  margin-bottom: 24px;
+  color: var(--white);
+}
+
+.title span {
+  display: block;
+}
+
+.text {
+  max-width: 420px;
+  margin: 0 0 34px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.num {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+.rail {
+  flex: 1;
+  height: 1px;
+  margin-left: 12px;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.step:last-child .rail {
+  background: transparent;
+}
+
+.icon {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--white);
+}
+
+.stepTitle {
+  margin: 0 0 10px;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.step p {
+  margin: 0;
+  max-width: 180px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 1199px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+
+  .text {
+    max-width: 560px;
+  }
+}
+
+@media (max-width: 767px) {
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  /* vertikale Timeline */
+  .step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 46px 1fr;
+    column-gap: 20px;
+    padding-bottom: 32px;
+  }
+
+  .head {
+    grid-row: 1 / span 3;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .rail {
+    flex: 1;
+    width: 1px;
+    height: auto;
+    margin: 10px 0 0;
+  }
+
+  .step:last-child {
+    padding-bottom: 0;
+  }
+
+  .icon {
+    display: none;
+  }
+
+  .step p {
+    max-width: none;
+  }
+}
