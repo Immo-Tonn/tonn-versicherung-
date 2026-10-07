@@ -39,7 +39,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  min-height: clamp(460px, 36vw, 540px);
+  min-height: var(--hero-h);
   padding: calc(var(--header-h) + clamp(32px, 4vw, 56px)) 0 clamp(40px, 5vw, 72px);
   background: var(--off-white);
   overflow: hidden;
@@ -426,10 +426,6 @@
 
 /* ===== Mobil ===== */
 @media (max-width: 767px) {
-  .hero {
-    min-height: 0;
-  }
-
   /* Telefon: Fassade rechts im Bild halten, ruhige helle Fläche hinter dem Text */
   .heroImg {
     object-position: 80% 50% !important;

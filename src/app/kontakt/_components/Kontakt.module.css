@@ -13,7 +13,8 @@
   position: relative;
   display: flex;
   align-items: center;
-  min-height: clamp(380px, 30vw, 460px);
+  /* etwas höher als der Standard, aber so, dass die Kontaktaktionen im ersten Bildschirm sichtbar bleiben */
+  min-height: clamp(380px, calc(100svh - 250px), calc(var(--hero-h) + 40px));
   padding: calc(var(--header-h) + clamp(28px, 3.4vw, 48px)) 0 clamp(36px, 4vw, 60px);
   background: var(--off-white);
   overflow: hidden;

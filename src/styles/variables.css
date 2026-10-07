@@ -35,12 +35,16 @@
   --ease: 180ms ease;
 
   --section-y: clamp(64px, 8vw, 112px);
+
+  /* Standard-Hero-Höhe (inkl. Bereich unter dem Header); entspricht dem Foto-Bereich der Startseite ohne TrustBar */
+  --hero-h: clamp(680px, 50vw, 724px);
 }
 
 @media (max-width: 1199px) {
   :root {
     --gutter: 32px;
     --header-h: 76px;
+    --hero-h: 600px;
   }
 }
 
@@ -48,5 +52,6 @@
   :root {
     --gutter: 22px;
     --header-h: 68px;
+    --hero-h: 740px;
   }
 }
