@@ -55,7 +55,7 @@
 .accent {
   display: block;
   width: 22px;
-  height: 2px;
+  height: var(--accent-line-thickness);
   background: var(--red);
 }
 

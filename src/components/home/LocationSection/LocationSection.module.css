@@ -32,7 +32,7 @@
   gap: 2px;
   margin: 0 0 28px;
   padding-left: 18px;
-  border-left: 2px solid var(--red);
+  border-left: var(--accent-line-thickness) solid var(--red);
   font-style: normal;
   font-size: 17px;
   line-height: 1.5;

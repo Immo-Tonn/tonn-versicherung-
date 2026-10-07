@@ -39,7 +39,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  height: 2px;
+  height: var(--accent-line-thickness);
   background: var(--red);
   transform: scaleX(0);
   transform-origin: left;
@@ -72,7 +72,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  height: 2px;
+  height: var(--accent-line-thickness);
   background: var(--red);
   transform: scaleX(0);
   transform-origin: left;
@@ -336,7 +336,7 @@
 .panel a[aria-current="page"] {
   text-decoration: underline;
   text-decoration-color: var(--red);
-  text-decoration-thickness: 2px;
+  text-decoration-thickness: var(--accent-line-thickness);
   text-underline-offset: 6px;
 }
 

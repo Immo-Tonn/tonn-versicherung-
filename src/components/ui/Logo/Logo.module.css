@@ -1,7 +1,7 @@
 .logo {
   display: inline-flex;
-  flex-direction: column;
-  gap: 5px;
+  align-items: stretch;
+  gap: 10px;
   color: var(--navy-900);
 }
 
@@ -9,10 +9,20 @@
   color: var(--white);
 }
 
-.top {
+/* Balken: Oberkante = Oberkante der Versalien „TONN“, Unterkante = Grundlinie von „VERSICHERUNG“ */
+.bar {
+  flex: none;
+  width: var(--accent-line-thickness);
+  margin-top: 3px;
+  margin-bottom: 2.5px;
+  background: var(--red);
+}
+
+.text {
   display: flex;
-  align-items: center;
-  gap: 14px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
 }
 
 .name {
@@ -23,30 +33,29 @@
   margin-right: -0.42em;
 }
 
-.line {
-  width: 44px;
-  height: 2px;
-  background: var(--red);
-}
-
 .sub {
   font-size: 10.5px;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.6em;
+  margin-right: -0.6em;
   text-transform: uppercase;
   line-height: 1;
 }
 
 @media (max-width: 767px) {
+  .logo {
+    gap: 8px;
+  }
+
+  .bar {
+    margin-top: 1.6px;
+    margin-bottom: 1.2px;
+  }
+
   .name {
     font-size: 19px;
   }
 
-  .line {
-    width: 30px;
-  }
-
   .sub {
     font-size: 9px;
-    letter-spacing: 0.24em;
   }
 }

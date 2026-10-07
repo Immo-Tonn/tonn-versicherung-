@@ -13,7 +13,7 @@
 .line {
   flex: none;
   width: 36px;
-  height: 3px;
+  height: var(--accent-line-thickness);
   background: var(--red);
 }
 

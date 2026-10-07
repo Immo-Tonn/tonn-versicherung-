@@ -9,6 +9,7 @@
 
   --red: #f23d45;
   --red-dark: #d92f38;
+  --accent-line-thickness: 2px; /* einheitliche Stärke aller roten Akzentlinien */
 
   --white: #ffffff;
   --off-white: #faf9f6;

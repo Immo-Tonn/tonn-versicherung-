@@ -40,6 +40,7 @@ export async function POST(req: Request) {
     replyVia: str(body.replyVia, 20),
     phone: str(body.phone, LIMITS.phone),
     message: str(body.message, LIMITS.message),
+    privacyAcknowledged: body.privacyAcknowledged,
   };
   const errors = validate(input);
   if (Object.keys(errors).length) return NextResponse.json({ ok: false, errors }, { status: 400 });
@@ -58,8 +59,9 @@ export async function POST(req: Request) {
   const email = input.email.trim();
   const phone = oneLine(input.phone);
   const message = input.message.trim() || "Keine zusätzliche Nachricht angegeben.";
+  const topic = input.topic || "Kein Thema ausgewählt";
   const rows: [string, string][] = [
-    ["Thema", input.topic],
+    ["Thema", topic],
     ["Name", name],
     ["E-Mail", email],
     ["Antwort per", input.replyVia],
@@ -80,7 +82,7 @@ export async function POST(req: Request) {
         from,
         to: [RECIPIENT],
         reply_to: email,
-        subject: `Kontaktanfrage: ${input.topic}`, // Thema stammt aus der erlaubten Liste, kein freier Text
+        subject: `Kontaktanfrage: ${topic}`, // Thema stammt aus der erlaubten Liste, kein freier Text
         text,
         html,
       }),

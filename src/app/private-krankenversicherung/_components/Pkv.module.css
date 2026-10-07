@@ -61,7 +61,7 @@
 .accent {
   display: block;
   width: 22px;
-  height: 2px;
+  height: var(--accent-line-thickness);
   margin-top: 10px;
   background: var(--red);
 }
@@ -83,7 +83,7 @@
   left: 0;
   bottom: 0;
   width: 24px;
-  height: 2px;
+  height: var(--accent-line-thickness);
   background: var(--red);
 }
 
@@ -343,7 +343,7 @@
   left: 0;
   bottom: 0;
   width: 20px;
-  height: 2px;
+  height: var(--accent-line-thickness);
   background: var(--red);
 }
 
@@ -718,7 +718,7 @@
   left: 0;
   bottom: 0;
   width: 20px;
-  height: 2px;
+  height: var(--accent-line-thickness);
   background: var(--red);
 }
 

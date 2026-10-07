@@ -18,6 +18,7 @@ export default function ContactForm() {
   const [replyVia, setReplyVia] = useState<string>("E-Mail");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+  const [privacy, setPrivacy] = useState(false);
   const [website, setWebsite] = useState(""); // Honeypot
   const [errors, setErrors] = useState<FieldErrors>({});
   const [sending, setSending] = useState(false);
@@ -29,7 +30,7 @@ export default function ContactForm() {
   const id = (k: string) => `${uid}-${k}`;
 
   function focusFirst(e: FieldErrors) {
-    const order: (keyof FieldErrors)[] = ["topic", "name", "email", "replyVia", "phone", "message"];
+    const order: (keyof FieldErrors)[] = ["topic", "name", "email", "replyVia", "phone", "message", "privacy"];
     const first = order.find((k) => e[k]);
     if (!first) return;
     const form = formRef.current;
@@ -41,7 +42,7 @@ export default function ContactForm() {
     ev.preventDefault();
     if (lockRef.current) return;
     setServerError("");
-    const input = { topic, name, email, replyVia, phone, message };
+    const input = { topic, name, email, replyVia, phone, message, privacyAcknowledged: privacy };
     const found = validate(input);
     setErrors(found);
     if (Object.keys(found).length) {
@@ -79,11 +80,13 @@ export default function ContactForm() {
   return (
     <form ref={formRef} className={styles.form} onSubmit={onSubmit} noValidate>
       <fieldset className={styles.topics} aria-describedby={err("topic")}>
-        <legend className={styles.legend}>Thema auswählen</legend>
+        <legend className={styles.legend}>
+          Thema auswählen <span className={styles.legendOpt}>(optional)</span>
+        </legend>
         <div className={styles.topicGrid}>
           {TOPICS.map((t, i) => (
             <label key={t} className={`${styles.topic} ${i === TOPICS.length - 1 ? styles.topicWide : ""} ${topic === t ? styles.topicOn : ""}`}>
-              <input type="radio" name="topic" value={t} checked={topic === t} onChange={() => setTopic(t)} />
+              <input type="radio" name="topic" value={t} checked={topic === t} onChange={() => setTopic(t)} onClick={() => topic === t && setTopic("")} />
               <span>{t}</span>
               <i className={styles.radio} aria-hidden="true" />
             </label>
@@ -184,6 +187,31 @@ export default function ContactForm() {
             {serverError}
           </p>
         )}
+        <div className={styles.privacy}>
+          <label className={styles.privacyLabel}>
+            <input
+              type="checkbox"
+              name="privacy"
+              checked={privacy}
+              onChange={(e) => setPrivacy(e.target.checked)}
+              required
+              aria-invalid={errors.privacy ? true : undefined}
+              aria-describedby={err("privacy")}
+            />
+            <span>
+              Ich habe die{" "}
+              <Link href="/datenschutz" target="_blank" rel="noopener noreferrer">
+                Datenschutzerklärung
+              </Link>{" "}
+              zur Kenntnis genommen.
+            </span>
+          </label>
+          {errors.privacy && (
+            <p id={err("privacy")} className={styles.err}>
+              {errors.privacy}
+            </p>
+          )}
+        </div>
         <div className={styles.submitRow}>
           <button type="submit" className={styles.submit} disabled={sending} aria-disabled={sending}>
             {sending ? "Wird gesendet …" : "Nachricht senden"}
