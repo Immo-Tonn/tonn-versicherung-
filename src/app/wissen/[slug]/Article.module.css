@@ -1,0 +1,165 @@
+/* Beitragsseiten im Ratgeber */
+.page {
+  padding: calc(var(--header-h) + clamp(32px, 4vw, 56px)) 0 clamp(64px, 8vw, 104px);
+  background: var(--off-white);
+  color: var(--text);
+}
+
+.column {
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.crumbs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 28px;
+  font-size: 14.5px;
+  color: var(--text-muted);
+}
+
+.crumbs a {
+  color: var(--blue);
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.crumbs a:hover {
+  color: var(--red-dark);
+}
+
+.title {
+  margin: 20px 0 32px;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(32px, 4vw, 50px);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.answer {
+  margin: 0 0 clamp(40px, 5vw, 56px);
+  padding: clamp(24px, 3vw, 32px);
+  background: #e8f1f9;
+}
+
+.answer p {
+  margin: 0;
+  font-size: clamp(17px, 1.5vw, 19px);
+  line-height: 1.65;
+}
+
+.answerLabel {
+  margin-bottom: 10px !important;
+  font-size: 12px !important;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.body p,
+.sources li,
+.related li,
+.cta p {
+  font-size: clamp(17px, 1.5vw, 19px);
+  line-height: 1.7;
+}
+
+.body p {
+  margin: 0 0 22px;
+}
+
+.h2 {
+  margin: clamp(40px, 5vw, 56px) 0 20px;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(25px, 2.6vw, 32px);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.list {
+  margin: 0 0 24px;
+  padding-left: 22px;
+  font-size: clamp(17px, 1.5vw, 19px);
+  line-height: 1.7;
+}
+
+.list li {
+  margin-bottom: 10px;
+}
+
+.example {
+  margin: 28px 0;
+  padding: 4px 0 4px 24px;
+  border-left: var(--accent-line-thickness) solid var(--red);
+}
+
+.example p {
+  margin: 0 0 8px;
+}
+
+.exampleLabel {
+  font-size: 12px !important;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.sources ul,
+.related ul {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.sources li,
+.related li {
+  margin-bottom: 8px;
+}
+
+.sources a,
+.related a {
+  color: var(--blue);
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.sources a:hover,
+.related a:hover {
+  color: var(--red-dark);
+}
+
+.crumbs a:focus-visible,
+.sources a:focus-visible,
+.related a:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+.sources a {
+  overflow-wrap: anywhere;
+}
+
+.cta {
+  margin-top: clamp(48px, 6vw, 72px);
+  padding: clamp(28px, 4vw, 44px);
+  background: #e8f1f9;
+}
+
+.cta .h2 {
+  margin-top: 0;
+}
+
+.cta p {
+  margin: 0 0 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crumbs a,
+  .sources a,
+  .related a {
+    transition: none;
+  }
+}
