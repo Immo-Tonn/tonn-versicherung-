@@ -5,6 +5,7 @@ import Button from "@/components/ui/Button/Button";
 import Container from "@/components/ui/Container/Container";
 import Icon from "@/components/ui/Icon/Icon";
 import Logo from "@/components/ui/Logo/Logo";
+import CookieSettingsButton from "@/components/consent/CookieSettingsButton";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
@@ -31,7 +32,7 @@ export default function Footer() {
               </a>
             </li>
             <li>
-              <a href={`mailto:${contact.email}`} aria-label="E-Mail">
+              <a href={contact.emailHref} aria-label="E-Mail">
                 <Icon name="mail" size={22} />
               </a>
             </li>
@@ -44,7 +45,7 @@ export default function Footer() {
             <ul>
               {col.links.map((l) => (
                 <li key={l.label}>
-                  <Link href={l.href}>{l.label}</Link>
+                  {l.href === "#cookie-einstellungen" ? <CookieSettingsButton className={styles.linkButton}>{l.label}</CookieSettingsButton> : <Link href={l.href}>{l.label}</Link>}
                 </li>
               ))}
             </ul>
@@ -54,18 +55,21 @@ export default function Footer() {
         <div className={styles.col}>
           <h2>Kontakt</h2>
           <ul className={styles.contact}>
-            <li>
+            <li className={styles.addressItem}>
               <Icon name="pin" size={18} />
-              {siteConfig.city}
+              <address className={styles.address}>
+                {contact.address.street}
+                <br />
+                {contact.address.zip} {contact.address.city}
+              </address>
             </li>
             <li>
               <Icon name="phone" size={18} />
-              {/* TODO(PLACEHOLDER): echte Telefonnummer in data/site.ts */}
-              <a href={`tel:${contact.phone.replace(/\s/g, "")}`}>{contact.phone}</a>
+              <a href={contact.phoneHref}>{contact.phone}</a>
             </li>
             <li>
               <Icon name="mail" size={18} />
-              <a href={`mailto:${contact.email}`}>{contact.email}</a>
+              <a href={contact.emailHref}>{contact.email}</a>
             </li>
           </ul>
           <Button href="/kontakt" variant="light" className={styles.btn}>

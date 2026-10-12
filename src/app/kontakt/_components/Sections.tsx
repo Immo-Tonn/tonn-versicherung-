@@ -2,6 +2,7 @@ import Container from "@/components/ui/Container/Container";
 import Icon from "@/components/ui/Icon/Icon";
 import Photo from "@/components/ui/Photo/Photo";
 import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
+import { siteConfig } from "@/data/site";
 import ContactForm from "./ContactForm";
 import styles from "./Kontakt.module.css";
 
@@ -50,8 +51,8 @@ export function KtCards() {
             <h2>Telefon</h2>
             <span />
             <div className={styles.cardAction}>
-              <a href="tel:+491743454419" className={styles.cardBtn}>
-                0174 3454419
+              <a href={siteConfig.contact.phoneHref} className={styles.cardBtn}>
+                {siteConfig.contact.phone}
                 <Icon name="arrow" size={16} strokeWidth={1.6} />
               </a>
             </div>
@@ -62,11 +63,11 @@ export function KtCards() {
             </span>
             <span className={styles.cardLine} aria-hidden="true" />
             <h2>E-Mail</h2>
-            <a href="mailto:andreas@tonn-versicherung.de" className={styles.cardMail}>
-              andreas@tonn-versicherung.de
+            <a href={siteConfig.contact.emailHref} className={styles.cardMail}>
+              {siteConfig.contact.email}
             </a>
             <div className={styles.cardAction}>
-              <a href="mailto:andreas@tonn-versicherung.de" className={styles.cardLink}>
+              <a href={siteConfig.contact.emailHref} className={styles.cardLink}>
                 E-Mail schreiben
                 <Icon name="arrow" size={16} strokeWidth={1.6} />
               </a>

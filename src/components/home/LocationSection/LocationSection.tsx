@@ -1,6 +1,7 @@
 import { location } from "@/data/home";
 import Container from "@/components/ui/Container/Container";
 import Icon from "@/components/ui/Icon/Icon";
+import ConsentMap from "@/components/consent/ConsentMap";
 import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
 import styles from "./LocationSection.module.css";
 
@@ -37,13 +38,7 @@ export default function LocationSection() {
 
         {embedSrc && (
           <div className={styles.map}>
-            <iframe
-              src={embedSrc}
-              title="Standort TONN Versicherungsberatung auf Google Maps"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
+            <ConsentMap src={embedSrc} title="Standort Andreas Tonn Versicherungen auf Google Maps" />
           </div>
         )}
       </Container>

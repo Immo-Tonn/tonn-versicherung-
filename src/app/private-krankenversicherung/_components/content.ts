@@ -4,7 +4,7 @@ export const hero = {
   eyebrow: "Private Krankenversicherung",
   title: ["Private", "Krankenversicherung"], // roter Punkt (Hero) ersetzt den Satzpunkt
   soft: "Die zu Ihrem Leben passt",
-  subtitle: ["Persönlich beraten. Unabhängig verglichen.", "Langfristig gedacht."],
+  subtitle: ["Persönlich beraten. Versicherungsangebote vergleichen.", "Langfristig gedacht."],
   primary: { label: "Kostenloses Erstgespräch", href: "/kontakt" },
   secondary: { label: "Online-Termin vereinbaren", href: "/kontakt" },
   image: "/images/pkv/andreas-hero.webp",
@@ -12,7 +12,7 @@ export const hero = {
 };
 
 export const trust = [
-  { icon: "shield" as const, title: "Unabhängige Beratung", text: "ohne Verpflichtung" },
+  { icon: "shield" as const, title: "Persönliche Versicherungsberatung", text: "ohne Verpflichtung" },
   { icon: "document" as const, title: "Anonyme Risikovoranfrage", text: "bei mehreren Versicherern" },
   { icon: "user" as const, title: "Persönliche Betreuung", text: "in Münster und deutschlandweit" },
 ];
@@ -22,9 +22,9 @@ export const targets = {
   title: ["Unterschiedliche Lebenswege", "Individuelle Lösungen"],
   text: "Ob angestellt, selbstständig oder verbeamtet – wir finden gemeinsam heraus, ob die private Krankenversicherung zu Ihrer aktuellen Situation und Ihren Zukunftsplänen passt.",
   cards: [
-    { title: "Angestellte", text: "bei einem Einkommen über der Versicherungspflichtgrenze.", more: "Für Angestellte kann die private Krankenversicherung ab Überschreiten der Versicherungspflichtgrenze eine Alternative zur gesetzlichen Krankenversicherung sein. Entscheidend sind dabei nicht nur der Beitrag, sondern auch Leistungen, Tarifgestaltung und die persönliche Lebensplanung.", image: "/images/pkv/pkv-angestellte.webp", alt: "Hände einer Angestellten am Laptop im Büro" },
-    { title: "Selbstständige", text: "Mehr Flexibilität und individueller Schutz.", more: "Selbstständige und Freiberufler können ihren Krankenversicherungsschutz individuell gestalten. Gemeinsam vergleichen wir Tarife und Leistungen und achten darauf, dass die Absicherung auch langfristig zu Ihrer beruflichen und privaten Situation passt.", image: "/images/pkv/pkv-selbststaendige.webp", alt: "Arbeitsplatz mit Laptop, Notizbuch und Blick über die Stadt" },
-    { title: "Beamte", text: "PKV in Kombination mit Beihilfe.", more: "Für Beamte und Beamtenanwärter kann die private Krankenversicherung in Verbindung mit der Beihilfe eine passende Lösung sein. Dabei berücksichtigen wir Beihilfeanspruch, gewünschte Leistungen und die persönliche Situation.", image: "/images/pkv/pkv-beamte.webp", alt: "Rathaus-Fassade im Sonnenlicht" },
+    { title: "Angestellte", href: "/private-krankenversicherung/angestellte", text: "bei einem Einkommen über der Versicherungspflichtgrenze.", more: "Für Angestellte kann die private Krankenversicherung ab Überschreiten der Versicherungspflichtgrenze eine Alternative zur gesetzlichen Krankenversicherung sein. Entscheidend sind dabei nicht nur der Beitrag, sondern auch Leistungen, Tarifgestaltung und die persönliche Lebensplanung.", image: "/images/pkv/pkv-angestellte.webp", alt: "Hände einer Angestellten am Laptop im Büro" },
+    { title: "Selbstständige", href: "/private-krankenversicherung/selbststaendige", text: "Mehr Flexibilität und individueller Schutz.", more: "Selbstständige und Freiberufler können ihren Krankenversicherungsschutz individuell gestalten. Gemeinsam vergleichen wir Tarife und Leistungen unserer Versicherungspartner und achten darauf, dass die Absicherung auch langfristig zu Ihrer beruflichen und privaten Situation passt.", image: "/images/pkv/pkv-selbststaendige.webp", alt: "Arbeitsplatz mit Laptop, Notizbuch und Blick über die Stadt" },
+    { title: "Beamte", href: "/private-krankenversicherung/beamte", text: "PKV in Kombination mit Beihilfe.", more: "Für Beamte und Beamtenanwärter kann die private Krankenversicherung in Verbindung mit der Beihilfe eine passende Lösung sein. Dabei berücksichtigen wir Beihilfeanspruch, gewünschte Leistungen und die persönliche Situation.", image: "/images/pkv/pkv-beamte.webp", alt: "Rathaus-Fassade im Sonnenlicht" },
   ],
   cta: "Mehr erfahren",
   ctaClose: "Weniger anzeigen",
@@ -77,7 +77,7 @@ export const compare = {
 export const about = {
   eyebrow: "Ihr Ansprechpartner",
   title: "Persönlich. Erfahren. An Ihrer Seite",
-  text: "Ich bin Andreas Tonn, unabhängiger Versicherungsmakler mit Schwerpunkt auf private Krankenversicherung. Mein Ziel ist es, Ihnen verständlich, ehrlich und transparent die beste Lösung für Ihre Situation zu finden.",
+  text: "Ich bin Andreas Tonn, Versicherungsvertreter mit mehreren Versicherungspartnern und Schwerpunkt auf private Krankenversicherung. Mein Ziel ist es, Ihnen verständlich, ehrlich und transparent eine passende Lösung für Ihre Situation zu finden.",
   cta: { label: "Mehr über Andreas Tonn", href: "/ueber-uns" },
   image: "/images/pkv/pkv-ansprechpartner.webp",
   imageAlt: "Beratungsgespräch am Tisch mit Unterlagen",

@@ -55,8 +55,22 @@
   transition: color var(--ease);
 }
 
-.col a:hover {
+.col a:hover,
+.linkButton:hover {
   color: var(--white);
+}
+
+/* Schaltfläche „Cookie-Einstellungen“ sieht aus wie die übrigen Footer-Links */
+.linkButton {
+  padding: 0;
+  font: inherit;
+  font-size: 14px;
+  color: inherit;
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: color var(--ease);
 }
 
 .contact li {
@@ -64,6 +78,21 @@
   align-items: center;
   gap: 12px;
   font-size: 14px;
+}
+
+/* Anschrift: zweizeilig, Icon oben bündig */
+.contact .addressItem {
+  align-items: flex-start;
+}
+
+.addressItem svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.address {
+  font-style: normal;
+  line-height: 1.5;
 }
 
 .btn {

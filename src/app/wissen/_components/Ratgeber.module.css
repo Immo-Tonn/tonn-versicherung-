@@ -380,15 +380,23 @@
 
 /* ===== Erfahrung ===== */
 .exp {
-  padding-block: clamp(24px, 3vw, 48px) var(--rg-y);
+  padding-block: var(--rg-y);
   background: var(--off-white);
 }
 
 .expGrid {
   display: grid;
-  grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
-  gap: var(--rg-gap);
-  align-items: start;
+  grid-template-columns: minmax(0, 540px) minmax(0, 1fr);
+  gap: clamp(40px, 5.5vw, 80px);
+  align-items: center;
+}
+
+.expPhoto {
+  width: 100%;
+}
+
+.expText {
+  margin: clamp(28px, 3vw, 40px) 0 20px;
 }
 
 .expName {
@@ -430,10 +438,18 @@
 /* ===== Tablet (eine Spalte) ===== */
 @media (max-width: 1023px) {
   .introGrid,
-  .expGrid,
   .faqRow {
     grid-template-columns: minmax(0, 1fr);
     gap: 24px;
+  }
+
+  .expGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .expPhoto {
+    max-width: 560px;
   }
 
   .pkvGrid,

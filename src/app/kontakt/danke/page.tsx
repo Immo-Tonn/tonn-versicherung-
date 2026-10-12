@@ -4,7 +4,7 @@ import Icon from "@/components/ui/Icon/Icon";
 import styles from "./Danke.module.css";
 
 export const metadata: Metadata = {
-  title: { absolute: "Vielen Dank | Tonn Versicherung" },
+  title: { absolute: "Vielen Dank | TONN" },
   robots: { index: false, follow: true },
   alternates: { canonical: "/kontakt/danke" },
 };

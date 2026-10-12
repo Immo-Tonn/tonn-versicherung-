@@ -1,3 +1,5 @@
+import { siteConfig } from "@/data/site";
+
 /** Inhalte „Über uns“. Nur bestätigte Angaben – keine zusätzlichen Titel, Registrierungen, Zahlen oder Kontakte. */
 export const hero = {
   eyebrow: "Über uns",
@@ -8,7 +10,7 @@ export const hero = {
 
 export const intro = {
   title: "Versicherung ist Vertrauenssache",
-  text: "Bei TONN Versicherungsberatung in Münster haben Sie persönliche Ansprechpartner. Andreas Tonn begleitet Sie bei Versicherungsfragen und bespricht mit Ihnen Ihre Situation, bestehende Verträge und mögliche nächste Schritte.",
+  text: "Bei Andreas Tonn Versicherungen in Münster haben Sie persönliche Ansprechpartner. Andreas Tonn begleitet Sie bei Versicherungsfragen und bespricht mit Ihnen Ihre Situation, bestehende Verträge und mögliche nächste Schritte.",
   text2: "Natalia Tonn verantwortet Backoffice, Organisation, Technik und Finanzen. Sie kümmert sich um die Abläufe im Hintergrund, damit im Beratungsgespräch Raum für Ihre Fragen bleibt.",
   tags: "Persönlich · Verständlich · Gut organisiert",
   image: "/images/ueber-uns/tonn-team.png",
@@ -30,7 +32,7 @@ export const people = {
     image: "/images/ueber-uns/andreas-tonn.png",
     alt: "Andreas Tonn",
     paragraphs: [
-      ["Andreas Tonn ist seit 1991 in der Versicherungsbranche tätig. Nach seiner Ausbildung zum Versicherungsfachmann (BWV) bei der Continentale arbeitete er in der Generalagentur Wolfgang Tonn und anschließend als freier Versicherungsvermittler in Münster. Von Mai 2006 bis 2022 führte er die Generalagentur Alte Leipziger in Münster mit Büros in Dülmen und Rhede. Seit 2022 ist er wieder als freier Versicherungsvermittler tätig."],
+      ["Andreas Tonn ist seit 1991 in der Versicherungsbranche tätig. Nach seiner Ausbildung zum Versicherungsfachmann (BWV) bei der Continentale arbeitete er in der Generalagentur Wolfgang Tonn und anschließend als Versicherungsvertreter (Mehrfachagent) in Münster. Von Mai 2006 bis 2022 führte er die Generalagentur Alte Leipziger in Münster mit Büros in Dülmen und Rhede. Seit 2022 ist er als Versicherungsvertreter (Mehrfachagent) tätig und arbeitet mit mehreren Versicherungsgesellschaften zusammen."],
       ["Seine Beratungsschwerpunkte sind die ", { text: "private Krankenversicherung", href: "/private-krankenversicherung" }, " und die ", { text: "Berufsunfähigkeitsversicherung", href: "/berufsunfaehigkeitsversicherung" }, ". Er begleitet Kundinnen und Kunden aus Münster und dem Münsterland bei Fragen zur passenden Absicherung und zu bestehenden Verträgen."],
       ["Im persönlichen Gespräch werden Ihre Lebenssituation, Ihre Wünsche und die jeweiligen Vertragsbedingungen gemeinsam betrachtet. Auch zu ", { text: "Kapitalanlage", href: "/kapitalanlage" }, " und ", { text: "weiteren Versicherungen", href: "/versicherungen" }, " können Sie Ihre Fragen mitbringen. Ziel ist eine verständliche Grundlage für Ihre Entscheidung."],
     ],
@@ -38,9 +40,9 @@ export const people = {
     timeline: [
       { period: "1991–1992", text: "Ausbildung zum Versicherungsfachmann (BWV) bei der Continentale." },
       { period: "1992–2004", text: "Selbständiger Versicherungsverkäufer in der Generalagentur Wolfgang Tonn." },
-      { period: "2005–2006", text: "Freier Versicherungsvermittler in Münster." },
+      { period: "2005–2006", text: "Versicherungsvertreter (Mehrfachagent) in Münster." },
       { period: "01.05.2006–2022", text: "Generalagentur Alte Leipziger in Münster mit Büros in Dülmen und Rhede." },
-      { period: "Seit 2022", text: "Freier Versicherungsvermittler." },
+      { period: "Seit 2022", text: "Versicherungsvertreter (Mehrfachagent)." },
     ] as Timeline[],
   },
   natalia: {
@@ -55,8 +57,8 @@ export const people = {
     ],
     accordion: "Qualifikationen",
     qualification: ["Diplom-Spezialistin, Fachrichtung Finanzen", "Qualifikation: Ökonomin", "Staatliche Universität Sewastopol, Ukraine"],
-    phone: { label: "0251 62560763", href: "tel:+4925162560763" },
-    email: { label: "natali-tonn@web.de", href: "mailto:natali-tonn@web.de" },
+    phone: { label: siteConfig.contact.phoneSecondary, href: siteConfig.contact.phoneSecondaryHref },
+    email: { label: siteConfig.contact.email, href: siteConfig.contact.emailHref },
   },
 };
 

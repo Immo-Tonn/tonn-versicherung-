@@ -661,6 +661,15 @@
   overflow: hidden;
 }
 
+/* Schmale Bildschirme: Text der Schaltfläche darf umbrechen, damit sie nicht über den Rand ragt */
+@media (max-width: 420px) {
+  .finalBtn {
+    max-width: 100%;
+    white-space: normal;
+    text-align: left;
+  }
+}
+
 .finalBg {
   position: absolute !important;
   inset: 0;

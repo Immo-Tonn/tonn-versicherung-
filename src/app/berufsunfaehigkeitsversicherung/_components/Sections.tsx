@@ -291,7 +291,9 @@ export function BuFinalCta() {
             {finalCta.title}
           </h2>
           <p className={styles.finalText}>{finalCta.text}</p>
-          <Button href={finalCta.cta.href}>{finalCta.cta.label}</Button>
+          <Button href={finalCta.cta.href} className={styles.finalBtn}>
+            {finalCta.cta.label}
+          </Button>
         </div>
         <ul className={styles.finalBox}>
           {finalCta.checks.map((c) => (

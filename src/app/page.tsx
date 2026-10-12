@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import AboutSection from "@/components/home/AboutSection/AboutSection";
 import FinalCTA from "@/components/home/FinalCTA/FinalCTA";
 import Hero from "@/components/home/Hero/Hero";
@@ -7,17 +6,19 @@ import LocationSection from "@/components/home/LocationSection/LocationSection";
 import ProcessSection from "@/components/home/ProcessSection/ProcessSection";
 import ReviewsSection from "@/components/home/ReviewsSection/ReviewsSection";
 import SituationSection from "@/components/home/SituationSection/SituationSection";
+import PageJsonLd from "@/components/seo/PageJsonLd";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: { absolute: "Private Krankenversicherung Münster | TONN Versicherungsberatung" },
-  description:
-    "Individuelle Beratung zur privaten Krankenversicherung in Münster und deutschlandweit. Anonyme Risikovoranfrage, Tarifvergleich und persönliche Begleitung.",
-  alternates: { canonical: "/" },
-};
+const title = "Versicherungsvermittler Münster | PKV, BU, Kapitalanlage | TONN";
+const description =
+  "Persönliche Beratung in Münster und deutschlandweit: PKV, Berufsunfähigkeit, Kapitalanlage und weitere Versicherungen. Jetzt Erstgespräch vereinbaren.";
+
+export const metadata = pageMetadata({ path: "/", title, description });
 
 export default function HomePage() {
   return (
     <>
+      <PageJsonLd path="/" name="Andreas Tonn Versicherungen – Startseite" description={description} />
       <Hero />
       <SituationSection />
       <ProcessSection />

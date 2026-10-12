@@ -1,0 +1,178 @@
+.wrap {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  display: flex;
+  padding: 16px;
+  pointer-events: none;
+}
+
+.box {
+  pointer-events: auto;
+  width: min(100%, 560px);
+  padding: 24px;
+  background: var(--white);
+  color: var(--text);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 24px rgba(6, 38, 63, 0.14);
+}
+
+.box:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+.title {
+  margin: 0 0 10px;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.text a {
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.options {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--gray-100);
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.option input {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
+  accent-color: var(--navy-900);
+}
+
+.option input:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+.option span {
+  display: grid;
+  gap: 2px;
+}
+
+.option small {
+  font-size: 13.5px;
+  color: var(--text-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 12px;
+  margin-top: 20px;
+}
+
+/* „Alle akzeptieren“ und „Alle ablehnen“ sind gleichwertig gestaltet */
+.btn {
+  padding: 12px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--white);
+  background: var(--navy-900);
+  border: 1px solid var(--navy-900);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color var(--ease);
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--navy-700);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.btnLink {
+  padding: 12px 4px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--blue);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.btnLink:hover {
+  color: var(--red-dark);
+}
+
+.btn:focus-visible,
+.btnLink:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+.mapPlaceholder {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 16px;
+  width: 100%;
+  height: 100%;
+  padding: clamp(20px, 4vw, 40px);
+  background: var(--gray-50);
+}
+
+.mapPlaceholder p {
+  margin: 0;
+  max-width: 44ch;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+@media (max-width: 767px) {
+  .wrap {
+    padding: 10px;
+  }
+
+  .box {
+    padding: 20px;
+  }
+
+  .actions .btn {
+    flex: 1 1 140px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}

@@ -4,6 +4,7 @@ import Container from "@/components/ui/Container/Container";
 import Icon from "@/components/ui/Icon/Icon";
 import Photo from "@/components/ui/Photo/Photo";
 import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
+import btn from "@/components/ui/Button/Button.module.css";
 import styles from "./ReviewsSection.module.css";
 
 const formatRating = (n: number) => n.toLocaleString("de-DE", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
@@ -83,7 +84,7 @@ export default async function ReviewsSection() {
 
         <div className={styles.foot}>
           {google.reviewsUrl && (
-            <a href={google.reviewsUrl} target="_blank" rel="noopener noreferrer" className={styles.more}>
+            <a href={google.reviewsUrl} target="_blank" rel="noopener noreferrer" className={`${styles.more} ${btn.primary}`}>
               {reviews.linkLabel}
               <Icon name="arrow" size={16} />
               <span className={styles.srOnly}> (öffnet in neuem Tab)</span>

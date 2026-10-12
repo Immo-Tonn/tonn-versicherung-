@@ -8,7 +8,8 @@ export type Block =
   | { t: "h3"; text: string }
   | { t: "p"; text: string }
   | { t: "ul"; items: string[] }
-  | { t: "example"; text: string };
+  | { t: "example"; text: string }
+  | { t: "link"; text: string; href: string };
 
 export type Source = { label: string; url: string };
 
@@ -23,6 +24,18 @@ export type Article = {
   blocks: Block[];
   sources: Source[];
   related: string[];
+  /** Abweichender Abschlussblock (Standard: „Noch eine Frage offen?“) */
+  cta?: { title: string; text: string; label: string };
+  /**
+   * Redaktionsangaben – NUR eintragen, wenn sie tatsächlich zutreffen (keine Platzhalter, keine geschätzten Daten).
+   * Ohne Eintrag erscheinen weder sichtbare Hinweise noch Autor/Datumsangaben im Markup.
+   */
+  /** Tatsächliches Veröffentlichungsdatum, ISO „JJJJ-MM-TT“ */
+  publishedAt?: string;
+  /** Datum der letzten inhaltlichen Aktualisierung, ISO „JJJJ-MM-TT“ */
+  updatedAt?: string;
+  /** Fachliche Prüfung: erst setzen, nachdem Andreas Tonn den Inhalt bestätigt hat. `date` = Datum der Bestätigung. */
+  review?: { by: "Andreas Tonn"; date: string };
 };
 
 const VVG = (n: number, label: string): Source => ({ label, url: `https://www.gesetze-im-internet.de/vvg_2008/__${n}.html` });
@@ -154,7 +167,7 @@ export const articles: Article[] = [
     blocks: [
       { t: "h2", text: "Den Bedarf ermitteln" },
       { t: "p", text: "Ausgangspunkt ist Ihr Nettoeinkommen. Die Verbraucherzentrale nennt 80 Prozent vom derzeitigen Netto als oft guten Richtwert. Rechnen Sie nach, welche festen Ausgaben im Ernstfall weiterlaufen: Wohnen, Versicherungen, Mobilität, Unterhalt, Kredite und Rücklagen. Ein Teil davon kann entfallen, ein Teil kommt womöglich hinzu, etwa Kosten für Pflege oder Therapie." },
-      { t: "example", text: "Beispiel zur Orientierung: Bei 2.500 Euro Nettoeinkommen ergibt der Richtwert von 80 Prozent eine Rente von 2.000 Euro. Wer geringe feste Kosten oder zusätzliche Einkünfte hat, kommt womöglich mit weniger aus. Wer hohe Verpflichtungen hat, plant mehr ein." },
+      { t: "example", text: "Bei einem monatlichen Bruttoeinkommen von 4.000 € entsprechen 66 % einer monatlichen BU-Rente von 2.640 € (4.000 € × 0,66). Dieser Betrag dient als Orientierung für die Planung. Der passende Absicherungsbedarf hängt von Ihren laufenden Ausgaben, bestehenden Ansprüchen und Ihrer persönlichen Situation ab. Welche Rentenhöhe versichert werden kann, hängt außerdem von den Annahmerichtlinien des jeweiligen Versicherers ab." },
       { t: "h2", text: "Welche Ansprüche bestehen bereits?" },
       { t: "p", text: "Die gesetzliche Rentenversicherung zahlt keine Berufsunfähigkeitsrente, sondern eine Erwerbsminderungsrente. Sie setzt nach Angaben der Deutschen Rentenversicherung voraus, dass Sie wegen Krankheit oder Behinderung weniger als sechs Stunden täglich arbeiten können, und zwar in jeder Tätigkeit, nicht nur im bisherigen Beruf. Bei weniger als drei Stunden täglich liegt volle Erwerbsminderung vor, bei drei bis unter sechs Stunden teilweise Erwerbsminderung. Außerdem müssen Sie mindestens fünf Jahre in der Rentenversicherung versichert sein und in den letzten fünf Jahren vor Eintritt der Erwerbsminderung mindestens drei Jahre Pflichtbeiträge gezahlt haben." },
       { t: "p", text: "Die Verbraucherzentrale weist darauf hin, dass die Erwerbsminderungsrente durchschnittlich unter dem Grundsicherungsniveau liegt. Eine private Berufsunfähigkeitsversicherung sichert dagegen den bisherigen Beruf ab. Wie hoch Ihr gesetzlicher Anspruch ist, zeigt Ihnen die Renteninformation der Deutschen Rentenversicherung." },
@@ -253,6 +266,55 @@ export const articles: Article[] = [
       { label: "Verbraucherzentrale: Berufsunfähigkeit, wie Sie sich gegen Verlust des Einkommens absichern", url: "https://www.verbraucherzentrale.de/wissen/geld-versicherungen/weitere-versicherungen/berufsunfaehigkeit-wie-sie-sich-gegen-verlust-des-einkommens-absichern-13931" },
     ],
     related: ["bu-rente-planen", "gesundheitsfragen-bu"],
+  },
+  {
+    slug: "berufsunfaehigkeit-ursachen-folgen",
+    published: true,
+    topic: "Berufsunfähigkeit",
+    title: "Berufsunfähigkeit: Ursachen und finanzielle Folgen",
+    metaTitle: "Berufsunfähigkeit: Ursachen und finanzielle Folgen",
+    description: "Welche Ursachen zu Berufsunfähigkeit führen können, warum auch Büroberufe betroffen sind und was ein Einkommensausfall finanziell bedeutet. Verständlich erklärt.",
+    answer:
+      "Berufsunfähigkeit kann Menschen in ganz unterschiedlichen Berufen betreffen. Entscheidend ist, ob gesundheitliche Einschränkungen die konkrete berufliche Tätigkeit beeinträchtigen. Neben körperlichen Erkrankungen und Unfallfolgen können auch psychische Erkrankungen eine Rolle spielen. Fällt das Einkommen längerfristig aus, laufen viele finanzielle Verpflichtungen weiter.",
+    blocks: [
+      { t: "h2", text: "Warum auch ein Büroberuf betroffen sein kann" },
+      { t: "p", text: "Wer überwiegend am Schreibtisch arbeitet, verbindet Berufsunfähigkeit vielleicht zunächst mit körperlich anstrengenden Tätigkeiten. Doch auch ein Büroberuf verlangt Belastbarkeit, Konzentration und die Fähigkeit, Entscheidungen zu treffen." },
+      { t: "p", text: "Eine Erkrankung kann dazu führen, dass genau diese Anforderungen nicht mehr erfüllt werden können. Entscheidend ist deshalb nicht allein die Berufsbezeichnung, sondern der tatsächliche Arbeitsalltag: Welche Aufgaben übernehmen Sie? Welche Verantwortung tragen Sie? Und welche Fähigkeiten benötigen Sie dafür regelmäßig?" },
+      { t: "h2", text: "Welche Ursachen infrage kommen" },
+      { t: "p", text: "Psychische Erkrankungen, Erkrankungen des Bewegungsapparates, Krebs sowie Herz- und Gefäßerkrankungen können die berufliche Leistungsfähigkeit beeinträchtigen. Auch die Folgen eines Unfalls kommen als Ursache infrage." },
+      { t: "p", text: "Eine Diagnose allein bedeutet jedoch nicht automatisch Berufsunfähigkeit. Maßgeblich ist, wie stark und wie lange die Erkrankung die konkrete Tätigkeit einschränkt und welche Voraussetzungen der Versicherungsvertrag festlegt." },
+      { t: "h2", text: "Drei Beispiele aus dem Berufsalltag" },
+      { t: "p", text: "Die folgenden Situationen sind vereinfachte Beispiele. Sie stellen keine Zusage für eine Versicherungsleistung dar." },
+      { t: "h3", text: "Büro und Projektarbeit" },
+      { t: "p", text: "Eine Projektmanagerin muss Termine koordinieren, komplexe Informationen verarbeiten und Entscheidungen treffen. Eine schwere psychische Erkrankung kann diese Aufgaben über längere Zeit erheblich erschweren, obwohl die Arbeit körperlich wenig belastend ist." },
+      { t: "h3", text: "Handwerk und körperliche Arbeit" },
+      { t: "p", text: "Ein Handwerker ist auf Beweglichkeit und körperliche Belastbarkeit angewiesen. Anhaltende Einschränkungen an Rücken, Schulter oder Knie können wesentliche Tätigkeiten unmöglich machen." },
+      { t: "h3", text: "Selbstständigkeit" },
+      { t: "p", text: "Eine Selbstständige übernimmt Beratung, Organisation und Kundenbetreuung persönlich. Kann sie diese Aufgaben gesundheitlich nicht mehr bewältigen, kann neben ihrem persönlichen Einkommen auch die wirtschaftliche Situation ihres Betriebs unter Druck geraten. Private Einkommensabsicherung und betriebliche Absicherung sollten deshalb getrennt betrachtet werden." },
+      { t: "h2", text: "Was ein Einkommensausfall finanziell bedeutet" },
+      { t: "p", text: "Miete, Kreditraten, Haushaltskosten und familiäre Verpflichtungen verschwinden nicht automatisch, wenn das Einkommen ausfällt. Auch die eigene Altersvorsorge muss in der Planung berücksichtigt werden." },
+      { t: "p", text: "Rücklagen können einen Zeitraum überbrücken. Wie lange sie reichen, hängt von den verfügbaren Mitteln und den laufenden Ausgaben ab." },
+      { t: "p", text: "Ein einfaches Rechenbeispiel: Bei monatlich 2.000 Euro ungedeckten Ausgaben reichen 24.000 Euro frei verfügbare Rücklagen rechnerisch für zwölf Monate. Zusätzliche Ausgaben oder unerwartete Kosten verkürzen diesen Zeitraum." },
+      { t: "p", text: "Die persönliche Frage lautet daher: Wie lange könnten Sie Ihre laufenden Verpflichtungen ohne Ihr bisheriges Einkommen erfüllen?" },
+      { t: "link", text: "BU-Rente planen: Bedarf und Laufzeit ermitteln", href: "/wissen/bu-rente-planen" },
+      { t: "h2", text: "Wann eine private BU-Versicherung leisten kann" },
+      { t: "p", text: "Viele Verträge sehen eine Leistung vor, wenn die versicherte Person ihren zuletzt in gesunden Tagen ausgeübten Beruf voraussichtlich mindestens sechs Monate zu mindestens 50 Prozent nicht mehr ausüben kann. Entscheidend sind immer die vereinbarten Bedingungen, mögliche Ausschlüsse und die Prüfung des Einzelfalls." },
+      { t: "p", text: "Eine Krankschreibung allein ist daher keine automatische Leistungszusage der BU-Versicherung." },
+      { t: "h2", text: "Was Sie für Ihre eigene Absicherung prüfen sollten" },
+      { t: "p", text: "Beginnen Sie mit Ihrem Arbeitsalltag und Ihren finanziellen Verpflichtungen. Wie viel Einkommen benötigen Sie monatlich? Welche Rücklagen und vorhandenen Absicherungen stehen zur Verfügung? Bis zu welchem Alter soll der Schutz reichen?" },
+      { t: "p", text: "Prüfen Sie anschließend die Vertragsbedingungen und bereiten Sie die Gesundheitsfragen sorgfältig vor. Beantworten Sie die konkret gestellten Fragen vollständig und wahrheitsgemäß innerhalb der jeweils abgefragten Zeiträume." },
+      { t: "p", text: "Wenn Vorerkrankungen bestehen, kann eine anonyme Risikovoranfrage helfen, die Einschätzung verschiedener Versicherer vor einem Antrag zu klären. Ein bestimmtes Ergebnis lässt sich dabei nicht garantieren." },
+    ],
+    sources: [
+      { label: "Verbraucherzentrale: Berufsunfähigkeit – wie Sie sich gegen Verlust des Einkommens absichern", url: "https://www.verbraucherzentrale.de/wissen/geld-versicherungen/weitere-versicherungen/berufsunfaehigkeit-wie-sie-sich-gegen-verlust-des-einkommens-absichern-13931" },
+      { label: "Alte Leipziger: Berufsunfähigkeitsversicherung und psychische Vorerkrankungen", url: "https://www.alte-leipziger.de/privatkunden/einkommensschutz/berufsunfaehigkeitsversicherung/psychische-vorerkrankungen" },
+    ],
+    related: [],
+    cta: {
+      title: "Wie gut ist Ihr Einkommen abgesichert?",
+      text: "Wir betrachten gemeinsam Ihren Beruf, Ihre laufenden Verpflichtungen und Ihren bestehenden Schutz. So lässt sich klären, welche Absicherung zu Ihrer persönlichen Situation passt.",
+      label: "Kostenloses Erstgespräch vereinbaren",
+    },
   },
   {
     slug: "grundlagen-kapitalanlage",

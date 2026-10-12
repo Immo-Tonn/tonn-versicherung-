@@ -99,9 +99,8 @@ export function PkvTargets() {
                 photo={<Photo src={c.image} alt={c.alt} ratio="2 / 1" sizes="(max-width: 767px) 90vw, 30vw" className={styles.targetPhoto} imgClassName={styles.zoom} />}
                 title={c.title}
                 text={c.text}
-                more={c.more}
-                openLabel={targets.cta}
-                closeLabel={targets.ctaClose}
+                href={c.href}
+                linkLabel={targets.cta}
               />
             </li>
           ))}

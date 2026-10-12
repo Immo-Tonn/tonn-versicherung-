@@ -5,7 +5,9 @@ import Button from "@/components/ui/Button/Button";
 import Container from "@/components/ui/Container/Container";
 import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
 import { siteConfig } from "@/data/site";
+import { ids, OG_IMAGE, pageMetadata } from "@/lib/seo";
 import { bySlug, published, type Block } from "../_lib/articles";
+import { articleSeo } from "../_lib/seo";
 import styles from "./Article.module.css";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -20,12 +22,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const a = bySlug(slug);
   if (!a) return {};
-  return {
-    title: a.metaTitle,
-    description: a.description,
-    alternates: { canonical: `/wissen/${a.slug}` },
-    openGraph: { title: a.metaTitle, description: a.description, url: `/wissen/${a.slug}`, type: "article" },
-  };
+  const seo = articleSeo[a.slug];
+  return pageMetadata({
+    path: `/wissen/${a.slug}`,
+    title: seo?.title ?? `${a.metaTitle} | TONN`,
+    description: seo?.description ?? a.description,
+    type: "article",
+  });
 }
 
 function render(b: Block, i: number) {
@@ -52,6 +55,14 @@ function render(b: Block, i: number) {
           ))}
         </ul>
       );
+    case "link":
+      return (
+        <p key={i}>
+          <Link href={b.href} className={styles.inlineLink}>
+            {b.text}
+          </Link>
+        </p>
+      );
     case "example":
       return (
         <aside key={i} className={styles.example}>
@@ -68,19 +79,34 @@ export default async function Page({ params }: Props) {
   if (!a) notFound();
 
   const url = `${siteConfig.url}/wissen/${a.slug}`;
+  const seoDescription = articleSeo[a.slug]?.description ?? a.description;
+  // author/datePublished/dateModified nur, wenn in articles.ts tatsächlich eingetragen (fachliche Prüfung durch Andreas Tonn bestätigt).
+  const articleMeta: Record<string, unknown> = {};
+  if (a.review) articleMeta.author = { "@id": ids.person() };
+  if (a.publishedAt) articleMeta.datePublished = a.publishedAt;
+  if (a.updatedAt ?? a.publishedAt) articleMeta.dateModified = a.updatedAt ?? a.publishedAt;
+  const fmt = (iso: string) => new Date(iso).toLocaleDateString("de-DE", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
   const jsonLd = [
     {
       "@context": "https://schema.org",
       "@type": "Article",
+      "@id": `${url}#article`,
       headline: a.title,
-      description: a.description,
+      description: seoDescription,
       inLanguage: "de-DE",
-      mainEntityOfPage: url,
-      publisher: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
+      url,
+      mainEntityOfPage: { "@type": "WebPage", "@id": url },
+      isPartOf: { "@id": ids.website() },
+      articleSection: a.topic,
+      image: `${siteConfig.url}${OG_IMAGE.url}`,
+      publisher: { "@id": ids.organization() },
+      ...articleMeta,
+      citation: a.sources.map((s) => ({ "@type": "CreativeWork", name: s.label, url: s.url })),
     },
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
+      "@id": `${url}#breadcrumb`,
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Startseite", item: siteConfig.url },
         { "@type": "ListItem", position: 2, name: "Ratgeber", item: `${siteConfig.url}/wissen` },
@@ -96,14 +122,41 @@ export default async function Page({ params }: Props) {
       <Container>
         <div className={styles.column}>
           <nav className={styles.crumbs} aria-label="Brotkrumen">
-            <Link href="/">Startseite</Link>
-            <span aria-hidden="true">/</span>
-            <Link href="/wissen">Ratgeber</Link>
+            <ol>
+              <li>
+                <Link href="/">Startseite</Link>
+              </li>
+              <li>
+                <span className={styles.sep} aria-hidden="true">
+                  /
+                </span>
+                <Link href="/wissen">Ratgeber</Link>
+              </li>
+              <li>
+                <span className={styles.sep} aria-hidden="true">
+                  /
+                </span>
+                <span className={styles.current} aria-current="page">
+                  {a.title}
+                </span>
+              </li>
+            </ol>
           </nav>
           <SectionLabel>{a.topic}</SectionLabel>
           <h1 id="art-title" className={styles.title}>
             {a.title}
           </h1>
+          {(a.review || a.publishedAt || a.updatedAt) && (
+            <p className={styles.editorial}>
+              {a.review && (
+                <span>
+                  Fachlich geprüft von {a.review.by} · Stand: {fmt(a.review.date)}
+                </span>
+              )}
+              {a.publishedAt && <span>Veröffentlicht: {fmt(a.publishedAt)}</span>}
+              {a.updatedAt && <span>Aktualisiert: {fmt(a.updatedAt)}</span>}
+            </p>
+          )}
           <div className={styles.answer}>
             <p className={styles.answerLabel}>Kurz beantwortet</p>
             <p>{a.answer}</p>
@@ -141,10 +194,10 @@ export default async function Page({ params }: Props) {
           )}
 
           <div className={styles.cta}>
-            <h2 className={styles.h2}>Noch eine Frage offen?</h2>
-            <p>Besprechen wir, was die Informationen für Ihre persönliche Situation bedeuten.</p>
+            <h2 className={styles.h2}>{a.cta?.title ?? "Noch eine Frage offen?"}</h2>
+            <p>{a.cta?.text ?? "Besprechen wir, was die Informationen für Ihre persönliche Situation bedeuten."}</p>
             <Button href="/kontakt" size="lg" arrow={false}>
-              Persönliches Gespräch vereinbaren
+              {a.cta?.label ?? "Persönliches Gespräch vereinbaren"}
             </Button>
           </div>
         </div>

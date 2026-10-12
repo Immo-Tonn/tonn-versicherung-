@@ -28,7 +28,7 @@ export const reality = {
   eyebrow: "Realität",
   title: "Berufsunfähigkeit kann jeden treffen",
   text: "Eine Erkrankung oder ein Unfall kann jeden treffen – unabhängig von Alter, Beruf oder Lebenssituation. Ohne Absicherung kann das erhebliche finanzielle Folgen haben.",
-  link: { label: "Mehr erfahren", href: "#zielgruppen" },
+  link: { label: "Mehr erfahren", href: "/wissen/berufsunfaehigkeit-ursachen-folgen" },
   image: "/images/home/bu.webp",
   imageAlt: "Menschen entspannen am See im Abendlicht",
 };
@@ -91,7 +91,7 @@ export const process = {
   steps: [
     { title: "Erstgespräch", text: "Wir analysieren Ihre Situation und Ziele." },
     { title: "Bedarfsanalyse", text: "Wir ermitteln den passenden Versicherungsschutz." },
-    { title: "Angebotsvergleich", text: "Wir vergleichen geeignete Tarife und Bedingungen." },
+    { title: "Angebotsvergleich", text: "Wir vergleichen geeignete Tarife und Bedingungen unserer Versicherungspartner." },
     { title: "Entscheidung", text: "Sie wählen die passende Lösung – transparent und nachvollziehbar." },
   ],
   image: "/images/home/beratung.webp",

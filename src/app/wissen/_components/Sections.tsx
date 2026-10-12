@@ -242,16 +242,21 @@ export function RgExperience() {
     <section className={styles.exp} aria-labelledby="rg-exp">
       <Container>
         <div className={styles.expGrid}>
-          <div>
+          <Photo
+            src="/images/wissen/ratgeber-unterlagen-besprechen.webp"
+            alt="Gemeinsame Durchsicht von Unterlagen und einem geöffneten Buch."
+            ratio="3 / 2"
+            sizes="(max-width: 1023px) 100vw, 540px"
+            className={styles.expPhoto}
+          />
+          <div className={styles.expCopy}>
             <h2 id="rg-exp" className={styles.h2}>
               Wissen aus der Beratungspraxis.
             </h2>
             <p className={styles.expName}>
               <strong>Andreas Tonn</strong> · Versicherungsfachmann (BWV)
             </p>
-          </div>
-          <div>
-            <p className={styles.body}>
+            <p className={`${styles.body} ${styles.expText}`}>
               Die Themen orientieren sich an Fragen, die in der Versicherungsberatung immer wieder auftauchen. Verständliche Erklärungen helfen Ihnen, sich auf ein persönliches Gespräch vorzubereiten.
             </p>
             <Link href="/ueber-uns" className={styles.textLink}>

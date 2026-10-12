@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
+import ConsentBanner from "@/components/consent/ConsentBanner";
+import GoogleAnalytics from "@/components/consent/GoogleAnalytics";
 import Footer from "@/components/layout/Footer/Footer";
 import Header from "@/components/layout/Header/Header";
 import JsonLd from "@/components/seo/JsonLd";
@@ -12,11 +14,11 @@ const sans = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swa
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Private Krankenversicherung Münster | TONN Versicherungsberatung",
-    template: "%s | TONN Versicherungsberatung",
+    default: "Private Krankenversicherung Münster | TONN",
+    template: "%s | TONN",
   },
   description:
-    "Individuelle Beratung zur privaten Krankenversicherung in Münster und deutschlandweit. Anonyme Risikovoranfrage, Tarifvergleich und persönliche Begleitung.",
+    "Individuelle Beratung zur privaten Krankenversicherung in Münster und deutschlandweit. Anonyme Risikovoranfrage, Vergleich verschiedener Angebote und persönliche Begleitung.",
   openGraph: {
     type: "website",
     locale: siteConfig.locale,
@@ -38,6 +40,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <Footer />
         <JsonLd />
+        <ConsentBanner />
+        <GoogleAnalytics />
       </body>
     </html>
   );

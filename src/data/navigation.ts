@@ -50,10 +50,8 @@ export const footerColumns: { title: string; links: (NavItem | { label: string; 
     links: [
       { label: "Impressum", href: "/impressum" },
       { label: "Datenschutz", href: "/datenschutz" },
-      // TODO: eigene Cookie-Seite / Consent-Manager anbinden
-      { label: "Cookies", href: "/datenschutz#cookies" },
-      // TODO: Rechtstext prüfen lassen und eigene Seite anlegen
-      { label: "Hinweise nach § 15 VersVermV", href: "/impressum#versvermv" },
+      // öffnet das Einstellungsfenster für Cookies/Einwilligungen (kein Seitenwechsel)
+      { label: "Cookie-Einstellungen", href: "#cookie-einstellungen" },
     ],
   },
 ];
