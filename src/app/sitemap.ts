@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/data/site";
-import { published } from "@/app/wissen/_lib/articles";
+import { published } from "@/app/(de)/wissen/_lib/articles";
 
 const routes = [
   "",

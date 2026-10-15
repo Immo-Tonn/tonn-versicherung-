@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { LIMITS, validate, type ContactInput } from "@/app/kontakt/_lib/schema";
+import { LIMITS, validate, type ContactInput } from "@/app/(de)/kontakt/_lib/schema";
 
 /** Empfänger ist fest auf dem Server hinterlegt und kommt nie aus dem Browser. */
 const RECIPIENT = "andreas@tonn-versicherung.de";

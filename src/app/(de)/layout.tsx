@@ -6,7 +6,7 @@ import Footer from "@/components/layout/Footer/Footer";
 import Header from "@/components/layout/Header/Header";
 import JsonLd from "@/components/seo/JsonLd";
 import { siteConfig } from "@/data/site";
-import "./globals.css";
+import "../globals.css";
 
 const serif = Source_Serif_4({ subsets: ["latin"], variable: "--font-source-serif", display: "swap" });
 const sans = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
