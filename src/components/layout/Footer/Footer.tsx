@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { footerColumns } from "@/data/navigation";
-import { siteConfig } from "@/data/site";
+import { isPlaceholder, siteConfig } from "@/data/site";
 import Button from "@/components/ui/Button/Button";
 import Container from "@/components/ui/Container/Container";
 import Icon from "@/components/ui/Icon/Icon";
@@ -21,16 +21,21 @@ export default function Footer() {
             Digital in ganz Deutschland.
           </p>
           <ul className={styles.social} aria-label="Soziale Netzwerke und Kontakt">
-            <li>
-              <a href={social.linkedin} aria-label="LinkedIn">
-                <Icon name="linkedin" size={22} />
-              </a>
-            </li>
-            <li>
-              <a href={social.google} aria-label="Google-Profil">
-                <Icon name="google" size={22} />
-              </a>
-            </li>
+            {/* Profil-Links nur anzeigen, wenn eine echte Adresse hinterlegt ist (siehe siteConfig.social) */}
+            {!isPlaceholder(social.linkedin) && (
+              <li>
+                <a href={social.linkedin} aria-label="LinkedIn">
+                  <Icon name="linkedin" size={22} />
+                </a>
+              </li>
+            )}
+            {!isPlaceholder(social.google) && (
+              <li>
+                <a href={social.google} aria-label="Google-Profil">
+                  <Icon name="google" size={22} />
+                </a>
+              </li>
+            )}
             <li>
               <a href={contact.emailHref} aria-label="E-Mail">
                 <Icon name="mail" size={22} />

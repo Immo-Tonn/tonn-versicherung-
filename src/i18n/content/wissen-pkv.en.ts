@@ -149,7 +149,7 @@ export const tarifwechselEn: ArticleTranslation = {
     description: "When is a tariff change possible in PKV, what happens to the ageing reserves and what should you look out for before switching?",
   },
   answer:
-    "Privately insured people can require the insurer to let them switch to another tariff with similar insurance cover (§ 204 VVG). Acquired rights and the ageing reserves (Alterungsrückstellung) are credited in the process. For higher or more comprehensive benefits, however, the insurer may require a risk surcharge, a benefit exclusion or a qualifying period.",
+    "Privately insured people can require the insurer to let them switch to another tariff with similar insurance cover (§ 204 VVG). Acquired rights and the ageing reserves (Alterungsrückstellung) are credited in the process. For higher or more comprehensive benefits, however, the insurer may require a risk surcharge, a benefit exclusion or a waiting period.",
   blocks: [
     { t: "h2", text: "What the law provides" },
     {
@@ -159,7 +159,7 @@ export const tarifwechselEn: ArticleTranslation = {
     { t: "h2", text: "Switching with additional benefits" },
     {
       t: "p",
-      text: "If the benefits in the new tariff are higher or more comprehensive, the insurer may require a benefit exclusion, an appropriate risk surcharge or a qualifying period (Wartezeit) for the additional benefit. BaFin points out that a health assessment (Gesundheitsprüfung) is also possible for this. You can avoid this by waiving the additional benefit.",
+      text: "If the benefits in the new tariff are higher or more comprehensive, the insurer may require a benefit exclusion, an appropriate risk surcharge or a waiting period (Wartezeit) for the additional benefit. BaFin points out that a health assessment (Gesundheitsprüfung) is also possible for this. You can avoid this by waiving the additional benefit.",
     },
     { t: "h2", text: "Advice and information from the insurer" },
     {
@@ -182,7 +182,7 @@ export const tarifwechselEn: ArticleTranslation = {
       items: [
         "Which benefits fall away or are added? Compare benefit descriptions, not just the contribution.",
         "How do deductible and contribution development affect you in the long term?",
-        "Does the insurer require a surcharge, exclusion, qualifying period or health assessment for additional benefits?",
+        "Does the insurer require a surcharge, exclusion, waiting period or health assessment for additional benefits?",
         "Are the ageing reserves and acquired rights credited in a comprehensible way?",
         "Do you have all commitments and terms in writing?",
       ],

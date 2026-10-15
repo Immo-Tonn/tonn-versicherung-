@@ -155,8 +155,8 @@ export const selbststaendigeEn: SubPageContent = {
       t: "ul",
       items: [
         "Amount: the daily sickness allowance may be at most as high as your net income. As a rule, the average of the last twelve months is decisive.",
-        "Waiting period (Karenzzeit): the allowance is only paid after an agreed waiting period has passed. Depending on the tariff, this can be as early as the fourth day of illness. A shorter waiting period generally leads to a higher contribution.",
-        "Qualifying period (Wartezeit): for certain benefits, for example during maternity protection, the model terms provide for a qualifying period of eight months.",
+        "Deferral period (Karenzzeit): the allowance is only paid after an agreed deferral period has passed. Depending on the tariff, this can be as early as the fourth day of illness. A shorter deferral period generally leads to a higher contribution.",
+        "Waiting period (Wartezeit): for certain benefits, for example during maternity protection, the model terms provide for a waiting period of eight months.",
         "Adjustment: if your net income falls permanently, you should tell your insurer so that the allowance and your income match.",
       ],
     },
