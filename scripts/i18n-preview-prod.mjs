@@ -9,7 +9,9 @@
  * Das Repository wird NICHT verändert: Das Projekt wird in ein temporäres Verzeichnis kopiert, dort werden die
  * Entwürfe als Routen eingehängt (und nur dort als „live“ markiert), gebaut und nur auf 127.0.0.1 gestartet.
  * Auf Servern/in CI/mit NODE_ENV=production bricht das Skript ab. Die Vorschau-Routen existieren nur in der Kopie.
- * Ohne .env: keine echten Google-Bewertungen/Karte.
+ * Umgebungsvariablen: Aus der lokalen .env.local werden NUR GOOGLE_PLACES_API_KEY, GOOGLE_PLACE_ID und NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY
+ * in die temporäre Kopie übernommen (Google-Bewertungen und Karte, auch zur Build-Zeit nötig). Der Mailversand-Schlüssel (RESEND_*) wird
+ * bewusst NICHT übernommen: Das Kontaktformular kann in der Vorschau keine echten E-Mails senden. Werte werden nie ausgegeben.
  *
  * Aufruf: npm run preview:i18n   oder   node scripts/i18n-preview-prod.mjs [port]   (Standard 3300)
  */
@@ -32,6 +34,17 @@ fs.rmSync(tmp, { recursive: true, force: true });
 fs.mkdirSync(tmp, { recursive: true });
 execFileSync("rsync", ["-a", "--exclude", "node_modules", "--exclude", ".next", "--exclude", ".git", "--exclude", ".env*", "--exclude", "docs", "--exclude", "design-source", `${root}/`, `${tmp}/`]);
 execFileSync("cp", ["-cR", path.join(root, "node_modules"), path.join(tmp, "node_modules")]);
+
+// Nur die für Bewertungen/Karte nötigen Variablen übernehmen (Build- und Laufzeit); Datei nur für den Besitzer lesbar
+const ENV_ALLOW = ["GOOGLE_PLACES_API_KEY", "GOOGLE_PLACE_ID", "NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY"];
+const envSrc = path.join(root, ".env.local");
+if (fs.existsSync(envSrc)) {
+  const lines = fs.readFileSync(envSrc, "utf8").split(/\r?\n/).filter((l) => ENV_ALLOW.some((k) => l.startsWith(`${k}=`)));
+  fs.writeFileSync(path.join(tmp, ".env.local"), lines.join("\n") + "\n", { mode: 0o600 });
+  console.log(`Umgebung: ${lines.length} von ${ENV_ALLOW.length} Variablen übernommen (Werte nicht angezeigt).`);
+} else {
+  console.log("Umgebung: keine .env.local gefunden – Bewertungen/Karte ohne Schlüssel.");
+}
 
 const drafts = [];
 for (const l of ["en", "ru"]) {
