@@ -1,5 +1,8 @@
 import { ids } from "@/lib/seo";
 import { siteConfig } from "@/data/site";
+import { defaultLocale, type Locale } from "@/i18n/config";
+import { inLanguage } from "@/i18n/seo";
+import { localizedPath } from "@/i18n/registry";
 
 type Crumb = { name: string; path: string };
 type Faq = { q: string; a: string };
@@ -17,14 +20,17 @@ type Props = {
   faq?: Faq[];
   /** Verweis auf die Person (z. B. Über uns), falls die Seite sie vorstellt */
   aboutPerson?: boolean;
+  /** Sprache der Seite (Standard: Deutsch); Pfade bleiben deutsche Registerpfade */
+  locale?: Locale;
 };
 
 /**
  * Seitenspezifisches JSON-LD (@graph). Organization und WebSite stammen aus dem globalen JsonLd im Layout
  * und werden hier nur per @id referenziert.
  */
-export default function PageJsonLd({ path, name, description, pageType = "WebPage", crumbs = [], service, faq, aboutPerson }: Props) {
-  const url = `${siteConfig.url}${path === "/" ? "" : path}`;
+export default function PageJsonLd({ path, name, description, pageType = "WebPage", crumbs = [], service, faq, aboutPerson, locale = defaultLocale }: Props) {
+  const abs = (p: string) => `${siteConfig.url}${locale === defaultLocale && p === "/" ? "" : localizedPath(p, locale)}`;
+  const url = abs(path);
   const pageId = `${url}#webpage`;
   const graph: Record<string, unknown>[] = [];
 
@@ -34,7 +40,7 @@ export default function PageJsonLd({ path, name, description, pageType = "WebPag
     url,
     name,
     description,
-    inLanguage: "de-DE",
+    inLanguage: inLanguage(locale),
     isPartOf: { "@id": ids.website() },
   };
   if (aboutPerson) page.about = { "@id": ids.person() };
@@ -50,7 +56,7 @@ export default function PageJsonLd({ path, name, description, pageType = "WebPag
         "@type": "ListItem",
         position: i + 1,
         name: c.name,
-        item: `${siteConfig.url}${c.path === "/" ? "" : c.path}`,
+        item: abs(c.path),
       })),
     });
   }

@@ -1,19 +1,24 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { languages } from "@/data/navigation";
+import { localeMeta } from "@/i18n/config";
+import { isPublic, localeFromPathname, localizedPath } from "@/i18n/registry";
 import Icon from "../Icon/Icon";
 import styles from "./LanguageSwitcher.module.css";
 
 /**
- * Struktur für spätere Mehrsprachigkeit. Aktuell ist nur DE aktiv;
- * EN/RU sind sichtbar, aber noch deaktiviert (TODO: i18n-Routing anbinden).
+ * Sprachumschalter. Ziel ist immer die entsprechende Seite in der anderen Sprache (nicht die Startseite).
+ * Eine Sprache ist nur wählbar, wenn das Register (src/i18n/registry.ts) die Seite als "live" führt;
+ * sonst bleibt der Eintrag deaktiviert. Keine automatische Weiterleitung nach Browsersprache.
  */
 export default function LanguageSwitcher() {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const listId = useId();
-  const current = languages[0];
+  const { locale, germanPath } = localeFromPathname(usePathname());
+  const current = languages.find((l) => l.locale === locale) ?? languages[0];
 
   useEffect(() => {
     if (!open) return;
@@ -48,14 +53,23 @@ export default function LanguageSwitcher() {
       </button>
       {open && (
         <ul id={listId} role="listbox" className={styles.menu} aria-label="Sprache">
-          {languages.map((l) => (
-            <li key={l.code} role="option" aria-selected={l.code === current.code} aria-disabled={!l.available}>
-              <button type="button" disabled={!l.available} className={styles.option} onClick={() => setOpen(false)}>
-                <span>{l.label}</span>
-                {!l.available && <small>bald</small>}
-              </button>
-            </li>
-          ))}
+          {languages.map((l) => {
+            const target = l.locale !== current.locale && isPublic(germanPath, l.locale);
+            return (
+              <li key={l.code} role="option" aria-selected={l.code === current.code} aria-disabled={l.locale !== current.locale && !target}>
+                {target ? (
+                  <a href={localizedPath(germanPath, l.locale)} lang={localeMeta[l.locale].htmlLang} hrefLang={localeMeta[l.locale].htmlLang} className={styles.option}>
+                    <span>{l.label}</span>
+                  </a>
+                ) : (
+                  <button type="button" disabled={l.locale !== current.locale} className={styles.option} onClick={() => setOpen(false)}>
+                    <span>{l.label}</span>
+                    {l.locale !== current.locale && <small>bald</small>}
+                  </button>
+                )}
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>

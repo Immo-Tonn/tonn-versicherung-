@@ -1,3 +1,5 @@
+import type { Locale } from "@/i18n/config";
+
 export type NavItem = { label: string; href: string };
 export type NavGroup = { label: string; children: NavItem[] };
 
@@ -19,12 +21,13 @@ export const mainNav: (NavItem | NavGroup)[] = [
 
 export const headerCta = { label: "Kostenloses Erstgespräch", href: "/kontakt" };
 
-export type Language = { code: "DE" | "EN" | "RU"; label: string; available: boolean };
+export type Language = { code: "DE" | "EN" | "RU"; locale: Locale; label: string };
 
+/** Sprachen des Umschalters. Ob eine Übersetzung erreichbar ist, entscheidet das Register (src/i18n/registry.ts). */
 export const languages: Language[] = [
-  { code: "DE", label: "Deutsch", available: true },
-  { code: "EN", label: "English", available: false },
-  { code: "RU", label: "Русский", available: false },
+  { code: "DE", locale: "de", label: "Deutsch" },
+  { code: "EN", locale: "en", label: "English" },
+  { code: "RU", locale: "ru", label: "Русский" },
 ];
 
 export const footerColumns: { title: string; links: (NavItem | { label: string; href: string })[] }[] = [

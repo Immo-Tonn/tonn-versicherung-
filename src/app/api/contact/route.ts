@@ -21,6 +21,10 @@ function rateLimited(ip: string): boolean {
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 const oneLine = (s: string) => s.replace(/[\r\n\t]+/g, " ").trim();
 
+// Sprache der Anfrage: optional (fehlt = Deutsch); nur diese festen Werte, die Bezeichnung im Mail-Text kommt nie aus der Anfrage
+const LOCALE_LABELS = { de: "Deutsch (de)", en: "Englisch (en)", ru: "Russisch (ru)" } as const;
+type RequestLocale = keyof typeof LOCALE_LABELS;
+
 export async function POST(req: Request) {
   let body: Record<string, unknown>;
   try {
@@ -31,6 +35,12 @@ export async function POST(req: Request) {
 
   // Honeypot: Bots füllen das versteckte Feld aus – still als Erfolg behandeln, nichts senden.
   if (typeof body.website === "string" && body.website.trim() !== "") return NextResponse.json({ ok: true });
+
+  let locale: RequestLocale = "de";
+  if (body.locale !== undefined && body.locale !== null) {
+    if (typeof body.locale !== "string" || !Object.prototype.hasOwnProperty.call(LOCALE_LABELS, body.locale)) return NextResponse.json({ ok: false, error: "invalid_locale" }, { status: 400 });
+    locale = body.locale as RequestLocale;
+  }
 
   const str = (v: unknown, max: number) => (typeof v === "string" ? v.slice(0, max + 1) : "");
   const input: ContactInput = {
@@ -65,6 +75,7 @@ export async function POST(req: Request) {
     ["Name", name],
     ["E-Mail", email],
     ["Antwort per", input.replyVia],
+    ["Sprache der Anfrage", LOCALE_LABELS[locale]],
     ...(phone ? ([["Telefon", phone]] as [string, string][]) : []),
   ];
 

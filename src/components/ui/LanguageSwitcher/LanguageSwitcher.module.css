@@ -46,6 +46,10 @@
   cursor: pointer;
 }
 
+a.option {
+  text-decoration: none;
+}
+
 .option:hover:not(:disabled) {
   background: var(--warm-white);
 }
