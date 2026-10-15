@@ -99,7 +99,6 @@ export const reviews = {
   eyebrow: "Google Bewertungen",
   title: "Was unsere Kunden sagen.",
   linkLabel: "Alle Bewertungen auf Google ansehen",
-  backgroundImage: "/images/home/reviews-muenster.webp",
 };
 
 export const finalCta = {
@@ -108,7 +107,6 @@ export const finalCta = {
   text: "Unverbindlich. Persönlich. Online oder vor Ort in Münster.",
   cta: { label: "Kostenloses Erstgespräch vereinbaren", href: "/kontakt" },
   checks: ["Kostenlos", "Unverbindlich", "Persönlich"],
-  image: "/images/home/cta-muenster.webp",
 };
 
 export const location = {

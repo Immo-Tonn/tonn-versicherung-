@@ -1,14 +1,12 @@
 import { finalCta } from "@/data/home";
 import Button from "@/components/ui/Button/Button";
 import Container from "@/components/ui/Container/Container";
-import Photo from "@/components/ui/Photo/Photo";
 import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
 import styles from "./FinalCTA.module.css";
 
 export default function FinalCTA() {
   return (
     <section className={styles.section} aria-labelledby="cta-title">
-      <Photo src={finalCta.image} alt="" sizes="100vw" className={styles.bg} />
       <div className={styles.veil} aria-hidden="true" />
       <Container className={styles.inner}>
         <div>

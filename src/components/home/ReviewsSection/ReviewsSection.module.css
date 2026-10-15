@@ -1,13 +1,9 @@
 .section {
   position: relative;
   padding-block: clamp(56px, 6vw, 88px);
-  background: var(--warm-white);
+  /* Verlauf wie zuvor hinter dem Schleier (früher vom Fotoplatzhalter erzeugt) – Optik unverändert */
+  background: linear-gradient(135deg, #e6e4de, #d6d8d6);
   overflow: hidden;
-}
-
-.bg {
-  position: absolute !important;
-  inset: 0;
 }
 
 .veil {
