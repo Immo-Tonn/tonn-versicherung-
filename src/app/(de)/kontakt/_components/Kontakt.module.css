@@ -680,3 +680,71 @@
     font-size: 16px;
   }
 }
+
+/* ===== Formular kompakter (ab 900px): nur Abstände und Größen; so passt das Formular nach dem Sprung zu #formular auf Laptop-Bildschirme ===== */
+@media (min-width: 900px) {
+  .formSection {
+    padding-top: 24px;
+  }
+
+  .panel {
+    padding: 24px;
+  }
+
+  .form {
+    gap: 12px;
+  }
+
+  .legend {
+    margin-bottom: 8px;
+  }
+
+  .topicGrid {
+    gap: 8px;
+  }
+
+  .topic {
+    min-height: 44px;
+    padding: 8px 16px;
+  }
+
+  .row {
+    gap: 12px 24px;
+  }
+
+  .field {
+    gap: 6px;
+  }
+
+  .field input,
+  .field textarea {
+    min-height: 44px;
+    padding: 9px 14px;
+  }
+
+  /* Anfangshöhe der Nachricht; per Ziehen weiterhin vergrößerbar */
+  .field textarea {
+    height: 84px;
+  }
+
+  .reply legend {
+    margin-bottom: 6px;
+  }
+
+  .replyOpt {
+    min-height: 44px;
+  }
+
+  .foot {
+    gap: 10px;
+  }
+
+  .privacy {
+    gap: 4px;
+  }
+
+  .submit {
+    min-height: 46px;
+    padding: 10px 26px;
+  }
+}
