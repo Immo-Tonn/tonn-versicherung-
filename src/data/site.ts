@@ -26,14 +26,9 @@ export const siteConfig = {
     emailHref: "mailto:andreas@tonn-versicherung.de",
     address: { street: "Sessendrupweg 54", zip: "48161", city: "Münster" },
   },
-  social: {
-    // TODO(PLACEHOLDER): echte Profile
-    linkedin: "#",
-    google: "#",
-  },
   // TODO(PLACEHOLDER): Link zum Google Business Profile
   googleProfileUrl: "#",
-  // Vom Inhaber bestätigte Profile (für Schema.org sameAs). Nicht mit „social“ verwechseln: dort stehen noch die sichtbaren Footer-Links.
+  // Vom Inhaber bestätigte Profile: Schema.org sameAs und sichtbare Footer-Symbole (LinkedIn = persönliches Profil von Andreas Tonn, Google = Unternehmensprofil)
   profiles: {
     // Dauerhafte Adresse des Google-Unternehmensprofils (CID ohne Suchparameter; identisch mit der Place-ID-Kennung der Bewertungsseite)
     googleBusinessProfile: "https://www.google.com/maps?cid=3010525801531931531",

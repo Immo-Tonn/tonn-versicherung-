@@ -4,7 +4,7 @@ import CookieSettingsButton from "@/components/consent/CookieSettingsButton";
 import Button from "@/components/ui/Button/Button";
 import Container from "@/components/ui/Container/Container";
 import Icon from "@/components/ui/Icon/Icon";
-import { isPlaceholder, siteConfig } from "@/data/site";
+import { siteConfig } from "@/data/site";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { localizedHref } from "@/i18n/links";
@@ -28,7 +28,7 @@ function FooterLink({ href, label, locale, tag }: { href: string; label: string;
 export default function LocalizedFooter({ locale }: { locale: Exclude<Locale, "de"> }) {
   const t = getDictionary(locale);
   const f = t.footer;
-  const { contact, social } = siteConfig;
+  const { contact, profiles } = siteConfig;
   const contactTarget = localizedHref("/kontakt", locale);
   const tag = <DeTag badge={t.common.germanOnlyBadge} hint={t.common.germanOnlyHint} />;
   const columns: { title: string; links: { label: string; href: string }[] }[] = [
@@ -69,21 +69,16 @@ export default function LocalizedFooter({ locale }: { locale: Exclude<Locale, "d
             {f.taglineLine2}
           </p>
           <ul className={styles.social} aria-label={f.socialLabel}>
-            {/* Profil-Links nur anzeigen, wenn eine echte Adresse hinterlegt ist (siehe siteConfig.social) */}
-            {!isPlaceholder(social.linkedin) && (
-              <li>
-                <a href={social.linkedin} aria-label={f.linkedin}>
-                  <Icon name="linkedin" size={22} />
-                </a>
-              </li>
-            )}
-            {!isPlaceholder(social.google) && (
-              <li>
-                <a href={social.google} aria-label={f.googleProfile}>
-                  <Icon name="google" size={22} />
-                </a>
-              </li>
-            )}
+            <li>
+              <a href={profiles.linkedinAndreasTonn} aria-label={f.linkedin}>
+                <Icon name="linkedin" size={22} />
+              </a>
+            </li>
+            <li>
+              <a href={profiles.googleBusinessProfile} aria-label={f.googleProfile}>
+                <Icon name="google" size={22} />
+              </a>
+            </li>
             <li>
               <a href={contact.emailHref} aria-label={f.email}>
                 <Icon name="mail" size={22} />
