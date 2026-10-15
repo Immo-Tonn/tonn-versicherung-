@@ -1,0 +1,73 @@
+import type { DankeContent, KontaktContent } from "./kontakt.types";
+
+/** ENTWURF – nicht rechtlich/fachlich geprüft, nicht veröffentlicht. */
+export const kontaktEn: KontaktContent = {
+  meta: {
+    title: "Contact & initial consultation Münster | TONN",
+    description: "Arrange a free and non-binding initial consultation: by phone, email or form – in person in Münster or online.",
+    name: "Contact",
+    crumb: "Contact",
+  },
+  hero: { eyebrow: "Contact", title: "Let's talk", text: "Your questions. A personal conversation. A good start." },
+  cardsAria: "Ways to get in touch",
+  cards: {
+    phone: "Phone",
+    email: "Email",
+    emailAction: "Write an email",
+    appointment: "Online appointment",
+    appointmentText: "Choose your preferred appointment.",
+    appointmentAction: "Book an online appointment",
+  },
+  formIntro: { title: "Room for your questions", lead: "Choose a topic and leave your contact details." },
+  form: {
+    topicLegend: "Choose a topic",
+    optional: "(optional)",
+    topics: ["Private health insurance", "Occupational disability insurance", "Investment", "Other insurance", "Other question"],
+    name: "Your name *",
+    email: "Email *",
+    message: "Your message (optional)",
+    messagePlaceholder: "If you like, add your request here …",
+    messageHint: "Please do not submit any health data or confidential documents.",
+    replyLegend: "Reply by",
+    replyVia: ["Email", "Callback"],
+    phone: "Phone *",
+    phoneOptional: "Phone (optional)",
+    phoneHint: "Required for your callback.",
+    honeypot: "Website",
+    privacyNote: "Notes on data protection:",
+    privacyLink: "Privacy policy",
+    privacyBefore: "I have taken note of the ",
+    privacyLinkInline: "privacy policy",
+    privacyAfter: ".",
+    submit: "Send message",
+    sending: "Sending …",
+    required: "* Required fields",
+    serverError: "Unfortunately your message could not be sent. Please try again or contact us directly.",
+  },
+  errors: {
+    topic: "Please choose a valid topic.",
+    nameRequired: "Please enter your name.",
+    tooLong: "Please use at most {n} characters.",
+    emailRequired: "Please enter your email address.",
+    emailInvalid: "Please enter a valid email address.",
+    replyVia: "Please choose how you would like to be answered.",
+    phoneRequired: "Required for your callback.",
+    phoneInvalid: "Please enter a valid phone number.",
+    privacy: "Please confirm that you have taken note of the privacy policy.",
+  },
+};
+
+export const dankeEn: DankeContent = {
+  meta: { title: "Thank you | TONN" },
+  eyebrow: "Message sent",
+  title: ["Thank you!", "Your message has been sent successfully."],
+  lead: "We will get back to you personally via your preferred way of contact.",
+  note: "You do not need to do anything else for now.",
+  home: "To the homepage",
+  unconfirmed: {
+    eyebrow: "Contact",
+    title: "No confirmed request found.",
+    lead: "This page is only shown after a message has been sent successfully. If you would like to get in touch, please use the contact form.",
+    toForm: "To the contact form",
+  },
+};

@@ -1,0 +1,32 @@
+/*
+ * Nur EN/RU (die deutsche Startseite nutzt dieses Modul nicht).
+ * Russische Kartentitel („Предприниматели и самозанятые“, „Государственные служащие“) passen im Tablet-Raster
+ * (vier schmale Karten, 768–1023px) nicht in die Kartenbreite. Lösung ohne Silbentrennung und ohne Wortbruch:
+ * schmalere Seitenränder (10px), Titel 14,5px, Pfeil unten rechts in der Karte, vier Spalten bleiben erhalten.
+ * :lang(ru) erhöht die Spezifität gegenüber den Regeln aus SituationSection.module.css.
+ */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .body:lang(ru) {
+    padding: 20px 10px 16px;
+  }
+
+  .accent:lang(ru) {
+    left: 10px;
+  }
+
+  .text:lang(ru) {
+    padding-bottom: 22px;
+  }
+
+  .cardTitle:lang(ru) {
+    font-size: 14.5px;
+    hyphens: none;
+    overflow-wrap: normal;
+  }
+
+  .arrow:lang(ru) {
+    position: absolute;
+    right: 10px;
+    bottom: 14px;
+  }
+}

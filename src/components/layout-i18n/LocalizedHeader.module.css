@@ -1,0 +1,28 @@
+/*
+ * Ergänzung zu components/layout/Header/Header.module.css für EN/RU: Die Beschriftungen sind länger als auf Deutsch.
+ * Nur im Bereich 1200–1559 px (volle Navigation, aber wenig Platz) werden Abstände und Schrift minimal verkleinert,
+ * damit nichts aus dem Bildschirm läuft. Alles andere (Farben, Logo, Anordnung, Burger-Menü) bleibt unverändert.
+ */
+@media (min-width: 1200px) and (max-width: 1559px) {
+  .compact nav ul {
+    gap: 14px;
+  }
+
+  .compact nav a,
+  .compact nav button {
+    font-size: 13px;
+  }
+
+  .compact > div {
+    gap: 16px;
+  }
+
+  .compact > div > div:last-child {
+    gap: 12px;
+  }
+
+  .compact > div > div:last-child > a:first-child {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+}
