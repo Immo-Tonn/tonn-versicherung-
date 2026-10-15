@@ -19,7 +19,7 @@ export const mainNav: (NavItem | NavGroup)[] = [
   { label: "Kontakt", href: "/kontakt" },
 ];
 
-export const headerCta = { label: "Kostenloses Erstgespräch", href: "/kontakt" };
+export const headerCta = { label: "Kontakt aufnehmen", href: "/kontakt" };
 
 export type Language = { code: "DE" | "EN" | "RU"; locale: Locale; label: string };
 

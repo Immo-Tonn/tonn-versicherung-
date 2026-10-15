@@ -26,7 +26,7 @@ const de: Dictionary = {
     languageList: "Sprache",
     languageSoon: "bald",
   },
-  header: { cta: "Kostenloses Erstgespräch", navLabel: "Hauptnavigation", mobileNavLabel: "Mobile Navigation", menuOpen: "Menü öffnen", menuClose: "Menü schließen" },
+  header: { cta: "Kontakt aufnehmen", navLabel: "Hauptnavigation", mobileNavLabel: "Mobile Navigation", menuOpen: "Menü öffnen", menuClose: "Menü schließen" },
   footer: {
     taglineLine1: "Persönlich in Münster.",
     taglineLine2: "Digital in ganz Deutschland.",

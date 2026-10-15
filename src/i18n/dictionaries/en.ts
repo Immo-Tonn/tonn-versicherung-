@@ -29,7 +29,7 @@ export const en: Dictionary = {
     languageSoon: "soon",
   },
   header: {
-    cta: "Free initial consultation",
+    cta: "Get in touch",
     navLabel: "Main navigation",
     mobileNavLabel: "Mobile navigation",
     menuOpen: "Open menu",

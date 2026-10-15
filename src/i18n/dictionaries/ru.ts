@@ -29,7 +29,7 @@ export const ru: Dictionary = {
     languageSoon: "скоро",
   },
   header: {
-    cta: "Бесплатная консультация",
+    cta: "Связаться с нами",
     navLabel: "Основная навигация",
     mobileNavLabel: "Мобильная навигация",
     menuOpen: "Открыть меню",
