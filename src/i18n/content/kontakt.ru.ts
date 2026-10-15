@@ -14,9 +14,9 @@ export const kontaktRu: KontaktContent = {
     phone: "Телефон",
     email: "Электронная почта",
     emailAction: "Написать письмо",
-    appointment: "Онлайн-встреча",
-    appointmentText: "Выберите удобное для вас время.",
-    appointmentAction: "Записаться на онлайн-встречу",
+    appointment: "Согласовать время",
+    appointmentText: "Мы согласуем с вами удобное время для разговора.",
+    appointmentAction: "Согласовать время",
   },
   formIntro: { title: "Место для ваших вопросов", lead: "Выберите тему и оставьте свои контактные данные." },
   form: {

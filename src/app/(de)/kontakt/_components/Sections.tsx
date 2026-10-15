@@ -12,11 +12,12 @@ const hero = {
   image: "/images/kontakt/hero-office.webp",
 };
 
-function Calendar() {
+/** Zwei Sprechblasen (Terminabstimmung); gleiche Strichstärke und Größe wie die übrigen Kontakt-Symbole */
+function Chat() {
   return (
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
-      <rect x="4" y="5.500" width="16" height="15" rx="1.500" />
-      <path d="M4 10h16M8.500 3.500v4M15.500 3.500v4" />
+      <path d="M5 3.500h8a2 2 0 0 1 2 2V9a2 2 0 0 1-2 2H8.500L5.500 13.500V11H5a2 2 0 0 1-2-2V5.500a2 2 0 0 1 2-2Z" />
+      <path d="M11 14.500h8a2 2 0 0 1 2 2V19a2 2 0 0 1-2 2h-.5v2L15 21h-4a2 2 0 0 1-2-2v-2.500a2 2 0 0 1 2-2Z" />
     </svg>
   );
 }
@@ -75,15 +76,15 @@ export function KtCards() {
           </li>
           <li className={styles.card}>
             <span className={styles.cardIcon}>
-              <Calendar />
+              <Chat />
             </span>
             <span className={styles.cardLine} aria-hidden="true" />
-            <h2>Online-Termin</h2>
-            <p>Wählen Sie Ihren Wunschtermin.</p>
+            <h2>Termin anfragen</h2>
+            <p>Wir stimmen einen passenden Termin mit Ihnen ab.</p>
             <div className={styles.cardAction}>
-              {/* Buchungsfunktion folgt separat: bis dahin führt der Link zum Kontaktformular */}
+              {/* Terminanfrage: führt zum Kontaktformular auf dieser Seite */}
               <a href="#formular" className={styles.cardLink}>
-                Online-Termin buchen
+                Termin anfragen
                 <Icon name="arrow" size={16} strokeWidth={1.6} />
               </a>
             </div>

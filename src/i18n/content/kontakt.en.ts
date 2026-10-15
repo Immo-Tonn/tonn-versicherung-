@@ -14,9 +14,9 @@ export const kontaktEn: KontaktContent = {
     phone: "Phone",
     email: "Email",
     emailAction: "Write an email",
-    appointment: "Online appointment",
-    appointmentText: "Choose your preferred appointment.",
-    appointmentAction: "Book an online appointment",
+    appointment: "Request an appointment",
+    appointmentText: "We will arrange a suitable time with you.",
+    appointmentAction: "Request an appointment",
   },
   formIntro: { title: "Room for your questions", lead: "Choose a topic and leave your contact details." },
   form: {
