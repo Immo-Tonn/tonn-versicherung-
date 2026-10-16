@@ -1,0 +1,42 @@
+name: CI
+
+# Prüfungen (typecheck, lint, build, check:i18n). Keine Secrets, kein Deploy, kein Push von Images.
+# Läuft bei Pull Requests und wird von deploy.yml als Voraussetzung vor Image-Build/Deploy aufgerufen.
+# check:i18n läuft auf dem normalen Build (Entwürfe geschlossen) – das ist die Veröffentlichungsprüfung für EN/RU.
+on:
+  pull_request:
+  workflow_call:
+    inputs:
+      ref:
+        description: "Commit, der geprüft wird"
+        type: string
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+      - run: npm run check:i18n

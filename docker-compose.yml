@@ -3,7 +3,7 @@
 # Das Image wird normalerweise fertig aus GHCR gezogen. Prüf-Build (Staging): auf dem Server lokal gebaut und mit
 # WEB_IMAGE=tonn-versicherung-staging WEB_TAG=... gestartet (siehe deploy/staging-build.sh).
 #
-# Start/Update:  WEB_TAG=sha-abc1234 docker compose up -d      (oder deploy/deploy.sh)
+# Start/Update + Rollback: automatisch per GitHub Actions (deploy/remote-entry.sh) oder manuell deploy/deploy.sh / deploy/rollback.sh
 # Rollback:      deploy/rollback.sh
 name: tonn-versicherung
 

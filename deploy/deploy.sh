@@ -1,45 +1,43 @@
 #!/usr/bin/env bash
-# Auf dem Server ausführen:  /opt/tonn-versicherung/deploy/deploy.sh sha-abc1234
-# Zieht das fertige Image, startet es und rollt bei fehlgeschlagenem Healthcheck automatisch zurück.
+# Läuft auf dem Server als root (nur über sudo vom Deploy-Nutzer, siehe remote-entry.sh):
+#   deploy.sh <voller-40-stelliger-commit-sha> <staging|production>     [GHCR-Token optional auf stdin]
+# Zieht das Image aus GHCR, startet es per Docker Compose, prüft die Gesundheit und rollt bei Fehlern automatisch zurück.
+# Zustand: .current_ref / .previous_ref (volle Image-Referenz, z. B. ghcr.io/…:<sha>). current wird erst nach bestandener Prüfung gesetzt.
 set -euo pipefail
-
 APP_DIR="${APP_DIR:-/opt/tonn-versicherung}"
-NEW_TAG="${1:?Aufruf: deploy.sh <image-tag>}"
-STATE_FILE="$APP_DIR/.current_tag"
-PREV_FILE="$APP_DIR/.previous_tag"
-WAIT_SECONDS="${WAIT_SECONDS:-90}"
-
 cd "$APP_DIR"
-[ -f .env.production ] || { echo "FEHLER: $APP_DIR/.env.production fehlt" >&2; exit 1; }
+# shellcheck source=/dev/null
+. "$APP_DIR/deploy/lib.sh"
 
-CURRENT_TAG="$(cat "$STATE_FILE" 2>/dev/null || true)"
+SHA="${1:-}"; MODE_ARG="${2:-}"
+[[ "$SHA" =~ ^[0-9a-f]{40}$ ]] || die "ungültiger Commit-SHA (voller 40-stelliger Hash erwartet)"
+[ "$MODE_ARG" = "$MODE" ] || die "Modus '$MODE_ARG' passt nicht zur Server-Konfiguration ('$MODE') – abgebrochen"
 
-echo "→ Ziehe Image mit Tag $NEW_TAG"
-WEB_TAG="$NEW_TAG" docker compose pull web
+lock
+read_token
+
+NEW="$WEB_REPO:$SHA"
+CURRENT="$(cat .current_ref 2>/dev/null || true)"
+echo "→ Ziel: $NEW (aktuell: ${CURRENT:-–})"
+
+pull_ref "$NEW"
 
 echo "→ Starte neue Version"
-WEB_TAG="$NEW_TAG" docker compose up -d web
+start_ref "$NEW"
 
-echo "→ Warte auf Healthcheck (max. ${WAIT_SECONDS}s)"
-healthy=0
-for _ in $(seq 1 $((WAIT_SECONDS / 3))); do
-  status="$(docker inspect --format '{{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' tonn-web 2>/dev/null || echo missing)"
-  if [ "$status" = "healthy" ]; then healthy=1; break; fi
-  sleep 3
-done
-
-if [ "$healthy" -eq 1 ]; then
-  [ -n "$CURRENT_TAG" ] && echo "$CURRENT_TAG" > "$PREV_FILE"
-  echo "$NEW_TAG" > "$STATE_FILE"
-  echo "✓ Deploy erfolgreich: $NEW_TAG (vorher: ${CURRENT_TAG:-–})"
+if health_ok; then
+  if [ -n "$CURRENT" ] && [ "$CURRENT" != "$NEW" ]; then echo "$CURRENT" > .previous_ref; fi
+  echo "$NEW" > .current_ref
+  prune_images
+  echo "✓ Deploy erfolgreich: $NEW (vorher: ${CURRENT:-–})"
   exit 0
 fi
 
-echo "✗ Healthcheck fehlgeschlagen – Rollback" >&2
+echo "✗ Gesundheitsprüfung fehlgeschlagen – Rollback" >&2
 docker compose logs --tail 40 web >&2 || true
-if [ -n "$CURRENT_TAG" ]; then
-  WEB_TAG="$CURRENT_TAG" docker compose up -d web
-  echo "↩ Zurück auf $CURRENT_TAG" >&2
+if [ -n "$CURRENT" ] && [ "$CURRENT" != "$NEW" ]; then
+  start_ref "$CURRENT"
+  if health_ok; then echo "↩ Zurück auf $CURRENT (läuft)" >&2; else echo "↩ Zurück auf $CURRENT, aber auch dort Prüfung fehlgeschlagen!" >&2; fi
 else
   docker compose stop web
   echo "↩ Kein Vorgänger vorhanden – Container gestoppt" >&2
