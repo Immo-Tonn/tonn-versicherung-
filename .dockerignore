@@ -1,0 +1,22 @@
+# Nichts davon gehört ins Image (Secrets, Verlauf, lokale Artefakte)
+.git
+.github
+.gitignore
+.env
+.env.*
+!.env.production.example
+node_modules
+.next
+out
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store
+**/.DS_Store
+design-source
+deploy
+docker-compose*.yml
+Dockerfile
+.dockerignore
+*.md
+.vercel
+npm-debug.log*
