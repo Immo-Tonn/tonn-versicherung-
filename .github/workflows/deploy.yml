@@ -147,28 +147,45 @@ jobs:
           provenance: false
 
       # Das Image darf nicht öffentlich sein (das Repository ist öffentlich, GHCR kann die Sichtbarkeit erben).
-      # Anonymer Abruf muss scheitern; sonst bricht der Lauf VOR dem Deploy ab.
+      # Fail-closed: Nur ein eindeutiger Beleg für "privat" lässt den Lauf weiterlaufen. Netzwerkfehler, Code 000, 403, 5xx oder jede
+      # andere unklare Antwort stoppen VOR dem Deploy.
+      #  1. Existenz: Das Image muss MIT Anmeldung abrufbar sein (Manifest 200). 401 ohne Anmeldung gilt nur dann als "privat".
+      #  2. Anonym: Token-Anfrage 401 => privat. 200 => Manifest anonym abrufen: 200 => ÖFFENTLICH (Abbruch), 401/403/404 => privat.
       - name: Image ist privat
         env:
           REPO_PATH: ${{ needs.plan.outputs.image }}
           SHA: ${{ needs.plan.outputs.sha }}
+          GH_ACTOR: ${{ github.actor }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -uo pipefail
           path="${REPO_PATH#ghcr.io/}"
-          # Anonymer Abruf: privates Paket -> Token-Anfrage 401; öffentliches -> Token 200 und Manifest 200; nicht existent -> 403.
-          tcode="$(curl -s -o /tmp/tok.json -w '%{http_code}' "https://ghcr.io/token?service=ghcr.io&scope=repository:${path}:pull" || true)"
-          if [ "$tcode" = "401" ]; then echo "anonymer Token abgelehnt (401) – Image ist privat."; exit 0; fi
-          if [ "$tcode" = "200" ]; then
-            tok="$(jq -r '.token // empty' /tmp/tok.json)"
-            code="$(curl -s -o /dev/null -w '%{http_code}' -H "Authorization: Bearer $tok" -H 'Accept: application/vnd.oci.image.index.v1+json, application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json' "https://ghcr.io/v2/${path}/manifests/${SHA}" || true)"
-            if [ "$code" = "200" ]; then
-              echo "::error::Das GHCR-Paket ${path} ist ÖFFENTLICH abrufbar. Paket-Einstellungen → Change visibility → Private, dann diesen Lauf erneut starten (Re-run). Kein Deploy erfolgt."
-              exit 1
-            fi
-            echo "anonymer Manifest-Abruf liefert $code – Image ist nicht öffentlich."; exit 0
-          fi
-          echo "::error::Sichtbarkeit nicht feststellbar (Token-Anfrage: HTTP $tcode). Aus Sicherheitsgründen kein Deploy."
-          exit 1
+          accept='application/vnd.oci.image.index.v1+json, application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json'
+          fail() { echo "::error::$1 Kein Deploy."; exit 1; }
+          http() { curl -s --max-time 20 --retry 2 --retry-all-errors -o "$1" -w '%{http_code}' "${@:2}" || true; }
+
+          # 1) Existenz mit Anmeldung bestätigen
+          c="$(http /tmp/atok.json -u "$GH_ACTOR:$GH_TOKEN" "https://ghcr.io/token?service=ghcr.io&scope=repository:${path}:pull")"
+          [ "$c" = "200" ] || fail "Authentifizierte Token-Anfrage fehlgeschlagen (HTTP $c)."
+          atok="$(jq -r '.token // empty' /tmp/atok.json)"; [ -n "$atok" ] || fail "Authentifiziertes Token fehlt."
+          c="$(http /dev/null -H "Authorization: Bearer $atok" -H "Accept: $accept" "https://ghcr.io/v2/${path}/manifests/${SHA}")"
+          [ "$c" = "200" ] || fail "Image ${path}:${SHA} ist mit Anmeldung nicht abrufbar (HTTP $c) – Existenz nicht bestätigt."
+          echo "Existenz bestätigt: ${path}:${SHA} ist mit Anmeldung abrufbar."
+
+          # 2) Anonymer Zugriff
+          c="$(http /tmp/ptok.json "https://ghcr.io/token?service=ghcr.io&scope=repository:${path}:pull")"
+          case "$c" in
+            401) echo "Anonyme Token-Anfrage abgelehnt (401) bei bestätigt existierendem Image – privat."; exit 0 ;;
+            200)
+              ptok="$(jq -r '.token // empty' /tmp/ptok.json)"; [ -n "$ptok" ] || fail "Anonymes Token leer, Sichtbarkeit unklar."
+              c="$(http /dev/null -H "Authorization: Bearer $ptok" -H "Accept: $accept" "https://ghcr.io/v2/${path}/manifests/${SHA}")"
+              case "$c" in
+                200) fail "Das GHCR-Paket ${path} ist ÖFFENTLICH abrufbar. Paket-Einstellungen → Change visibility → Private, dann diesen Lauf erneut starten (Re-run)." ;;
+                401|403|404) echo "Anonymer Manifest-Abruf verweigert (HTTP $c) – privat."; exit 0 ;;
+                *) fail "Anonymer Manifest-Abruf unklar (HTTP $c)." ;;
+              esac ;;
+            *) fail "Sichtbarkeit nicht feststellbar (anonyme Token-Anfrage: HTTP $c)." ;;
+          esac
 
   deploy:
     needs: [plan, image]
