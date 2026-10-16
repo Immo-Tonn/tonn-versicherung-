@@ -90,6 +90,7 @@ jobs:
     uses: ./.github/workflows/ci.yml
     with:
       ref: ${{ needs.plan.outputs.sha }}
+      require_i18n_check: true
 
   image:
     needs: [plan, checks]

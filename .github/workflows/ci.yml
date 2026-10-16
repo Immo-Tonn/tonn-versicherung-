@@ -11,6 +11,10 @@ on:
         description: "Commit, der geprüft wird"
         type: string
         required: true
+      require_i18n_check:
+        description: "true = check:i18n ist Pflicht (Deploy); sonst wird der Schritt übersprungen, falls das Skript im Commit fehlt"
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -39,4 +43,6 @@ jobs:
       - run: npm run build
         env:
           NEXT_TELEMETRY_DISABLED: "1"
-      - run: npm run check:i18n
+      - name: check:i18n (Pflicht bei Deploy; bei PRs gegen Stände ohne das Skript übersprungen)
+        if: inputs.require_i18n_check || hashFiles('scripts/check-i18n.mjs') != ''
+        run: npm run check:i18n
