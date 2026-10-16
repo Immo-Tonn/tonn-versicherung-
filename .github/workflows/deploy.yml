@@ -153,17 +153,22 @@ jobs:
           REPO_PATH: ${{ needs.plan.outputs.image }}
           SHA: ${{ needs.plan.outputs.sha }}
         run: |
+          set -uo pipefail
           path="${REPO_PATH#ghcr.io/}"
-          tok="$(curl -fsS "https://ghcr.io/token?scope=repository:${path}:pull" | jq -r '.token // empty')"
-          code="000"
-          if [ -n "$tok" ]; then
-            code="$(curl -s -o /dev/null -w '%{http_code}' -H "Authorization: Bearer $tok" -H 'Accept: application/vnd.oci.image.index.v1+json, application/vnd.docker.distribution.manifest.v2+json, application/vnd.oci.image.manifest.v1+json' "https://ghcr.io/v2/${path}/manifests/${SHA}")"
+          # Anonymer Abruf: privates Paket -> Token-Anfrage 401; öffentliches -> Token 200 und Manifest 200; nicht existent -> 403.
+          tcode="$(curl -s -o /tmp/tok.json -w '%{http_code}' "https://ghcr.io/token?service=ghcr.io&scope=repository:${path}:pull" || true)"
+          if [ "$tcode" = "401" ]; then echo "anonymer Token abgelehnt (401) – Image ist privat."; exit 0; fi
+          if [ "$tcode" = "200" ]; then
+            tok="$(jq -r '.token // empty' /tmp/tok.json)"
+            code="$(curl -s -o /dev/null -w '%{http_code}' -H "Authorization: Bearer $tok" -H 'Accept: application/vnd.oci.image.index.v1+json, application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json' "https://ghcr.io/v2/${path}/manifests/${SHA}" || true)"
+            if [ "$code" = "200" ]; then
+              echo "::error::Das GHCR-Paket ${path} ist ÖFFENTLICH abrufbar. Paket-Einstellungen → Change visibility → Private, dann diesen Lauf erneut starten (Re-run). Kein Deploy erfolgt."
+              exit 1
+            fi
+            echo "anonymer Manifest-Abruf liefert $code – Image ist nicht öffentlich."; exit 0
           fi
-          if [ "$code" = "200" ]; then
-            echo "::error::Das GHCR-Paket ${path} ist ÖFFENTLICH abrufbar. Paket-Einstellungen → Change visibility → Private, dann diesen Lauf erneut starten (Re-run). Kein Deploy erfolgt."
-            exit 1
-          fi
-          echo "anonymer Abruf liefert $code – Image ist nicht öffentlich."
+          echo "::error::Sichtbarkeit nicht feststellbar (Token-Anfrage: HTTP $tcode). Aus Sicherheitsgründen kein Deploy."
+          exit 1
 
   deploy:
     needs: [plan, image]
