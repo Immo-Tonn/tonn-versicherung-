@@ -1,6 +1,7 @@
 # Gemeinsame Funktionen für deploy.sh / rollback.sh (wird nur eingebunden). Konfiguration: /opt/tonn-versicherung/.deploy.env (root, 644)
 #   MODE=staging|production   WEB_REPO=ghcr.io/immo-tonn/tonn-versicherung-staging   GHCR_USER=github-actions
 #   HEALTH_PATHS="/ /en /ru"   NGINX_URL=http://127.0.0.1:8080   REQUIRE_NOINDEX=1
+#   optional (nur für isolierte Tests): CONTAINER_NAME (Standard tonn-web), APP_PORT (Standard 3000)
 die() { echo "FEHLER: $*" >&2; exit 1; }
 [ -f "$APP_DIR/.deploy.env" ] || die "$APP_DIR/.deploy.env fehlt"
 [ -f "$APP_DIR/.env.production" ] || die "$APP_DIR/.env.production fehlt"
@@ -29,13 +30,13 @@ health_ok() {
   local i status p
   echo "→ Warte auf Healthcheck (max. 90 s)"
   for i in $(seq 1 30); do
-    status="$(docker inspect --format '{{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' tonn-web 2>/dev/null || echo missing)"
+    status="$(docker inspect --format '{{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' "${CONTAINER_NAME:-tonn-web}" 2>/dev/null || echo missing)"
     [ "$status" = "healthy" ] && break
     sleep 3
   done
   [ "$status" = "healthy" ] || { echo "Container nicht healthy ($status)" >&2; return 1; }
   for p in $HEALTH_PATHS; do
-    for base in http://127.0.0.1:3000 "$NGINX_URL"; do
+    for base in "http://127.0.0.1:${APP_PORT:-3000}" "$NGINX_URL"; do
       curl -fsS -o /dev/null --max-time 20 "$base$p" || { echo "Prüfung fehlgeschlagen: $base$p" >&2; return 1; }
     done
   done
