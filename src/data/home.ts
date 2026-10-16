@@ -1,9 +1,10 @@
+import { siteConfig } from "@/data/site";
 
 export const hero = {
-  eyebrow: "Unabhängig. Persönlich. An Ihrer Seite.",
+  eyebrow: "Persönlich. Individuell. An Ihrer Seite.",
   title: "Private Krankenversicherung",
   subtitle: ["Klar beraten.", "Für das, was Ihnen", "wirklich wichtig ist."],
-  text: "Individuelle Beratung, unabhängiger Vergleich und langfristige Betreuung – transparent, persönlich und auf Ihre Lebenssituation abgestimmt.",
+  text: "Individuelle Beratung, Vergleich verschiedener Versicherungsangebote und langfristige Betreuung – transparent, persönlich und auf Ihre Lebenssituation abgestimmt.",
   primaryCta: { label: "Kostenloses Erstgespräch", href: "/kontakt" },
   secondaryCta: { label: "So läuft die Beratung ab", href: "#ablauf" },
   image: "/images/home/hero-muenster.webp",
@@ -36,7 +37,7 @@ export const trustItems: {
   isRating?: boolean;
 }[] = [
   { icon: "people", isRating: true, lines: ["Zufriedene Kundinnen", "und Kunden"] },
-  { icon: "shield", title: "Unabhängige Beratung", lines: ["Keine Bindung an", "einzelne Versicherer"] },
+  { icon: "shield", title: "Persönliche Beratung", lines: ["Zusammenarbeit mit", "mehreren Versicherern"] },
   { icon: "document", title: "Anonyme Risikovoranfrage", lines: ["Ihre Gesundheitsdaten", "bleiben vertraulich"] },
   { icon: "diamond", title: "Langfristige Begleitung", lines: ["Auch nach Vertragsabschluss", "an Ihrer Seite"] },
 ];
@@ -62,7 +63,7 @@ export const processSection = {
   steps: [
     { icon: "document" as IconName, title: "Angaben", text: "Wir besprechen Ihre Situation und erfassen die relevanten Daten." },
     { icon: "shield" as IconName, title: "Anonym prüfen", text: "Wir prüfen Ihre Gesundheitsangaben bei mehreren Versicherern." },
-    { icon: "chart" as IconName, title: "Tarife vergleichen", text: "Wir analysieren passende Angebote am Markt." },
+    { icon: "chart" as IconName, title: "Tarife vergleichen", text: "Wir analysieren passende Angebote unserer Versicherungspartner." },
     { icon: "check" as IconName, title: "Ergebnis", text: "Sie entscheiden in Ruhe den für Sie passenden Tarif." },
   ],
 };
@@ -70,12 +71,12 @@ export const processSection = {
 export const about = {
   eyebrow: "Ihr Ansprechpartner",
   title: ["Versicherung ist", "Vertrauenssache."],
-  text: "Ich bin Andreas Tonn und begleite meine Kundinnen und Kunden unabhängig, persönlich und langfristig. Bei allen Fragen rund um die private Krankenversicherung, Berufsunfähigkeitsversicherung und weitere Absicherungen.",
+  text: "Ich bin Andreas Tonn, Versicherungsvermittler in Münster. Ich betreue über 1.600 Kundinnen und Kunden – persönlich und langfristig. Als Ihr Ansprechpartner bin ich bei allen Fragen rund um die private Krankenversicherung, Berufsunfähigkeitsversicherung und weitere Absicherungen für Sie da.",
   cta: { label: "Mehr über mich", href: "/ueber-uns" },
   image: "/images/home/andreas-tonn.webp",
-  imageAlt: "Andreas Tonn, Versicherungsberater in Münster",
+  imageAlt: "Andreas Tonn, Versicherungsvermittler in Münster",
   features: [
-    { icon: "shield" as IconName, title: "Unabhängig", text: "Keine Bindung an einzelne Versicherer" },
+    { icon: "shield" as IconName, title: "Vergleich", text: "Zusammenarbeit mit mehreren Versicherern" },
     { icon: "user" as IconName, title: "Persönlich", text: "Individuelle Beratung statt Standardlösungen" },
     { icon: "clock" as IconName, title: "Langfristig", text: "Auch nach Vertragsabschluss an Ihrer Seite" },
     { icon: "laptop" as IconName, title: "Digital & flexibel", text: "Beratung vor Ort in Münster oder deutschlandweit per Video" },
@@ -85,7 +86,7 @@ export const about = {
 export const insurances = {
   eyebrow: "Mehr als nur PKV",
   title: ["Weitere Versicherungen", "für Ihre Zukunft."],
-  text: "Neben der privaten Krankenversicherung berate ich Sie auch zu weiteren wichtigen Absicherungen – individuell, unabhängig und auf Ihre Lebenssituation abgestimmt.",
+  text: "Neben der privaten Krankenversicherung berate ich Sie auch zu weiteren wichtigen Absicherungen – individuell, persönlich und auf Ihre Lebenssituation abgestimmt.",
   cta: { label: "Alle Versicherungen", href: "/versicherungen" },
   cards: [
     { title: "Berufsunfähigkeits­versicherung", text: "Ihre Arbeitskraft absichern.", image: "/images/home/bu.webp", imageAlt: "Menschen entspannen am Aasee im Abendlicht", imagePosition: "70% center", href: "/berufsunfaehigkeitsversicherung" },
@@ -98,7 +99,6 @@ export const reviews = {
   eyebrow: "Google Bewertungen",
   title: "Was unsere Kunden sagen.",
   linkLabel: "Alle Bewertungen auf Google ansehen",
-  backgroundImage: "/images/home/reviews-muenster.webp",
 };
 
 export const finalCta = {
@@ -107,18 +107,19 @@ export const finalCta = {
   text: "Unverbindlich. Persönlich. Online oder vor Ort in Münster.",
   cta: { label: "Kostenloses Erstgespräch vereinbaren", href: "/kontakt" },
   checks: ["Kostenlos", "Unverbindlich", "Persönlich"],
-  image: "/images/home/cta-muenster.webp",
 };
 
 export const location = {
   eyebrow: "Standort",
   title: ["Persönlich in Münster.", "Digital in ganz Deutschland."],
   text: "Persönliche Beratung vor Ort in Münster oder flexibel per Video – deutschlandweit.",
-  street: "Sessendrupweg 54",
-  city: "48161 Münster",
+  street: siteConfig.contact.address.street,
+  city: `${siteConfig.contact.address.zip} ${siteConfig.contact.address.city}`,
   note: "Termine nach Vereinbarung",
   cta: {
     label: "Route in Google Maps öffnen",
-    href: "https://www.google.com/maps/dir/?api=1&destination=Sessendrupweg+54%2C+48161+M%C3%BCnster",
+    href: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+      `${siteConfig.contact.address.street}, ${siteConfig.contact.address.zip} ${siteConfig.contact.address.city}`,
+    ).replace(/%20/g, "+")}`,
   },
 };

@@ -1,0 +1,57 @@
+# tonn-versicherung – Produktion auf Hetzner (Ubuntu 24.04, 4 GB RAM)
+# Liegt auf dem Server unter /opt/tonn-versicherung/docker-compose.yml.
+# Das Image wird normalerweise fertig aus GHCR gezogen. Prüf-Build (Staging): auf dem Server lokal gebaut und mit
+# WEB_IMAGE=tonn-versicherung-staging WEB_TAG=... gestartet (siehe deploy/staging-build.sh).
+#
+# Start/Update + Rollback: automatisch per GitHub Actions (deploy/remote-entry.sh) oder manuell deploy/deploy.sh / deploy/rollback.sh
+# Rollback:      deploy/rollback.sh
+name: tonn-versicherung
+
+services:
+  web:
+    image: ${WEB_IMAGE:-ghcr.io/immo-tonn/tonn-versicherung}:${WEB_TAG:?WEB_TAG setzen, z. B. sha-abc1234}
+    container_name: tonn-web
+    init: true # korrektes Signal-Handling (SIGTERM) und Zombie-Prozesse
+    restart: unless-stopped
+    stop_grace_period: 20s
+
+    # Nur lokal erreichbar – Nginx auf dem Host leitet weiter. Nie 0.0.0.0 / ohne IP veröffentlichen!
+    ports:
+      - "127.0.0.1:3000:3000"
+
+    # Secrets liegen nur auf dem Server (chmod 600), nicht im Image und nicht im Repository
+    env_file:
+      - .env.production
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      HOSTNAME: 0.0.0.0
+      NEXT_TELEMETRY_DISABLED: "1"
+
+    # Ressourcen für CX23 (2 vCPU / 4 GB): Rest bleibt für Nginx, Docker und System
+    mem_limit: 1g
+    memswap_limit: 1g
+    cpus: "1.5"
+    pids_limit: 256
+
+    # Minimale Rechte
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:3000/robots.txt"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

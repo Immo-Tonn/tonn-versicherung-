@@ -1,3 +1,5 @@
+import type { Locale } from "@/i18n/config";
+
 export type NavItem = { label: string; href: string };
 export type NavGroup = { label: string; children: NavItem[] };
 
@@ -17,14 +19,15 @@ export const mainNav: (NavItem | NavGroup)[] = [
   { label: "Kontakt", href: "/kontakt" },
 ];
 
-export const headerCta = { label: "Kostenloses Erstgespräch", href: "/kontakt" };
+export const headerCta = { label: "Kontakt aufnehmen", href: "/kontakt" };
 
-export type Language = { code: "DE" | "EN" | "RU"; label: string; available: boolean };
+export type Language = { code: "DE" | "EN" | "RU"; locale: Locale; label: string };
 
+/** Sprachen des Umschalters. Ob eine Übersetzung erreichbar ist, entscheidet das Register (src/i18n/registry.ts). */
 export const languages: Language[] = [
-  { code: "DE", label: "Deutsch", available: true },
-  { code: "EN", label: "English", available: false },
-  { code: "RU", label: "Русский", available: false },
+  { code: "DE", locale: "de", label: "Deutsch" },
+  { code: "EN", locale: "en", label: "English" },
+  { code: "RU", locale: "ru", label: "Русский" },
 ];
 
 export const footerColumns: { title: string; links: (NavItem | { label: string; href: string })[] }[] = [
@@ -50,10 +53,8 @@ export const footerColumns: { title: string; links: (NavItem | { label: string; 
     links: [
       { label: "Impressum", href: "/impressum" },
       { label: "Datenschutz", href: "/datenschutz" },
-      // TODO: eigene Cookie-Seite / Consent-Manager anbinden
-      { label: "Cookies", href: "/datenschutz#cookies" },
-      // TODO: Rechtstext prüfen lassen und eigene Seite anlegen
-      { label: "Hinweise nach § 15 VersVermV", href: "/impressum#versvermv" },
+      // öffnet das Einstellungsfenster für Cookies/Einwilligungen (kein Seitenwechsel)
+      { label: "Cookie-Einstellungen", href: "#cookie-einstellungen" },
     ],
   },
 ];

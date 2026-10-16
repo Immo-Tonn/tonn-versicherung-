@@ -1,0 +1,12 @@
+/*
+ * Nur EN/RU (die deutsche Seite nutzt dieses Modul nicht).
+ * Das von rechts einblendende Reveal-Element wird im Ausgangszustand um 40px nach rechts versetzt
+ * und ragt dadurch auf schmalen Breiten über den Viewport hinaus (z. B. 776px bei 768px Breite).
+ * Bis 1279px daher nur 16px Versatz (kleiner als der kleinste Seitenrand von ca. 22px). Dreifache Klasse
+ * schlägt die Regel .pending.fromRight aus Bu.module.css unabhängig von der Reihenfolge der Stylesheets.
+ */
+@media (max-width: 1279px) {
+  .softRight.softRight.softRight {
+    transform: translateX(16px);
+  }
+}
