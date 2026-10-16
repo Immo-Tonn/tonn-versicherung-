@@ -1,0 +1,233 @@
+name: Deploy (Hetzner)
+
+# Ablauf: plan → CI-Prüfungen → Image bauen & nach GHCR (Tag = voller Commit-SHA) → Server aktualisieren (Healthcheck, Auto-Rollback).
+#  - Manuell (workflow_dispatch): action=deploy mit explizitem 40-stelligem Commit-SHA, oder action=rollback.
+#  - push auf main deployt NUR, wenn die Repository-Variable AUTO_DEPLOY=true gesetzt ist (Schalter bewusst standardmäßig aus).
+#  - Modus (Repository-Variable DEPLOY_MODE, Standard staging): staging = Prüf-Installation hinter SSH-Tunnel (noindex, EN/RU im Image
+#    geöffnet, eigenes Image "tonn-versicherung-staging"); production = öffentliches Image "tonn-versicherung" (EN/RU nur laut Register).
+#    Der Server prüft zusätzlich, dass der Modus zu seiner Konfiguration (.deploy.env) passt.
+#  - SSH-Schlüssel kann serverseitig nur "deploy <sha> <modus> | rollback [<sha>] | status" ausführen (Forced Command).
+#  - Secrets: GitHub-Environment hetzner-<modus>. Der GHCR-Pull nutzt das kurzlebige GITHUB_TOKEN (nur packages:read), nichts bleibt auf dem Server.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "deploy = Commit ausrollen, rollback = zurück auf vorherigen Stand"
+        type: choice
+        options: [deploy, rollback]
+        default: deploy
+      sha:
+        description: "deploy: voller 40-stelliger Commit-SHA (Pflicht). rollback: optionaler SHA, leer = vorheriger Stand"
+        type: string
+        required: false
+
+permissions:
+  contents: read
+
+# Nie zwei Deploys gleichzeitig; ein laufender Deploy wird nicht abgebrochen (höchstens ein weiterer wartet in der Schlange).
+concurrency:
+  group: deploy-hetzner
+  cancel-in-progress: false
+
+env:
+  IMAGE_PRODUCTION: ghcr.io/immo-tonn/tonn-versicherung
+  IMAGE_STAGING: ghcr.io/immo-tonn/tonn-versicherung-staging
+
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      run: ${{ steps.p.outputs.run }}
+      action: ${{ steps.p.outputs.action }}
+      sha: ${{ steps.p.outputs.sha }}
+      mode: ${{ steps.p.outputs.mode }}
+      image: ${{ steps.p.outputs.image }}
+    steps:
+      - id: p
+        env:
+          EVENT: ${{ github.event_name }}
+          INPUT_ACTION: ${{ inputs.action }}
+          INPUT_SHA: ${{ inputs.sha }}
+          PUSH_SHA: ${{ github.sha }}
+          AUTO: ${{ vars.AUTO_DEPLOY }}
+          MODE: ${{ vars.DEPLOY_MODE || 'staging' }}
+        run: |
+          set -euo pipefail
+          [[ "$MODE" =~ ^(staging|production)$ ]] || { echo "::error::DEPLOY_MODE muss staging oder production sein"; exit 1; }
+          action=deploy; sha="$PUSH_SHA"; run=true
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            action="$INPUT_ACTION"; sha="$INPUT_SHA"
+          elif [ "$AUTO" != "true" ]; then
+            run=false; echo "::notice::Push auf main ohne Deploy: AUTO_DEPLOY ist nicht 'true'."
+          fi
+          if [ "$run" = true ]; then
+            if [ "$action" = deploy ]; then [[ "$sha" =~ ^[0-9a-f]{40}$ ]] || { echo "::error::deploy braucht einen vollen 40-stelligen Commit-SHA (Kleinbuchstaben)"; exit 1; }
+            else [[ -z "$sha" || "$sha" =~ ^[0-9a-f]{40}$ ]] || { echo "::error::rollback: SHA leer oder 40-stellig"; exit 1; }
+            fi
+          fi
+          if [ "$MODE" = production ]; then image="$IMAGE_PRODUCTION"; else image="$IMAGE_STAGING"; fi
+          { echo "run=$run"; echo "action=$action"; echo "sha=$sha"; echo "mode=$MODE"; echo "image=$image"; } >> "$GITHUB_OUTPUT"
+          echo "Plan: run=$run action=$action mode=$MODE sha=${sha:-–}" >> "$GITHUB_STEP_SUMMARY"
+
+      # Commit muss im Repository auffindbar sein (Tippfehler-Schutz; ausgelöst werden kann der Lauf ohnehin nur mit Schreibrechten)
+      - name: Commit gehört zu einem Branch dieses Repositories
+        if: steps.p.outputs.run == 'true' && steps.p.outputs.sha != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SHA: ${{ steps.p.outputs.sha }}
+        run: |
+          set -euo pipefail
+          t="$(gh api "repos/${{ github.repository }}/compare/main...$SHA" --jq '.status' 2>/dev/null || echo unknown)"
+          [ "$t" != unknown ] || { echo "::error::Commit $SHA ist in diesem Repository nicht auffindbar"; exit 1; }
+          echo "Commit gefunden (Status gegenüber main: $t)."
+
+  checks:
+    needs: plan
+    if: needs.plan.outputs.run == 'true' && needs.plan.outputs.action == 'deploy'
+    uses: ./.github/workflows/ci.yml
+    with:
+      ref: ${{ needs.plan.outputs.sha }}
+      require_i18n_check: true
+
+  image:
+    needs: [plan, checks]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    environment: hetzner-${{ needs.plan.outputs.mode }}
+    permissions:
+      contents: read
+      packages: write # nur für den Push nach ghcr.io
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.plan.outputs.sha }}
+
+      - name: Pflicht-Konfiguration prüfen (ohne Werte auszugeben)
+        env:
+          PLACES_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+          PLACE_ID: ${{ vars.GOOGLE_PLACE_ID }}
+          MAPS_KEY: ${{ vars.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY }}
+        run: |
+          missing=0
+          [ -n "$PLACES_KEY" ] || { echo "::error::Secret GOOGLE_PLACES_API_KEY fehlt"; missing=1; }
+          [ -n "$PLACE_ID" ]   || { echo "::error::Variable GOOGLE_PLACE_ID fehlt"; missing=1; }
+          [ -n "$MAPS_KEY" ]   || { echo "::error::Variable NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY fehlt"; missing=1; }
+          exit $missing
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Der Places-Key geht nur als BuildKit-Secret in den Build (nicht in Schichten/Historie); das Dockerfile prüft zusätzlich,
+      # dass er nicht im Build-Ergebnis steht. STAGING_OPEN_I18N_DRAFTS=1 öffnet EN/RU nur im Staging-Image.
+      - name: Build und Push (Tag = voller Commit-SHA)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/amd64
+          push: true
+          tags: ${{ needs.plan.outputs.image }}:${{ needs.plan.outputs.sha }}
+          labels: org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+          build-args: |
+            NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY=${{ vars.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY }}
+            GOOGLE_PLACE_ID=${{ vars.GOOGLE_PLACE_ID }}
+            NEXT_PUBLIC_GA_MEASUREMENT_ID=${{ needs.plan.outputs.mode == 'production' && vars.NEXT_PUBLIC_GA_MEASUREMENT_ID || '' }}
+            STAGING_OPEN_I18N_DRAFTS=${{ needs.plan.outputs.mode == 'staging' && '1' || '' }}
+          secrets: |
+            google_places_api_key=${{ secrets.GOOGLE_PLACES_API_KEY }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          provenance: false
+
+      # Das Image darf nicht öffentlich sein (das Repository ist öffentlich, GHCR kann die Sichtbarkeit erben).
+      # Anonymer Abruf muss scheitern; sonst bricht der Lauf VOR dem Deploy ab.
+      - name: Image ist privat
+        env:
+          REPO_PATH: ${{ needs.plan.outputs.image }}
+          SHA: ${{ needs.plan.outputs.sha }}
+        run: |
+          path="${REPO_PATH#ghcr.io/}"
+          tok="$(curl -fsS "https://ghcr.io/token?scope=repository:${path}:pull" | jq -r '.token // empty')"
+          code="000"
+          if [ -n "$tok" ]; then
+            code="$(curl -s -o /dev/null -w '%{http_code}' -H "Authorization: Bearer $tok" -H 'Accept: application/vnd.oci.image.index.v1+json, application/vnd.docker.distribution.manifest.v2+json, application/vnd.oci.image.manifest.v1+json' "https://ghcr.io/v2/${path}/manifests/${SHA}")"
+          fi
+          if [ "$code" = "200" ]; then
+            echo "::error::Das GHCR-Paket ${path} ist ÖFFENTLICH abrufbar. Paket-Einstellungen → Change visibility → Private, dann diesen Lauf erneut starten (Re-run). Kein Deploy erfolgt."
+            exit 1
+          fi
+          echo "anonymer Abruf liefert $code – Image ist nicht öffentlich."
+
+  deploy:
+    needs: [plan, image]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment: hetzner-${{ needs.plan.outputs.mode }}
+    permissions:
+      contents: read
+      packages: read # GITHUB_TOKEN nur zum Ziehen des privaten Images (kurzlebig)
+    steps:
+      - name: SSH vorbereiten (Host-Key fest hinterlegt, kein ssh-keyscan)
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          KNOWN: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/id_deploy && chmod 600 ~/.ssh/id_deploy
+          printf '%s\n' "$KNOWN" > ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts
+
+      - name: Deploy auslösen (Healthcheck und Auto-Rollback laufen auf dem Server)
+        env:
+          HOST: ${{ vars.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ vars.DEPLOY_USER }}
+          SHA: ${{ needs.plan.outputs.sha }}
+          MODE: ${{ needs.plan.outputs.mode }}
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          printf '%s\n' "$GHCR_TOKEN" | ssh -i ~/.ssh/id_deploy -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o BatchMode=yes \
+            "$DEPLOY_USER@$HOST" "deploy $SHA $MODE"
+
+      - name: Stand auf dem Server
+        if: always()
+        env:
+          HOST: ${{ vars.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ vars.DEPLOY_USER }}
+        run: |
+          ssh -i ~/.ssh/id_deploy -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o BatchMode=yes "$DEPLOY_USER@$HOST" status | tee -a "$GITHUB_STEP_SUMMARY"
+
+  rollback:
+    needs: plan
+    if: needs.plan.outputs.run == 'true' && needs.plan.outputs.action == 'rollback'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment: hetzner-${{ needs.plan.outputs.mode }}
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - name: SSH vorbereiten (Host-Key fest hinterlegt)
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          KNOWN: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/id_deploy && chmod 600 ~/.ssh/id_deploy
+          printf '%s\n' "$KNOWN" > ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts
+
+      - name: Rollback auslösen
+        env:
+          HOST: ${{ vars.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ vars.DEPLOY_USER }}
+          SHA: ${{ needs.plan.outputs.sha }}
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          printf '%s\n' "$GHCR_TOKEN" | ssh -i ~/.ssh/id_deploy -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o BatchMode=yes \
+            "$DEPLOY_USER@$HOST" "rollback $SHA"
+          ssh -i ~/.ssh/id_deploy -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o BatchMode=yes "$DEPLOY_USER@$HOST" status | tee -a "$GITHUB_STEP_SUMMARY"
