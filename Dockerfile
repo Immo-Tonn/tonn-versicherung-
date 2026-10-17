@@ -35,15 +35,13 @@ ARG NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY
 ARG GOOGLE_PLACE_ID
 # Google-Analytics-ID: leer lassen = kein Analytics-Code im Build (z. B. Testversion)
 ARG NEXT_PUBLIC_GA_MEASUREMENT_ID
-# Prüf-Build (Staging): 1 = EN/RU-Entwürfe nur in diesem Image öffnen und Seiten per noindex sperren. Leer = Production.
-ARG STAGING_OPEN_I18N_DRAFTS
+# Indexierung: 1 = alle Seiten per X-Robots-Tag noindex sperren (Standard, sicher). 0 = Indexierung freigeben (erst nach Endprüfung).
+ARG SITE_NOINDEX=1
 ENV NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL} \
     NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY=${NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY} \
     GOOGLE_PLACE_ID=${GOOGLE_PLACE_ID} \
     NEXT_PUBLIC_GA_MEASUREMENT_ID=${NEXT_PUBLIC_GA_MEASUREMENT_ID} \
-    STAGING_OPEN_I18N_DRAFTS=${STAGING_OPEN_I18N_DRAFTS}
-
-RUN node scripts/open-drafts-staging.mjs
+    SITE_NOINDEX=${SITE_NOINDEX}
 
 # Der Places-Key wird nur für diesen einen Befehl als Umgebungsvariable gesetzt, damit die
 # Startseite beim Build bereits mit Bewertungen vorgerendert wird (danach aktualisiert

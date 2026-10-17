@@ -9,7 +9,7 @@ import { defaultLocale, localeMeta, locales, type Locale } from "./config";
  *  - "planned" : noch nicht vorhanden; überall 404
  * "live" ist nur erlaubt, wenn die öffentliche page.tsx existiert; scripts/check-i18n.mjs prüft das.
  *
- * Deutsche Seiten sind immer "live". EN/RU wird erst nach gesonderter Freigabe auf "live" gesetzt.
+ * Deutsche Seiten sind immer "live". EN/RU: "live" laut Freigabe zur Veröffentlichung; Impressum und Datenschutz bleiben vorerst nur deutsch.
  */
 export type PublishStatus = "live" | "draft" | "planned";
 
@@ -24,8 +24,8 @@ export type RouteEntry = {
 
 const de = { de: "live" } as const;
 
-/** Ratgeber-Beiträge mit EN/RU-Entwurf (Vorschau-Entwürfe unter (en|ru)/_drafts/wissen) */
-const DRAFT_ARTICLES: string[] = [
+/** Ratgeber-Beiträge mit veröffentlichter EN/RU-Übersetzung (Seitenquellen unter (en|ru)/_drafts/wissen, öffentliche Seitendatei unter (en|ru)/<präfix>/wissen) */
+const TRANSLATED_ARTICLES: string[] = [
   "pkv-oder-gkv",
   "anonyme-risikovoranfrage",
   "tarifwechsel-pkv",
@@ -38,16 +38,16 @@ const DRAFT_ARTICLES: string[] = [
 ];
 
 export const routes: RouteEntry[] = [
-  { path: "/", status: { ...de, en: "draft", ru: "draft" } },
-  { path: "/private-krankenversicherung", status: { ...de, en: "draft", ru: "draft" } },
-  { path: "/private-krankenversicherung/angestellte", status: { ...de, en: "draft", ru: "draft" } },
-  { path: "/private-krankenversicherung/selbststaendige", status: { ...de, en: "draft", ru: "draft" } },
-  { path: "/private-krankenversicherung/beamte", status: { ...de, en: "draft", ru: "draft" } },
-  { path: "/berufsunfaehigkeitsversicherung", status: { ...de, en: "draft", ru: "draft" } },
-  { path: "/kapitalanlage", status: { ...de, en: "draft", ru: "draft" } },
-  { path: "/versicherungen", status: { ...de, en: "draft", ru: "draft" } },
-  { path: "/ueber-uns", status: { ...de, en: "draft", ru: "draft" } },
-  { path: "/wissen", status: { ...de, en: "draft", ru: "draft" } },
+  { path: "/", status: { ...de, en: "live", ru: "live" } },
+  { path: "/private-krankenversicherung", status: { ...de, en: "live", ru: "live" } },
+  { path: "/private-krankenversicherung/angestellte", status: { ...de, en: "live", ru: "live" } },
+  { path: "/private-krankenversicherung/selbststaendige", status: { ...de, en: "live", ru: "live" } },
+  { path: "/private-krankenversicherung/beamte", status: { ...de, en: "live", ru: "live" } },
+  { path: "/berufsunfaehigkeitsversicherung", status: { ...de, en: "live", ru: "live" } },
+  { path: "/kapitalanlage", status: { ...de, en: "live", ru: "live" } },
+  { path: "/versicherungen", status: { ...de, en: "live", ru: "live" } },
+  { path: "/ueber-uns", status: { ...de, en: "live", ru: "live" } },
+  { path: "/wissen", status: { ...de, en: "live", ru: "live" } },
   // Ratgeber-Artikel (Slugs müssen mit src/app/(de)/wissen/_lib/articles.ts übereinstimmen – prüft check-i18n)
   ...[
     "pkv-oder-gkv",
@@ -59,10 +59,10 @@ export const routes: RouteEntry[] = [
     "berufsunfaehigkeit-ursachen-folgen",
     "grundlagen-kapitalanlage",
     "streuung-kapitalanlage",
-  ].map((slug): RouteEntry => ({ path: `/wissen/${slug}`, status: { ...de, ...(DRAFT_ARTICLES.includes(slug) ? { en: "draft", ru: "draft" } : {}) } })),
-  { path: "/kontakt", status: { ...de, en: "draft", ru: "draft" } },
+  ].map((slug): RouteEntry => ({ path: `/wissen/${slug}`, status: { ...de, ...(TRANSLATED_ARTICLES.includes(slug) ? { en: "live", ru: "live" } : {}) } })),
+  { path: "/kontakt", status: { ...de, en: "live", ru: "live" } },
   // Danke-Seite: noindex, daher nicht in der Sitemap und ohne hreflang
-  { path: "/kontakt/danke", status: { ...de, en: "draft", ru: "draft" }, noindex: true },
+  { path: "/kontakt/danke", status: { ...de, en: "live", ru: "live" }, noindex: true },
   // Impressum/Datenschutz bleiben vorerst nur deutsch
   { path: "/impressum", status: { ...de } },
   { path: "/datenschutz", status: { ...de } },

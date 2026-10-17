@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Prüf-Build auf dem Server (Staging, EN/RU geöffnet, noindex). Aufruf: /opt/tonn-versicherung/deploy/staging-build.sh <tag>
+# Prüf-Build auf dem Server (Staging, noindex; EN/RU sind im Quellstand veröffentlicht). Aufruf: /opt/tonn-versicherung/deploy/staging-build.sh <tag>
 # Erwartet: Quellen in /opt/tonn-versicherung/src, Secrets in /opt/tonn-versicherung/.env.production (chmod 600).
 # Der Places-Key geht nur als BuildKit-Secret in den Build; öffentliche Werte (Maps-Embed-Key, Place-ID) als Build-Args. Werte werden nie ausgegeben.
 set -euo pipefail
@@ -13,6 +13,6 @@ DOCKER_BUILDKIT=1 docker build \
   --secret id=google_places_api_key,src=/run/places_key.tmp \
   --build-arg GOOGLE_PLACE_ID="$(get GOOGLE_PLACE_ID)" \
   --build-arg NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY="$(get NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY)" \
-  --build-arg STAGING_OPEN_I18N_DRAFTS=1 \
+  --build-arg SITE_NOINDEX=1 \
   -t "tonn-versicherung-staging:$TAG" src
 echo "✓ Image tonn-versicherung-staging:$TAG gebaut"
