@@ -3,8 +3,9 @@ name: Deploy (Hetzner)
 # Ablauf: plan → CI-Prüfungen → Image bauen & nach GHCR (Tag = voller Commit-SHA) → Server aktualisieren (Healthcheck, Auto-Rollback).
 #  - Manuell (workflow_dispatch): action=deploy mit explizitem 40-stelligem Commit-SHA, oder action=rollback.
 #  - push auf main deployt NUR, wenn die Repository-Variable AUTO_DEPLOY=true gesetzt ist (Schalter bewusst standardmäßig aus).
-#  - Modus (Repository-Variable DEPLOY_MODE, Standard staging): staging = Prüf-Installation hinter SSH-Tunnel (noindex, EN/RU im Image
-#    geöffnet, eigenes Image "tonn-versicherung-staging"); production = öffentliches Image "tonn-versicherung" (EN/RU nur laut Register).
+#  - Modus (Repository-Variable DEPLOY_MODE, Standard staging): staging = Prüf-Installation (eigenes Image "tonn-versicherung-staging",
+#    ohne Analytics); production = öffentliches Image "tonn-versicherung" (mit Analytics-ID). EN/RU sind in beiden Modi gleich veröffentlicht
+#    (Register "live"). Indexierung: Build-Arg SITE_NOINDEX (Repository-Variable SITE_NOINDEX, Standard 1 = noindex).
 #    Der Server prüft zusätzlich, dass der Modus zu seiner Konfiguration (.deploy.env) passt.
 #  - SSH-Schlüssel kann serverseitig nur "deploy <sha> <modus> | rollback [<sha>] | status" ausführen (Forced Command).
 #  - Secrets: GitHub-Environment hetzner-<modus>. Der GHCR-Pull nutzt das kurzlebige GITHUB_TOKEN (nur packages:read), nichts bleibt auf dem Server.
@@ -126,7 +127,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       # Der Places-Key geht nur als BuildKit-Secret in den Build (nicht in Schichten/Historie); das Dockerfile prüft zusätzlich,
-      # dass er nicht im Build-Ergebnis steht. STAGING_OPEN_I18N_DRAFTS=1 öffnet EN/RU nur im Staging-Image.
+      # dass er nicht im Build-Ergebnis steht. SITE_NOINDEX=1 (Standard) sperrt die Indexierung; Freigabe nur bewusst über die Repository-Variable SITE_NOINDEX=0.
       - name: Build und Push (Tag = voller Commit-SHA)
         uses: docker/build-push-action@v6
         with:
@@ -139,7 +140,7 @@ jobs:
             NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY=${{ vars.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY }}
             GOOGLE_PLACE_ID=${{ vars.GOOGLE_PLACE_ID }}
             NEXT_PUBLIC_GA_MEASUREMENT_ID=${{ needs.plan.outputs.mode == 'production' && vars.NEXT_PUBLIC_GA_MEASUREMENT_ID || '' }}
-            STAGING_OPEN_I18N_DRAFTS=${{ needs.plan.outputs.mode == 'staging' && '1' || '' }}
+            SITE_NOINDEX=${{ vars.SITE_NOINDEX || '1' }}
           secrets: |
             google_places_api_key=${{ secrets.GOOGLE_PLACES_API_KEY }}
           cache-from: type=gha

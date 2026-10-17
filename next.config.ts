@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
   images: { formats: ["image/avif", "image/webp"] },
   // Testadressen *.vercel.app von der Indexierung ausnehmen; Hauptdomain und andere Hosts bleiben unberührt (Bedingung nur über den Hostnamen)
   async headers() {
-    // Prüf-Build (Staging): komplett von der Indexierung ausnehmen
-    if (process.env.STAGING_OPEN_I18N_DRAFTS === "1") {
+    // Indexierung gesperrt (Build-Arg SITE_NOINDEX=1, Standard im Dockerfile): alle Seiten mit noindex ausliefern
+    if (process.env.SITE_NOINDEX === "1") {
       return [{ source: "/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] }];
     }
     return [
