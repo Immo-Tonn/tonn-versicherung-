@@ -10,6 +10,10 @@
 const ACCEPT = "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8"; // wie Chrome/Firefox
 const MAX_WIDTH = 2048; // 3840 w gibt es nur für 4K-Geräte; dort bleibt es bei Erstanfrage-Kodierung
 const WIDTH_ORDER = [1920, 1200, 828, 1080, 750, 640, 2048]; // häufigste Gerätebreiten zuerst (Desktop, iPhone/Android mit hoher Pixeldichte)
+const IMAGE_TIMEOUT_MS = 120_000; // großzügig: Ein Abbruch während der AVIF-Kodierung kann in Next 16.3.8 den Bild-Schlüssel dauerhaft blockieren
+const READY_TIMEOUT_MS = 60_000; // so lange wird auf den eigenen Server gewartet
+const TOTAL_BUDGET_MS = 5 * 60_000; // Gesamtlaufzeit des Warm-ups (einmalig pro Serverstart, keine Wiederholung)
+const MAX_CONSECUTIVE_FAILURES = 2; // danach Abbruch statt Anfragen aufzustauen
 const base = () => `http://127.0.0.1:${process.env.PORT ?? "3000"}`;
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -22,7 +26,8 @@ async function get(path: string, accept?: string, timeoutMs = 30000): Promise<Re
 }
 
 async function waitUntilReady(): Promise<boolean> {
-  for (let i = 0; i < 240; i++) {
+  const deadline = Date.now() + READY_TIMEOUT_MS;
+  while (Date.now() < deadline) {
     const r = await get("/robots.txt", undefined, 2000);
     if (r?.ok) return true;
     await sleep(250);
@@ -65,21 +70,27 @@ export async function warmAboveTheFoldImages(): Promise<void> {
     if (!(await waitUntilReady())) return;
     const seen = new Set<string>();
     let ok = 0;
+    let failures = 0;
     for (const path of await pagePaths()) {
+      if (Date.now() - t0 > TOTAL_BUDGET_MS || failures >= MAX_CONSECUTIVE_FAILURES) break;
       const html = await (await get(path))?.text();
       if (!html) continue;
       for (const url of priorityImageUrls(html)) {
         if (seen.has(url)) continue;
         seen.add(url);
-        const r = await get(url, ACCEPT);
+        if (Date.now() - t0 > TOTAL_BUDGET_MS || failures >= MAX_CONSECUTIVE_FAILURES) break;
+        const r = await get(url, ACCEPT, IMAGE_TIMEOUT_MS);
         if (r?.ok) {
           await r.arrayBuffer(); // Antwort vollständig lesen
           ok++;
+          failures = 0;
+        } else {
+          failures++;
         }
         await sleep(100); // Echtanfragen nicht verdrängen
       }
     }
-    console.log(`[warm-images] ${ok}/${seen.size} Hero-Bilder vorgewärmt in ${Math.round((Date.now() - t0) / 1000)} s`);
+    console.log(`[warm-images] ${ok}/${seen.size} Hero-Bilder vorgewärmt in ${Math.round((Date.now() - t0) / 1000)} s${failures >= MAX_CONSECUTIVE_FAILURES ? " (nach Fehlern abgebrochen)" : ""}`);
   } catch (e) {
     console.warn("[warm-images] abgebrochen:", e instanceof Error ? e.message : e);
   }
