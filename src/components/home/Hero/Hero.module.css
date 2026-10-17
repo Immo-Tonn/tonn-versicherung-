@@ -174,16 +174,22 @@
 
   .picture {
     display: block;
+    overflow: hidden;
   }
 
+  /* Kompaktes Foto: Höhe wächst mit der Bildschirmbreite (320 px: ca. 211 px, 375-430 px: ca. 247-284 px, gedeckelt bei 420 px) statt aus dem
+     Hochformat des Originals. object-fit: cover beschneidet; Ausschnitt oben (Kirchturm + Dach), links ca. 5 % weniger (Breite 105 %,
+     links überstehend und per overflow: hidden am .picture abgeschnitten). */
   .image {
     position: relative !important;
     inset: auto !important;
     display: block;
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 1122 / 1402; /* Platz vorab reservieren; ganzes Foto, ohne Beschnitt oder Verzerrung */
-    object-fit: contain;
+    width: 105% !important;
+    max-width: none !important;
+    margin-left: -5%;
+    height: min(66vw, 420px) !important;
+    object-fit: cover;
+    object-position: 50% 20%;
   }
 
   .content {
