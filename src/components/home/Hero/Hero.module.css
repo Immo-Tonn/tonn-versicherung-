@@ -161,42 +161,74 @@
 }
 
 @media (max-width: 767px) {
-  /* Mobil: gleiche Komposition wie Tablet – Foto als Hintergrund, heller Verlauf von links */
-  .image {
-    object-position: 68% 30%;
+  /* Mobil (nur <= 767px; Tablet ab 768px und Desktop bleiben unverändert):
+     tiefblauer Hintergrund, Text oben, darunter das Foto als Streifen mit weichem Übergang aus dem Blau.
+     Das <img> bleibt dasselbe (priority, fetchPriority, sizes, quality) – es wird nur per CSS vom Vollflächen-Hintergrund
+     zum Streifen unter dem Text. Die !important-Angaben sind nötig, weil next/image seine Position als Inline-Style setzt. */
+  .hero {
+    background: var(--navy-900);
   }
 
   .veil {
-    background: linear-gradient(
-      90deg,
-      rgba(250, 249, 246, 0.94) 0%,
-      rgba(250, 249, 246, 0.8) 55%,
-      rgba(250, 249, 246, 0.4) 100%
-    );
+    display: none;
   }
 
   .content {
-    padding-block: 32px 28px;
+    flex: none;
+    justify-content: flex-start;
+    padding-block: 22px 18px;
+  }
+
+  /* Eyebrow (SectionLabel) hell, roter Strich bleibt */
+  .content > p:first-child {
+    margin-bottom: 14px;
+    color: rgba(255, 255, 255, 0.86);
   }
 
   .title {
-    font-size: clamp(28px, 8.2vw, 40px);
+    font-size: clamp(27px, 8.2vw, 38px);
+    line-height: 1.04;
+    color: var(--white);
     overflow-wrap: anywhere;
   }
 
   .subtitle {
-    margin-top: 16px;
-    font-size: clamp(30px, 9vw, 38px);
+    margin-top: 10px;
+    font-size: clamp(20px, 5.9vw, 25px);
+    line-height: 1.16;
+    color: #b9c9da;
   }
 
   .text {
-    margin-top: 20px;
+    margin-top: 14px;
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: #d3deea;
   }
 
   .actions {
     flex-direction: column;
     align-items: stretch;
-    gap: 22px;
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  /* Hauptbutton: weiß mit dunkelblauem Text */
+  .actions .primary {
+    padding: 17px 22px;
+    font-size: 16px;
+    background: var(--white);
+    color: var(--navy-900);
+  }
+
+  .actions .primary:hover {
+    background: #e6edf4;
+  }
+
+  .actions .primary:focus-visible,
+  .mobileCta:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 3px;
   }
 
   .secondary {
@@ -206,11 +238,37 @@
   .mobileCta {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     align-self: flex-start;
+    font-size: 15px;
     font-weight: 500;
-    color: var(--navy-900);
+    color: var(--white);
     padding-bottom: 3px;
-    border-bottom: 1px solid var(--navy-900);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+  }
+
+  /* Foto-Streifen zwischen Text und Vertrauensleiste, oben weich aus dem Blau eingeblendet */
+  .image {
+    position: relative !important;
+    inset: auto !important;
+    order: 1;
+    width: 100% !important;
+    height: clamp(150px, 46vw, 210px) !important;
+    object-position: 60% 45%;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.55) 24%, #000 60%);
+    mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.55) 24%, #000 60%);
+  }
+
+  /* Vertrauensleiste (letztes Kind) bleibt unter dem Foto; deckend im bisherigen Off-White, damit sie auf Blau gleich aussieht */
+  .hero > :last-child {
+    order: 2;
+    background: #faf9f6;
+  }
+
+  /* Sehr schmale Geräte (320-359px): "Krankenversicherung" + roter Punkt sollen in eine Zeile passen */
+  @media (max-width: 359px) {
+    .title {
+      font-size: 25px;
+    }
   }
 }
