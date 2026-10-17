@@ -161,74 +161,69 @@
 }
 
 @media (max-width: 767px) {
-  /* Mobil (nur <= 767px; Tablet ab 768px und Desktop bleiben unverändert):
-     tiefblauer Hintergrund, Text oben, darunter das Foto als Streifen mit weichem Übergang aus dem Blau.
-     Das <img> bleibt dasselbe (priority, fetchPriority, sizes, quality) – es wird nur per CSS vom Vollflächen-Hintergrund
-     zum Streifen unter dem Text. Die !important-Angaben sind nötig, weil next/image seine Position als Inline-Style setzt. */
+  /* Mobil (nur <= 767px; Tablet ab 768px und Desktop bleiben unverändert), Komposition "Panorama":
+     Foto in voller Breite direkt unter der Kopfzeile (scharf, ohne Verlauf/Schleier), darunter heller Textblock.
+     Das Hochformat-Foto kommt über <picture> (HeroPhoto); die !important-Angaben sind nötig, weil next/image seine Position als Inline-Style setzt. */
   .hero {
-    background: var(--navy-900);
+    background: #faf9f6;
   }
 
   .veil {
     display: none;
   }
 
+  .picture {
+    display: block;
+  }
+
+  .image {
+    position: relative !important;
+    inset: auto !important;
+    display: block;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1122 / 1402; /* Platz vorab reservieren; ganzes Foto, ohne Beschnitt oder Verzerrung */
+    object-fit: contain;
+  }
+
   .content {
     flex: none;
     justify-content: flex-start;
-    padding-block: 22px 18px;
+    padding-block: 26px 28px;
   }
 
-  /* Eyebrow (SectionLabel) hell, roter Strich bleibt */
   .content > p:first-child {
-    margin-bottom: 14px;
-    color: rgba(255, 255, 255, 0.86);
+    margin-bottom: 16px;
   }
 
   .title {
     font-size: clamp(27px, 8.2vw, 38px);
-    line-height: 1.04;
-    color: var(--white);
+    line-height: 1.05;
     overflow-wrap: anywhere;
   }
 
   .subtitle {
-    margin-top: 10px;
-    font-size: clamp(20px, 5.9vw, 25px);
-    line-height: 1.16;
-    color: #b9c9da;
+    margin-top: 12px;
+    font-size: clamp(21px, 6.3vw, 26px);
+    line-height: 1.15;
   }
 
   .text {
-    margin-top: 14px;
-    font-size: 14.5px;
+    margin-top: 16px;
+    font-size: 15px;
     line-height: 1.5;
-    color: #d3deea;
   }
 
   .actions {
     flex-direction: column;
     align-items: stretch;
-    gap: 16px;
-    margin-top: 20px;
+    gap: 18px;
+    margin-top: 22px;
   }
 
-  /* Hauptbutton: weiß mit dunkelblauem Text */
   .actions .primary {
     padding: 17px 22px;
     font-size: 16px;
-    background: var(--white);
-    color: var(--navy-900);
-  }
-
-  .actions .primary:hover {
-    background: #e6edf4;
-  }
-
-  .actions .primary:focus-visible,
-  .mobileCta:focus-visible {
-    outline: 2px solid var(--white);
-    outline-offset: 3px;
   }
 
   .secondary {
@@ -242,27 +237,9 @@
     align-self: flex-start;
     font-size: 15px;
     font-weight: 500;
-    color: var(--white);
+    color: var(--navy-900);
     padding-bottom: 3px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.55);
-  }
-
-  /* Foto-Streifen zwischen Text und Vertrauensleiste, oben weich aus dem Blau eingeblendet */
-  .image {
-    position: relative !important;
-    inset: auto !important;
-    order: 1;
-    width: 100% !important;
-    height: clamp(150px, 46vw, 210px) !important;
-    object-position: 60% 45%;
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.55) 24%, #000 60%);
-    mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.55) 24%, #000 60%);
-  }
-
-  /* Vertrauensleiste (letztes Kind) bleibt unter dem Foto; deckend im bisherigen Off-White, damit sie auf Blau gleich aussieht */
-  .hero > :last-child {
-    order: 2;
-    background: #faf9f6;
+    border-bottom: 1px solid var(--navy-900);
   }
 
   /* Sehr schmale Geräte (320-359px): "Krankenversicherung" + roter Punkt sollen in eine Zeile passen */
