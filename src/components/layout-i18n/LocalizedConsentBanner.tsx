@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import styles from "@/components/consent/Consent.module.css";
 import { OPEN_EVENT, saveConsent, useConsent } from "@/components/consent/consent-store";
+import { USERCENTRICS_ENABLED } from "@/lib/usercentrics";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import DeTag from "./DeTag";
@@ -34,7 +35,7 @@ export default function LocalizedConsentBanner({ locale }: { locale: Exclude<Loc
 
   const analytics = draft.analytics ?? consent?.analytics ?? false;
   const maps = draft.maps ?? consent?.maps ?? false;
-  const visible = consent !== undefined && (!consent.decided || forced);
+  const visible = !USERCENTRICS_ENABLED && consent !== undefined && (!consent.decided || forced); // mit Usercentrics zeigt dieser Banner nichts an
 
   useEffect(() => {
     if (visible && forced) boxRef.current?.focus();

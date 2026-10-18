@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import ConsentBanner from "@/components/consent/ConsentBanner";
 import GoogleAnalytics from "@/components/consent/GoogleAnalytics";
+import Usercentrics from "@/components/consent/Usercentrics";
 import Footer from "@/components/layout/Footer/Footer";
 import Header from "@/components/layout/Header/Header";
 import Button from "@/components/ui/Button/Button";
@@ -56,6 +57,7 @@ export default function GlobalNotFound() {
         <Footer />
         <ConsentBanner />
         <GoogleAnalytics />
+        <Usercentrics locale={"de"} />
       </body>
     </html>
   );
