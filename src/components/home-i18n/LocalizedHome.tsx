@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import SharedDeTag from "@/components/layout-i18n/DeTag";
 import LocalizedConsentMap from "./LocalizedConsentMap";
@@ -17,6 +16,7 @@ import { homeContent } from "@/i18n/content";
 import aboutStyles from "@/components/home/AboutSection/AboutSection.module.css";
 import ctaStyles from "@/components/home/FinalCTA/FinalCTA.module.css";
 import heroStyles from "@/components/home/Hero/Hero.module.css";
+import HeroPhoto from "@/components/home/Hero/HeroPhoto";
 import insStyles from "@/components/home/InsuranceSection/InsuranceSection.module.css";
 import locStyles from "@/components/home/LocationSection/LocationSection.module.css";
 import procStyles from "@/components/home/ProcessSection/ProcessSection.module.css";
@@ -50,7 +50,7 @@ export default async function LocalizedHome({ locale }: { locale: L }) {
     <>
       {/* Hero */}
       <section className={heroStyles.hero} aria-labelledby="hero-title">
-        <Image src={hero.image} alt={t.hero.imageAlt} fill priority fetchPriority="high" sizes="100vw" quality={80} className={heroStyles.image} />
+        <HeroPhoto src={hero.image} mobileSrc={hero.imageMobile} alt={t.hero.imageAlt} />
         <div className={heroStyles.veil} aria-hidden="true" />
         <Container className={heroStyles.content}>
           <SectionLabel>{t.hero.eyebrow}</SectionLabel>

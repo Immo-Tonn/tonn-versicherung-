@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { hero } from "@/data/home";
 import Button from "@/components/ui/Button/Button";
@@ -6,21 +5,13 @@ import Container from "@/components/ui/Container/Container";
 import Icon from "@/components/ui/Icon/Icon";
 import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
 import TrustBar from "../TrustBar/TrustBar";
+import HeroPhoto from "./HeroPhoto";
 import styles from "./Hero.module.css";
 
 export default function Hero() {
   return (
     <section className={styles.hero} aria-labelledby="hero-title">
-      <Image
-        src={hero.image}
-        alt={hero.imageAlt}
-        fill
-        priority
-        fetchPriority="high"
-        sizes="100vw"
-        quality={80}
-        className={styles.image}
-      />
+      <HeroPhoto src={hero.image} mobileSrc={hero.imageMobile} alt={hero.imageAlt} />
       <div className={styles.veil} aria-hidden="true" />
 
       <Container className={styles.content}>

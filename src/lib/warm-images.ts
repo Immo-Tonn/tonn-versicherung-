@@ -48,17 +48,22 @@ async function pagePaths(): Promise<string[]> {
   return paths;
 }
 
-/** /_next/image-URLs der Bilder mit fetchpriority="high" (srcset-Breiten bis MAX_WIDTH). */
+/** /_next/image-URLs der Bilder mit fetchpriority="high" (srcset-Breiten bis MAX_WIDTH), auch die <source>-Varianten im <picture> (Hero mobil). */
 function priorityImageUrls(html: string): string[] {
   const urls: { url: string; w: number }[] = [];
-  for (const tag of html.match(/<img\b[^>]*>/gi) ?? []) {
-    if (!/fetchpriority="high"/i.test(tag)) continue;
-    const srcset = /\ssrcset="([^"]+)"/i.exec(tag)?.[1];
+  const addSrcset = (srcset: string | undefined) => {
     for (const entry of srcset?.split(",") ?? []) {
       const [url, w] = entry.trim().split(/\s+/);
       const width = Number(w?.replace("w", ""));
       if (url?.startsWith("/_next/image?") && width <= MAX_WIDTH) urls.push({ url: url.replaceAll("&amp;", "&"), w: width });
     }
+  };
+  for (const tag of html.match(/<img\b[^>]*>/gi) ?? []) {
+    if (/fetchpriority="high"/i.test(tag)) addSrcset(/\ssrcset="([^"]+)"/i.exec(tag)?.[1]);
+  }
+  for (const pic of html.match(/<picture\b[\s\S]*?<\/picture>/gi) ?? []) {
+    if (!/<img\b[^>]*fetchpriority="high"/i.test(pic)) continue;
+    for (const src of pic.match(/<source\b[^>]*>/gi) ?? []) addSrcset(/\ssrcset="([^"]+)"/i.exec(src)?.[1]);
   }
   const rank = (w: number) => (WIDTH_ORDER.includes(w) ? WIDTH_ORDER.indexOf(w) : WIDTH_ORDER.length);
   return urls.sort((a, b) => rank(a.w) - rank(b.w)).map((u) => u.url);
