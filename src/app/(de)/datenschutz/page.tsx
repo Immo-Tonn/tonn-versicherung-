@@ -47,18 +47,26 @@ export default function Page() {
         <strong>Technisch erforderliche Zugriffe.</strong> Dazu gehören zum Beispiel die Speicherung Ihrer Cookie-Auswahl und Funktionen für Sicherheit und Stabilität der Website. Sie benötigen keine Einwilligung. Die damit verbundene Datenverarbeitung beruht auf Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einem sicheren und funktionsfähigen Webangebot).
       </p>
       <p>
-        <strong>Zugriffe nur mit Ihrer Einwilligung.</strong> Folgende Dienste setzen wir nur ein, wenn Sie vorher über unser Einwilligungsbanner zugestimmt haben (§ 25 Abs. 1 TDDDG, Art. 6 Abs. 1 lit. a DSGVO):
+        <strong>Zugriffe nur mit Ihrer Einwilligung.</strong> Den folgenden Dienst setzen wir nur ein, wenn Sie vorher über das Einwilligungsbanner zugestimmt haben (§ 25 Abs. 1 TDDDG, Art. 6 Abs. 1 lit. a DSGVO): Google Maps zur Anzeige der Karte (Abschnitt 8).
       </p>
-      <ul>
-        <li>Google Analytics zur Reichweitenmessung (Abschnitt 7),</li>
-        <li>Google Maps zur Anzeige der Karte (Abschnitt 8).</li>
-      </ul>
-      <p>Bis zu Ihrer Zustimmung werden diese Dienste nicht geladen und es werden keine Daten an Google übermittelt.</p>
+      <p>Bis zu Ihrer Zustimmung wird dieser Dienst nicht geladen und es werden keine Daten an Google übermittelt.</p>
       <p>
-        <strong>Ihre Wahl.</strong> Sie können im Banner zustimmen, ablehnen oder die Auswahl für einzelne Dienste treffen. Wenn Sie ablehnen, können Sie die Website weiterhin nutzen. Die Karte wird dann nicht angezeigt. Ihre Entscheidung speichern wir als Nachweis der Einwilligung. Das Banner betreiben wir selbst, es wird nicht von einem externen Anbieter bereitgestellt.
+        <strong>Ihre Wahl.</strong> Sie können im Banner zustimmen, ablehnen oder die Auswahl für einzelne Dienste treffen. Wenn Sie ablehnen, können Sie die Website weiterhin nutzen. Die Karte wird dann nicht angezeigt; Sie können sie dort mit der Schaltfläche „Karte laden“ nachträglich freigeben. Damit willigen Sie ausschließlich in Google Maps ein. Ihre Entscheidung wird als Nachweis der Einwilligung gespeichert (siehe nächster Absatz).
       </p>
       <p>
-        <strong>Widerruf.</strong> Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft ändern oder widerrufen, über den Link „Cookie-Einstellungen“ im Seitenfuß. Die Rechtmäßigkeit der bis dahin erfolgten Verarbeitung bleibt unberührt.
+        <strong>Einwilligungsverwaltung (Usercentrics).</strong> Für das Einwilligungsbanner nutzen wir die Consent-Management-Plattform der Usercentrics GmbH, Sendlinger Straße 7, 80331 München (Usercentrics). Usercentrics handelt dabei als Auftragsverarbeiter in unserem Auftrag; nach Angabe von Usercentrics ist die Auftragsverarbeitungsvereinbarung nach Art. 28 DSGVO Bestandteil des mit Usercentrics geschlossenen Vertrags.
+      </p>
+      <p>
+        <strong>Welche Daten dabei übermittelt werden.</strong> Beim Aufruf der Website lädt Ihr Browser das Banner-Skript und die Banner-Einstellungen von Servern von Usercentrics. Dabei wird technisch bedingt Ihre IP-Adresse an Usercentrics übertragen; ebenso beim Abruf einer kleinen Bilddatei (1×1 Pixel) von app.usercentrics.eu, die Ihr Browser 30 Minuten zwischenspeichert. Beim Seitenaufruf und beim Speichern Ihrer Auswahl sendet Ihr Browser außerdem an den Einwilligungsdienst von Usercentrics insbesondere eine technische Kennung (Controller-ID), die Art des Vorgangs (zum Beispiel Seitenaufruf oder Änderung der Auswahl), die Sprache des Banners, die Kennung und Version der Banner-Einstellungen sowie Ihre Auswahl je Dienst in kodierter Form. Zweck ist der Nachweis Ihrer Einwilligung (Art. 7 Abs. 1 DSGVO), Rechtsgrundlage ist Art. 6 Abs. 1 lit. c DSGVO.
+      </p>
+      <p>
+        <strong>Wie lange und wo gespeichert wird.</strong> Zu unterscheiden sind zwei Speicherorte. Beim Einwilligungsprotokoll von Usercentrics werden die Einwilligungsdaten nach Angabe von Usercentrics ein Jahr gespeichert. Unabhängig davon legt Ihr Browser Ihre Auswahl im lokalen Speicher (Local Storage, Einträge „ucData“ und „ucString“) ab, damit sie bei späteren Besuchen berücksichtigt wird und das Banner nicht jedes Mal erneut erscheint. Dieser lokale Eintrag hat keine eigene Ablauffrist im Browser und bleibt bis zum Löschen in den Einstellungen Ihres Browsers erhalten. Unabhängig davon ist in den Einstellungen des Banners hinterlegt, dass das Banner nach 366 Tagen seit Ihrer letzten Auswahl erneut angezeigt wird, damit Sie Ihre Auswahl bestätigen oder ändern können.
+      </p>
+      <p>
+        <strong>Verarbeitung in der EU, Unterauftragsverarbeiter.</strong> Nach Angabe von Usercentrics findet die Verarbeitung der Einwilligungsdaten in der Europäischen Union bzw. im Europäischen Wirtschaftsraum statt. Als Unterauftragsverarbeiter nennt Usercentrics unter anderem die Google Cloud EMEA Ltd. (Irland, Hosting), die Hetzner Online GmbH (Deutschland) und die BUNNY WAY d.o.o. (Slowenien, Content Delivery Network). Für etwaige Datenübermittlungen in die USA im Zusammenhang mit Google Cloud nennt Usercentrics Standardvertragsklauseln (siehe auch Abschnitt 9). Weitere Informationen: <Ext>https://usercentrics.com/privacy-policy/</Ext>
+      </p>
+      <p>
+        <strong>Widerruf.</strong> Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft ändern oder widerrufen, über den Link „Cookie-Einstellungen“ im Seitenfuß. Dort öffnen sich die Einstellungen, in denen Sie die Einwilligung für Google Maps ausschalten können. Nach dem Widerruf lädt unsere Website die Karte nicht mehr, und es werden keine neuen Anfragen an Google Maps gesendet. Bereits erfolgte Datenübermittlungen werden dadurch nicht rückgängig gemacht; die Rechtmäßigkeit der bis dahin erfolgten Verarbeitung bleibt unberührt.
       </p>
       <p>
         <strong>Browser-Einstellungen.</strong> Zusätzlich können Sie Cookies in den Einstellungen Ihres Browsers blockieren oder löschen. Dann sind einzelne Funktionen der Website möglicherweise eingeschränkt.
@@ -95,20 +103,14 @@ export default function Page() {
         Empfänger Ihrer Daten sind, soweit für den Zweck erforderlich, die von Ihnen gewählten Versicherungsunternehmen, Banken und sonstigen Produktgeber. Diese verarbeiten Ihre Daten als eigene Verantwortliche und informieren Sie selbst. Weitere Empfänger sind unsere Dienstleister, zum Beispiel die Betreuungs- und Verbundgesellschaft VFM-Service GmbH, der Alte Leipziger – Hallesche Konzern (ALH-Konzern) und die eingesetzte Verwaltungssoftware keasy. Mit ihnen bestehen, soweit erforderlich, Verträge zur Auftragsverarbeitung.
       </p>
 
-      <h2 id="analytics">7. Webanalyse mit Google Analytics (nur mit Einwilligung)</h2>
+      <h2 id="analytics">7. Webanalyse</h2>
       <p>
-        Wir setzen Google Analytics 4 nur ein, wenn Sie im Einwilligungsbanner zugestimmt haben (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG). Sie können die Einwilligung jederzeit über die Cookie-Einstellungen widerrufen.
-      </p>
-      <p>
-        Anbieter ist die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Der Dienst misst Nutzung und Reichweite der Website. Erfasst werden zum Beispiel aufgerufene Seiten, Verweildauer, Herkunftsseite, Browser- und Gerätedaten sowie Ereignisse wie Klicks. IP-Adressen werden dabei nicht protokolliert. Daten können an die Google LLC in die USA übermittelt werden. Dafür gilt der Angemessenheitsbeschluss der EU-Kommission zum EU-US Data Privacy Framework, soweit Google zertifiziert ist, ansonsten Standardvertragsklauseln. Die Ereignisdaten werden nach zwei Monaten gelöscht.
-      </p>
-      <p>
-        Weitere Informationen: <Ext>https://policies.google.com/privacy</Ext>
+        Wir setzen auf dieser Website derzeit keine Dienste zur Webanalyse oder Reichweitenmessung von Drittanbietern ein, insbesondere nicht Google Analytics. Sollten wir künftig einen solchen Dienst einsetzen, geschieht das nur mit Ihrer Einwilligung über das Einwilligungsbanner (Abschnitt 4), und wir ergänzen diese Datenschutzerklärung vorher.
       </p>
 
       <h2 id="maps">8. Google Maps, Google-Bewertungen und externe Links</h2>
       <p>
-        <strong>Google Maps.</strong> Die Karte wird erst geladen, wenn Sie im Einwilligungsbanner zugestimmt haben. Dann übermittelt Ihr Browser unter anderem Ihre IP-Adresse und Angaben zur Nutzung der Karte an die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Daten können in die USA übermittelt werden (siehe Abschnitt 7). Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO. Weitere Informationen: <Ext>https://policies.google.com/privacy</Ext>
+        <strong>Google Maps.</strong> Die Karte wird erst geladen, wenn Sie im Einwilligungsbanner zugestimmt haben. Dann übermittelt Ihr Browser unter anderem Ihre IP-Adresse und Angaben zur Nutzung der Karte an die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Daten können in die USA übermittelt werden (siehe Abschnitt 9). Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO. Weitere Informationen: <Ext>https://policies.google.com/privacy</Ext>
       </p>
       <p>
         <strong>Google-Bewertungen (Places API).</strong> Auf der Startseite zeigen wir die Gesamtbewertung, die Anzahl der Bewertungen und einzelne Rezensionen aus unserem Google-Unternehmensprofil. Dafür ruft unser Server die Google Places API der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland, ab. Der Abruf erfolgt von Server zu Server. Ihr Browser baut dafür keine Verbindung zu Google auf, Ihre IP-Adresse wird dabei nicht an Google übermittelt. Angezeigt werden die bei Google öffentlich veröffentlichten Angaben der Rezensentinnen und Rezensenten (Anzeigename, Bewertung, Text, Zeitangabe). Wir aktualisieren sie in regelmäßigen Abständen und speichern sie dafür kurzzeitig auf unserem Server. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer transparenten Darstellung von Kundenbewertungen). Wenn Sie einem Link zu Google folgen (zum Beispiel zu allen Bewertungen oder zur Routenplanung), verlassen Sie unsere Website, und es gelten die Bestimmungen von Google. Weitere Informationen: <Ext>https://policies.google.com/privacy</Ext>
@@ -119,10 +121,10 @@ export default function Page() {
 
       <h2 id="empfaenger">9. Empfänger und Übermittlung in Drittländer</h2>
       <p>
-        Empfänger Ihrer Daten sind je nach Anlass der technische Betreiber der Website, die Versicherer und Produktgeber, die in Abschnitt 6 genannten Dienstleister, der E-Mail-Dienst Resend (Abschnitt 5), Google (Abschnitte 7 und 8) sowie, soweit gesetzlich vorgeschrieben, Behörden.
+        Empfänger Ihrer Daten sind je nach Anlass der technische Betreiber der Website, die Versicherer und Produktgeber, die in Abschnitt 6 genannten Dienstleister, der E-Mail-Dienst Resend (Abschnitt 5), Google (Abschnitt 8), Usercentrics (Abschnitt 4) sowie, soweit gesetzlich vorgeschrieben, Behörden.
       </p>
       <p>
-        Eine Übermittlung in Länder außerhalb der EU und des EWR kommt in den USA in Betracht: bei Google nur nach Ihrer Einwilligung (Google Analytics, Google Maps) und bei Resend, wenn Sie das Kontaktformular absenden. Grundlage ist jeweils der Angemessenheitsbeschluss der EU-Kommission zum EU-US Data Privacy Framework vom 10. Juli 2023, soweit der Anbieter zertifiziert ist, sonst sind es Standardvertragsklauseln.
+        Eine Übermittlung in Länder außerhalb der EU und des EWR kommt in den USA in Betracht: bei Google nur nach Ihrer Einwilligung (Google Maps) und bei Resend, wenn Sie das Kontaktformular absenden. Grundlage ist jeweils der Angemessenheitsbeschluss der EU-Kommission zum EU-US Data Privacy Framework vom 10. Juli 2023, soweit der Anbieter zertifiziert ist, sonst sind es Standardvertragsklauseln. Bei Usercentrics findet die Verarbeitung nach dessen Angabe in der EU statt; für etwaige Übermittlungen in die USA im Zusammenhang mit dem Unterauftragsverarbeiter Google Cloud nennt Usercentrics Standardvertragsklauseln (Abschnitt 4).
       </p>
 
       <h2 id="speicherdauer">10. Speicherdauer</h2>
@@ -135,8 +137,8 @@ export default function Page() {
         <li>
           Beratungsdokumentation und Vertragsunterlagen: für die Dauer der Betreuung und danach entsprechend den gesetzlichen Aufbewahrungsfristen (nach Handelsgesetzbuch und Abgabenordnung sechs, acht bzw. zehn Jahre, weitere Fristen nach Geldwäsche- und Vermittlerrecht).
         </li>
-        <li>Einwilligungen und deren Nachweise: bis zum Widerruf, danach so lange, wie Nachweise für Rechtsansprüche erforderlich sind.</li>
-        <li>Cookies und Messdaten: nach der in Abschnitt 4 und 7 genannten Dauer.</li>
+        <li>Einwilligungsprotokoll bei Usercentrics: nach Angabe des Anbieters ein Jahr.</li>
+        <li>Lokale Auswahl im Browser (Local Storage): keine eigene Ablauffrist im Browser; Sie können den Eintrag jederzeit in Ihrem Browser löschen oder über die Cookie-Einstellungen ändern. Das Banner wird nach 366 Tagen seit Ihrer letzten Auswahl erneut angezeigt (Abschnitt 4).</li>
       </ul>
 
       <h2 id="rechte">11. Ihre Rechte</h2>

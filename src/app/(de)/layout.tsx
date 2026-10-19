@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import ConsentBanner from "@/components/consent/ConsentBanner";
 import GoogleAnalytics from "@/components/consent/GoogleAnalytics";
+import Usercentrics from "@/components/consent/Usercentrics";
 import Footer from "@/components/layout/Footer/Footer";
 import Header from "@/components/layout/Header/Header";
 import JsonLd from "@/components/seo/JsonLd";
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <JsonLd />
         <ConsentBanner />
         <GoogleAnalytics />
+        <Usercentrics locale={"de"} />
       </body>
     </html>
   );

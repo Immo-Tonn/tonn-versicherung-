@@ -94,7 +94,7 @@ export const homeRu: HomeContent = {
     mapTitle: "Местоположение Andreas Tonn Versicherungen на Google Maps",
   },
   map: {
-    notice: "Карта предоставляется Google Maps. При загрузке данные, в том числе ваш IP-адрес, передаются в Google.",
+    notice: "Карта предоставляется Google Maps. При загрузке данные, в том числе ваш IP-адрес, передаются в Google. Нажимая «Загрузить карту», вы даёте согласие только на Google Maps.",
     load: "Загрузить карту",
   },
   finalCta: {

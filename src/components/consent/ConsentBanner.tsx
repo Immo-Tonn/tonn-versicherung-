@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
+import { USERCENTRICS_ENABLED } from "@/lib/usercentrics";
 import { OPEN_EVENT, saveConsent, useConsent } from "./consent-store";
 import styles from "./Consent.module.css";
 
@@ -27,7 +28,7 @@ export default function ConsentBanner() {
   const analytics = draft.analytics ?? consent?.analytics ?? false;
   const maps = draft.maps ?? consent?.maps ?? false;
 
-  const visible = consent !== undefined && (!consent.decided || forced);
+  const visible = !USERCENTRICS_ENABLED && consent !== undefined && (!consent.decided || forced); // mit Usercentrics zeigt dieser Banner nichts an
 
   useEffect(() => {
     if (visible && forced) boxRef.current?.focus();
