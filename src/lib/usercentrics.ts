@@ -13,6 +13,9 @@ export const USERCENTRICS_DRAFT = process.env.NEXT_PUBLIC_USERCENTRICS_DRAFT ===
 /** ID des Dienstes "Google Maps" (Vorlage aus der Usercentrics-Datenbank, Kategorie Functional). */
 export const USERCENTRICS_MAPS_SERVICE_ID = "S1pcEj_jZX";
 
+/** ID des Dienstes "Google Analytics" (Vorlage aus der Usercentrics-Datenbank, eigene Kategorie "Statistik / Statistics", standardmäßig aus). */
+export const USERCENTRICS_ANALYTICS_SERVICE_ID = "HkocEodjb7";
+
 /**
  * Sprache des Banners je Seitensprache. Der kostenlose Tarif erlaubt nur 2 sichtbare Sprachen (Deutsch, Englisch):
  * /ru zeigt daher vorerst den englischen Banner. Sobald Russisch in Usercentrics freigeschaltet ist, hier "ru" eintragen.
