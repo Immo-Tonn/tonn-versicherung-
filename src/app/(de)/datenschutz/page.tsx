@@ -54,10 +54,19 @@ export default function Page() {
         <strong>Ihre Wahl.</strong> Sie können im Banner zustimmen, ablehnen oder die Auswahl für einzelne Dienste treffen. Wenn Sie ablehnen, können Sie die Website weiterhin nutzen. Die Karte wird dann nicht angezeigt; Sie können sie dort mit der Schaltfläche „Karte laden“ nachträglich freigeben. Damit willigen Sie ausschließlich in Google Maps ein. Ihre Entscheidung wird als Nachweis der Einwilligung gespeichert (siehe nächster Absatz).
       </p>
       <p>
-        <strong>Einwilligungsverwaltung (Usercentrics).</strong> Für das Einwilligungsbanner nutzen wir die Consent-Management-Plattform der Usercentrics GmbH, Sendlinger Straße 7, 80331 München (Usercentrics). Das Banner-Skript wird beim Aufruf der Website von Servern von Usercentrics geladen, dabei werden technisch bedingt Verbindungsdaten übermittelt. Usercentrics verarbeitet als Auftragsverarbeiter in unserem Auftrag Einwilligungsdaten (nach Angabe von Usercentrics ist die Auftragsverarbeitungsvereinbarung nach Art. 28 DSGVO Bestandteil des mit Usercentrics geschlossenen Vertrags): Einwilligungs-ID und -Nummer, Zeitpunkt der Zustimmung oder Ablehnung, Sprache des Banners, Version der Einstellungen sowie Geräteinformationen (Browserkennung, Referrer). Nach dem Auftragsverarbeitungsvertrag des Anbieters gehören außerdem die IP-Adresse und Geolokalisierungsdaten zu den verarbeiteten Datenkategorien. Zweck ist der Nachweis Ihrer Einwilligung (Art. 7 Abs. 1 DSGVO), Rechtsgrundlage ist Art. 6 Abs. 1 lit. c DSGVO. Ihre Auswahl wird außerdem im lokalen Speicher (Local Storage) Ihres Browsers abgelegt, damit sie bei späteren Besuchen berücksichtigt wird und das Banner nicht jedes Mal erneut erscheint. Nach Angaben von Usercentrics werden die Einwilligungsdaten ein Jahr gespeichert und in der Europäischen Union verarbeitet. Als Unterauftragsverarbeiter nennt Usercentrics unter anderem die Google Cloud EMEA Ltd. (Irland), die Hetzner Online GmbH (Deutschland) und die BUNNY WAY d.o.o. (Slowenien). Weitere Informationen: <Ext>https://usercentrics.com/privacy-policy/</Ext>
+        <strong>Einwilligungsverwaltung (Usercentrics).</strong> Für das Einwilligungsbanner nutzen wir die Consent-Management-Plattform der Usercentrics GmbH, Sendlinger Straße 7, 80331 München (Usercentrics). Usercentrics handelt dabei als Auftragsverarbeiter in unserem Auftrag; nach Angabe von Usercentrics ist die Auftragsverarbeitungsvereinbarung nach Art. 28 DSGVO Bestandteil des mit Usercentrics geschlossenen Vertrags.
       </p>
       <p>
-        <strong>Widerruf.</strong> Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft ändern oder widerrufen, über den Link „Cookie-Einstellungen“ im Seitenfuß. Dort öffnen sich die Einstellungen, in denen Sie die Einwilligung für Google Maps ausschalten können. Danach wird die Karte nicht mehr geladen und es werden keine weiteren Daten an Google übermittelt. Die Rechtmäßigkeit der bis dahin erfolgten Verarbeitung bleibt unberührt.
+        <strong>Welche Daten dabei übermittelt werden.</strong> Beim Aufruf der Website lädt Ihr Browser das Banner-Skript und die Banner-Einstellungen von Servern von Usercentrics. Dabei wird technisch bedingt Ihre IP-Adresse an Usercentrics übertragen. Beim Seitenaufruf und beim Speichern Ihrer Auswahl sendet Ihr Browser außerdem an den Einwilligungsdienst von Usercentrics insbesondere eine technische Kennung (Controller-ID), die Art des Vorgangs (zum Beispiel Seitenaufruf oder Änderung der Auswahl), die Sprache des Banners, die Kennung und Version der Banner-Einstellungen sowie Ihre Auswahl je Dienst in kodierter Form. Zweck ist der Nachweis Ihrer Einwilligung (Art. 7 Abs. 1 DSGVO), Rechtsgrundlage ist Art. 6 Abs. 1 lit. c DSGVO.
+      </p>
+      <p>
+        <strong>Wie lange und wo gespeichert wird.</strong> Zu unterscheiden sind zwei Speicherorte. Beim Einwilligungsprotokoll von Usercentrics werden die Einwilligungsdaten nach Angabe von Usercentrics ein Jahr gespeichert. Unabhängig davon legt Ihr Browser Ihre Auswahl im lokalen Speicher (Local Storage, Einträge „ucData“ und „ucString“) ab, damit sie bei späteren Besuchen berücksichtigt wird und das Banner nicht jedes Mal erneut erscheint. Diesen lokalen Eintrag können Sie jederzeit in den Einstellungen Ihres Browsers löschen; eine feste Ablauffrist dieses Eintrags ist uns derzeit nicht bekannt.
+      </p>
+      <p>
+        <strong>Verarbeitung in der EU, Unterauftragsverarbeiter.</strong> Nach Angabe von Usercentrics findet die Verarbeitung der Einwilligungsdaten in der Europäischen Union bzw. im Europäischen Wirtschaftsraum statt. Als Unterauftragsverarbeiter nennt Usercentrics unter anderem die Google Cloud EMEA Ltd. (Irland, Hosting), die Hetzner Online GmbH (Deutschland) und die BUNNY WAY d.o.o. (Slowenien, Content Delivery Network). Für etwaige Datenübermittlungen in die USA im Zusammenhang mit Google Cloud nennt Usercentrics Standardvertragsklauseln (siehe auch Abschnitt 9). Weitere Informationen: <Ext>https://usercentrics.com/privacy-policy/</Ext>
+      </p>
+      <p>
+        <strong>Widerruf.</strong> Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft ändern oder widerrufen, über den Link „Cookie-Einstellungen“ im Seitenfuß. Dort öffnen sich die Einstellungen, in denen Sie die Einwilligung für Google Maps ausschalten können. Nach dem Widerruf lädt unsere Website die Karte nicht mehr, und es werden keine neuen Anfragen an Google Maps gesendet. Bereits erfolgte Datenübermittlungen werden dadurch nicht rückgängig gemacht; die Rechtmäßigkeit der bis dahin erfolgten Verarbeitung bleibt unberührt.
       </p>
       <p>
         <strong>Browser-Einstellungen.</strong> Zusätzlich können Sie Cookies in den Einstellungen Ihres Browsers blockieren oder löschen. Dann sind einzelne Funktionen der Website möglicherweise eingeschränkt.
@@ -115,7 +124,7 @@ export default function Page() {
         Empfänger Ihrer Daten sind je nach Anlass der technische Betreiber der Website, die Versicherer und Produktgeber, die in Abschnitt 6 genannten Dienstleister, der E-Mail-Dienst Resend (Abschnitt 5), Google (Abschnitt 8), Usercentrics (Abschnitt 4) sowie, soweit gesetzlich vorgeschrieben, Behörden.
       </p>
       <p>
-        Eine Übermittlung in Länder außerhalb der EU und des EWR kommt in den USA in Betracht: bei Google nur nach Ihrer Einwilligung (Google Maps) und bei Resend, wenn Sie das Kontaktformular absenden. Grundlage ist jeweils der Angemessenheitsbeschluss der EU-Kommission zum EU-US Data Privacy Framework vom 10. Juli 2023, soweit der Anbieter zertifiziert ist, sonst sind es Standardvertragsklauseln.
+        Eine Übermittlung in Länder außerhalb der EU und des EWR kommt in den USA in Betracht: bei Google nur nach Ihrer Einwilligung (Google Maps) und bei Resend, wenn Sie das Kontaktformular absenden. Grundlage ist jeweils der Angemessenheitsbeschluss der EU-Kommission zum EU-US Data Privacy Framework vom 10. Juli 2023, soweit der Anbieter zertifiziert ist, sonst sind es Standardvertragsklauseln. Bei Usercentrics findet die Verarbeitung nach dessen Angabe in der EU statt; für etwaige Übermittlungen in die USA im Zusammenhang mit dem Unterauftragsverarbeiter Google Cloud nennt Usercentrics Standardvertragsklauseln (Abschnitt 4).
       </p>
 
       <h2 id="speicherdauer">10. Speicherdauer</h2>
@@ -128,8 +137,8 @@ export default function Page() {
         <li>
           Beratungsdokumentation und Vertragsunterlagen: für die Dauer der Betreuung und danach entsprechend den gesetzlichen Aufbewahrungsfristen (nach Handelsgesetzbuch und Abgabenordnung sechs, acht bzw. zehn Jahre, weitere Fristen nach Geldwäsche- und Vermittlerrecht).
         </li>
-        <li>Einwilligungsdaten bei Usercentrics: nach Angabe des Anbieters ein Jahr (Abschnitt 4).</li>
-        <li>Cookies und ähnliche Technologien: nach der in Abschnitt 4 genannten Dauer.</li>
+        <li>Einwilligungsprotokoll bei Usercentrics: nach Angabe des Anbieters ein Jahr.</li>
+        <li>Lokale Auswahl im Browser (Local Storage): Sie können den Eintrag jederzeit in Ihrem Browser löschen oder über die Cookie-Einstellungen ändern; eine feste Ablauffrist des Eintrags ist uns derzeit nicht bekannt (Abschnitt 4).</li>
       </ul>
 
       <h2 id="rechte">11. Ihre Rechte</h2>
