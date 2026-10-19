@@ -12,11 +12,21 @@ export const OG_IMAGE = {
   alt: "Giebelhäuser am Prinzipalmarkt in Münster",
 };
 
-/** Alt-Text des Vorschaubilds je Sprache (Deutsch = OG_IMAGE.alt, unverändert). */
-const OG_IMAGE_ALT: Record<Locale, string> = {
-  de: OG_IMAGE.alt,
-  en: "Gabled houses on the Prinzipalmarkt in Münster",
-  ru: "Фронтонные дома на площади Принципальмаркт в Мюнстере",
+/**
+ * Gemeinsames Social-Preview-Bild (Open Graph / X) für alle Seiten und Sprachen: Portrait Andreas Tonn.
+ * Eigener Dateiname (-v1), damit sich die Bild-URL ändert und Messenger den Cache neu laden. OG_IMAGE bleibt für JSON-LD.
+ */
+export const SOCIAL_PREVIEW_IMAGE = {
+  url: "/og/og-andreas-portrait-v1.jpg",
+  width: 1200,
+  height: 630,
+};
+
+/** Alt-Text des Social-Preview-Bilds je Sprache. */
+const SOCIAL_PREVIEW_ALT: Record<Locale, string> = {
+  de: "Andreas Tonn, Versicherungsmakler in Münster – TONN VERSICHERUNG: Persönlich beraten.",
+  en: "Andreas Tonn, insurance broker in Münster – TONN VERSICHERUNG: Personal advice.",
+  ru: "Андреас Тонн, страховой брокер в Мюнстере – TONN VERSICHERUNG: персональные консультации.",
 };
 
 /**
@@ -46,7 +56,7 @@ type PageMetaInput = {
 export function pageMetadata({ path, title, description, type = "website", locale = defaultLocale }: PageMetaInput): Metadata {
   const og = localizedOpenGraph(path, locale);
   const url = localizedPath(path, locale);
-  const image = { ...OG_IMAGE, alt: OG_IMAGE_ALT[locale] };
+  const image = { ...SOCIAL_PREVIEW_IMAGE, alt: SOCIAL_PREVIEW_ALT[locale] };
   const robots = localizedRobots(path, locale);
   return {
     title: { absolute: title },
@@ -67,7 +77,7 @@ export function pageMetadata({ path, title, description, type = "website", local
       card: "summary_large_image",
       title,
       description,
-      images: [OG_IMAGE.url],
+      images: [SOCIAL_PREVIEW_IMAGE.url],
     },
   };
 }
