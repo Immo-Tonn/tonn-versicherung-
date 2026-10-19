@@ -13,7 +13,7 @@ export default function ConsentMap({ src, title }: Props) {
   }
   return (
     <div className={styles.mapPlaceholder}>
-      <p>Die Karte wird von Google Maps bereitgestellt. Beim Laden werden Daten, unter anderem Ihre IP-Adresse, an Google übertragen.</p>
+      <p>Die Karte wird von Google Maps bereitgestellt. Beim Laden werden Daten, unter anderem Ihre IP-Adresse, an Google übertragen. Mit „Karte laden“ willigen Sie nur in Google Maps ein.</p>
       <button type="button" className={styles.btn} onClick={() => saveConsent({ maps: true })} disabled={consent === undefined}>
         Karte laden
       </button>
