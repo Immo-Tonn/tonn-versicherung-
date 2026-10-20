@@ -88,6 +88,8 @@ export const angestellteEn: SubPageContent = {
       ],
     },
     { t: "link", text: "Anonymous preliminary risk assessment: process, benefits and limits", href: "/wissen/anonyme-risikovoranfrage" },
+    { t: "link", text: "PKV for self-employed people and freelancers: tariffs, deductible and daily sickness allowance", href: "/private-krankenversicherung/selbststaendige" },
+    { t: "link", text: "PKV for civil servants (Beamte): Beihilfe, residual-cost insurance and family", href: "/private-krankenversicherung/beamte" },
     {
       t: "p",
       text: "This page is general information and does not replace personal advice. Figures such as the compulsory insurance threshold change every year; the values given apply to 2026.",
@@ -184,6 +186,8 @@ export const selbststaendigeEn: SubPageContent = {
       ],
     },
     { t: "link", text: "PKV or GKV: differences and decision criteria", href: "/wissen/pkv-oder-gkv" },
+    { t: "link", text: "PKV for employees: switching, threshold and employer subsidy", href: "/private-krankenversicherung/angestellte" },
+    { t: "link", text: "PKV for civil servants (Beamte): Beihilfe, residual-cost insurance and family", href: "/private-krankenversicherung/beamte" },
     {
       t: "p",
       text: "This page is general information and does not replace personal advice. Figures such as the contribution assessment ceiling change every year; the values given apply to 2026.",
@@ -288,6 +292,9 @@ export const beamteEn: SubPageContent = {
       ],
     },
     { t: "link", text: "Changing tariff in PKV: options within your existing contract", href: "/wissen/tarifwechsel-pkv" },
+    { t: "link", text: "PKV for employees: switching, threshold and employer subsidy", href: "/private-krankenversicherung/angestellte" },
+    { t: "link", text: "PKV for self-employed people and freelancers: tariffs, deductible and daily sickness allowance", href: "/private-krankenversicherung/selbststaendige" },
+    { t: "link", text: "PKV or GKV: differences and decision criteria", href: "/wissen/pkv-oder-gkv" },
     {
       t: "p",
       text: "This page is general information and does not replace personal advice. Beihilfe rates and conditions differ depending on the employer and can change.",

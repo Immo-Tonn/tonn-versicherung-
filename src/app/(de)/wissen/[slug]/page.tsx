@@ -5,7 +5,7 @@ import Button from "@/components/ui/Button/Button";
 import Container from "@/components/ui/Container/Container";
 import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
 import { siteConfig } from "@/data/site";
-import { ids, OG_IMAGE, pageMetadata } from "@/lib/seo";
+import { ids, pageMetadata, SOCIAL_PREVIEW_IMAGE } from "@/lib/seo";
 import { bySlug, published, type Block } from "../_lib/articles";
 import { articleSeo } from "../_lib/seo";
 import styles from "./Article.module.css";
@@ -98,7 +98,7 @@ export default async function Page({ params }: Props) {
       mainEntityOfPage: { "@type": "WebPage", "@id": url },
       isPartOf: { "@id": ids.website() },
       articleSection: a.topic,
-      image: `${siteConfig.url}${OG_IMAGE.url}`,
+      image: `${siteConfig.url}${SOCIAL_PREVIEW_IMAGE.url}`, // dasselbe Bild wie og:image dieser Seite
       publisher: { "@id": ids.organization() },
       ...articleMeta,
       citation: a.sources.map((s) => ({ "@type": "CreativeWork", name: s.label, url: s.url })),

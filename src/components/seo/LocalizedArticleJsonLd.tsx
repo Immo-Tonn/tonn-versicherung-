@@ -2,7 +2,7 @@ import { siteConfig } from "@/data/site";
 import type { Locale } from "@/i18n/config";
 import { localizedPath } from "@/i18n/registry";
 import { inLanguage } from "@/i18n/seo";
-import { ids, OG_IMAGE } from "@/lib/seo";
+import { ids, SOCIAL_PREVIEW_IMAGE } from "@/lib/seo";
 
 type Props = {
   /** Slug des Beitrags (deutscher Registerpfad: /wissen/<slug>) */
@@ -36,7 +36,7 @@ export default function LocalizedArticleJsonLd({ slug, locale, headline, descrip
       mainEntityOfPage: { "@type": "WebPage", "@id": url },
       isPartOf: { "@id": ids.website() },
       articleSection: section,
-      image: `${siteConfig.url}${OG_IMAGE.url}`,
+      image: `${siteConfig.url}${SOCIAL_PREVIEW_IMAGE.url}`, // dasselbe Bild wie og:image dieser Seite
       publisher: { "@id": ids.organization() },
       citation: sources.map((s) => ({ "@type": "CreativeWork", name: s.label, url: s.url })),
     },

@@ -42,6 +42,9 @@ export const pkvOderGkvEn: ArticleTranslation = {
       t: "p",
       text: "Civil servants (Beamte) are exempt from statutory health insurance if, under civil-service law, they are entitled to continued payment of salary and to government assistance with healthcare costs (Beihilfe) or free medical care (Heilfürsorge) (§ 6 para. 1 no. 2 SGB V). Self-employed people and freelancers can also insure privately. How this looks in your specific case depends on your form of employment and your previous insurance.",
     },
+    { t: "link", text: "PKV for employees: switching, threshold and employer subsidy", href: "/private-krankenversicherung/angestellte" },
+    { t: "link", text: "PKV for civil servants (Beamte): Beihilfe, residual-cost insurance and family", href: "/private-krankenversicherung/beamte" },
+    { t: "link", text: "PKV for self-employed people and freelancers: tariffs, deductible and daily sickness allowance", href: "/private-krankenversicherung/selbststaendige" },
     { t: "h2", text: "How contributions differ" },
     {
       t: "p",

@@ -90,6 +90,9 @@ export const beamte: SubPageContent = {
       ],
     },
     { t: "link", text: "Tarifwechsel in der PKV: Möglichkeiten im bestehenden Vertrag", href: "/wissen/tarifwechsel-pkv" },
+    { t: "link", text: "PKV für Angestellte: Wechsel, Grenze und Zuschuss", href: "/private-krankenversicherung/angestellte" },
+    { t: "link", text: "PKV für Selbstständige und Freiberufler: Tarife, Selbstbehalt und Krankentagegeld", href: "/private-krankenversicherung/selbststaendige" },
+    { t: "link", text: "PKV oder GKV: Unterschiede und Entscheidungskriterien", href: "/wissen/pkv-oder-gkv" },
     {
       t: "p",
       text: "Diese Seite ist eine allgemeine Information und ersetzt keine persönliche Beratung. Beihilfesätze und Voraussetzungen unterscheiden sich je nach Dienstherr und können sich ändern.",

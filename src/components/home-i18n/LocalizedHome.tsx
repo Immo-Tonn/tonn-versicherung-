@@ -41,7 +41,9 @@ function DeTag({ locale }: { locale: L }) {
 export default async function LocalizedHome({ locale }: { locale: L }) {
   const t = homeContent[locale];
   const nf = numberLocale[locale];
-  const ratingText = new Intl.NumberFormat(nf, { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(5);
+  // Gesamtbewertung aus derselben Quelle wie der Bewertungsbereich; ohne echte Google-Daten keine Zahl (nichts erfunden).
+  const googleRating = await getGoogleReviews();
+  const ratingText = googleRating ? new Intl.NumberFormat(nf, { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(googleRating.rating) : null;
   const de = <DeTag locale={locale} />;
   const lk = (h: string) => localizedHref(h, locale);
   const tagFor = (h: string) => (lk(h).german ? de : null);
@@ -98,12 +100,14 @@ export default async function LocalizedHome({ locale }: { locale: L }) {
                   <Icon name={item.icon} size={44} strokeWidth={1.1} className={trustStyles.icon} />
                   <div>
                     {item.isRating ? (
-                      <p className={trustStyles.title}>
-                        <span>{ratingText}</span>
-                        <span className={trustStyles.stars} role="img" aria-label={t.trust.ratingAria(ratingText)}>
-                          {"★".repeat(5)}
-                        </span>
-                      </p>
+                      ratingText && googleRating ? (
+                        <p className={trustStyles.title}>
+                          <span>{ratingText}</span>
+                          <span className={trustStyles.stars} role="img" aria-label={t.trust.ratingAria(ratingText)}>
+                            {"★".repeat(Math.max(0, Math.min(5, Math.round(googleRating.rating))))}
+                          </span>
+                        </p>
+                      ) : null
                     ) : (
                       <p className={trustStyles.title}>{t.trust.items[i - 1].title}</p>
                     )}

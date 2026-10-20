@@ -86,6 +86,8 @@ export const angestellte: SubPageContent = {
       ],
     },
     { t: "link", text: "Anonyme Risikovoranfrage: Ablauf, Nutzen und Grenzen", href: "/wissen/anonyme-risikovoranfrage" },
+    { t: "link", text: "PKV für Selbstständige und Freiberufler: Tarife, Selbstbehalt und Krankentagegeld", href: "/private-krankenversicherung/selbststaendige" },
+    { t: "link", text: "PKV für Beamte: Beihilfe, Restkostenversicherung und Familie", href: "/private-krankenversicherung/beamte" },
     {
       t: "p",
       text: "Diese Seite ist eine allgemeine Information und ersetzt keine persönliche Beratung. Zahlen wie die Versicherungspflichtgrenze ändern sich jedes Jahr, die genannten Werte gelten für 2026.",
