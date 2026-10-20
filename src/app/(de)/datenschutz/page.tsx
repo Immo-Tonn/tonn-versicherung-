@@ -20,7 +20,7 @@ export default function Page() {
         Telefon: <Tel href={contact.phoneHref}>{contact.phone}</Tel> (mobil) · <Tel href={contact.phoneSecondaryHref}>{contact.phoneSecondary}</Tel> (Festnetz) · E-Mail: <Mail>{contact.email}</Mail> · Website: <Ext>www.tonn-versicherung.de</Ext>
       </p>
       <p>
-        Die Website wird bei der STRATO GmbH, Otto-Ostrowski-Straße 7, 10249 Berlin, gehostet (siehe Abschnitt 3). Für die Datenverarbeitung in unserer Beratungs- und Vermittlungstätigkeit sind wir selbst verantwortlich.
+        Die Website läuft auf einem Server der Hetzner Online GmbH, Industriestraße 25, 91710 Gunzenhausen (siehe Abschnitt 3). Für die Datenverarbeitung in unserer Beratungs- und Vermittlungstätigkeit sind wir selbst verantwortlich.
       </p>
 
       <h2 id="datenschutzbeauftragter">2. Datenschutzbeauftragter</h2>
@@ -30,11 +30,9 @@ export default function Page() {
 
       <h2 id="hosting">3. Hosting, Betreiber der Website, Server-Logfiles und Verschlüsselung</h2>
       <p>
-        <strong>Betreiber und Hosting.</strong> Hoster der Website ist die STRATO GmbH, Otto-Ostrowski-Straße 7, 10249 Berlin. Sie stellt die Seiten bereit und verarbeitet dabei Daten in unserem Auftrag. Mit ihr besteht ein Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO.
-      </p>
+        <strong>Hosting.</strong> Hoster der Website ist die Hetzner Online GmbH, Industriestraße 25, 91710 Gunzenhausen. Der Server steht in einem Rechenzentrum in Falkenstein (Deutschland). Die Seiten werden von uns auf diesem Server betrieben und ausgeliefert.</p>
       <p>
-        <strong>Server-Logfiles.</strong> Bei jedem Aufruf der Website erfasst der Server automatisch technische Daten: IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, Referrer-URL, Browser- und Betriebssystem-Angaben, übertragene Datenmenge und Statuscode. Das ist technisch nötig, um die Seiten auszuliefern, den stabilen Betrieb sicherzustellen und Angriffe abzuwehren. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einem sicheren und funktionsfähigen Webangebot). Die Logfiles werden nicht mit anderen Daten zusammengeführt. Nach Angaben des Hosters werden IP-Adressen höchstens sieben Tage gespeichert, die Logfiles werden nach spätestens sechs Wochen gelöscht.
-      </p>
+        <strong>Server-Logfiles.</strong> Bei jedem Aufruf der Website protokolliert der Webserver (Nginx) technische Daten: gekürzte IP-Adresse, Datum und Uhrzeit, aufgerufene Seite (Pfad ohne Parameter), Statuscode, übertragene Datenmenge, Browser- und Betriebssystem-Angabe (User-Agent) und Antwortzeit. Die IP-Adresse wird dabei gekürzt gespeichert (bei IPv4 ist das letzte Zahlenfeld auf 0 gesetzt, bei IPv6 werden nur die ersten drei Blöcke gespeichert). Anfragen, die der Server lediglich weiterleitet (zum Beispiel von http:// auf https:// oder von www auf die Hauptadresse), sowie Fehler werden in einem allgemeinen Server-Protokoll mit vollständiger IP-Adresse erfasst. Das ist technisch nötig, um die Seiten auszuliefern, den stabilen Betrieb sicherzustellen und Angriffe abzuwehren. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einem sicheren und funktionsfähigen Webangebot). Die Logfiles werden nicht mit anderen Daten zusammengeführt. Sie werden täglich rotiert; die Archive bleiben 14 Tage erhalten und werden danach gelöscht. Inhalte des Kontaktformulars stehen nicht in diesen Logfiles.</p>
       <p>
         <strong>Verschlüsselung.</strong> Die Website wird über HTTPS (TLS) ausgeliefert, damit Ihre Eingaben auf dem Übertragungsweg geschützt sind.
       </p>
@@ -47,11 +45,11 @@ export default function Page() {
         <strong>Technisch erforderliche Zugriffe.</strong> Dazu gehören zum Beispiel die Speicherung Ihrer Cookie-Auswahl und Funktionen für Sicherheit und Stabilität der Website. Sie benötigen keine Einwilligung. Die damit verbundene Datenverarbeitung beruht auf Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einem sicheren und funktionsfähigen Webangebot).
       </p>
       <p>
-        <strong>Zugriffe nur mit Ihrer Einwilligung.</strong> Den folgenden Dienst setzen wir nur ein, wenn Sie vorher über das Einwilligungsbanner zugestimmt haben (§ 25 Abs. 1 TDDDG, Art. 6 Abs. 1 lit. a DSGVO): Google Maps zur Anzeige der Karte (Abschnitt 8).
+        <strong>Zugriffe nur mit Ihrer Einwilligung.</strong> Die folgenden Dienste setzen wir nur ein, wenn Sie vorher über das Einwilligungsbanner zugestimmt haben (§ 25 Abs. 1 TDDDG, Art. 6 Abs. 1 lit. a DSGVO): Google Analytics zur Reichweitenmessung (Abschnitt 7) und Google Maps zur Anzeige der Karte (Abschnitt 8).
       </p>
-      <p>Bis zu Ihrer Zustimmung wird dieser Dienst nicht geladen und es werden keine Daten an Google übermittelt.</p>
+      <p>Bis zu Ihrer Zustimmung, nach einer Ablehnung und nach einem Widerruf werden diese Dienste nicht geladen und es werden keine Daten an Google übermittelt.</p>
       <p>
-        <strong>Ihre Wahl.</strong> Sie können im Banner zustimmen, ablehnen oder die Auswahl für einzelne Dienste treffen. Wenn Sie ablehnen, können Sie die Website weiterhin nutzen. Die Karte wird dann nicht angezeigt; Sie können sie dort mit der Schaltfläche „Karte laden“ nachträglich freigeben. Damit willigen Sie ausschließlich in Google Maps ein. Ihre Entscheidung wird als Nachweis der Einwilligung gespeichert (siehe nächster Absatz).
+        <strong>Ihre Wahl.</strong> Sie können im Banner zustimmen, ablehnen oder die Auswahl für einzelne Dienste treffen. Die Kategorie „Statistik“ (Google Analytics) ist standardmäßig ausgeschaltet; Google Analytics und Google Maps entscheiden Sie unabhängig voneinander. Wenn Sie ablehnen, können Sie die Website weiterhin nutzen. Die Karte wird dann nicht angezeigt; Sie können sie dort mit der Schaltfläche „Karte laden“ nachträglich freigeben. Damit willigen Sie ausschließlich in Google Maps ein, nicht in Google Analytics. Ihre Entscheidung wird als Nachweis der Einwilligung gespeichert (siehe nächster Absatz).
       </p>
       <p>
         <strong>Einwilligungsverwaltung (Usercentrics).</strong> Für das Einwilligungsbanner nutzen wir die Consent-Management-Plattform der Usercentrics GmbH, Sendlinger Straße 7, 80331 München (Usercentrics). Usercentrics handelt dabei als Auftragsverarbeiter in unserem Auftrag; nach Angabe von Usercentrics ist die Auftragsverarbeitungsvereinbarung nach Art. 28 DSGVO Bestandteil des mit Usercentrics geschlossenen Vertrags.
@@ -66,7 +64,7 @@ export default function Page() {
         <strong>Verarbeitung in der EU, Unterauftragsverarbeiter.</strong> Nach Angabe von Usercentrics findet die Verarbeitung der Einwilligungsdaten in der Europäischen Union bzw. im Europäischen Wirtschaftsraum statt. Als Unterauftragsverarbeiter nennt Usercentrics unter anderem die Google Cloud EMEA Ltd. (Irland, Hosting), die Hetzner Online GmbH (Deutschland) und die BUNNY WAY d.o.o. (Slowenien, Content Delivery Network). Für etwaige Datenübermittlungen in die USA im Zusammenhang mit Google Cloud nennt Usercentrics Standardvertragsklauseln (siehe auch Abschnitt 9). Weitere Informationen: <Ext>https://usercentrics.com/privacy-policy/</Ext>
       </p>
       <p>
-        <strong>Widerruf.</strong> Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft ändern oder widerrufen, über den Link „Cookie-Einstellungen“ im Seitenfuß. Dort öffnen sich die Einstellungen, in denen Sie die Einwilligung für Google Maps ausschalten können. Nach dem Widerruf lädt unsere Website die Karte nicht mehr, und es werden keine neuen Anfragen an Google Maps gesendet. Bereits erfolgte Datenübermittlungen werden dadurch nicht rückgängig gemacht; die Rechtmäßigkeit der bis dahin erfolgten Verarbeitung bleibt unberührt.
+        <strong>Widerruf.</strong> Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft ändern oder widerrufen, über den Link „Cookie-Einstellungen“ im Seitenfuß. Dort öffnen sich die Einstellungen, in denen Sie die Einwilligung für Google Analytics und für Google Maps jeweils getrennt ausschalten können. Nach dem Widerruf lädt unsere Website die Karte nicht mehr, sendet keine Messdaten mehr an Google Analytics und entfernt die Analytics-Cookies; es werden keine neuen Anfragen an die jeweiligen Dienste gesendet. Bereits erfolgte Datenübermittlungen werden dadurch nicht rückgängig gemacht; die Rechtmäßigkeit der bis dahin erfolgten Verarbeitung bleibt unberührt.
       </p>
       <p>
         <strong>Browser-Einstellungen.</strong> Zusätzlich können Sie Cookies in den Einstellungen Ihres Browsers blockieren oder löschen. Dann sind einzelne Funktionen der Website möglicherweise eingeschränkt.
@@ -78,6 +76,9 @@ export default function Page() {
       </p>
       <p>
         <strong>E-Mail-Versand über Resend.</strong> Beim Absenden des Formulars übergibt unser Server Ihre Angaben (Name, E-Mail-Adresse, gegebenenfalls Telefonnummer, Nachricht, gewähltes Thema und Kontaktwunsch) an den E-Mail-Dienst Resend, der daraus die Benachrichtigung an uns versendet. Anbieter ist Plus Five Five, Inc. (Resend), 2261 Market Street #5039, San Francisco, CA 94114, USA. Resend verarbeitet die Daten in unserem Auftrag. Nach Angaben des Anbieters finden die Verarbeitung überwiegend in den USA statt und sind Standardvertragsklauseln der EU-Kommission sowie das EU-US Data Privacy Framework Bestandteil des Auftragsverarbeitungsvertrags (siehe Abschnitt 9). Mit Resend besteht ein Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO, der Bestandteil der Nutzungsbedingungen von Resend ist. Rechtsgrundlage sind dieselben wie beim Formular (Art. 6 Abs. 1 lit. b bzw. lit. f DSGVO). Nach Angaben des Anbieters speichert Resend E-Mail-Inhalte und Versandprotokolle 30 Tage, Sicherungskopien weitere sieben Tage.
+      </p>
+      <p>
+        <strong>Technischer Ablauf des Formulars.</strong> Das Formular sendet Ihre Eingaben ausschließlich an unseren eigenen Server (nicht an Dritte im Browser), setzt keine Cookies und verwendet kein CAPTCHA. Zum Schutz vor automatisierten Anfragen gibt es ein verstecktes Feld und eine Begrenzung der Anfragen je IP-Adresse (zehn Minuten, nur im Arbeitsspeicher des Servers, ohne Speicherung auf der Festplatte). Der Server prüft die Angaben und leitet sie per E-Mail an eine fest hinterlegte Empfängeradresse bei uns weiter. Er speichert Kontaktanfragen weder in einer Datenbank noch in Dateien; Fehlermeldungen im Betriebsprotokoll enthalten keine Formulardaten. Auf den englischen und russischen Seiten legt der Browser nach dem erfolgreichen Absenden einen technischen Zeitstempel ohne Personenbezug im Session Storage ab, damit die Dankeseite angezeigt werden kann; er endet mit dem Schließen des Browser-Tabs. Unser E-Mail-Eingang für die Domain tonn-versicherung.de läuft über Server der STRATO GmbH, Otto-Ostrowski-Straße 7, 10249 Berlin (E-Mail- und DNS-Dienst).
       </p>
       <p>
         <strong>E-Mail und Telefon.</strong> Schreiben oder rufen Sie uns an, speichern wir Ihre Angaben und Ihre Nachricht zur Bearbeitung der Anfrage. Die Rechtsgrundlagen sind dieselben wie beim Formular.
@@ -103,9 +104,27 @@ export default function Page() {
         Empfänger Ihrer Daten sind, soweit für den Zweck erforderlich, die von Ihnen gewählten Versicherungsunternehmen, Banken und sonstigen Produktgeber. Diese verarbeiten Ihre Daten als eigene Verantwortliche und informieren Sie selbst. Weitere Empfänger sind unsere Dienstleister, zum Beispiel die Betreuungs- und Verbundgesellschaft VFM-Service GmbH, der Alte Leipziger – Hallesche Konzern (ALH-Konzern) und die eingesetzte Verwaltungssoftware keasy. Mit ihnen bestehen, soweit erforderlich, Verträge zur Auftragsverarbeitung.
       </p>
 
-      <h2 id="analytics">7. Webanalyse</h2>
+      <h2 id="analytics">7. Webanalyse (Google Analytics)</h2>
       <p>
-        Wir setzen auf dieser Website derzeit keine Dienste zur Webanalyse oder Reichweitenmessung von Drittanbietern ein, insbesondere nicht Google Analytics. Sollten wir künftig einen solchen Dienst einsetzen, geschieht das nur mit Ihrer Einwilligung über das Einwilligungsbanner (Abschnitt 4), und wir ergänzen diese Datenschutzerklärung vorher.
+        <strong>Dienst und Anbieter.</strong> Mit Ihrer Einwilligung nutzen wir Google Analytics 4 (Google Analytics) der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Wir möchten verstehen, welche Seiten besucht werden, und die Website verbessern. Nach Angabe von Google verarbeitet Google die Daten dabei als Auftragsverarbeiter; die Datenverarbeitungsbedingungen von Google für Google Analytics sind für unser Konto akzeptiert.
+      </p>
+      <p>
+        <strong>Rechtsgrundlage und Ihre Wahl.</strong> Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG). Im Banner gehört der Dienst zur Kategorie „Statistik“ und ist standardmäßig ausgeschaltet. Ohne Ihre Zustimmung, nach einer Ablehnung und nach einem Widerruf wird Google Analytics nicht geladen; es werden dann keine Daten an Google übermittelt, auch keine anonymen Messsignale.
+      </p>
+      <p>
+        <strong>Welche Daten verarbeitet werden.</strong> Nach Ihrer Zustimmung sendet Ihr Browser bei jedem Seitenaufruf an Google: Adresse und Titel der aufgerufenen Seite (ohne Parameter nach dem Fragezeichen und ohne Fragmentteil), die zuvor besuchte Seite, den Zeitpunkt, die Sprache des Browsers, die Bildschirmauflösung, Angaben zu Browser, Gerät und Betriebssystem, eine zufällig vergebene Kennung (Client-ID) und Sitzungsangaben. Nach Angabe von Google werden IP-Adressen in Google Analytics 4 nicht protokolliert oder gespeichert. Zusätzlich erfassen wir drei Ereignisse jeweils ohne Inhalte: das erfolgreiche Absenden des Kontaktformulars, den Klick auf einen Telefonlink und den Klick auf einen E-Mail-Link. Wir übermitteln keine Namen, E-Mail-Adressen, Telefonnummern oder Inhalte des Kontaktformulars an Google Analytics, keine Formulareingaben und nicht den Inhalt der angeklickten Telefon- oder E-Mail-Links.
+      </p>
+      <p>
+        <strong>Unsere Einstellungen.</strong> Wir haben Google Signals, die Personalisierung von Werbung, die Nutzer-ID-Funktion und die Verknüpfung mit Google Ads nicht aktiviert und nutzen die erweiterte Messung nicht. Die Freigabe der Daten für die Verbesserung von Google-Produkten und -Diensten ist ausgeschaltet.
+      </p>
+      <p>
+        <strong>Cookies und Speicherdauer.</strong> Google Analytics setzt zwei Cookies auf Ihrem Gerät (Domain dieser Website): „_ga“ (unterscheidet Besucher) und „_ga_&lt;Container-ID&gt;“ (hält den Sitzungsstatus). Nach Angabe von Google beträgt die Standardlaufzeit beider Cookies zwei Jahre; Browser können sie früher begrenzen. Die in Google Analytics gespeicherten Ereignis- und Nutzerdaten werden nach unserer Einstellung zur Datenspeicherung nach zwei Monaten gelöscht; Standardberichte mit aggregierten Daten sind davon nach Angabe von Google weitgehend nicht betroffen.
+      </p>
+      <p>
+        <strong>Empfänger und Übermittlung.</strong> Empfänger ist die Google Ireland Limited; nach der Dienstbeschreibung von Usercentrics kommen auch die Alphabet Inc. und die Google LLC in Betracht. Nach Angabe von Google werden Daten von Nutzern aus der EU über Domains und Server in der EU erhoben. Eine Übermittlung in Drittländer, nach der Dienstbeschreibung von Usercentrics in die USA, nach Singapur, Chile und Taiwan, ist möglich; Grundlage sind der Angemessenheitsbeschluss zum EU-US Data Privacy Framework, soweit der Empfänger zertifiziert ist, sonst Standardvertragsklauseln (Abschnitt 9).
+      </p>
+      <p>
+        <strong>Widerruf.</strong> Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft über den Link „Cookie-Einstellungen“ im Seitenfuß widerrufen (Abschnitt 4). Danach werden keine weiteren Daten an Google Analytics gesendet, und die Website entfernt die Analytics-Cookies. Bereits erfolgte Übermittlungen werden dadurch nicht rückgängig gemacht; die Rechtmäßigkeit der bis dahin erfolgten Verarbeitung bleibt unberührt. Weitere Informationen: <Ext>https://policies.google.com/privacy</Ext>
       </p>
 
       <h2 id="maps">8. Google Maps, Google-Bewertungen und externe Links</h2>
@@ -121,10 +140,10 @@ export default function Page() {
 
       <h2 id="empfaenger">9. Empfänger und Übermittlung in Drittländer</h2>
       <p>
-        Empfänger Ihrer Daten sind je nach Anlass der technische Betreiber der Website, die Versicherer und Produktgeber, die in Abschnitt 6 genannten Dienstleister, der E-Mail-Dienst Resend (Abschnitt 5), Google (Abschnitt 8), Usercentrics (Abschnitt 4) sowie, soweit gesetzlich vorgeschrieben, Behörden.
+        Empfänger Ihrer Daten sind je nach Anlass der technische Betreiber der Website, die Versicherer und Produktgeber, die in Abschnitt 6 genannten Dienstleister, der E-Mail-Dienst Resend (Abschnitt 5), Google (Abschnitte 7 und 8), Usercentrics (Abschnitt 4) sowie, soweit gesetzlich vorgeschrieben, Behörden.
       </p>
       <p>
-        Eine Übermittlung in Länder außerhalb der EU und des EWR kommt in den USA in Betracht: bei Google nur nach Ihrer Einwilligung (Google Maps) und bei Resend, wenn Sie das Kontaktformular absenden. Grundlage ist jeweils der Angemessenheitsbeschluss der EU-Kommission zum EU-US Data Privacy Framework vom 10. Juli 2023, soweit der Anbieter zertifiziert ist, sonst sind es Standardvertragsklauseln. Bei Usercentrics findet die Verarbeitung nach dessen Angabe in der EU statt; für etwaige Übermittlungen in die USA im Zusammenhang mit dem Unterauftragsverarbeiter Google Cloud nennt Usercentrics Standardvertragsklauseln (Abschnitt 4).
+        Eine Übermittlung in Länder außerhalb der EU und des EWR kommt in den USA in Betracht: bei Google nur nach Ihrer Einwilligung (Google Analytics, Google Maps) und bei Resend, wenn Sie das Kontaktformular absenden. Grundlage ist jeweils der Angemessenheitsbeschluss der EU-Kommission zum EU-US Data Privacy Framework vom 10. Juli 2023, soweit der Anbieter zertifiziert ist, sonst sind es Standardvertragsklauseln. Bei Usercentrics findet die Verarbeitung nach dessen Angabe in der EU statt; für etwaige Übermittlungen in die USA im Zusammenhang mit dem Unterauftragsverarbeiter Google Cloud nennt Usercentrics Standardvertragsklauseln (Abschnitt 4).
       </p>
 
       <h2 id="speicherdauer">10. Speicherdauer</h2>
@@ -137,6 +156,8 @@ export default function Page() {
         <li>
           Beratungsdokumentation und Vertragsunterlagen: für die Dauer der Betreuung und danach entsprechend den gesetzlichen Aufbewahrungsfristen (nach Handelsgesetzbuch und Abgabenordnung sechs, acht bzw. zehn Jahre, weitere Fristen nach Geldwäsche- und Vermittlerrecht).
         </li>
+        <li>Kontaktformular: keine Speicherung auf unserem Server; beim E-Mail-Dienst Resend nach Angabe des Anbieters 30 Tage (Abschnitt 5).</li>
+        <li>Google Analytics: Ereignis- und Nutzerdaten zwei Monate; Cookies „_ga“ und „_ga_&lt;Container-ID&gt;“ nach Angabe von Google bis zu zwei Jahre (Abschnitt 7).</li>
         <li>Einwilligungsprotokoll bei Usercentrics: nach Angabe des Anbieters ein Jahr.</li>
         <li>Lokale Auswahl im Browser (Local Storage): keine eigene Ablauffrist im Browser; Sie können den Eintrag jederzeit in Ihrem Browser löschen oder über die Cookie-Einstellungen ändern. Das Banner wird nach 366 Tagen seit Ihrer letzten Auswahl erneut angezeigt (Abschnitt 4).</li>
       </ul>

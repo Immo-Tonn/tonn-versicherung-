@@ -1,7 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { USERCENTRICS_ENABLED, USERCENTRICS_MAPS_SERVICE_ID } from "@/lib/usercentrics";
+import { USERCENTRICS_ANALYTICS_SERVICE_ID, USERCENTRICS_ENABLED, USERCENTRICS_MAPS_SERVICE_ID } from "@/lib/usercentrics";
 
 /**
  * Einwilligung (TDDDG § 25): Google Analytics und Google Maps werden nur nach Zustimmung geladen.
@@ -31,13 +31,18 @@ type UcCmp = {
 };
 const uc = (): UcCmp | undefined => (typeof window === "undefined" ? undefined : (window as unknown as { __ucCmp?: UcCmp }).__ucCmp);
 
-/** Liest den Status von "Google Maps" aus Usercentrics in den Store. Ohne Ergebnis von Usercentrics bleibt es bei "keine Einwilligung". */
+/**
+ * Liest den Status von "Google Maps" und "Google Analytics" aus Usercentrics in den Store (beide Dienste sind unabhängig).
+ * Ohne Ergebnis von Usercentrics oder ohne den Dienst in der Konfiguration bleibt es bei "keine Einwilligung".
+ */
 export async function syncFromUsercentrics() {
   const cmp = uc();
   if (!cmp || !(await cmp.isInitialized())) return;
-  const maps = (await cmp.getConsentDetails()).services[USERCENTRICS_MAPS_SERVICE_ID]?.consent.given === true;
-  if (provider.decided && provider.maps === maps) return;
-  provider = { analytics: false, maps, decided: true };
+  const { services } = await cmp.getConsentDetails();
+  const maps = services[USERCENTRICS_MAPS_SERVICE_ID]?.consent.given === true;
+  const analytics = services[USERCENTRICS_ANALYTICS_SERVICE_ID]?.consent.given === true;
+  if (provider.decided && provider.maps === maps && provider.analytics === analytics) return;
+  provider = { analytics, maps, decided: true };
   window.dispatchEvent(new Event(EVENT));
 }
 
@@ -63,6 +68,9 @@ function read(): Consent {
   return value;
 }
 
+/** Aktueller Stand ohne React (für Ereignisse außerhalb von Komponenten). Auf dem Server: keine Einwilligung. */
+export const getConsentSnapshot = (): Consent => (typeof window === "undefined" ? EMPTY : read());
+
 function subscribe(cb: () => void) {
   window.addEventListener(EVENT, cb);
   window.addEventListener("storage", cb);
@@ -80,7 +88,7 @@ export function useConsent(): Consent | undefined {
 export function saveConsent(next: Partial<Consent>) {
   if (USERCENTRICS_ENABLED) {
     // Einwilligung/Widerruf NUR für den Dienst "Google Maps" (Button "Karte laden"): dokumentierter Weg updateServicesConsents + saveConsents.
-    // Andere (auch künftige) Dienste, z. B. Analytics, bleiben unverändert. Scheitert das, öffnen wir die Einstellungen, damit der Nutzer selbst entscheidet.
+    // Alle anderen Dienste, auch Google Analytics, bleiben unverändert (Analytics wird nur im Banner/Einstellungsfenster entschieden). Scheitert das, öffnen wir die Einstellungen, damit der Nutzer selbst entscheidet.
     const cmp = uc();
     if (!cmp || typeof next.maps !== "boolean") return;
     void (async () => {

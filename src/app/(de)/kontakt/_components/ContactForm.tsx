@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useId, useRef, useState, type FormEvent } from "react";
+import { trackEvent } from "@/components/consent/track";
 import Icon from "@/components/ui/Icon/Icon";
 import { REPLY_VIA, TOPICS, validate, type FieldErrors } from "../_lib/schema";
 import styles from "./Kontakt.module.css";
@@ -59,6 +60,8 @@ export default function ContactForm() {
       });
       const data = (await res.json().catch(() => null)) as { ok?: boolean; errors?: FieldErrors } | null;
       if (res.ok && data?.ok) {
+        // Erst nach der Bestätigung des Servers; Bots (Honeypot ausgefüllt) werden vom Server still "bestätigt" und nicht gezählt.
+        if (website.trim() === "") trackEvent("generate_lead");
         router.push("/kontakt/danke");
         return;
       }
