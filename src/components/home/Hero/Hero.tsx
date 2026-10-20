@@ -5,12 +5,14 @@ import Container from "@/components/ui/Container/Container";
 import Icon from "@/components/ui/Icon/Icon";
 import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
 import TrustBar from "../TrustBar/TrustBar";
+import HeroHeaderTone from "./HeroHeaderTone";
 import HeroPhoto from "./HeroPhoto";
+import "./hero-mobile-header.css";
 import styles from "./Hero.module.css";
 
 export default function Hero() {
   return (
-    <section className={styles.hero} aria-labelledby="hero-title">
+    <section className={styles.hero} aria-labelledby="hero-title" data-home-hero>
       <HeroPhoto src={hero.image} mobileSrc={hero.imageMobile} alt={hero.imageAlt} />
       <div className={styles.veil} aria-hidden="true" />
 
@@ -48,6 +50,7 @@ export default function Hero() {
       </Container>
 
       <TrustBar />
+      <HeroHeaderTone />
     </section>
   );
 }

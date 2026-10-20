@@ -8,7 +8,7 @@ export const hero = {
   primaryCta: { label: "Kostenloses Erstgespräch", href: "/kontakt" },
   secondaryCta: { label: "So läuft die Beratung ab", href: "#ablauf" },
   image: "/images/home/hero-muenster.webp",
-  imageMobile: "/images/home/hero-muenster-mobil.webp", // Hochformat, nur bis 767 px
+  imageMobile: "/images/home/hero-muenster-mobil-v2.webp", // Hochformat, nur bis 767 px (Original: design-source/hero-muenster-mobil-v2-original.png)
   imageAlt: "Historische Giebelhäuser am Prinzipalmarkt in Münster",
 };
 

@@ -161,75 +161,109 @@
 }
 
 @media (max-width: 767px) {
-  /* Mobil (nur <= 767px; Tablet ab 768px und Desktop bleiben unverändert), Komposition "Panorama":
-     Foto in voller Breite direkt unter der Kopfzeile (scharf, ohne Verlauf/Schleier), darunter heller Textblock.
-     Das Hochformat-Foto kommt über <picture> (HeroPhoto); die !important-Angaben sind nötig, weil next/image seine Position als Inline-Style setzt. */
+  /* Mobil (nur <= 767px; Tablet ab 768px und Desktop bleiben unverändert): Foto als Hintergrund des ersten Bildschirms in voller Breite.
+     Foto (Hochformat 2:3) sitzt am unteren Rand in natürlichen Proportionen (nicht gestreckt); darüber setzt sich der Himmel in der
+     Farbe des Foto-Oberrands fort, so bleibt oben Platz für den Text. Ein Verlauf (dunkelblau -> transparent) liegt nur über dem oberen Teil.
+     Foto, Verlauf und Text liegen in derselben Grid-Zelle; die Zelle wächst mit dem Text (niedrige Bildschirme, längere EN/RU-Texte).
+     Die !important-Angaben sind nötig, weil next/image seine Position als Inline-Style setzt. */
   .hero {
-    background: #faf9f6;
-  }
-
-  .veil {
-    display: none;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    padding-top: 0;
+    background: #00337c;
   }
 
   .picture {
-    display: block;
+    grid-area: 1 / 1;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-width: 0;
     overflow: hidden;
+    /* Himmelston des Foto-Oberrands (links dunkler, rechts etwas heller), damit der Übergang zum Foto nicht sichtbar ist */
+    background: linear-gradient(90deg, #00337c 0%, #014395 50%, #004da9 100%);
   }
 
-  /* Kompaktes Foto: Höhe wächst mit der Bildschirmbreite (320 px: ca. 211 px, 375-430 px: ca. 247-284 px, gedeckelt bei 420 px) statt aus dem
-     Hochformat des Originals. object-fit: cover beschneidet; Ausschnitt oben (Kirchturm + Dach), links ca. 5 % weniger (Breite 105 %,
-     links überstehend und per overflow: hidden am .picture abgeschnitten). */
   .image {
     position: relative !important;
     inset: auto !important;
     display: block;
-    width: 105% !important;
+    width: 100% !important;
     max-width: none !important;
-    margin-left: -5%;
-    height: min(66vw, 420px) !important;
+    height: auto !important;
+    aspect-ratio: 1024 / 1536;
     object-fit: cover;
-    object-position: 50% 20%;
+    object-position: 50% 100%;
+    /* Der obere Rand des Fotos läuft in den Himmelston aus */
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 14%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 14%);
   }
 
+  .veil {
+    grid-area: 1 / 1;
+    position: relative;
+    inset: auto;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(6, 38, 63, 0.94) 0, rgba(6, 38, 63, 0.8) 240px, rgba(6, 38, 63, 0.64) 440px, rgba(6, 38, 63, 0.28) 540px, rgba(6, 38, 63, 0) 640px);
+  }
+
+  /* Erster Bildschirm: mindestens so hoch wie der sichtbare Viewport (svh berücksichtigt die Browserleisten), bei Bedarf höher */
   .content {
+    --hero-actions-h: 118px;
+    grid-area: 1 / 1;
+    z-index: 2;
+    min-height: 100vh;
+    min-height: 100svh;
     flex: none;
     justify-content: flex-start;
-    padding-block: 26px 28px;
+    padding-top: calc(var(--header-h) + 24px);
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
   }
 
   .content > p:first-child {
     margin-bottom: 16px;
+    color: rgba(255, 255, 255, 0.92);
   }
 
+  /* Überschrift in Weiß; "Krankenversicherung" darf nicht im Wort umbrechen -> Schriftgröße folgt der Bildschirmbreite */
   .title {
-    font-size: clamp(27px, 8.2vw, 38px);
+    color: #fff;
+    font-size: clamp(24px, 8.1vw, 38px);
     line-height: 1.05;
-    overflow-wrap: anywhere;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
   }
 
   .subtitle {
     margin-top: 12px;
     font-size: clamp(21px, 6.3vw, 26px);
     line-height: 1.15;
+    color: rgba(255, 255, 255, 0.82);
   }
 
+  /* Der Text endet über dem Foto-Motiv: unter dem Text bleibt so viel Platz, wie das Foto (Kirchturm + Häuser) braucht */
   .text {
-    margin-top: 16px;
+    margin: 16px 0 max(0px, calc(100vw * 1.03 - var(--hero-actions-h)));
+    max-width: none;
     font-size: 15px;
     line-height: 1.5;
+    color: #fff;
+    text-shadow: 0 1px 8px rgba(6, 38, 63, 0.55);
   }
 
   .actions {
     flex-direction: column;
     align-items: stretch;
-    gap: 18px;
-    margin-top: 22px;
+    gap: 14px;
+    margin-top: auto;
   }
 
   .actions .primary {
-    padding: 17px 22px;
-    font-size: 16px;
+    min-height: 58px;
+    padding: 0 22px;
+    font-size: 18px;
   }
 
   .secondary {
@@ -239,19 +273,21 @@
   .mobileCta {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
-    align-self: flex-start;
+    align-self: center;
     font-size: 15px;
     font-weight: 500;
-    color: var(--navy-900);
+    color: #fff;
     padding-bottom: 3px;
-    border-bottom: 1px solid var(--navy-900);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.85);
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
   }
 
-  /* Sehr schmale Geräte (320-359px): "Krankenversicherung" + roter Punkt sollen in eine Zeile passen */
+  /* Sehr schmale Geräte (320-359px) */
   @media (max-width: 359px) {
     .title {
-      font-size: 25px;
+      font-size: 24px;
     }
   }
 }

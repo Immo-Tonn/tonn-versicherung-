@@ -2,7 +2,7 @@
   display: inline-flex;
   align-items: stretch;
   gap: 10px;
-  color: var(--navy-900);
+  color: var(--logo-fg, var(--navy-900));
 }
 
 .light {
