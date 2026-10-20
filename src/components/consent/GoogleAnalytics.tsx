@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { useConsent } from "./consent-store";
+import { trackEvent } from "./track";
 
 const ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
@@ -94,6 +95,18 @@ export default function GoogleAnalytics() {
     }, 250);
     return () => window.clearTimeout(t);
   }, [on, consent, pathname]);
+
+  // Klicks auf Telefon- und E-Mail-Links (nur mit Einwilligung); der Linkinhalt selbst wird nie übertragen.
+  useEffect(() => {
+    if (!on) return;
+    const onClick = (e: MouseEvent) => {
+      const href = (e.target as Element | null)?.closest?.("a[href]")?.getAttribute("href")?.trim().toLowerCase() ?? "";
+      if (href.startsWith("tel:")) trackEvent("click_phone");
+      else if (href.startsWith("mailto:")) trackEvent("click_email");
+    };
+    document.addEventListener("click", onClick, true);
+    return () => document.removeEventListener("click", onClick, true);
+  }, [on]);
 
   return null;
 }

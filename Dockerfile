@@ -59,6 +59,16 @@ RUN --mount=type=secret,id=google_places_api_key \
       npm run build; \
     fi
 
+# Prüfung: Ist eine Google-Analytics-ID übergeben, muss sie im Browser-Code stehen (sonst wäre sie auf dem Weg
+# Repository-Variable -> Workflow -> Build-Arg -> next build verloren gegangen). Ohne ID: Build ohne Analytics (Absicht, z. B. Staging).
+RUN if [ -n "${NEXT_PUBLIC_GA_MEASUREMENT_ID:-}" ]; then \
+      grep -rqF -- "$NEXT_PUBLIC_GA_MEASUREMENT_ID" .next/static \
+        || { echo "FEHLER: Google-Analytics-ID fehlt im Build-Ergebnis" >&2; exit 1; }; \
+      echo "OK: Google-Analytics-ID ist im Build enthalten"; \
+    else \
+      echo "HINWEIS: ohne Google-Analytics-ID gebaut" >&2; \
+    fi
+
 # --- 3) Laufzeit-Image ---
 FROM base AS runner
 ENV NODE_ENV=production \

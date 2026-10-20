@@ -68,6 +68,9 @@ function read(): Consent {
   return value;
 }
 
+/** Aktueller Stand ohne React (für Ereignisse außerhalb von Komponenten). Auf dem Server: keine Einwilligung. */
+export const getConsentSnapshot = (): Consent => (typeof window === "undefined" ? EMPTY : read());
+
 function subscribe(cb: () => void) {
   window.addEventListener(EVENT, cb);
   window.addEventListener("storage", cb);

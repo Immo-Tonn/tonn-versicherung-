@@ -111,8 +111,16 @@ jobs:
           PLACES_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
           PLACE_ID: ${{ vars.GOOGLE_PLACE_ID }}
           MAPS_KEY: ${{ vars.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY }}
+          GA_ID: ${{ needs.plan.outputs.mode == 'production' && vars.NEXT_PUBLIC_GA_MEASUREMENT_ID || '' }}
+          MODE: ${{ needs.plan.outputs.mode }}
         run: |
           missing=0
+          # Google Analytics: optional (leer = Build ohne Analytics), aber wenn gesetzt, dann mit gültigem Format
+          if [ "$MODE" = production ]; then
+            if [ -z "$GA_ID" ]; then echo "::warning::Variable NEXT_PUBLIC_GA_MEASUREMENT_ID nicht gesetzt - Production-Build ohne Google Analytics"
+            elif ! printf '%s' "$GA_ID" | grep -Eq '^G-[A-Z0-9]{6,12}$'; then echo "::error::Variable NEXT_PUBLIC_GA_MEASUREMENT_ID hat kein gültiges Format (G-XXXXXXXXXX)"; missing=1
+            else echo "Google-Analytics-ID gesetzt (Format ok)"; fi
+          fi
           [ -n "$PLACES_KEY" ] || { echo "::error::Secret GOOGLE_PLACES_API_KEY fehlt"; missing=1; }
           [ -n "$PLACE_ID" ]   || { echo "::error::Variable GOOGLE_PLACE_ID fehlt"; missing=1; }
           [ -n "$MAPS_KEY" ]   || { echo "::error::Variable NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY fehlt"; missing=1; }

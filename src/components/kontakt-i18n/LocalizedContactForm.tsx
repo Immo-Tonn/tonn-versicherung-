@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useId, useRef, useState, type FormEvent } from "react";
 import styles from "@/app/(de)/kontakt/_components/Kontakt.module.css";
 import { REPLY_VIA, TOPICS, validate, type FieldErrors } from "@/app/(de)/kontakt/_lib/schema";
+import { trackEvent } from "@/components/consent/track";
 import DeTag from "@/components/layout-i18n/DeTag";
 import Icon from "@/components/ui/Icon/Icon";
 import type { Locale } from "@/i18n/config";
@@ -109,6 +110,8 @@ export default function LocalizedContactForm({ locale }: { locale: L }) {
       });
       const data = (await res.json().catch(() => null)) as { ok?: boolean; errors?: FieldErrors } | null;
       if (res.ok && data?.ok) {
+        // Erst nach der Bestätigung des Servers; Bots (Honeypot ausgefüllt) werden vom Server still "bestätigt" und nicht gezählt.
+        if (website.trim() === "") trackEvent("generate_lead");
         // Nur nach bestätigtem Erfolg: Marker für die Danke-Seite setzen und weiterleiten
         try {
           window.sessionStorage.setItem(CONTACT_OK_KEY, String(Date.now()));
