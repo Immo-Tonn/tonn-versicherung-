@@ -47,7 +47,7 @@ export const risk = {
   eyebrow: "Gesundheitliche Vorgeschichte?",
   title: ["Das muss kein", "Ausschlusskriterium sein"],
   text: "Wir führen eine anonyme Risikovoranfrage bei passenden Versicherern durch – noch bevor ein offizieller Antrag gestellt wird. So erfahren Sie, wie Ihre Angaben voraussichtlich eingeschätzt werden, ohne dass dies bereits als Antrag gewertet wird.",
-  cta: { label: "Mehr zur Risikovoranfrage", href: "/kontakt" },
+  cta: { label: "Mehr zur Risikovoranfrage", href: "/wissen/anonyme-risikovoranfrage" },
   flow: [
     { icon: "document" as const, lines: ["Ihre", "Angaben"] },
     { icon: "search" as const, lines: ["Anonyme", "Prüfung"] },

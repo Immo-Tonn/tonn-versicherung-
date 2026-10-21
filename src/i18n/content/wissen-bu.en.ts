@@ -21,7 +21,7 @@ export const buRentePlanenEn: ArticleTranslation = {
     },
     {
       t: "example",
-      text: "With a monthly gross income of €4,000, 66% corresponds to a monthly occupational disability benefit (BU-Rente) of €2,640 (€4,000 × 0.66). This amount serves as orientation for planning. The right level of cover depends on your running expenses, existing entitlements and your personal situation. Which benefit amount can be insured also depends on the underwriting guidelines of the respective insurer.",
+      text: "With a monthly net income of €3,000, 80% corresponds to a monthly occupational disability benefit (BU-Rente) of €2,400 (€3,000 × 0.80). This is simply a calculation based on the guideline mentioned above and serves as orientation for planning. The right level of cover depends on your running expenses, existing entitlements and your personal situation. Which benefit amount can be insured also depends on the underwriting guidelines of the respective insurer.",
     },
     { t: "h2", text: "Which entitlements already exist?" },
     {

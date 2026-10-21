@@ -24,9 +24,9 @@ export const SOCIAL_PREVIEW_IMAGE = {
 
 /** Alt-Text des Social-Preview-Bilds je Sprache. */
 const SOCIAL_PREVIEW_ALT: Record<Locale, string> = {
-  de: "Andreas Tonn, Versicherungsmakler in Münster – TONN VERSICHERUNG: Persönlich beraten.",
-  en: "Andreas Tonn, insurance broker in Münster – TONN VERSICHERUNG: Personal advice.",
-  ru: "Андреас Тонн, страховой брокер в Мюнстере – TONN VERSICHERUNG: персональные консультации.",
+  de: "Andreas Tonn, Versicherungsvermittler in Münster – TONN VERSICHERUNG: Persönlich beraten.",
+  en: "Andreas Tonn, insurance agent in Münster – TONN VERSICHERUNG: Personal advice.",
+  ru: "Андреас Тонн, страховой агент в Мюнстере – TONN VERSICHERUNG: персональные консультации.",
 };
 
 /**

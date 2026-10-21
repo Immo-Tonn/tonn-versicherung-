@@ -88,6 +88,8 @@ export const angestellteRu: SubPageContent = {
       ],
     },
     { t: "link", text: "Анонимная предварительная оценка страховых рисков: порядок, польза и ограничения", href: "/wissen/anonyme-risikovoranfrage" },
+    { t: "link", text: "PKV для предпринимателей, самозанятых и фрилансеров: тарифы, франшиза и пособие по болезни", href: "/private-krankenversicherung/selbststaendige" },
+    { t: "link", text: "PKV для государственных служащих (Beamte): Beihilfe, страхование остаточных расходов и семья", href: "/private-krankenversicherung/beamte" },
     {
       t: "p",
       text: "Эта страница носит общий информационный характер и не заменяет личной консультации. Такие показатели, как порог обязательного страхования, меняются каждый год; указанные значения действуют на 2026 год.",
@@ -184,6 +186,8 @@ export const selbststaendigeRu: SubPageContent = {
       ],
     },
     { t: "link", text: "PKV или GKV: различия и критерии выбора", href: "/wissen/pkv-oder-gkv" },
+    { t: "link", text: "PKV для наёмных работников: переход, порог и взнос работодателя", href: "/private-krankenversicherung/angestellte" },
+    { t: "link", text: "PKV для государственных служащих (Beamte): Beihilfe, страхование остаточных расходов и семья", href: "/private-krankenversicherung/beamte" },
     {
       t: "p",
       text: "Эта страница носит общий информационный характер и не заменяет личной консультации. Такие показатели, как предельная величина для расчёта взносов, меняются каждый год; указанные значения действуют на 2026 год.",
@@ -288,6 +292,9 @@ export const beamteRu: SubPageContent = {
       ],
     },
     { t: "link", text: "Смена тарифа в PKV: возможности в рамках действующего договора", href: "/wissen/tarifwechsel-pkv" },
+    { t: "link", text: "PKV для наёмных работников: переход, порог и взнос работодателя", href: "/private-krankenversicherung/angestellte" },
+    { t: "link", text: "PKV для предпринимателей, самозанятых и фрилансеров: тарифы, франшиза и пособие по болезни", href: "/private-krankenversicherung/selbststaendige" },
+    { t: "link", text: "PKV или GKV: различия и критерии выбора", href: "/wissen/pkv-oder-gkv" },
     {
       t: "p",
       text: "Эта страница носит общий информационный характер и не заменяет личной консультации. Ставки Beihilfe и условия различаются в зависимости от работодателя и могут меняться.",

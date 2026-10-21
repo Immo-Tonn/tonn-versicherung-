@@ -37,7 +37,7 @@ export const groups = {
   eyebrow: "Für wen ist eine BU besonders wichtig?",
   title: "Individuelle Lösungen für unterschiedliche Lebenswege",
   cta: "Mehr erfahren",
-  href: "/kontakt",
+  href: "/wissen/berufsunfaehigkeit-ursachen-folgen",
   large: {
     title: "Selbstständige",
     text: "Mehr Flexibilität, aber kein gesetzlicher Schutz. Eine BU sichert Ihr Einkommen und Ihre unternehmerische Freiheit.",
@@ -80,7 +80,7 @@ export const health = {
   eyebrow: "Gesundheitsfragen",
   title: "Erst prüfen. Dann beantragen",
   text: "Gesundheitsfragen sind ein wichtiger Bestandteil der Berufsunfähigkeitsversicherung. Wir unterstützen Sie dabei, die Angaben sorgfältig vorzubereiten und prüfen bei Bedarf zunächst anonym bei mehreren Versicherern, wie Ihre Chancen auf eine Absicherung stehen.",
-  cta: { label: "Mehr zur Risikovoranfrage", href: "/private-krankenversicherung#risikovoranfrage" },
+  cta: { label: "Mehr zur Risikovoranfrage", href: "/wissen/anonyme-risikovoranfrage" },
   image: "/images/pkv/pkv-ansprechpartner.webp",
   imageAlt: "Beratungsgespräch am Tisch mit Unterlagen",
 };

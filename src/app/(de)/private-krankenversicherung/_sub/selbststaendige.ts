@@ -81,6 +81,8 @@ export const selbststaendige: SubPageContent = {
       ],
     },
     { t: "link", text: "PKV oder GKV: Unterschiede und Entscheidungskriterien", href: "/wissen/pkv-oder-gkv" },
+    { t: "link", text: "PKV für Angestellte: Wechsel, Grenze und Zuschuss", href: "/private-krankenversicherung/angestellte" },
+    { t: "link", text: "PKV für Beamte: Beihilfe, Restkostenversicherung und Familie", href: "/private-krankenversicherung/beamte" },
     {
       t: "p",
       text: "Diese Seite ist eine allgemeine Information und ersetzt keine persönliche Beratung. Zahlen wie die Beitragsbemessungsgrenze ändern sich jedes Jahr, die genannten Werte gelten für 2026.",
