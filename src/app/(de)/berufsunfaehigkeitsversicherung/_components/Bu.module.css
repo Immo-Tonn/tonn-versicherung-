@@ -120,7 +120,7 @@
 }
 
 .reveal {
-  transition: opacity 620ms ease, transform 620ms ease;
+  transition: opacity 800ms ease, transform 800ms ease;
 }
 
 .pending {

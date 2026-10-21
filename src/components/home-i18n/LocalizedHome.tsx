@@ -5,6 +5,7 @@ import Button from "@/components/ui/Button/Button";
 import btn from "@/components/ui/Button/Button.module.css";
 import Container from "@/components/ui/Container/Container";
 import Icon from "@/components/ui/Icon/Icon";
+import HeroEyebrow from "@/components/home/Hero/HeroEyebrow";
 import Photo from "@/components/ui/Photo/Photo";
 import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
 import { about, finalCta, hero, insurances, location, processSection as processData, situations, trustItems } from "@/data/home";
@@ -57,7 +58,7 @@ export default async function LocalizedHome({ locale }: { locale: L }) {
         <HeroPhoto src={hero.image} mobileSrc={hero.imageMobile} alt={t.hero.imageAlt} />
         <div className={heroStyles.veil} aria-hidden="true" />
         <Container className={heroStyles.content}>
-          <SectionLabel>{t.hero.eyebrow}</SectionLabel>
+          <HeroEyebrow>{t.hero.eyebrow}</HeroEyebrow>
           <h1 id="hero-title" className={heroStyles.title}>
             {t.hero.title.split(" ").map((w, i, all) => (
               <span key={w}>

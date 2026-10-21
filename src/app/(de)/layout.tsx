@@ -6,6 +6,7 @@ import Usercentrics from "@/components/consent/Usercentrics";
 import Footer from "@/components/layout/Footer/Footer";
 import Header from "@/components/layout/Header/Header";
 import JsonLd from "@/components/seo/JsonLd";
+import ScrollReveal from "@/components/ui/ScrollReveal/ScrollReveal";
 import { siteConfig } from "@/data/site";
 import "../globals.css";
 
@@ -43,6 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <JsonLd />
         <ConsentBanner />
         <GoogleAnalytics />
+        <ScrollReveal />
         <Usercentrics locale={"de"} />
       </body>
     </html>

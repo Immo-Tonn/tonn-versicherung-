@@ -1,0 +1,92 @@
+/* Hero-Text: Einblenden nacheinander wie im Hero von /berufsunfaehigkeitsversicherung (Bu.module.css: buIn):
+   opacity + 14 px nach oben, 600 ms ease, Versatz 0 / 110 / 230 / 350 ms in der Reihenfolge Eyebrow, Überschrift, weitere Textzeilen.
+   Gilt nur für die Textelemente (p und h1) im Hero, dem ersten Abschnitt (section) von <main>; Fotos, Hintergründe, Buttons und Links bleiben unberührt.
+   Reine CSS-Animation (ohne JavaScript, ohne Layout-Änderung). Der BU-Hero (eigene Klasse "heroIn") und die Dankeseite (eigene Animation) sind ausgenommen, Artikel/Rechtstexte (<article>) haben keinen Hero.
+   Bei reduzierter Bewegung gibt es keine Animation. */
+@keyframes heroTextIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  main > section:first-of-type:not([class*="Danke-module"]) :has(> h1) > :is(p, h1):nth-child(-n + 4):not([class*="heroIn"]):not([data-eyebrow-seq]) {
+    animation: heroTextIn 600ms ease both;
+  }
+
+  main > section:first-of-type:not([class*="Danke-module"]) :has(> h1) > :is(p, h1):nth-child(2):not([class*="heroIn"]) {
+    animation-delay: 110ms;
+  }
+
+  main > section:first-of-type:not([class*="Danke-module"]) :has(> h1) > :is(p, h1):nth-child(3):not([class*="heroIn"]) {
+    animation-delay: 230ms;
+  }
+
+  main > section:first-of-type:not([class*="Danke-module"]) :has(> h1) > :is(p, h1):nth-child(4):not([class*="heroIn"]) {
+    animation-delay: 350ms;
+  }
+}
+
+/* Startseite: Die Hero-Zeile ("Persönlich. Individuell. An Ihrer Seite.", siehe HeroEyebrow) ist aus der Gruppe oben ausgenommen und blendet
+   früh nacheinander ein: zuerst der rote Strich (400 ms), dann Satz für Satz im Abstand von 150 ms, je 700 ms weich (nur opacity).
+   Alles bleibt von Anfang an im Layout (kein Verschieben, keine Umbrüche), am Ende sichtbar; keine Wiederholung. */
+@keyframes heroEyebrowIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  main > section:first-of-type p[data-eyebrow-seq] > span:first-child,
+  main > section:first-of-type p[data-eyebrow-seq] [data-eyebrow-part] {
+    animation: heroEyebrowIn 700ms ease both;
+  }
+
+  main > section:first-of-type p[data-eyebrow-seq] > span:first-child {
+    animation-delay: 400ms;
+  }
+
+  main > section:first-of-type p[data-eyebrow-seq] [data-eyebrow-part]:nth-of-type(1) {
+    animation-delay: 550ms;
+  }
+
+  main > section:first-of-type p[data-eyebrow-seq] [data-eyebrow-part]:nth-of-type(2) {
+    animation-delay: 700ms;
+  }
+
+  main > section:first-of-type p[data-eyebrow-seq] [data-eyebrow-part]:nth-of-type(3) {
+    animation-delay: 850ms;
+  }
+}
+
+/* Startseite: Die Hauptschaltfläche im Hero ("Kostenloses Erstgespräch") fährt gleichzeitig mit dem Beschreibungstext (Start 350 ms) von links
+   auf ihren Platz und blendet dabei ein: 30 px Versatz, 800 ms ease-out, einmalig. Nur transform + opacity (kein Layout-Shift);
+   Text, Link, Farbe, Größe und Endposition bleiben unverändert. Greift nur im Hero, der die Hero-Zeile (data-eyebrow-seq) enthält,
+   und nur auf die erste Schaltfläche der Aktionsgruppe (nicht auf den zweiten Link). */
+@keyframes heroButtonIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  main > section:first-of-type :has(> p[data-eyebrow-seq]) > div > a:first-child {
+    animation: heroButtonIn 800ms ease-out 350ms both;
+  }
+}
