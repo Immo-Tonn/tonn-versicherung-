@@ -1,0 +1,22 @@
+/* Sanftes Einblenden beim Scrollen: dieselben Werte wie die vorhandene Animation auf /berufsunfaehigkeitsversicherung
+   (Reveal.tsx / Bu.module.css): opacity + 20 px nach oben, 620 ms ease. Nur opacity/transform, daher kein Layout-Shift.
+   Die Attribute setzt ScrollReveal erst im Browser; ohne JavaScript, bei Fehlern, bei reduzierter Bewegung und im Druck bleibt alles sichtbar. */
+[data-sr] {
+  transition: opacity 620ms ease, transform 620ms ease;
+}
+
+[data-sr="pending"] {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@media (prefers-reduced-motion: reduce), print {
+  [data-sr] {
+    transition: none;
+  }
+
+  [data-sr="pending"] {
+    opacity: 1;
+    transform: none;
+  }
+}

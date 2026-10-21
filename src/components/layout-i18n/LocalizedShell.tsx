@@ -1,6 +1,7 @@
 import GoogleAnalytics from "@/components/consent/GoogleAnalytics";
 import Usercentrics from "@/components/consent/Usercentrics";
 import JsonLd from "@/components/seo/JsonLd";
+import ScrollReveal from "@/components/ui/ScrollReveal/ScrollReveal";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import LocalizedConsentBanner from "./LocalizedConsentBanner";
@@ -20,6 +21,7 @@ export default function LocalizedShell({ locale, children }: { locale: Exclude<L
       <JsonLd locale={locale} />
       <LocalizedConsentBanner locale={locale} />
       <GoogleAnalytics />
+      <ScrollReveal />
       <Usercentrics locale={locale} />
     </>
   );
