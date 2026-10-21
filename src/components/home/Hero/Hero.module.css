@@ -210,7 +210,7 @@
 
   /* Erster Bildschirm: mindestens so hoch wie der sichtbare Viewport (svh berücksichtigt die Browserleisten), bei Bedarf höher */
   .content {
-    --hero-actions-h: 118px;
+    --hero-actions-h: 82px; /* Button 58 px + unterer Abstand 24 px */
     grid-area: 1 / 1;
     z-index: 2;
     min-height: 100vh;
@@ -270,19 +270,7 @@
     display: none;
   }
 
-  .mobileCta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    align-self: center;
-    font-size: 15px;
-    font-weight: 500;
-    color: #fff;
-    padding-bottom: 3px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.85);
-    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-  }
+  /* Der Textlink "Online-Termin vereinbaren" führt auf dieselbe Seite wie der Button und entfällt mobil (Basisregel: display: none) */
 
   /* Sehr schmale Geräte (320-359px) */
   @media (max-width: 359px) {
