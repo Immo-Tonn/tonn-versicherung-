@@ -64,3 +64,14 @@ a.option {
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
+
+/* Hover für den Sprachumschalter (Farbe wie die übrigen Textlinks) */
+.trigger {
+  transition: color var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .trigger:hover {
+    color: var(--red-dark);
+  }
+}

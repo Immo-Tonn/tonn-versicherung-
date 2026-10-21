@@ -703,3 +703,37 @@
     gap: 28px;
   }
 }
+
+/* Hover für die aufklappbaren FAQ-Fragen (nur Geräte mit Maus; Farbe wie die übrigen Textlinks, kein Verschieben) */
+.faqItem summary {
+  transition: color var(--ease);
+}
+
+.plus::before,
+.plus::after {
+  transition: transform var(--ease), background-color var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .faqItem summary:hover {
+    color: var(--red-dark);
+  }
+
+  .faqItem summary:hover .plus::before,
+  .faqItem summary:hover .plus::after {
+    background: var(--red-dark);
+  }
+}
+
+/* Hover für die aufklappbaren Leistungen (Titel und Symbol wie die übrigen Textlinks) */
+.itemTitle,
+.itemIcon {
+  transition: color var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .itemBtn:hover .itemTitle,
+  .itemBtn:hover .itemIcon {
+    color: var(--red-dark);
+  }
+}

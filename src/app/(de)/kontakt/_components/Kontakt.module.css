@@ -748,3 +748,14 @@
     padding: 10px 26px;
   }
 }
+
+/* Hover für den E-Mail-Link in der Kontaktkarte (Farbe wie die übrigen Textlinks) */
+.cardMail {
+  transition: color var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cardMail:hover {
+    color: var(--red-dark);
+  }
+}
