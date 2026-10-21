@@ -526,3 +526,26 @@
     font-size: 17px;
   }
 }
+
+/* Hover für Burger-Schaltfläche und Menü-Panel (nur Geräte mit Maus; Farbe wie die übrigen Textlinks bzw. die Standard-Schaltfläche) */
+.burger,
+.panel li a,
+.panelGroupBtn {
+  transition: color var(--ease);
+}
+
+.panelCta {
+  transition: background-color var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .burger:hover,
+  .panel li a:hover,
+  .panelGroupBtn:hover {
+    color: var(--red-dark);
+  }
+
+  .panelCta:hover {
+    background: var(--navy-700);
+  }
+}

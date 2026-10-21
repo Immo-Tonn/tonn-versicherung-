@@ -979,3 +979,35 @@
     transform: translateY(14px);
   }
 }
+
+/* Hover für die aufklappbaren FAQ-Fragen (nur Geräte mit Maus; Farbe wie die übrigen Textlinks, kein Verschieben) */
+.faqItem summary {
+  transition: color var(--ease);
+}
+
+.plus::before,
+.plus::after {
+  transition: transform var(--ease), background-color var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .faqItem summary:hover {
+    color: var(--red-dark);
+  }
+
+  .faqItem summary:hover .plus::before,
+  .faqItem summary:hover .plus::after {
+    background: var(--red-dark);
+  }
+}
+
+/* Textlink „Alle Fragen anzeigen“ */
+.faqMore {
+  transition: color var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .faqMore:hover {
+    color: var(--red-dark);
+  }
+}

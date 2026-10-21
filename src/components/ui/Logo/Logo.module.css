@@ -59,3 +59,18 @@
     font-size: 9px;
   }
 }
+
+/* Hover: Logo wird sanft heller (funktioniert für dunkles, weißes und über Farb-Variablen gesetztes Logo; der rote Balken bleibt) */
+.logo {
+  transition: color var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .logo:hover {
+    color: color-mix(in srgb, var(--logo-fg, var(--navy-900)) 78%, white);
+  }
+
+  .light:hover {
+    color: rgba(255, 255, 255, 0.82);
+  }
+}

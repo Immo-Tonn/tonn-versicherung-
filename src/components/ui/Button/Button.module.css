@@ -64,3 +64,9 @@
     white-space: normal;
   }
 }
+
+/* Sichtbarer Tastaturfokus auf dunklen Flächen: Die weiße bzw. dunkle Schaltfläche liegt auf einem dunklen Abschnitt, der Standard-Fokusring (blau) hätte dort zu wenig Kontrast */
+.light:focus-visible,
+.navy-soft:focus-visible {
+  outline-color: var(--white);
+}

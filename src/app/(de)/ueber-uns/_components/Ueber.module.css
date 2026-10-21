@@ -479,3 +479,29 @@
     font-size: clamp(28px, 8vw, 36px);
   }
 }
+
+/* Hover für Aufklapper und Textlinks (Farbe wie die übrigen Textlinks) */
+.discBtn,
+.inlineLink {
+  transition: color var(--ease);
+}
+
+.plus::before,
+.plus::after {
+  transition: transform 180ms ease, background-color var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .discBtn:hover {
+    color: var(--red-dark);
+  }
+
+  .discBtn:hover .plus::before,
+  .discBtn:hover .plus::after {
+    background: var(--red-dark);
+  }
+
+  .inlineLink:hover {
+    color: var(--red-dark);
+  }
+}
