@@ -68,3 +68,25 @@
     animation-delay: 850ms;
   }
 }
+
+/* Startseite: Die Hauptschaltfläche im Hero ("Kostenloses Erstgespräch") fährt gleichzeitig mit dem Beschreibungstext (Start 350 ms) von links
+   auf ihren Platz und blendet dabei ein: 30 px Versatz, 800 ms ease-out, einmalig. Nur transform + opacity (kein Layout-Shift);
+   Text, Link, Farbe, Größe und Endposition bleiben unverändert. Greift nur im Hero, der die Hero-Zeile (data-eyebrow-seq) enthält,
+   und nur auf die erste Schaltfläche der Aktionsgruppe (nicht auf den zweiten Link). */
+@keyframes heroButtonIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  main > section:first-of-type :has(> p[data-eyebrow-seq]) > div > a:first-child {
+    animation: heroButtonIn 800ms ease-out 350ms both;
+  }
+}
