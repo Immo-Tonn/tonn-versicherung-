@@ -3,7 +3,7 @@ import { hero } from "@/data/home";
 import Button from "@/components/ui/Button/Button";
 import Container from "@/components/ui/Container/Container";
 import Icon from "@/components/ui/Icon/Icon";
-import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
+import HeroEyebrow from "./HeroEyebrow";
 import TrustBar from "../TrustBar/TrustBar";
 import HeroPhoto from "./HeroPhoto";
 import styles from "./Hero.module.css";
@@ -15,7 +15,7 @@ export default function Hero() {
       <div className={styles.veil} aria-hidden="true" />
 
       <Container className={styles.content}>
-        <SectionLabel>{hero.eyebrow}</SectionLabel>
+        <HeroEyebrow>{hero.eyebrow}</HeroEyebrow>
         <h1 id="hero-title" className={styles.title}>
           {hero.title.split(" ").map((w, i, all) => (
             <span key={w}>

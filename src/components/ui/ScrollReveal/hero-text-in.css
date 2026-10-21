@@ -16,7 +16,7 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  main > section:first-of-type:not([class*="Danke-module"]) :has(> h1) > :is(p, h1):nth-child(-n + 4):not([class*="heroIn"]) {
+  main > section:first-of-type:not([class*="Danke-module"]) :has(> h1) > :is(p, h1):nth-child(-n + 4):not([class*="heroIn"]):not([data-eyebrow-seq]) {
     animation: heroTextIn 600ms ease both;
   }
 
@@ -30,5 +30,41 @@
 
   main > section:first-of-type:not([class*="Danke-module"]) :has(> h1) > :is(p, h1):nth-child(4):not([class*="heroIn"]) {
     animation-delay: 350ms;
+  }
+}
+
+/* Startseite: Die Hero-Zeile ("Persönlich. Individuell. An Ihrer Seite.", siehe HeroEyebrow) ist aus der Gruppe oben ausgenommen und blendet
+   erst NACH dem übrigen Hero-Text ein (der endet nach 350 + 600 ms): zuerst der rote Strich, dann Satz für Satz, je 550 ms weich (nur opacity),
+   Start-Abstand 200 ms. Alles bleibt von Anfang an im Layout (kein Verschieben, keine Umbrüche), am Ende sichtbar; keine Wiederholung. */
+@keyframes heroEyebrowIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  main > section:first-of-type p[data-eyebrow-seq] > span:first-child,
+  main > section:first-of-type p[data-eyebrow-seq] > [data-eyebrow-part] {
+    animation: heroEyebrowIn 550ms ease both;
+  }
+
+  main > section:first-of-type p[data-eyebrow-seq] > span:first-child {
+    animation-delay: 950ms;
+  }
+
+  main > section:first-of-type p[data-eyebrow-seq] > span:nth-of-type(2) {
+    animation-delay: 1150ms;
+  }
+
+  main > section:first-of-type p[data-eyebrow-seq] > span:nth-of-type(3) {
+    animation-delay: 1350ms;
+  }
+
+  main > section:first-of-type p[data-eyebrow-seq] > span:nth-of-type(4) {
+    animation-delay: 1550ms;
   }
 }
