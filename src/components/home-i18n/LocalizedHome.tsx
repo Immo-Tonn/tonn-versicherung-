@@ -16,6 +16,8 @@ import { homeContent } from "@/i18n/content";
 import aboutStyles from "@/components/home/AboutSection/AboutSection.module.css";
 import ctaStyles from "@/components/home/FinalCTA/FinalCTA.module.css";
 import heroStyles from "@/components/home/Hero/Hero.module.css";
+import "@/components/home/Hero/hero-mobile-header.css";
+import HeroHeaderTone from "@/components/home/Hero/HeroHeaderTone";
 import HeroPhoto from "@/components/home/Hero/HeroPhoto";
 import insStyles from "@/components/home/InsuranceSection/InsuranceSection.module.css";
 import locStyles from "@/components/home/LocationSection/LocationSection.module.css";
@@ -51,7 +53,7 @@ export default async function LocalizedHome({ locale }: { locale: L }) {
   return (
     <>
       {/* Hero */}
-      <section className={heroStyles.hero} aria-labelledby="hero-title">
+      <section className={heroStyles.hero} aria-labelledby="hero-title" data-home-hero>
         <HeroPhoto src={hero.image} mobileSrc={hero.imageMobile} alt={t.hero.imageAlt} />
         <div className={heroStyles.veil} aria-hidden="true" />
         <Container className={heroStyles.content}>
@@ -122,6 +124,7 @@ export default async function LocalizedHome({ locale }: { locale: L }) {
             </ul>
           </Container>
         </div>
+        <HeroHeaderTone />
       </section>
 
       {/* Situationen */}

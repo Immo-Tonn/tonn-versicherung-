@@ -1,0 +1,21 @@
+/* Mobile Startseite (< 768 px): Die Kopfzeile liegt über dem Hero-Foto: durchsichtig, Logo/Sprache/Burger weiß.
+   Sobald der Hero aus dem Bild ist (body[data-hero-passed], gesetzt von HeroHeaderTone), gilt wieder das normale Aussehen.
+   Tablet/Desktop und alle anderen Seiten bleiben unverändert (der Selektor greift nur, wenn der Hero der Startseite im Dokument ist). */
+@media (max-width: 767px) {
+  body:has([data-home-hero]):not([data-hero-passed]) header {
+    --logo-fg: #fff;
+    --header-fg: #fff;
+    --header-border: transparent;
+  }
+
+  body:has([data-home-hero]):not([data-hero-passed]) header::before {
+    background: transparent;
+    backdrop-filter: none;
+  }
+
+  /* Geöffnetes Mobile-Menü (helles Panel): Kopfzeile wieder in den normalen Farben */
+  body:has([data-home-hero]):not([data-hero-passed]) header:has(button[aria-controls="mobile-menu"][aria-expanded="true"]) {
+    --logo-fg: var(--navy-900);
+    --header-fg: var(--navy-900);
+  }
+}
