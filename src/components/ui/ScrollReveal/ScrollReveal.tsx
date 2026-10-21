@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import "./hero-text-in.css";
 import "./scroll-reveal.css";
 
 /**
