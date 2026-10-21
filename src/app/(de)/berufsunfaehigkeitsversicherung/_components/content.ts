@@ -69,7 +69,7 @@ export const rente = {
     title: "Beispielrechnung",
     rows: [
       ["Nettoeinkommen monatlich", "3.000 €"],
-      ["Beispiel BU-Rente", "2.100 €"],
+      ["Beispiel BU-Rente", "2.400 €"],
       ["Laufzeit", "bis 67 Jahre"],
     ],
     note: "Nur Beispielwerte. Die passende Absicherung wird individuell ermittelt.",
