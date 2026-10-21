@@ -61,7 +61,7 @@ export const buEn: BuContent = {
       title: "Example calculation",
       rows: [
         ["Net income per month", "€3,000"],
-        ["Example monthly occupational disability benefit", "€2,100"],
+        ["Example monthly occupational disability benefit", "€2,400"],
         ["Term", "until age 67"],
       ],
       note: "Example values only. The right cover is worked out individually.",
