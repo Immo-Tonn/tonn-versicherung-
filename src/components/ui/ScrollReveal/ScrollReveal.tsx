@@ -78,7 +78,7 @@ export default function ScrollReveal() {
         if (el.getAttribute("data-sr") !== "pending") continue;
         el.setAttribute("data-sr", "done");
         // Danach das Attribut entfernen, damit eigene Übergänge des Elements (z. B. Hover) unverändert bleiben
-        timers.push(window.setTimeout(() => el.removeAttribute("data-sr"), 700));
+        timers.push(window.setTimeout(() => el.removeAttribute("data-sr"), 900));
       }
     };
 
