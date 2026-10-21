@@ -11,12 +11,15 @@ export default function HeroEyebrow({ children }: { children: string }) {
   return (
     <p className={`${labelStyles.label} eyebrow`} data-eyebrow-seq>
       <span className={labelStyles.line} aria-hidden="true" />
-      {parts.map((part, i) => (
-        <Fragment key={i}>
-          {i > 0 && " "}
-          <span data-eyebrow-part>{part}</span>
-        </Fragment>
-      ))}
+      {/* Ein einziges Element für den Text (wie vorher der anonyme Text-Block im Flex-Container), sonst würde der Abstand zwischen den Sätzen größer */}
+      <span>
+        {parts.map((part, i) => (
+          <Fragment key={i}>
+            {i > 0 && " "}
+            <span data-eyebrow-part>{part}</span>
+          </Fragment>
+        ))}
+      </span>
     </p>
   );
 }
