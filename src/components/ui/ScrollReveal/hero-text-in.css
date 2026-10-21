@@ -1,7 +1,7 @@
 /* Hero-Text: Einblenden nacheinander wie im Hero von /berufsunfaehigkeitsversicherung (Bu.module.css: buIn):
    opacity + 14 px nach oben, 600 ms ease, Versatz 0 / 110 / 230 / 350 ms in der Reihenfolge Eyebrow, Überschrift, weitere Textzeilen.
    Gilt nur für die Textelemente (p und h1) im Hero, dem ersten Abschnitt (section) von <main>; Fotos, Hintergründe, Buttons und Links bleiben unberührt.
-   Reine CSS-Animation (ohne JavaScript, ohne Layout-Änderung). Der BU-Hero (eigene Klasse "heroIn") ist ausgenommen, Artikel/Rechtstexte (<article>) haben keinen Hero.
+   Reine CSS-Animation (ohne JavaScript, ohne Layout-Änderung). Der BU-Hero (eigene Klasse "heroIn") und die Dankeseite (eigene Animation) sind ausgenommen, Artikel/Rechtstexte (<article>) haben keinen Hero.
    Bei reduzierter Bewegung gibt es keine Animation. */
 @keyframes heroTextIn {
   from {
@@ -16,19 +16,19 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  main > section:first-of-type :has(> h1) > :is(p, h1):nth-child(-n + 4):not([class*="heroIn"]) {
+  main > section:first-of-type:not([class*="Danke-module"]) :has(> h1) > :is(p, h1):nth-child(-n + 4):not([class*="heroIn"]) {
     animation: heroTextIn 600ms ease both;
   }
 
-  main > section:first-of-type :has(> h1) > :is(p, h1):nth-child(2):not([class*="heroIn"]) {
+  main > section:first-of-type:not([class*="Danke-module"]) :has(> h1) > :is(p, h1):nth-child(2):not([class*="heroIn"]) {
     animation-delay: 110ms;
   }
 
-  main > section:first-of-type :has(> h1) > :is(p, h1):nth-child(3):not([class*="heroIn"]) {
+  main > section:first-of-type:not([class*="Danke-module"]) :has(> h1) > :is(p, h1):nth-child(3):not([class*="heroIn"]) {
     animation-delay: 230ms;
   }
 
-  main > section:first-of-type :has(> h1) > :is(p, h1):nth-child(4):not([class*="heroIn"]) {
+  main > section:first-of-type:not([class*="Danke-module"]) :has(> h1) > :is(p, h1):nth-child(4):not([class*="heroIn"]) {
     animation-delay: 350ms;
   }
 }
