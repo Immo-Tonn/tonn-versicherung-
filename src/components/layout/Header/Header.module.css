@@ -186,6 +186,12 @@
   font-size: 14.5px;
 }
 
+/* Anrufen-Button in der Kopfzeile (Desktop/Tablet): ca. 18 % niedriger, nur über den vertikalen Innenabstand (50 → 41 px); Breite, Schrift, Icon unverändert.
+   .actions .cta ist spezifischer als Button.module.css (.md), das sonst 15 px Innenabstand setzt. */
+.actions .cta {
+  padding-block: 10.5px;
+}
+
 .burger {
   display: none;
   align-items: center;
