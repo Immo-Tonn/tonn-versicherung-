@@ -49,10 +49,10 @@ export const situations = {
   text: "Jede Lebenssituation bringt unterschiedliche Möglichkeiten in der privaten Krankenversicherung. Wählen Sie aus, was am besten zu Ihnen passt – wir zeigen Ihnen die nächsten Schritte.",
   // TODO: Fotos liefern, bis dahin Platzhalter
   cards: [
-    { title: "Angestellte", text: "PKV-Möglichkeiten im Berufsleben", image: "/images/home/angestellte.webp", href: "/private-krankenversicherung" },
-    { title: "Selbstständige", text: "Flexibel abgesichert in jeder Phase", image: "/images/home/selbststaendige.webp", href: "/private-krankenversicherung" },
-    { title: "Beamte", text: "Individuelle Lösungen für den öffentlichen Dienst", image: "/images/home/beamte.webp", href: "/private-krankenversicherung" },
-    { title: "Bereits privat versichert", text: "Optimieren und besser aufstellen", image: "/images/home/privat-versichert.webp", href: "/private-krankenversicherung" },
+    { title: "Angestellte", text: "PKV-Möglichkeiten im Berufsleben", image: "/images/home/angestellte.webp", href: "/private-krankenversicherung/angestellte" },
+    { title: "Selbstständige", text: "Flexibel abgesichert in jeder Phase", image: "/images/home/selbststaendige.webp", href: "/private-krankenversicherung/selbststaendige" },
+    { title: "Beamte", text: "Individuelle Lösungen für den öffentlichen Dienst", image: "/images/home/beamte.webp", href: "/private-krankenversicherung/beamte" },
+    { title: "Bereits privat versichert", text: "Optimieren und besser aufstellen", image: "/images/home/privat-versichert.webp", href: "/wissen/tarifwechsel-pkv" },
   ],
 };
 
