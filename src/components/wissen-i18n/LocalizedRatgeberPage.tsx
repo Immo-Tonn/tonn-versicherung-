@@ -51,7 +51,7 @@ export default function LocalizedRatgeberPage({ locale }: { locale: L }) {
 
       {/* Hero */}
       <section className={styles.hero} aria-labelledby="rg-title">
-        <Photo src="/images/wissen/ratgeber-hero-office.webp" alt="" priority sizes="(max-width: 767px) 620vw, (max-width: 1199px) 240vw, 100vw" className={styles.heroBg} imgClassName={styles.heroImg} />
+        <Photo src="/images/wissen/ratgeber-hero-office.webp" alt="" priority maxWidth={2048} sizes="(max-width: 767px) 620vw, (max-width: 1199px) 240vw, 100vw" className={styles.heroBg} imgClassName={styles.heroImg} />
         <div className={styles.heroVeil} aria-hidden="true" />
         <Container className={styles.heroInner}>
           <SectionLabel>{t.hero.label}</SectionLabel>

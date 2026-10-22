@@ -86,7 +86,7 @@ export default function LocalizedUeberPage({ locale }: { locale: L }) {
 
       <section className={styles.intro} aria-labelledby="ue-intro">
         <Container className={styles.introGrid}>
-          <Image src={intro.image} alt={t.intro.imageAlt} width={intro.width} height={intro.height} sizes="(max-width: 767px) 100vw, 55vw" className={styles.introPhoto} />
+          <Image src={intro.image} alt={t.intro.imageAlt} width={intro.width} height={intro.height} loading="eager" sizes="(max-width: 767px) 100vw, 55vw" className={styles.introPhoto} />
           <div className={styles.introCopy}>
             <span className={styles.accent} aria-hidden="true" />
             <h2 id="ue-intro" className={`h2 ${styles.h2}`}>
