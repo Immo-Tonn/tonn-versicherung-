@@ -28,6 +28,15 @@
   color: var(--text-muted);
 }
 
+/* Zeile "Seit 1991 …" direkt unter dem Absatz: gleiche Schrift wie .text, nur kleinerer Abstand zum Absatz davor */
+.experience {
+  max-width: 480px;
+  margin: -16px 0 32px;
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
 .features {
   display: grid;
   gap: 0;

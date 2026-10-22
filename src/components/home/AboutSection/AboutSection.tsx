@@ -20,6 +20,7 @@ export default function AboutSection() {
             ))}
           </h2>
           <p className={styles.text}>{about.text}</p>
+          <p className={styles.experience}>{about.experience}</p>
           <Button href={about.cta.href}>{about.cta.label}</Button>
         </div>
 
