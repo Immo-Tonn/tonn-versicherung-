@@ -51,7 +51,11 @@ export type Dictionary = {
     mapsName: string;
     mapsDesc: string;
     acceptAll: string;
-    rejectAll: string;
+    rejectOptional: string;
+    necessaryName: string;
+    necessaryDesc: string;
+    storageNote: string;
+    reopen: string;
     saveSelection: string;
     settings: string;
   };

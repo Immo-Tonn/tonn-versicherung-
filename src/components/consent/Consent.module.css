@@ -11,6 +11,8 @@
 
 .box {
   pointer-events: auto;
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
   width: min(100%, 560px);
   padding: 24px;
   background: var(--white);
@@ -85,6 +87,41 @@
   color: var(--text-muted);
 }
 
+.note {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.reopen {
+  position: fixed;
+  left: 12px;
+  bottom: 12px;
+  z-index: 55;
+  padding: 6px 11px;
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.2;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--gray-300);
+  border-radius: 999px;
+  cursor: pointer;
+  opacity: 0.85;
+}
+
+.reopen:hover {
+  opacity: 1;
+  color: var(--text);
+}
+
+.reopen:focus-visible {
+  opacity: 1;
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
 .actions {
   display: flex;
   flex-wrap: wrap;
@@ -93,7 +130,7 @@
   margin-top: 20px;
 }
 
-/* „Alle akzeptieren“ und „Alle ablehnen“ sind gleichwertig gestaltet */
+/* „Alle akzeptieren“, „Nur notwendige“ und „Einstellungen“ sind gleichwertig gestaltet */
 .btn {
   padding: 12px 20px;
   font: inherit;
@@ -168,6 +205,15 @@
 
   .actions .btn {
     flex: 1 1 140px;
+  }
+
+  /* mobil als kleiner Reiter direkt in der Ecke, damit möglichst wenig Inhalt verdeckt wird */
+  .reopen {
+    left: 0;
+    bottom: 0;
+    padding: 5px 10px;
+    border-width: 1px 1px 0 0;
+    border-radius: 0 10px 0 0;
   }
 }
 

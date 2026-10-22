@@ -2,12 +2,13 @@
  * Usercentrics CMP (Cookie-Einwilligung). Die Settings-ID ist ein öffentlicher Bezeichner (steht im Script-Tag jeder Seite), kein Geheimnis.
  *
  * Schalter (Build-Zeit, NEXT_PUBLIC_*):
- *  - NEXT_PUBLIC_USERCENTRICS=off     -> Usercentrics wird nicht geladen; der bisherige eigene Banner (components/consent) ist wieder aktiv.
+ *  - Standard: Usercentrics wird NICHT geladen; der eigene Banner (components/consent) ist aktiv.
+ *  - NEXT_PUBLIC_USERCENTRICS=on      -> Rückfall: Usercentrics statt des eigenen Banners (Rollback ohne Codeänderung, nur Build-Variable).
  *  - NEXT_PUBLIC_USERCENTRICS_DRAFT=1 -> lädt den gespeicherten ENTWURF statt der veröffentlichten Version (nur zum Testen, z. B. localhost).
  * Es läuft immer genau ein Mechanismus: ist Usercentrics aktiv, zeigen die alten Banner nichts mehr an.
  */
 export const USERCENTRICS_SETTINGS_ID = "F7P1fwBvbPU8gg";
-export const USERCENTRICS_ENABLED = process.env.NEXT_PUBLIC_USERCENTRICS !== "off";
+export const USERCENTRICS_ENABLED = process.env.NEXT_PUBLIC_USERCENTRICS === "on";
 export const USERCENTRICS_DRAFT = process.env.NEXT_PUBLIC_USERCENTRICS_DRAFT === "1";
 
 /** ID des Dienstes "Google Maps" (Vorlage aus der Usercentrics-Datenbank, Kategorie Functional). */

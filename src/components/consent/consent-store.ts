@@ -5,15 +5,42 @@ import { USERCENTRICS_ANALYTICS_SERVICE_ID, USERCENTRICS_ENABLED, USERCENTRICS_M
 
 /**
  * Einwilligung (TDDDG § 25): Google Analytics und Google Maps werden nur nach Zustimmung geladen.
- * Die Auswahl wird lokal im Browser gespeichert (technisch erforderlich, Nachweis der Einwilligung).
+ * Die Auswahl wird ausschließlich lokal im Browser (localStorage) gespeichert, nichts davon geht an einen Server.
+ * Gespeichert werden: Auswahl je Zweck, Version der Einstellungen, Zeitpunkt der Entscheidung.
+ * Fehlt der Eintrag oder ist er unlesbar, abgelaufen oder von einer älteren Einstellungsversion, gilt: keine Einwilligung.
  */
 export type Consent = { analytics: boolean; maps: boolean; decided: boolean };
 
-const KEY = "tonn-consent-v1";
+/** Version der Einstellungen: bei Änderung von Zwecken oder Diensten erhöhen, dann wird erneut gefragt. */
+export const CONSENT_VERSION = 1;
+/** Gültigkeit einer Entscheidung in Tagen; danach erscheint der Banner erneut. */
+export const CONSENT_MAX_AGE_DAYS = 180;
+
+const KEY = "tonn-consent-v2";
+const LEGACY_KEY = "tonn-consent-v1"; // alter Banner ohne Zeitpunkt: wird nie übernommen, nur beim Speichern entfernt
 const EVENT = "tonn-consent-change";
 const EMPTY: Consent = { analytics: false, maps: false, decided: false };
+const DAY = 86_400_000;
+
+type Stored = { v: number; analytics: boolean; maps: boolean; decided: boolean; ts: string };
 
 let cache: { raw: string | null; value: Consent } | null = null;
+/** Nur wenn das Schreiben in den Speicher scheitert: Auswahl gilt dann bis zum Schließen des Tabs. */
+let memory: Stored | null = null;
+
+function parse(raw: string | null, now = Date.now()): Stored | null {
+  if (!raw) return null;
+  try {
+    const p = JSON.parse(raw) as Partial<Stored>;
+    const t = typeof p.ts === "string" ? Date.parse(p.ts) : NaN;
+    if (p.v !== CONSENT_VERSION || !Number.isFinite(t)) return null;
+    if (typeof p.analytics !== "boolean" || typeof p.maps !== "boolean" || typeof p.decided !== "boolean") return null;
+    if (now - t > CONSENT_MAX_AGE_DAYS * DAY || t - now > 5 * 60_000) return null; // abgelaufen oder Zeitpunkt in der Zukunft
+    return p as Stored;
+  } catch {
+    return null;
+  }
+}
 
 /**
  * Mit Usercentrics ist DIESE Auswahl maßgeblich (nur im Speicher, bei jedem Seitenaufruf aus Usercentrics neu gelesen).
@@ -46,25 +73,29 @@ export async function syncFromUsercentrics() {
   window.dispatchEvent(new Event(EVENT));
 }
 
+function readStored(): Stored | null {
+  let raw: string | null = null;
+  try {
+    raw = window.localStorage.getItem(KEY);
+  } catch {
+    /* Speicher gesperrt → nur Sitzungsspeicher */
+  }
+  return parse(raw) ?? (raw === null ? memory : null);
+}
+
 function read(): Consent {
   if (USERCENTRICS_ENABLED) return provider;
   let raw: string | null = null;
   try {
     raw = window.localStorage.getItem(KEY);
   } catch {
-    /* Speicher gesperrt → keine Einwilligung */
+    /* Speicher gesperrt → keine gespeicherte Einwilligung */
   }
-  if (cache && cache.raw === raw) return cache.value;
-  let value = EMPTY;
-  if (raw) {
-    try {
-      const p = JSON.parse(raw) as Partial<Consent>;
-      value = { analytics: p.analytics === true, maps: p.maps === true, decided: p.decided === true };
-    } catch {
-      value = EMPTY;
-    }
-  }
-  cache = { raw, value };
+  const key = raw ?? (memory ? JSON.stringify(memory) : null);
+  if (cache && cache.raw === key) return cache.value;
+  const st = parse(raw) ?? (raw === null ? parse(key) : null);
+  const value = st ? { analytics: st.analytics, maps: st.maps, decided: st.decided } : EMPTY;
+  cache = { raw: key, value };
   return value;
 }
 
@@ -103,16 +134,29 @@ export function saveConsent(next: Partial<Consent>) {
     })();
     return;
   }
-  const merged = { ...read(), ...next };
+  // Eigener Banner. decided:true nur bei einer ausdrücklichen Entscheidung im Banner; "Karte laden" ändert nur Google Maps.
+  const prev = readStored();
+  const decided = next.decided ?? prev?.decided ?? false;
+  const keepTime = prev?.decided && next.decided === undefined; // einzelne Änderung behält den Zeitpunkt der letzten Gesamtentscheidung
+  const stored: Stored = {
+    v: CONSENT_VERSION,
+    analytics: next.analytics ?? prev?.analytics ?? false,
+    maps: next.maps ?? prev?.maps ?? false,
+    decided,
+    ts: keepTime && prev ? prev.ts : new Date().toISOString(),
+  };
+  memory = null;
   try {
-    window.localStorage.setItem(KEY, JSON.stringify(merged));
+    window.localStorage.setItem(KEY, JSON.stringify(stored));
+    window.localStorage.removeItem(LEGACY_KEY);
   } catch {
-    /* ohne Speicher bleibt die Auswahl nur für diese Sitzung wirksam */
-    cache = { raw: JSON.stringify(merged), value: merged };
+    memory = stored; // ohne Speicher bleibt die Auswahl nur für diesen Tab wirksam
   }
   window.dispatchEvent(new Event(EVENT));
 }
 
 /** Öffnet das Einstellungsfenster (Footer-Link „Cookie-Einstellungen“). */
 export const OPEN_EVENT = "tonn-consent-open";
+/** Wird gesendet, wenn das erneut geöffnete Fenster geschlossen wurde (mit oder ohne Speichern). */
+export const CLOSE_EVENT = "tonn-consent-close";
 export const openConsentSettings = () => (USERCENTRICS_ENABLED ? void uc()?.showSecondLayer() : window.dispatchEvent(new Event(OPEN_EVENT)));
