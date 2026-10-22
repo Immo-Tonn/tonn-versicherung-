@@ -6,10 +6,28 @@
   overflow: hidden;
 }
 
+/* Hintergrundfoto (Prinzipalmarkt Münster, vorab leicht weichgezeichnet: public/images/home/reviews-prinzipalmarkt.webp; Original in design-source/).
+   Liegt unter Schleier und Inhalt, füllt die Sektion ohne Verzerrung (cover) und schneidet oben/unten nur so viel ab wie nötig. */
+.bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.bgPhoto {
+  position: absolute !important;
+  inset: 0;
+}
+
+.bgImg {
+  object-position: 50% 48%;
+}
+
+/* heller Schleier für die Lesbarkeit von Überschrift, Schaltfläche und Hinweis (Karten haben eigenen Grund) */
 .veil {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(250, 249, 246, 0.92), rgba(250, 249, 246, 0.72));
+  background: linear-gradient(90deg, rgba(250, 249, 246, 0.86), rgba(250, 249, 246, 0.58));
 }
 
 .inner {
@@ -224,5 +242,184 @@ a.time:hover,
   .cards li {
     flex: 0 0 82%;
     scroll-snap-align: start;
+  }
+}
+
+/* Telefon: Foto nicht auf die ganze (hohe, schmale) Sektion aufziehen – das wäre eine starke Vergrößerung auf ein Gebäudefragment.
+   Stattdessen 1,5-fache Breite (zentriert, mehrere Gebäude sichtbar), oben ausgerichtet; unten blendet es weich in den bisherigen Hintergrund aus. */
+@media (max-width: 767px) {
+  .bgPhoto {
+    inset: 0 auto auto 50%;
+    width: 150%;
+    height: auto;
+    aspect-ratio: 1530 / 1028;
+    transform: translateX(-50%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  }
+}
+
+/* ===== Kompaktere Höhe (nur vertikale Abstände und Anordnung dieses Blocks; Schriften, Sterne, Rating, Texte, Foto und Schleier unverändert) ===== */
+
+.dots,
+.num {
+  display: contents;
+}
+
+.dots {
+  display: none; /* nur Telefon, siehe unten */
+}
+
+/* Tablet und Desktop (ab 768 px): deutlich niedriger */
+@media (min-width: 768px) {
+  .section {
+    padding-block: clamp(24px, 2.4vw, 36px); /* ursprünglich clamp(56px, 6vw, 88px) */
+  }
+
+  .head {
+    margin-bottom: 14px; /* ursprünglich 28 px */
+  }
+
+  .head > p:first-child {
+    margin-bottom: 14px; /* Abstand Label → Überschrift (ursprünglich 22 px); nur in diesem Block */
+  }
+
+  .card {
+    padding-block: 14px; /* ursprünglich 24 px; seitlich unverändert 24 px */
+    gap: 8px; /* ursprünglich 16 px */
+  }
+
+  .quote {
+    line-height: 1.5; /* ursprünglich 1,55; Schriftgröße und 6-Zeilen-Begrenzung unverändert */
+  }
+
+  .foot {
+    margin-top: 16px; /* ursprünglich 32 px */
+  }
+}
+
+/* Tablet (eine Spalte: Bewertung über den Karten) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .body {
+    gap: clamp(12px, 1.6vw, 20px); /* ursprünglich clamp(32px, 4vw, 64px) */
+  }
+
+  .count {
+    margin-top: 8px; /* ursprünglich 14 px */
+  }
+}
+
+/* Telefon (bis 767 px): eine Bewertung pro Ansicht (bestehendes Scroll-Karussell, scroll-snap), Seitenindikatoren, kompaktere Gruppen */
+@media (max-width: 767px) {
+  .section {
+    padding-block: 20px; /* ursprünglich 56 px */
+  }
+
+  .head {
+    margin-bottom: 8px; /* ursprünglich 20 px */
+  }
+
+  .head > p:first-child {
+    margin-bottom: 12px; /* ursprünglich 22 px */
+  }
+
+  .body {
+    gap: 10px; /* ursprünglich 32 px */
+  }
+
+  /* Bewertung kompakt: große Zahl links, rechts Sterne über der Zeile mit der Anzahl */
+  .score {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: 14px;
+  }
+
+  .value {
+    display: contents; /* Schrift bleibt über die Vererbung erhalten */
+  }
+
+  .num {
+    display: block;
+    grid-row: 1 / span 2;
+  }
+
+  .stars {
+    grid-column: 2;
+    align-self: end;
+  }
+
+  .count {
+    grid-column: 2;
+    align-self: start;
+    margin-top: 4px; /* ursprünglich 14 px */
+  }
+
+  /* eine Karte füllt die Inhaltsbreite; die übrigen liegen rechts daneben (nicht darunter) und sind nur per Wischen/Indikator erreichbar */
+  .cards {
+    gap: 12px;
+    margin-inline: 0;
+    padding-inline: 0;
+    scroll-padding-inline: 0;
+  }
+
+  .cards li {
+    flex: 0 0 100%;
+  }
+
+  .card {
+    padding-block: 12px; /* ursprünglich 24 px */
+    gap: 6px; /* ursprünglich 16 px */
+  }
+
+  .quote {
+    line-height: 1.5;
+  }
+
+  .dots {
+    display: flex;
+    justify-content: center;
+    margin-top: -4px;
+  }
+
+  .dot {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: none;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .dot::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(6, 38, 63, 0.3);
+    transition: background-color 180ms ease;
+  }
+
+  .dot[aria-current="true"]::before {
+    background: var(--navy-900);
+  }
+
+  .dot:focus-visible {
+    outline: 2px solid var(--navy-900);
+    outline-offset: -2px;
+  }
+
+  .foot {
+    margin-top: 12px; /* ursprünglich 32 px */
+    gap: 8px 28px; /* ursprünglich 14 px 28 px */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot::before {
+    transition: none;
   }
 }
