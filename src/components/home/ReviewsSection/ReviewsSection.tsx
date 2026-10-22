@@ -2,6 +2,7 @@ import { reviews } from "@/data/home";
 import { getGoogleReviews } from "@/lib/google-reviews";
 import Container from "@/components/ui/Container/Container";
 import Icon from "@/components/ui/Icon/Icon";
+import Photo from "@/components/ui/Photo/Photo";
 import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
 import btn from "@/components/ui/Button/Button.module.css";
 import styles from "./ReviewsSection.module.css";
@@ -25,6 +26,9 @@ export default async function ReviewsSection() {
 
   return (
     <section className={styles.section} aria-labelledby="reviews-title">
+      <div className={styles.bg} aria-hidden="true">
+        <Photo src="/images/home/reviews-prinzipalmarkt.webp" alt="" sizes="(max-width: 767px) 150vw, 100vw" className={styles.bgPhoto} imgClassName={styles.bgImg} />
+      </div>
       <div className={styles.veil} aria-hidden="true" />
 
       <Container className={styles.inner}>

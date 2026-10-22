@@ -321,6 +321,9 @@ async function Reviews({ locale: loc }: { locale: L }) {
   if (!google || google.reviews.length === 0) return null;
   return (
     <section className={revStyles.section} aria-labelledby="reviews-title">
+      <div className={revStyles.bg} aria-hidden="true">
+        <Photo src="/images/home/reviews-prinzipalmarkt.webp" alt="" sizes="(max-width: 767px) 150vw, 100vw" className={revStyles.bgPhoto} imgClassName={revStyles.bgImg} />
+      </div>
       <div className={revStyles.veil} aria-hidden="true" />
       <Container className={revStyles.inner}>
         <div className={revStyles.head}>

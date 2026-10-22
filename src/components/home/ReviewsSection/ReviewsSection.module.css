@@ -6,10 +6,28 @@
   overflow: hidden;
 }
 
+/* Hintergrundfoto (Prinzipalmarkt Münster, vorab leicht weichgezeichnet: public/images/home/reviews-prinzipalmarkt.webp; Original in design-source/).
+   Liegt unter Schleier und Inhalt, füllt die Sektion ohne Verzerrung (cover) und schneidet oben/unten nur so viel ab wie nötig. */
+.bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.bgPhoto {
+  position: absolute !important;
+  inset: 0;
+}
+
+.bgImg {
+  object-position: 50% 48%;
+}
+
+/* heller Schleier für die Lesbarkeit von Überschrift, Schaltfläche und Hinweis (Karten haben eigenen Grund) */
 .veil {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(250, 249, 246, 0.92), rgba(250, 249, 246, 0.72));
+  background: linear-gradient(90deg, rgba(250, 249, 246, 0.86), rgba(250, 249, 246, 0.58));
 }
 
 .inner {
@@ -224,5 +242,19 @@ a.time:hover,
   .cards li {
     flex: 0 0 82%;
     scroll-snap-align: start;
+  }
+}
+
+/* Telefon: Foto nicht auf die ganze (hohe, schmale) Sektion aufziehen – das wäre eine starke Vergrößerung auf ein Gebäudefragment.
+   Stattdessen 1,5-fache Breite (zentriert, mehrere Gebäude sichtbar), oben ausgerichtet; unten blendet es weich in den bisherigen Hintergrund aus. */
+@media (max-width: 767px) {
+  .bgPhoto {
+    inset: 0 auto auto 50%;
+    width: 150%;
+    height: auto;
+    aspect-ratio: 1530 / 1028;
+    transform: translateX(-50%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
   }
 }
