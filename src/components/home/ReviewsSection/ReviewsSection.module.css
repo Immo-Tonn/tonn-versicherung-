@@ -258,3 +258,60 @@ a.time:hover,
     mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
   }
 }
+
+/* ===== Kompaktere Höhe (nur vertikale Abstände dieses Blocks; Schriften, Sterne, Rating, Texte, Foto und Schleier unverändert) ===== */
+
+/* Tablet und Desktop (ab 768 px): ca. 15 % niedriger */
+@media (min-width: 768px) {
+  .section {
+    padding-block: clamp(40px, 4.2vw, 60px); /* vorher clamp(56px, 6vw, 88px) */
+  }
+
+  .head {
+    margin-bottom: 20px; /* vorher 28 px */
+  }
+
+  .card {
+    padding-block: 16px; /* vorher 24 px; seitlich unverändert 24 px */
+    gap: 10px; /* vorher 16 px */
+  }
+
+  .foot {
+    margin-top: 20px; /* vorher 32 px */
+  }
+}
+
+/* Tablet (eine Spalte: Bewertung über den Karten): Abstand dazwischen kleiner */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .body {
+    gap: clamp(20px, 2.4vw, 28px); /* vorher clamp(32px, 4vw, 64px) */
+  }
+}
+
+/* Telefon (bis 767 px): deutlich kompakter; Schriftgrößen, Karten (82 % Breite), Tippflächen und Reihenfolge unverändert */
+@media (max-width: 767px) {
+  .section {
+    padding-block: 32px; /* vorher 56 px */
+  }
+
+  .head {
+    margin-bottom: 14px; /* vorher 20 px */
+  }
+
+  .body {
+    gap: 18px; /* vorher 32 px */
+  }
+
+  .count {
+    margin-top: 10px; /* vorher 14 px */
+  }
+
+  .card {
+    padding-block: 16px; /* vorher 24 px */
+    gap: 10px; /* vorher 16 px */
+  }
+
+  .foot {
+    margin-top: 20px; /* vorher 32 px */
+  }
+}
