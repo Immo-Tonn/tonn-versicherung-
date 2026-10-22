@@ -1,5 +1,6 @@
 import { trustItems } from "@/data/home";
 import { getGoogleReviews } from "@/lib/google-reviews";
+import { reviewSourceLine } from "@/lib/review-count";
 import Container from "@/components/ui/Container/Container";
 import Icon from "@/components/ui/Icon/Icon";
 import styles from "./TrustBar.module.css";
@@ -11,6 +12,7 @@ import styles from "./TrustBar.module.css";
 export default async function TrustBar() {
   const google = await getGoogleReviews();
   const value = google ? google.rating.toLocaleString("de-DE", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) : null;
+  const sourceLine = reviewSourceLine(google?.count, "de"); // Anzahl aus derselben Places-Antwort wie die Sterne
   return (
     <div className={styles.bar}>
       <Container>
@@ -35,6 +37,7 @@ export default async function TrustBar() {
                   {item.lines.map((l) => (
                     <span key={l}>{l}</span>
                   ))}
+                  {item.isRating && value && sourceLine && <span>{sourceLine}</span>}
                 </p>
               </div>
             </li>

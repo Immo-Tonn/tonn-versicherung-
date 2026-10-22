@@ -54,6 +54,7 @@ export const homeEn: HomeContent = {
     eyebrow: "Your contact person",
     title: ["Insurance is a", "matter of trust."],
     text: "I am Andreas Tonn, an insurance agent in Münster working with multiple insurers. I look after more than 1,600 clients – personally and over the long term. As your contact person, I am there for you with all questions about private health insurance, occupational disability insurance and other forms of cover.",
+    experience: "Working in insurance since 1991.",
     cta: "More about me",
     imageAlt: "Andreas Tonn, insurance agent working with multiple insurers in Münster",
     features: [

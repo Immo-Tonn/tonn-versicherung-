@@ -73,6 +73,8 @@ export const about = {
   eyebrow: "Ihr Ansprechpartner",
   title: ["Versicherung ist", "Vertrauenssache."],
   text: "Ich bin Andreas Tonn, Versicherungsvermittler in Münster. Ich betreue über 1.600 Kundinnen und Kunden – persönlich und langfristig. Als Ihr Ansprechpartner bin ich bei allen Fragen rund um die private Krankenversicherung, Berufsunfähigkeitsversicherung und weitere Absicherungen für Sie da.",
+  /** Bestätigt: Andreas Tonn arbeitet seit 1991 in der Versicherungsbranche (Beginn in der Branche, nicht Selbstständigkeit). */
+  experience: "Seit 1991 in der Versicherungsbranche.",
   cta: { label: "Mehr über mich", href: "/ueber-uns" },
   image: "/images/home/andreas-tonn.webp",
   imageAlt: "Andreas Tonn, Versicherungsvermittler in Münster",

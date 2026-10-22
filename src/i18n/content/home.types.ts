@@ -25,7 +25,7 @@ export type HomeContent = {
   };
   situations: { eyebrow: string; title: string; text: string; cards: [Card, Card, Card, Card] };
   process: { eyebrow: string; title: [string, string]; text: string; cta: string; steps: [Step, Step, Step, Step] };
-  about: { eyebrow: string; title: [string, string]; text: string; cta: string; imageAlt: string; features: [Step, Step, Step, Step] };
+  about: { eyebrow: string; title: [string, string]; text: string; experience: string; cta: string; imageAlt: string; features: [Step, Step, Step, Step] };
   insurances: { eyebrow: string; title: [string, string]; text: string; cta: string; cards: [InsuranceCard, InsuranceCard, InsuranceCard] };
   reviews: {
     eyebrow: string;

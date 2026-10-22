@@ -10,6 +10,7 @@ import Photo from "@/components/ui/Photo/Photo";
 import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
 import { about, finalCta, hero, insurances, location, processSection as processData, situations, trustItems } from "@/data/home";
 import { getGoogleReviews } from "@/lib/google-reviews";
+import { reviewSourceLine } from "@/lib/review-count";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { localizedHref } from "@/i18n/links";
@@ -47,6 +48,7 @@ export default async function LocalizedHome({ locale }: { locale: L }) {
   // Gesamtbewertung aus derselben Quelle wie der Bewertungsbereich; ohne echte Google-Daten keine Zahl (nichts erfunden).
   const googleRating = await getGoogleReviews();
   const ratingText = googleRating ? new Intl.NumberFormat(nf, { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(googleRating.rating) : null;
+  const sourceLine = reviewSourceLine(googleRating?.count, locale); // gleiche Places-Antwort wie die Sterne
   const de = <DeTag locale={locale} />;
   const lk = (h: string) => localizedHref(h, locale);
   const tagFor = (h: string) => (lk(h).german ? de : null);
@@ -119,6 +121,7 @@ export default async function LocalizedHome({ locale }: { locale: L }) {
                       {(item.isRating ? t.trust.ratingLines : t.trust.items[i - 1].lines).map((l) => (
                         <span key={l}>{l}</span>
                       ))}
+                      {item.isRating && ratingText && sourceLine && <span>{sourceLine}</span>}
                     </p>
                   </div>
                 </li>
@@ -203,6 +206,7 @@ export default async function LocalizedHome({ locale }: { locale: L }) {
                 <span key={l}>{l}</span>
               ))}
             </h2>
+            <p className={aboutStyles.experience}>{t.about.experience}</p>
             <p className={aboutStyles.text}>{t.about.text}</p>
             <Button href={lk(about.cta.href).href}>
               {t.about.cta}
