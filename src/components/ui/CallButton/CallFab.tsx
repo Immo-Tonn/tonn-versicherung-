@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { siteConfig } from "@/data/site";
 import Icon from "../Icon/Icon";
+import { backgroundTone, type Tone } from "./fab-tone";
 import styles from "./CallFab.module.css";
 
 const FIELD = "input:not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit]), textarea, select";
@@ -48,6 +49,7 @@ function heroCta(): HTMLElement | null {
 export default function CallFab({ label, ariaLabel }: { label: string; ariaLabel: string }) {
   const [hidden, setHidden] = useState(false);
   const [shifted, setShifted] = useState(false);
+  const [tone, setTone] = useState<Tone>(null);
   const ref = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
@@ -79,12 +81,26 @@ export default function CallFab({ label, ariaLabel }: { label: string; ariaLabel
       typing = false;
       schedule();
     };
+    // Hintergrundfarbe unter der Schaltfläche: gedrosselt (höchstens alle 100 ms, nachlaufend), nicht bei jedem Scroll-Ereignis
+    let toneTimer = 0;
+    const sampleTone = () => {
+      toneTimer = 0;
+      const fab = ref.current;
+      if (fab && !fab.hasAttribute("data-hidden")) setTone(backgroundTone(fab));
+    };
+    const scheduleTone = () => {
+      if (!toneTimer) toneTimer = window.setTimeout(sampleTone, 100);
+    };
     const mo = new MutationObserver(schedule);
     mo.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["style", "class", "hidden", "aria-hidden"] });
     document.addEventListener("focusin", onIn);
     document.addEventListener("focusout", onOut);
     window.addEventListener("resize", schedule);
     window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("scroll", scheduleTone, { passive: true });
+    window.addEventListener("resize", scheduleTone);
+    window.addEventListener("load", scheduleTone);
+    scheduleTone();
     const events = ["UC_UI_INITIALIZED", "UC_UI_VIEW_CHANGED", "UC_CONSENT", "UC_CMP_API_READY"];
     events.forEach((e) => window.addEventListener(e, schedule));
     schedule();
@@ -97,12 +113,25 @@ export default function CallFab({ label, ariaLabel }: { label: string; ariaLabel
       document.removeEventListener("focusout", onOut);
       window.removeEventListener("resize", schedule);
       window.removeEventListener("scroll", schedule);
+      window.removeEventListener("scroll", scheduleTone);
+      window.removeEventListener("resize", scheduleTone);
+      window.removeEventListener("load", scheduleTone);
+      if (toneTimer) window.clearTimeout(toneTimer);
       events.forEach((e) => window.removeEventListener(e, schedule));
     };
   }, []);
 
+  // Wird die Schaltfläche wieder sichtbar (Hero-Button, Menü, Banner, Formular vorbei), Hintergrund neu bestimmen
+  useEffect(() => {
+    if (hidden) return;
+    const t = window.setTimeout(() => {
+      if (ref.current) setTone(backgroundTone(ref.current));
+    }, 60);
+    return () => window.clearTimeout(t);
+  }, [hidden]);
+
   return (
-    <a ref={ref} href={siteConfig.contact.phoneHref} className={styles.fab} data-hidden={hidden || undefined} data-uc-button={shifted || undefined} aria-label={`${ariaLabel}, ${siteConfig.contact.phone}`} tabIndex={hidden ? -1 : undefined}>
+    <a ref={ref} href={siteConfig.contact.phoneHref} className={styles.fab} data-hidden={hidden || undefined} data-uc-button={shifted || undefined} data-tone={tone ?? undefined} aria-label={`${ariaLabel}, ${siteConfig.contact.phone}`} tabIndex={hidden ? -1 : undefined}>
       <Icon name="phone" size={20} strokeWidth={1.6} />
       <span>{label}</span>
     </a>

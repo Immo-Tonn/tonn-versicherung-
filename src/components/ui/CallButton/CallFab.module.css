@@ -21,9 +21,21 @@
     font-size: 17px;
     font-weight: 500;
     line-height: 1.2;
-    border: 1px solid rgba(255, 255, 255, 0.2); /* hebt sich auch von der dunklen Fußzeile ab */
+    border: 1px solid rgba(255, 255, 255, 0.55); /* Standard (Hintergrund unbestimmt, z. B. Foto): kontrastreicher Rahmen */
     box-shadow: 0 4px 16px rgba(6, 38, 63, 0.28);
-    transition: opacity 160ms ease, background-color var(--ease);
+    transition: opacity 160ms ease, background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+  }
+
+  /* Hintergrund unter der Schaltfläche (CallFab setzt data-tone, siehe fab-tone.ts): hell → bisherige dunkelblaue Schaltfläche,
+     dunkelblau → helle Schaltfläche mit dunkelblauem Text und Icon */
+  .fab[data-tone="light"] {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .fab[data-tone="dark"] {
+    background: var(--white);
+    color: var(--navy-900);
+    border-color: rgba(6, 38, 63, 0.12);
   }
 
   /* Usercentrics-Privatsphäre-Button (44 px, unten links, bis x ≈ 68 px) bleibt frei und bedienbar */
@@ -62,6 +74,10 @@
 @media (max-width: 767px) and (hover: hover) and (pointer: fine) {
   .fab:hover {
     background: var(--navy-700);
+  }
+
+  .fab[data-tone="dark"]:hover {
+    background: var(--warm-white);
   }
 }
 
