@@ -119,6 +119,10 @@
   color: var(--white);
 }
 
+.callSlot {
+  display: none;
+}
+
 .mobileCta {
   display: none;
 }
@@ -210,7 +214,7 @@
 
   /* Erster Bildschirm: mindestens so hoch wie der sichtbare Viewport (svh berücksichtigt die Browserleisten), bei Bedarf höher */
   .content {
-    --hero-actions-h: 82px; /* Button 58 px + unterer Abstand 24 px */
+    --hero-actions-h: 156px; /* Button 58 px + Abstand 14 px + Platz für "Anrufen" 60 px + unterer Abstand 24 px */
     grid-area: 1 / 1;
     z-index: 2;
     min-height: 100vh;
@@ -268,6 +272,11 @@
 
   .secondary {
     display: none;
+  }
+
+  .callSlot {
+    display: block;
+    height: 60px;
   }
 
   /* Der Textlink "Online-Termin vereinbaren" führt auf dieselbe Seite wie der Button und entfällt mobil (Basisregel: display: none) */

@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import ConsentBanner from "@/components/consent/ConsentBanner";
+import CallFab from "@/components/ui/CallButton/CallFab";
+import { getDictionary } from "@/i18n/dictionaries";
 import GoogleAnalytics from "@/components/consent/GoogleAnalytics";
 import Usercentrics from "@/components/consent/Usercentrics";
 import Footer from "@/components/layout/Footer/Footer";
@@ -56,6 +58,7 @@ export default function GlobalNotFound() {
         </main>
         <Footer />
         <ConsentBanner />
+        <CallFab label={getDictionary("de").header.call} ariaLabel={getDictionary("de").header.callAria} />
         <GoogleAnalytics />
         <Usercentrics locale={"de"} />
       </body>

@@ -1,0 +1,59 @@
+/* Feste Anruf-Schaltfläche, nur Telefon (≤ 767 px). Höhe 52 px, Farbe wie der Hero-Button, Abstand unten + Safe-Area (iPhone). */
+.fab {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .fab {
+    position: fixed;
+    left: max(16px, env(safe-area-inset-left));
+    right: max(16px, env(safe-area-inset-right));
+    bottom: calc(10px + env(safe-area-inset-bottom));
+    z-index: 40; /* unter Kopfzeile (50), Menü (48/49) und Cookie-Banner (60) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    height: 52px;
+    background: var(--navy-900);
+    color: var(--white);
+    border-radius: var(--radius);
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.2;
+    box-shadow: 0 4px 16px rgba(6, 38, 63, 0.28);
+    transition: opacity 160ms ease, background-color var(--ease);
+  }
+
+  .fab[data-hidden] {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  /* Geöffnetes Mobile-Menü: Schaltfläche ausblenden */
+  :global(body):has(button[aria-controls="mobile-menu"][aria-expanded="true"]) .fab {
+    display: none;
+  }
+
+  /* Inhalt darunter bleibt erreichbar: Fußzeile bekommt Platz, fokussierte Felder scrollen oberhalb der Schaltfläche */
+  :global(html) {
+    scroll-padding-bottom: calc(52px + 10px + env(safe-area-inset-bottom) + 16px);
+  }
+
+  :global(body) > :global(footer[class]) {
+    padding-bottom: calc(36px + 52px + 10px + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 767px) and (hover: hover) and (pointer: fine) {
+  .fab:hover {
+    background: var(--navy-700);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fab {
+    transition: none;
+  }
+}

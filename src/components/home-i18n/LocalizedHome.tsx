@@ -91,6 +91,7 @@ export default async function LocalizedHome({ locale }: { locale: L }) {
               </span>
               <Icon name="arrow" size={18} />
             </Link>
+            <span className={heroStyles.callSlot} aria-hidden="true" />
           </div>
         </Container>
 
