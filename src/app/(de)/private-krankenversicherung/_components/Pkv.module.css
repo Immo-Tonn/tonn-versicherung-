@@ -33,6 +33,11 @@
   color: var(--white);
 }
 
+/* Überschrift im blauen Ablauf-Block: die globale .h2-Farbe (dunkelblau) überschrieb .onDark und machte sie auf Blau unsichtbar */
+.processHead .onDark {
+  color: var(--white);
+}
+
 .dot {
   display: inline-block;
   width: 0.11em;
@@ -241,7 +246,7 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0 var(--tg-gap);
-  align-items: start;
+  align-items: stretch; /* Karten einer Zeile gleich hoch, damit "Mehr erfahren" auf einer Linie sitzt (siehe .target .more) */
   margin: 0;
   padding: 0;
   list-style: none;
@@ -249,6 +254,7 @@
 
 .targetGrid li {
   position: relative;
+  display: flex;
 }
 
 /* feine Trennlinie mittig im Spaltenabstand */
@@ -261,8 +267,23 @@
   border-left: 1px solid var(--gray-100);
 }
 
+/* Spalte: Foto, Titel, Text oben, Link per margin-top:auto am unteren Rand der (gleich hohen) Karte. Mobil (eine Spalte) bleibt es die natürliche Reihenfolge. */
 .target {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.target .more {
+  align-self: flex-start;
+  margin-top: auto;
+  transition: color var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .target .more:hover {
+    color: var(--red-dark);
+  }
 }
 
 .target h3 {
@@ -402,6 +423,26 @@
 
 .stepIcon {
   color: var(--white);
+}
+
+/* Hover der Schritte 01-04 (nur Maus): Nummer und Icon wechseln weich auf den roten Akzent; Größe, Position und Texte bleiben */
+.num,
+.stepIcon {
+  transition: color 200ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .steps li:hover .num,
+  .steps li:hover .stepIcon {
+    color: var(--red);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .num,
+  .stepIcon {
+    transition: none;
+  }
 }
 
 .stepArrow {
