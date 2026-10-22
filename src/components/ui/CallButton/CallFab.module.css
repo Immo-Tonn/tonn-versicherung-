@@ -21,8 +21,21 @@
     font-size: 17px;
     font-weight: 500;
     line-height: 1.2;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* hebt sich auch von der dunklen Fußzeile ab */
     box-shadow: 0 4px 16px rgba(6, 38, 63, 0.28);
     transition: opacity 160ms ease, background-color var(--ease);
+  }
+
+  /* Usercentrics-Privatsphäre-Button (44 px, unten links, bis x ≈ 68 px) bleibt frei und bedienbar */
+  /* Sichtbarer Fokus auf hellem UND dunklem Grund (Fußzeile): weißer Ring innen, blauer außen */
+  .fab:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 6px var(--blue), 0 4px 16px rgba(6, 38, 63, 0.28);
+  }
+
+  .fab[data-uc-button] {
+    left: max(80px, calc(env(safe-area-inset-left) + 80px));
   }
 
   .fab[data-hidden] {
