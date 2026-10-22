@@ -544,3 +544,14 @@
     transition: none;
   }
 }
+
+/* Telefon: Hero-Foto nicht auf die ganze Hero-Höhe aufziehen (Querformat 3:1 wäre sonst ~5,7-fach vergrößert und zeigt nur einen schmalen Ausschnitt).
+   Das Foto bleibt ein Band von etwa 2,2-facher Vergrößerung oben im Hero und blendet unten weich in die helle Hero-Fläche aus; Text, Verlauf und Höhe des Heros bleiben unverändert. */
+@media (max-width: 767px) {
+  .heroBg {
+    bottom: auto;
+    height: min(100%, calc(var(--header-h) + 58vw));
+    -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 68%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0, #000 68%, transparent 100%);
+  }
+}
