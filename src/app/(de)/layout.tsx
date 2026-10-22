@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
-import ConsentBanner from "@/components/consent/ConsentBanner";
+import ConsentBanner, { ConsentReopen } from "@/components/consent/ConsentBanner";
 import GoogleAnalytics from "@/components/consent/GoogleAnalytics";
 import Usercentrics from "@/components/consent/Usercentrics";
 import Footer from "@/components/layout/Footer/Footer";
@@ -35,6 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="de" className={`${serif.variable} ${sans.variable}`}>
       <body>
+        <ConsentBanner />
         <a href="#main" className="skip-link">
           Zum Inhalt springen
         </a>
@@ -42,7 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <Footer />
         <JsonLd />
-        <ConsentBanner />
+        <ConsentReopen />
         <GoogleAnalytics />
         <ScrollReveal />
         <Usercentrics locale={"de"} />

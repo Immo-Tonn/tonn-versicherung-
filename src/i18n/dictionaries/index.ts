@@ -61,7 +61,12 @@ const de: Dictionary = {
     mapsName: "Google Maps",
     mapsDesc: "Anzeige der Karte; dabei wird u. a. Ihre IP-Adresse an Google übertragen",
     acceptAll: "Alle akzeptieren",
-    rejectAll: "Alle ablehnen",
+    rejectOptional: "Nur notwendige",
+    necessaryName: "Notwendig",
+    necessaryDesc: "Speicherung Ihrer Auswahl in diesem Browser (Nachweis der Einwilligung); kein Tracking",
+    storageNote:
+      "Ihre Auswahl wird nur in diesem Browser gespeichert und nach {days} Tagen oder bei geänderten Einstellungen erneut abgefragt. Sie können sie jederzeit über die Schaltfläche „Cookies“ oder „Cookie-Einstellungen“ im Seitenfuß ändern oder widerrufen.",
+    reopen: "Cookies",
     saveSelection: "Auswahl speichern",
     settings: "Einstellungen",
   },

@@ -4,7 +4,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import ScrollReveal from "@/components/ui/ScrollReveal/ScrollReveal";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
-import LocalizedConsentBanner from "./LocalizedConsentBanner";
+import LocalizedConsentBanner, { LocalizedConsentReopen } from "./LocalizedConsentBanner";
 import LocalizedFooter from "./LocalizedFooter";
 import LocalizedHeader from "./LocalizedHeader";
 
@@ -12,6 +12,7 @@ import LocalizedHeader from "./LocalizedHeader";
 export default function LocalizedShell({ locale, children }: { locale: Exclude<Locale, "de">; children: React.ReactNode }) {
   return (
     <>
+      <LocalizedConsentBanner locale={locale} />
       <a href="#main" className="skip-link">
         {getDictionary(locale).common.skipToContent}
       </a>
@@ -19,7 +20,7 @@ export default function LocalizedShell({ locale, children }: { locale: Exclude<L
       <main id="main">{children}</main>
       <LocalizedFooter locale={locale} />
       <JsonLd locale={locale} />
-      <LocalizedConsentBanner locale={locale} />
+      <LocalizedConsentReopen locale={locale} />
       <GoogleAnalytics />
       <ScrollReveal />
       <Usercentrics locale={locale} />
