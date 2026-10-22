@@ -5,6 +5,7 @@ import Button from "@/components/ui/Button/Button";
 import Container from "@/components/ui/Container/Container";
 import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
 import { siteConfig } from "@/data/site";
+import { formatReviewMonth, reviewLabels } from "@/lib/article-review";
 import { ids, pageMetadata, SOCIAL_PREVIEW_IMAGE } from "@/lib/seo";
 import { bySlug, published, type Block } from "../_lib/articles";
 import { articleSeo } from "../_lib/seo";
@@ -80,9 +81,9 @@ export default async function Page({ params }: Props) {
 
   const url = `${siteConfig.url}/wissen/${a.slug}`;
   const seoDescription = articleSeo[a.slug]?.description ?? a.description;
-  // author/datePublished/dateModified nur, wenn in articles.ts tatsächlich eingetragen (fachliche Prüfung durch Andreas Tonn bestätigt).
+  // datePublished/dateModified nur, wenn in articles.ts tatsächlich eingetragen. Die fachliche Prüfung (nur Monat bekannt) steht als reviewedBy an der WebPage,
+  // nicht als author und nicht als Datum.
   const articleMeta: Record<string, unknown> = {};
-  if (a.review) articleMeta.author = { "@id": ids.person() };
   if (a.publishedAt) articleMeta.datePublished = a.publishedAt;
   if (a.updatedAt ?? a.publishedAt) articleMeta.dateModified = a.updatedAt ?? a.publishedAt;
   const fmt = (iso: string) => new Date(iso).toLocaleDateString("de-DE", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
@@ -95,7 +96,7 @@ export default async function Page({ params }: Props) {
       description: seoDescription,
       inLanguage: "de-DE",
       url,
-      mainEntityOfPage: { "@type": "WebPage", "@id": url },
+      mainEntityOfPage: { "@type": "WebPage", "@id": url, ...(a.review ? { reviewedBy: { "@id": ids.person() } } : {}) },
       isPartOf: { "@id": ids.website() },
       articleSection: a.topic,
       image: `${siteConfig.url}${SOCIAL_PREVIEW_IMAGE.url}`, // dasselbe Bild wie og:image dieser Seite
@@ -150,7 +151,8 @@ export default async function Page({ params }: Props) {
             <p className={styles.editorial}>
               {a.review && (
                 <span>
-                  Fachlich geprüft von {a.review.by} · Stand: {fmt(a.review.date)}
+                  {reviewLabels.de.before}
+                  <Link href={reviewLabels.de.href}>{reviewLabels.de.name}</Link> · {formatReviewMonth(a.review.month, "de")}
                 </span>
               )}
               {a.publishedAt && <span>Veröffentlicht: {fmt(a.publishedAt)}</span>}

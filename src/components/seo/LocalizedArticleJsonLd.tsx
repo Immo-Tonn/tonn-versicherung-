@@ -14,14 +14,16 @@ type Props = {
   homeName: string;
   guidesName: string;
   sources: { label: string; url: string }[];
+  /** fachlich geprüft (Andreas Tonn): reviewedBy an der WebPage, kein author, kein Datum */
+  reviewed?: boolean;
 };
 
 /**
  * Article + BreadcrumbList für EN/RU-Beiträge – gleicher Aufbau wie das JSON-LD der deutschen Beiträge ([slug]/page.tsx),
- * mit sprachspezifischen URLs, inLanguage und übersetzten Texten. Autor/Datumsangaben nur, wenn sie (wie bei den deutschen
- * Beiträgen) tatsächlich bestätigt vorliegen – aktuell nicht.
+ * mit sprachspezifischen URLs, inLanguage und übersetzten Texten. Kein author und keine Datumsfelder (nicht bekannt); die bestätigte
+ * fachliche Prüfung steht als reviewedBy an der WebPage.
  */
-export default function LocalizedArticleJsonLd({ slug, locale, headline, description, section, homeName, guidesName, sources }: Props) {
+export default function LocalizedArticleJsonLd({ slug, locale, headline, description, section, homeName, guidesName, sources, reviewed }: Props) {
   const abs = (p: string) => `${siteConfig.url}${localizedPath(p, locale)}`;
   const url = abs(`/wissen/${slug}`);
   const data = [
@@ -33,7 +35,7 @@ export default function LocalizedArticleJsonLd({ slug, locale, headline, descrip
       description,
       inLanguage: inLanguage(locale),
       url,
-      mainEntityOfPage: { "@type": "WebPage", "@id": url },
+      mainEntityOfPage: { "@type": "WebPage", "@id": url, ...(reviewed ? { reviewedBy: { "@id": ids.person() } } : {}) },
       isPartOf: { "@id": ids.website() },
       articleSection: section,
       image: `${siteConfig.url}${SOCIAL_PREVIEW_IMAGE.url}`, // dasselbe Bild wie og:image dieser Seite

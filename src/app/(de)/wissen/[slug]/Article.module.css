@@ -78,6 +78,19 @@
   color: var(--text-muted);
 }
 
+.editorial a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .editorial a:hover {
+    color: var(--red-dark);
+  }
+}
+
 .answer {
   margin: 0 0 clamp(40px, 5vw, 56px);
   padding: clamp(24px, 3vw, 32px);
