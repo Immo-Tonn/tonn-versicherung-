@@ -391,11 +391,12 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 24px;
-  margin-bottom: clamp(24px, 2.6vw, 36px);
+  margin-bottom: calc(clamp(24px, 2.6vw, 36px) + 22px); /* +22 px vor den Schritten 01-04 */
 }
 
 .processHead .h2 {
   margin-bottom: 0;
+  padding-top: 16px; /* mehr Luft zwischen Label und Überschrift (Label-Außenabstand 22 px bleibt; Padding statt Margin, da Margins verschmelzen würden) */
 }
 
 .steps {
@@ -423,26 +424,6 @@
 
 .stepIcon {
   color: var(--white);
-}
-
-/* Hover der Schritte 01-04 (nur Maus): Nummer und Icon wechseln weich auf den roten Akzent; Größe, Position und Texte bleiben */
-.num,
-.stepIcon {
-  transition: color 200ms ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .steps li:hover .num,
-  .steps li:hover .stepIcon {
-    color: var(--red);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .num,
-  .stepIcon {
-    transition: none;
-  }
 }
 
 .stepArrow {
@@ -478,6 +459,41 @@
   font-size: 13.5px;
   line-height: 1.45;
   color: rgba(255, 255, 255, 0.72);
+}
+
+/* Hover der Schritte 01-04 (nur Maus): der ganze Schritt reagiert gemeinsam, Nummer, Icon und Titel wechseln weich auf das helle Himmelblau der Startseite
+   (#8fb4dc, Hero), die Erläuterung auf ein weicheres Hellblau (#b8cbe0, Palette der Danke-Seite). Nur Farbe, 200 ms; keine Bewegung, Größe oder Fläche. */
+.steps {
+  --step-hover: #8fb4dc;
+  --step-hover-soft: #b8cbe0;
+}
+
+.num,
+.stepIcon,
+.steps h3,
+.steps p {
+  transition: color 200ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .steps li:hover .num,
+  .steps li:hover .stepIcon,
+  .steps li:hover h3 {
+    color: var(--step-hover);
+  }
+
+  .steps li:hover p {
+    color: var(--step-hover-soft);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .num,
+  .stepIcon,
+  .steps h3,
+  .steps p {
+    transition: none;
+  }
 }
 
 /* ===== Risikovoranfrage ===== */
@@ -1022,6 +1038,11 @@
   .processHead {
     flex-direction: column;
     align-items: stretch;
+    margin-bottom: calc(clamp(24px, 2.6vw, 36px) + 14px); /* mobil kleinere Zusatzabstände */
+  }
+
+  .processHead .h2 {
+    padding-top: 10px;
   }
 
   .steps {
