@@ -13,20 +13,21 @@ export const OG_IMAGE = {
 };
 
 /**
- * Gemeinsames Social-Preview-Bild (Open Graph / X) für alle Seiten und Sprachen: Portrait Andreas Tonn.
+ * Gemeinsames Social-Preview-Bild (Open Graph / X) für alle Seiten und Sprachen: Münster (Prinzipalmarkt, Lambertikirche) aus dem mobilen Hero,
+ * zugeschnitten auf 1200 × 630 (Datei og-muenster-v1.jpg, das Foto auf der Website bleibt unverändert). Frühere Fassung: og-andreas-portrait-v1.jpg (liegt noch auf dem Server).
  * Eigener Dateiname (-v1), damit sich die Bild-URL ändert und Messenger den Cache neu laden. OG_IMAGE bleibt für JSON-LD.
  */
 export const SOCIAL_PREVIEW_IMAGE = {
-  url: "/og/og-andreas-portrait-v1.jpg",
+  url: "/og/og-muenster-v1.jpg",
   width: 1200,
   height: 630,
 };
 
 /** Alt-Text des Social-Preview-Bilds je Sprache. */
 const SOCIAL_PREVIEW_ALT: Record<Locale, string> = {
-  de: "Andreas Tonn, Versicherungsvermittler in Münster – TONN VERSICHERUNG: Persönlich beraten.",
-  en: "Andreas Tonn, insurance agent in Münster – TONN VERSICHERUNG: Personal advice.",
-  ru: "Андреас Тонн, страховой агент в Мюнстере – TONN VERSICHERUNG: персональные консультации.",
+  de: "Prinzipalmarkt in Münster mit der Lambertikirche – TONN VERSICHERUNG: Persönlich beraten.",
+  en: "Prinzipalmarkt in Münster with St. Lamberti church – TONN VERSICHERUNG: Personal advice.",
+  ru: "Принципальмаркт в Мюнстере и церковь Св. Ламберта – TONN VERSICHERUNG: персональные консультации.",
 };
 
 /**
