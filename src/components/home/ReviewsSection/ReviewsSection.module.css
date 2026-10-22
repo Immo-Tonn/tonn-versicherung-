@@ -259,59 +259,167 @@ a.time:hover,
   }
 }
 
-/* ===== Kompaktere Höhe (nur vertikale Abstände dieses Blocks; Schriften, Sterne, Rating, Texte, Foto und Schleier unverändert) ===== */
+/* ===== Kompaktere Höhe (nur vertikale Abstände und Anordnung dieses Blocks; Schriften, Sterne, Rating, Texte, Foto und Schleier unverändert) ===== */
 
-/* Tablet und Desktop (ab 768 px): ca. 15 % niedriger */
+.dots,
+.num {
+  display: contents;
+}
+
+.dots {
+  display: none; /* nur Telefon, siehe unten */
+}
+
+/* Tablet und Desktop (ab 768 px): deutlich niedriger */
 @media (min-width: 768px) {
   .section {
-    padding-block: clamp(40px, 4.2vw, 60px); /* vorher clamp(56px, 6vw, 88px) */
+    padding-block: clamp(24px, 2.4vw, 36px); /* ursprünglich clamp(56px, 6vw, 88px) */
   }
 
   .head {
-    margin-bottom: 20px; /* vorher 28 px */
+    margin-bottom: 14px; /* ursprünglich 28 px */
+  }
+
+  .head > p:first-child {
+    margin-bottom: 14px; /* Abstand Label → Überschrift (ursprünglich 22 px); nur in diesem Block */
   }
 
   .card {
-    padding-block: 16px; /* vorher 24 px; seitlich unverändert 24 px */
-    gap: 10px; /* vorher 16 px */
+    padding-block: 14px; /* ursprünglich 24 px; seitlich unverändert 24 px */
+    gap: 8px; /* ursprünglich 16 px */
+  }
+
+  .quote {
+    line-height: 1.5; /* ursprünglich 1,55; Schriftgröße und 6-Zeilen-Begrenzung unverändert */
   }
 
   .foot {
-    margin-top: 20px; /* vorher 32 px */
+    margin-top: 16px; /* ursprünglich 32 px */
   }
 }
 
-/* Tablet (eine Spalte: Bewertung über den Karten): Abstand dazwischen kleiner */
+/* Tablet (eine Spalte: Bewertung über den Karten) */
 @media (min-width: 768px) and (max-width: 1199px) {
   .body {
-    gap: clamp(20px, 2.4vw, 28px); /* vorher clamp(32px, 4vw, 64px) */
-  }
-}
-
-/* Telefon (bis 767 px): deutlich kompakter; Schriftgrößen, Karten (82 % Breite), Tippflächen und Reihenfolge unverändert */
-@media (max-width: 767px) {
-  .section {
-    padding-block: 32px; /* vorher 56 px */
-  }
-
-  .head {
-    margin-bottom: 14px; /* vorher 20 px */
-  }
-
-  .body {
-    gap: 18px; /* vorher 32 px */
+    gap: clamp(12px, 1.6vw, 20px); /* ursprünglich clamp(32px, 4vw, 64px) */
   }
 
   .count {
-    margin-top: 10px; /* vorher 14 px */
+    margin-top: 8px; /* ursprünglich 14 px */
+  }
+}
+
+/* Telefon (bis 767 px): eine Bewertung pro Ansicht (bestehendes Scroll-Karussell, scroll-snap), Seitenindikatoren, kompaktere Gruppen */
+@media (max-width: 767px) {
+  .section {
+    padding-block: 20px; /* ursprünglich 56 px */
+  }
+
+  .head {
+    margin-bottom: 8px; /* ursprünglich 20 px */
+  }
+
+  .head > p:first-child {
+    margin-bottom: 12px; /* ursprünglich 22 px */
+  }
+
+  .body {
+    gap: 10px; /* ursprünglich 32 px */
+  }
+
+  /* Bewertung kompakt: große Zahl links, rechts Sterne über der Zeile mit der Anzahl */
+  .score {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: 14px;
+  }
+
+  .value {
+    display: contents; /* Schrift bleibt über die Vererbung erhalten */
+  }
+
+  .num {
+    display: block;
+    grid-row: 1 / span 2;
+  }
+
+  .stars {
+    grid-column: 2;
+    align-self: end;
+  }
+
+  .count {
+    grid-column: 2;
+    align-self: start;
+    margin-top: 4px; /* ursprünglich 14 px */
+  }
+
+  /* eine Karte füllt die Inhaltsbreite; die übrigen liegen rechts daneben (nicht darunter) und sind nur per Wischen/Indikator erreichbar */
+  .cards {
+    gap: 12px;
+    margin-inline: 0;
+    padding-inline: 0;
+    scroll-padding-inline: 0;
+  }
+
+  .cards li {
+    flex: 0 0 100%;
   }
 
   .card {
-    padding-block: 16px; /* vorher 24 px */
-    gap: 10px; /* vorher 16 px */
+    padding-block: 12px; /* ursprünglich 24 px */
+    gap: 6px; /* ursprünglich 16 px */
+  }
+
+  .quote {
+    line-height: 1.5;
+  }
+
+  .dots {
+    display: flex;
+    justify-content: center;
+    margin-top: -4px;
+  }
+
+  .dot {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: none;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .dot::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(6, 38, 63, 0.3);
+    transition: background-color 180ms ease;
+  }
+
+  .dot[aria-current="true"]::before {
+    background: var(--navy-900);
+  }
+
+  .dot:focus-visible {
+    outline: 2px solid var(--navy-900);
+    outline-offset: -2px;
   }
 
   .foot {
-    margin-top: 20px; /* vorher 32 px */
+    margin-top: 12px; /* ursprünglich 32 px */
+    gap: 8px 28px; /* ursprünglich 14 px 28 px */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot::before {
+    transition: none;
   }
 }

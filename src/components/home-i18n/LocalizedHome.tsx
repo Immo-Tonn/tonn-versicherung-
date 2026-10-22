@@ -23,6 +23,7 @@ import HeroPhoto from "@/components/home/Hero/HeroPhoto";
 import insStyles from "@/components/home/InsuranceSection/InsuranceSection.module.css";
 import locStyles from "@/components/home/LocationSection/LocationSection.module.css";
 import procStyles from "@/components/home/ProcessSection/ProcessSection.module.css";
+import ReviewsDots from "@/components/home/ReviewsSection/ReviewsDots";
 import revStyles from "@/components/home/ReviewsSection/ReviewsSection.module.css";
 import sitStyles from "@/components/home/SituationSection/SituationSection.module.css";
 import trustStyles from "@/components/home/TrustBar/TrustBar.module.css";
@@ -335,12 +336,12 @@ async function Reviews({ locale: loc }: { locale: L }) {
         <div className={revStyles.body}>
           <div className={revStyles.score}>
             <p className={revStyles.value}>
-              {fmt(google.rating)}
+              <span className={revStyles.num}>{fmt(google.rating)}</span>
               <Stars value={google.rating} className={revStyles.stars} loc={loc} />
             </p>
             <p className={revStyles.count}>{rt.reviews.count(fmt(google.rating), google.count.toLocaleString(nf))}</p>
           </div>
-          <ul className={revStyles.cards}>
+          <ul id="reviews-list" className={revStyles.cards}>
             {google.reviews.map((r) => (
               <li key={`${r.author}-${r.url ?? r.text.slice(0, 20)}`}>
                 <article className={revStyles.card}>
@@ -376,6 +377,7 @@ async function Reviews({ locale: loc }: { locale: L }) {
               </li>
             ))}
           </ul>
+          <ReviewsDots listId="reviews-list" total={google.reviews.length} locale={loc} />
         </div>
         <div className={revStyles.foot}>
           {google.reviewsUrl && (

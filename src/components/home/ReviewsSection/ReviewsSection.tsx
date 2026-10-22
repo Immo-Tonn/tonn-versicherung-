@@ -5,6 +5,7 @@ import Icon from "@/components/ui/Icon/Icon";
 import Photo from "@/components/ui/Photo/Photo";
 import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
 import btn from "@/components/ui/Button/Button.module.css";
+import ReviewsDots from "./ReviewsDots";
 import styles from "./ReviewsSection.module.css";
 
 const formatRating = (n: number) => n.toLocaleString("de-DE", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
@@ -42,7 +43,7 @@ export default async function ReviewsSection() {
         <div className={styles.body}>
           <div className={styles.score}>
             <p className={styles.value}>
-              {formatRating(google.rating)}
+              <span className={styles.num}>{formatRating(google.rating)}</span>
               <Stars value={google.rating} className={styles.stars} />
             </p>
             <p className={styles.count}>
@@ -50,7 +51,7 @@ export default async function ReviewsSection() {
             </p>
           </div>
 
-          <ul className={styles.cards}>
+          <ul id="reviews-list" className={styles.cards}>
             {google.reviews.map((r) => (
               <li key={`${r.author}-${r.url ?? r.text.slice(0, 20)}`}>
                 <article className={styles.card}>
@@ -82,6 +83,7 @@ export default async function ReviewsSection() {
               </li>
             ))}
           </ul>
+          <ReviewsDots listId="reviews-list" total={google.reviews.length} locale="de" />
         </div>
 
         <div className={styles.foot}>
