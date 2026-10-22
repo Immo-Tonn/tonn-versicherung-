@@ -34,9 +34,16 @@ export type Article = {
   publishedAt?: string;
   /** Datum der letzten inhaltlichen Aktualisierung, ISO „JJJJ-MM-TT“ */
   updatedAt?: string;
-  /** Fachliche Prüfung: erst setzen, nachdem Andreas Tonn den Inhalt bestätigt hat. `date` = Datum der Bestätigung. */
-  review?: { by: "Andreas Tonn"; date: string };
+  /**
+   * Fachliche Prüfung durch Andreas Tonn (bestätigt). `month` = Monat der Prüfung, ISO „JJJJ-MM“ – bewusst OHNE Tag (der genaue Tag ist nicht bekannt).
+   * Das ist weder Veröffentlichungs- noch Änderungsdatum (datePublished/dateModified bleiben leer) und macht ihn nicht zum Autor:
+   * Die Texte sind KI-gestützt erstellt, der Inhalt wurde von ihm geprüft.
+   */
+  review?: { by: "Andreas Tonn"; month: string };
 };
+
+/** Bestätigte fachliche Prüfung aller neun Ratgeber-Beiträge im Oktober 2026 (Tag unbekannt, nicht ergänzen). */
+const REVIEWED_OCT_2026: Article["review"] = { by: "Andreas Tonn", month: "2026-10" };
 
 const VVG = (n: number, label: string): Source => ({ label, url: `https://www.gesetze-im-internet.de/vvg_2008/__${n}.html` });
 
@@ -44,6 +51,7 @@ export const articles: Article[] = [
   {
     slug: "pkv-oder-gkv",
     published: true,
+    review: REVIEWED_OCT_2026,
     topic: "Private Krankenversicherung",
     title: "PKV oder GKV: Unterschiede und Entscheidungskriterien",
     metaTitle: "PKV oder GKV: Unterschiede und Entscheidungskriterien",
@@ -84,6 +92,7 @@ export const articles: Article[] = [
   {
     slug: "anonyme-risikovoranfrage",
     published: true,
+    review: REVIEWED_OCT_2026,
     topic: "Private Krankenversicherung",
     title: "Anonyme Risikovoranfrage: Ablauf, Nutzen und Grenzen",
     metaTitle: "Anonyme Risikovoranfrage: Ablauf, Nutzen und Grenzen",
@@ -123,6 +132,7 @@ export const articles: Article[] = [
   {
     slug: "tarifwechsel-pkv",
     published: true,
+    review: REVIEWED_OCT_2026,
     topic: "Private Krankenversicherung",
     title: "Tarifwechsel in der PKV: Möglichkeiten im bestehenden Vertrag",
     metaTitle: "Tarifwechsel in der PKV: Möglichkeiten im bestehenden Vertrag",
@@ -161,6 +171,7 @@ export const articles: Article[] = [
   {
     slug: "bu-rente-planen",
     published: true,
+    review: REVIEWED_OCT_2026,
     topic: "Berufsunfähigkeit",
     title: "BU-Rente planen: Bedarf, Laufzeit und vorhandene Ansprüche",
     metaTitle: "BU-Rente planen: Bedarf, Laufzeit und vorhandene Ansprüche",
@@ -194,6 +205,7 @@ export const articles: Article[] = [
   {
     slug: "gesundheitsfragen-bu",
     published: true,
+    review: REVIEWED_OCT_2026,
     topic: "Berufsunfähigkeit",
     title: "Gesundheitsfragen bei der BU: Vorbereitung und vollständige Angaben",
     metaTitle: "Gesundheitsfragen bei der BU: Vorbereitung und vollständige Angaben",
@@ -234,6 +246,7 @@ export const articles: Article[] = [
   {
     slug: "bu-vertragsbedingungen",
     published: true,
+    review: REVIEWED_OCT_2026,
     topic: "Berufsunfähigkeit",
     title: "BU-Vertragsbedingungen: wichtige Begriffe verständlich erklärt",
     metaTitle: "BU-Vertragsbedingungen: wichtige Begriffe verständlich erklärt",
@@ -273,6 +286,7 @@ export const articles: Article[] = [
   {
     slug: "berufsunfaehigkeit-ursachen-folgen",
     published: true,
+    review: REVIEWED_OCT_2026,
     topic: "Berufsunfähigkeit",
     title: "Berufsunfähigkeit: Ursachen und finanzielle Folgen",
     metaTitle: "Berufsunfähigkeit: Ursachen und finanzielle Folgen",
@@ -322,6 +336,7 @@ export const articles: Article[] = [
   {
     slug: "grundlagen-kapitalanlage",
     published: true,
+    review: REVIEWED_OCT_2026,
     topic: "Kapitalanlage",
     title: "Grundlagen der Kapitalanlage: Ziele, Zeit, Risiko und Kosten",
     metaTitle: "Grundlagen der Kapitalanlage: Ziele, Zeit, Risiko und Kosten",
@@ -353,6 +368,7 @@ export const articles: Article[] = [
   {
     slug: "streuung-kapitalanlage",
     published: true,
+    review: REVIEWED_OCT_2026,
     topic: "Kapitalanlage",
     title: "Streuung in der Geldanlage: Möglichkeiten und Grenzen",
     metaTitle: "Streuung in der Geldanlage: Möglichkeiten und Grenzen",

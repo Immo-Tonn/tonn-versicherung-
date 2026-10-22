@@ -6,6 +6,7 @@ import LocalizedArticleJsonLd from "@/components/seo/LocalizedArticleJsonLd";
 import Button from "@/components/ui/Button/Button";
 import Container from "@/components/ui/Container/Container";
 import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
+import ArticleReviewNote from "@/components/wissen-i18n/ArticleReviewNote";
 import type { Locale } from "@/i18n/config";
 import { articleLabels, articleTranslations } from "@/i18n/content";
 import { getDictionary } from "@/i18n/dictionaries";
@@ -93,7 +94,7 @@ export default function LocalizedArticlePage({ slug, locale }: { slug: string; l
   const guides = lk("/wissen");
   return (
     <article className={styles.page} aria-labelledby="art-title">
-      <LocalizedArticleJsonLd slug={slug} locale={locale} headline={tr.title} description={tr.seo.description} section={tr.topic} homeName={labels.home} guidesName={labels.guides} sources={sources} />
+      <LocalizedArticleJsonLd slug={slug} locale={locale} headline={tr.title} description={tr.seo.description} section={tr.topic} reviewed={Boolean(de.review)} homeName={labels.home} guidesName={labels.guides} sources={sources} />
       <Container>
         <div className={styles.column}>
           <nav className={styles.crumbs} aria-label={labels.breadcrumbAria}>
@@ -123,6 +124,7 @@ export default function LocalizedArticlePage({ slug, locale }: { slug: string; l
           <h1 id="art-title" className={styles.title}>
             {tr.title}
           </h1>
+          {de.review && <ArticleReviewNote review={de.review} locale={locale} />}
           <div className={styles.answer}>
             <p className={styles.answerLabel}>{labels.answerLabel}</p>
             <p>{tr.answer}</p>
