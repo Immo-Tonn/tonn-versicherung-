@@ -1,9 +1,25 @@
 .header {
-  position: absolute;
+  position: fixed;
   inset: 0 0 auto 0;
   z-index: 50;
   height: var(--header-h);
   border-bottom: 1px solid var(--header-border, rgba(8, 42, 70, 0.14));
+}
+
+/* Desktop: Kopfzeile bleibt beim Scrollen oben (Tablet/Telefon waren schon fest). Oben durchsichtig wie bisher, nach dem Scrollen heller Hintergrund
+   (Wert und Blur wie im Burger-Bereich); body[data-scrolled] setzt HeaderScrollState. */
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: transparent;
+  transition: background-color 200ms ease;
+}
+
+:global(body[data-scrolled]) .header::before {
+  background: rgba(250, 249, 246, 0.96);
+  backdrop-filter: blur(6px);
 }
 
 .inner {
@@ -168,6 +184,12 @@
 .cta {
   padding: 14px 24px;
   font-size: 14.5px;
+}
+
+/* Anrufen-Button in der Kopfzeile (Desktop/Tablet): ca. 18 % niedriger, nur über den vertikalen Innenabstand (50 → 41 px); Breite, Schrift, Icon unverändert.
+   .actions .cta ist spezifischer als Button.module.css (.md), das sonst 15 px Innenabstand setzt. */
+.actions .cta {
+  padding-block: 10.5px;
 }
 
 .burger {
@@ -432,7 +454,7 @@
 }
 
 @media (max-width: 767px) {
-  .cta {
+  .actions .cta {
     display: none;
   }
 }

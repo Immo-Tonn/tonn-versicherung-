@@ -1,11 +1,11 @@
 import styles from "@/components/layout/Header/Header.module.css";
 import local from "./LocalizedHeader.module.css";
-import Button from "@/components/ui/Button/Button";
+import HeaderScrollState from "@/components/layout/Header/HeaderScrollState";
+import CallButton from "@/components/ui/CallButton/CallButton";
 import Container from "@/components/ui/Container/Container";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { localizedHref } from "@/i18n/links";
-import DeTag from "./DeTag";
 import LocalizedHeaderNav from "./LocalizedHeaderNav";
 import LocalizedLanguageSwitcher from "./LocalizedLanguageSwitcher";
 import LocalizedLogo from "./LocalizedLogo";
@@ -24,14 +24,12 @@ export default function LocalizedHeader({ locale }: { locale: Exclude<Locale, "d
         <LocalizedLogo locale={locale} />
         <LocalizedHeaderNav items={items} label={t.header.navLabel} badge={badge} hint={hint} />
         <div className={styles.actions}>
-          <Button href={cta.href} className={styles.cta}>
-            {cta.label}
-            {cta.german && <DeTag badge={badge} hint={hint} />}
-          </Button>
+          <CallButton label={t.header.call} ariaLabel={t.header.callAria} className={styles.cta} />
           <LocalizedLanguageSwitcher locale={locale} />
           <LocalizedMobileMenu items={items} cta={cta} labels={{ open: t.header.menuOpen, close: t.header.menuClose, nav: t.header.mobileNavLabel }} badge={badge} hint={hint} />
         </div>
       </Container>
+      <HeaderScrollState />
     </header>
   );
 }

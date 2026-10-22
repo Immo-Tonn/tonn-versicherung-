@@ -46,6 +46,8 @@ export default function Hero() {
             Online-Termin vereinbaren
             <Icon name="arrow" size={18} />
           </Link>
+          {/* Nur Telefon: freier Platz unter dem Hero-Button für die feste Schaltfläche "Anrufen" (CallFab); hält die Hero-Höhe unverändert */}
+          <span className={styles.callSlot} aria-hidden="true" />
         </div>
       </Container>
 

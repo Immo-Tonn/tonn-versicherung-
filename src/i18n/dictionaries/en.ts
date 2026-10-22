@@ -30,6 +30,8 @@ export const en: Dictionary = {
   },
   header: {
     cta: "Get in touch",
+    call: "Call",
+    callAria: "Call: Andreas Tonn",
     navLabel: "Main navigation",
     mobileNavLabel: "Mobile navigation",
     menuOpen: "Open menu",

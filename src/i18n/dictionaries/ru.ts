@@ -30,6 +30,8 @@ export const ru: Dictionary = {
   },
   header: {
     cta: "Связаться с нами",
+    call: "Позвонить",
+    callAria: "Позвонить: Андреас Тонн",
     navLabel: "Основная навигация",
     mobileNavLabel: "Мобильная навигация",
     menuOpen: "Открыть меню",

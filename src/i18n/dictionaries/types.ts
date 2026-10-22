@@ -17,7 +17,7 @@ export type Dictionary = {
     languageList: string;
     languageSoon: string;
   };
-  header: { cta: string; navLabel: string; mobileNavLabel: string; menuOpen: string; menuClose: string };
+  header: { cta: string; call: string; callAria: string; navLabel: string; mobileNavLabel: string; menuOpen: string; menuClose: string };
   footer: {
     taglineLine1: string;
     taglineLine2: string;
