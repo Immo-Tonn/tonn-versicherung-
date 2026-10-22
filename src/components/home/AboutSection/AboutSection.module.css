@@ -28,10 +28,10 @@
   color: var(--text-muted);
 }
 
-/* Zeile "Seit 1991 …" direkt unter dem Absatz: gleiche Schrift wie .text, nur kleinerer Abstand zum Absatz davor */
+/* Zeile "Seit 1991 …" zwischen Überschrift und Beschreibung: gleiche Schrift wie .text, kleiner Abstand zum folgenden Absatz */
 .experience {
   max-width: 480px;
-  margin: -16px 0 32px;
+  margin: 0 0 12px;
   font-size: 15.5px;
   line-height: 1.65;
   color: var(--text-muted);

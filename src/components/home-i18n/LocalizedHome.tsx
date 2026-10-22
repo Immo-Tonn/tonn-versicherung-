@@ -206,8 +206,8 @@ export default async function LocalizedHome({ locale }: { locale: L }) {
                 <span key={l}>{l}</span>
               ))}
             </h2>
-            <p className={aboutStyles.text}>{t.about.text}</p>
             <p className={aboutStyles.experience}>{t.about.experience}</p>
+            <p className={aboutStyles.text}>{t.about.text}</p>
             <Button href={lk(about.cta.href).href}>
               {t.about.cta}
               {tagFor(about.cta.href)}

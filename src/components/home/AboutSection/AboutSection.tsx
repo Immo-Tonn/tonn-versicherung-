@@ -19,8 +19,8 @@ export default function AboutSection() {
               <span key={l}>{l}</span>
             ))}
           </h2>
-          <p className={styles.text}>{about.text}</p>
           <p className={styles.experience}>{about.experience}</p>
+          <p className={styles.text}>{about.text}</p>
           <Button href={about.cta.href}>{about.cta.label}</Button>
         </div>
 
