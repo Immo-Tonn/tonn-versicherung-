@@ -33,6 +33,11 @@
   color: var(--white);
 }
 
+/* Überschrift im blauen Ablauf-Block: die globale .h2-Farbe (dunkelblau) überschrieb .onDark und machte sie auf Blau unsichtbar */
+.processHead .onDark {
+  color: var(--white);
+}
+
 .dot {
   display: inline-block;
   width: 0.11em;
@@ -241,7 +246,7 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0 var(--tg-gap);
-  align-items: start;
+  align-items: stretch; /* Karten einer Zeile gleich hoch, damit "Mehr erfahren" auf einer Linie sitzt (siehe .target .more) */
   margin: 0;
   padding: 0;
   list-style: none;
@@ -249,6 +254,7 @@
 
 .targetGrid li {
   position: relative;
+  display: flex;
 }
 
 /* feine Trennlinie mittig im Spaltenabstand */
@@ -261,8 +267,23 @@
   border-left: 1px solid var(--gray-100);
 }
 
+/* Spalte: Foto, Titel, Text oben, Link per margin-top:auto am unteren Rand der (gleich hohen) Karte. Mobil (eine Spalte) bleibt es die natürliche Reihenfolge. */
 .target {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.target .more {
+  align-self: flex-start;
+  margin-top: auto;
+  transition: color var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .target .more:hover {
+    color: var(--red-dark);
+  }
 }
 
 .target h3 {
@@ -370,11 +391,14 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 24px;
-  margin-bottom: clamp(24px, 2.6vw, 36px);
+  margin-bottom: calc(clamp(24px, 2.6vw, 36px) + 22px); /* +22 px vor den Schritten 01-04 */
 }
 
 .processHead .h2 {
   margin-bottom: 0;
+  /* Abstand Label → Überschrift verdoppelt (vorher 31 px bei 1440 px, 27-34 px je Breite). Sichtbarer Abstand = Label-Außenabstand 22 px + Padding − Versatz der
+     Glyphenoberkante (~0,155 em, Zeilenhöhe 1,1); Padding statt Margin, da Margins verschmelzen würden. */
+  padding-top: calc(54px - 0.155em);
 }
 
 .steps {
@@ -437,6 +461,41 @@
   font-size: 13.5px;
   line-height: 1.45;
   color: rgba(255, 255, 255, 0.72);
+}
+
+/* Hover der Schritte 01-04 (nur Maus): der ganze Schritt reagiert gemeinsam, Nummer, Icon und Titel wechseln weich auf das helle Himmelblau der Startseite
+   (#8fb4dc, Hero), die Erläuterung auf ein weicheres Hellblau (#b8cbe0, Palette der Danke-Seite). Nur Farbe, 200 ms; keine Bewegung, Größe oder Fläche. */
+.steps {
+  --step-hover: #8fb4dc;
+  --step-hover-soft: #b8cbe0;
+}
+
+.num,
+.stepIcon,
+.steps h3,
+.steps p {
+  transition: color 200ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .steps li:hover .num,
+  .steps li:hover .stepIcon,
+  .steps li:hover h3 {
+    color: var(--step-hover);
+  }
+
+  .steps li:hover p {
+    color: var(--step-hover-soft);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .num,
+  .stepIcon,
+  .steps h3,
+  .steps p {
+    transition: none;
+  }
 }
 
 /* ===== Risikovoranfrage ===== */
@@ -981,6 +1040,11 @@
   .processHead {
     flex-direction: column;
     align-items: stretch;
+    margin-bottom: calc(clamp(24px, 2.6vw, 36px) + 14px); /* mobil kleinere Zusatzabstände */
+  }
+
+  .processHead .h2 {
+    padding-top: calc(42px - 0.15em); /* mobil ebenfalls verdoppelt (vorher 27-28 px) */
   }
 
   .steps {

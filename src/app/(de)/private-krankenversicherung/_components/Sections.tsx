@@ -119,7 +119,6 @@ export function PkvProcess() {
             <SectionLabel tone="light">{process.eyebrow}</SectionLabel>
             <h2 id="pkv-process" className={`h2 ${styles.h2} ${styles.onDark}`}>
               {process.title}
-              <Dot />
             </h2>
           </div>
           <Button href={process.cta.href} variant="light">

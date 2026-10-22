@@ -144,8 +144,7 @@ export default function LocalizedPkvPage({ locale }: { locale: L }) {
               <SectionLabel tone="light">{t.process.eyebrow}</SectionLabel>
               <h2 id="pkv-process" className={`h2 ${styles.h2} ${styles.onDark}`}>
                 {t.process.title}
-                <Dot />
-              </h2>
+                </h2>
             </div>
             <Button href={lk(process.cta.href).href} variant="light">
               {t.process.cta}
