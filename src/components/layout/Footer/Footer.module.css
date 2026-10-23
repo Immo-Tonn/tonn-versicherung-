@@ -206,47 +206,104 @@
   }
 }
 
-/* ===== schmal (< 768px): Links + Symbole | Zeiten, Kontakt darunter ===== */
+/* ===== schmal (< 768px): oben Links | Kontakt, darunter Geschäftszeiten (ohne Sonntag), unten Symbole, Linie, Copyright ===== */
 @media (max-width: 767px) {
   .footer {
-    padding-block: 32px 18px;
+    padding-block: 28px 16px;
   }
 
   .main {
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 22px 16px;
-    padding-bottom: 22px;
+    grid-template-columns: minmax(min-content, 1.15fr) minmax(0, 1fr);
+    gap: 18px 16px;
+    padding-bottom: 14px;
+  }
+
+  /* Links und Symbole werden einzeln im Raster platziert */
+  .colLegal {
+    display: contents;
+  }
+
+  .colLegal > nav {
+    grid-column: 1;
+    grid-row: 1;
   }
 
   .colContact {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .col:not(.colContact) {
     grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .social {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    justify-content: center;
+    margin-left: 0;
   }
 
   .col h2 {
-    margin-bottom: 14px;
+    margin-bottom: 12px;
+    font-size: 12px;
   }
 
   .legal {
     margin-top: -6px;
   }
 
-  .colLegal {
-    gap: 14px;
+  .legal a,
+  .linkButton {
+    font-size: 14px;
+  }
+
+  .contact {
+    gap: 10px;
+  }
+
+  .contact li {
+    gap: 10px;
   }
 
   .hours {
     column-gap: 14px;
   }
 
-  .legal a,
-  .linkButton {
-    font-size: 14px;
+  /* Sonntag wird mobil nicht angezeigt (Desktop/Tablet unverändert) */
+  .hours div:last-child {
+    display: none;
+  }
+
+  .copy {
+    padding-top: 12px;
+    font-size: 13px;
   }
 }
 
-/* sehr schmal (≈ 320px): zwei Spalten passen nicht, die Gruppen stehen untereinander */
+/* sehr schmal (≈ 320px): Links → Kontakt → Geschäftszeiten → Symbole */
 @media (max-width: 359px) {
   .main {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .colLegal > nav,
+  .colContact,
+  .col:not(.colContact),
+  .social {
+    grid-column: 1;
+  }
+
+  .colContact {
+    grid-row: 2;
+  }
+
+  .col:not(.colContact) {
+    grid-row: 3;
+  }
+
+  .social {
+    grid-row: 4;
   }
 }
