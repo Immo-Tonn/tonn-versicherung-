@@ -21,6 +21,7 @@ const de: Dictionary = {
     germanOnlyBadge: "DE",
     germanOnlyHint: "Seite nur auf Deutsch",
     homeAria: "Andreas Tonn Versicherungen – Startseite",
+    backToTop: "Nach oben",
     homeName: "Startseite",
     languageButtonAria: "Sprache wählen, aktuell {current}",
     languageList: "Sprache",

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import ConsentBanner from "@/components/consent/ConsentBanner";
+import BackToTop from "@/components/ui/BackToTop/BackToTop";
 import CallFab from "@/components/ui/CallButton/CallFab";
 import { getDictionary } from "@/i18n/dictionaries";
 import GoogleAnalytics from "@/components/consent/GoogleAnalytics";
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <JsonLd />
         <ConsentBanner />
         <CallFab label={getDictionary("de").header.call} ariaLabel={getDictionary("de").header.callAria} />
+        <BackToTop label={getDictionary("de").common.backToTop} />
         <GoogleAnalytics />
         <ScrollReveal />
         <Usercentrics locale={"de"} />

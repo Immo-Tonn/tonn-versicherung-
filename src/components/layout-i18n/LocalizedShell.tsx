@@ -1,3 +1,4 @@
+import BackToTop from "@/components/ui/BackToTop/BackToTop";
 import CallFab from "@/components/ui/CallButton/CallFab";
 import GoogleAnalytics from "@/components/consent/GoogleAnalytics";
 import Usercentrics from "@/components/consent/Usercentrics";
@@ -22,6 +23,7 @@ export default function LocalizedShell({ locale, children }: { locale: Exclude<L
       <JsonLd locale={locale} />
       <LocalizedConsentBanner locale={locale} />
       <CallFab label={getDictionary(locale).header.call} ariaLabel={getDictionary(locale).header.callAria} />
+      <BackToTop label={getDictionary(locale).common.backToTop} />
       <GoogleAnalytics />
       <ScrollReveal />
       <Usercentrics locale={locale} />
