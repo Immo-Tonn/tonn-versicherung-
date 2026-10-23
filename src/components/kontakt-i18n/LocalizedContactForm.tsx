@@ -7,6 +7,7 @@ import styles from "@/app/(de)/kontakt/_components/Kontakt.module.css";
 import { REPLY_VIA, TOPICS, validate, type FieldErrors } from "@/app/(de)/kontakt/_lib/schema";
 import { trackEvent } from "@/components/consent/track";
 import DeTag from "@/components/layout-i18n/DeTag";
+import CallText from "./CallText";
 import Icon from "@/components/ui/Icon/Icon";
 import type { Locale } from "@/i18n/config";
 import { kontaktContent } from "@/i18n/content";
@@ -245,7 +246,7 @@ export default function LocalizedContactForm({ locale }: { locale: L }) {
         </p>
         {serverError && (
           <p className={styles.formErr} role="alert">
-            {serverError}
+            <CallText text={serverError} linkClassName={styles.callLink} />
           </p>
         )}
         <div className={styles.privacy}>
@@ -281,6 +282,7 @@ export default function LocalizedContactForm({ locale }: { locale: L }) {
           </button>
           <p className={styles.req}>{f.required}</p>
         </div>
+        <p className={styles.hint}>{f.responseTime}</p>
       </div>
     </form>
   );
