@@ -21,7 +21,8 @@
 }
 
 .card {
-  display: block;
+  display: flex; /* Spalte: Foto oben, Textbereich füllt den Rest – so sitzen die Pfeile aller Karten einer Zeile auf einer Linie */
+  flex-direction: column;
   height: 100%;
   background: var(--white);
   border: 1px solid var(--gray-100);
@@ -30,6 +31,7 @@
 }
 
 .photo {
+  flex: none;
   background: var(--gray-100);
 }
 
@@ -43,6 +45,7 @@
 
 .body {
   position: relative;
+  flex: 1 1 auto;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -50,13 +53,59 @@
   padding: 26px 22px 22px;
 }
 
+/* Textblock bleibt oben (Position unverändert); nur der Pfeil sitzt am unteren Rand des (gleich hohen) Textbereichs */
+.body > div {
+  align-self: flex-start;
+}
+
 .accent {
   position: absolute;
-  top: 0;
+  top: 12px; /* Abstand zwischen Foto und roter Linie */
   left: 22px;
   width: 22px;
   height: var(--accent-line-thickness);
   background: var(--red);
+}
+
+/* Hover/Fokus: Titel, Erläuterung und Pfeil wechseln gemeinsam weich auf ein Blau im Ton der Schritte 01-04 im PKV-Block, hier dunkler, damit der Text
+   auf dem weißen Kartengrund lesbar bleibt (Kontrast 6,6 : 1 bzw. 4,9 : 1; die hellen Werte des PKV-Blocks haben auf Weiß nur 2,2 : 1 bzw. 1,7 : 1).
+   Nur Maus; Fokus mit bestehendem Fokusring. */
+.card {
+  --sit-hover: #2e5f94; /* Titel und Pfeil */
+  --sit-hover-soft: #3873b3; /* Erläuterung */
+}
+
+.cardTitle,
+.body p,
+.arrow {
+  transition: color 200ms ease, transform var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .cardTitle,
+  .card:hover .arrow {
+    color: var(--sit-hover);
+  }
+
+  .card:hover .body p {
+    color: var(--sit-hover-soft);
+  }
+}
+
+.card:focus-visible .cardTitle,
+.card:focus-visible .arrow {
+  color: var(--sit-hover);
+}
+
+.card:focus-visible .body p {
+  color: var(--sit-hover-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cardTitle,
+  .body p {
+    transition: none;
+  }
 }
 
 .cardTitle {
@@ -78,7 +127,7 @@
 .arrow {
   flex: none;
   color: var(--navy-900);
-  transition: transform var(--ease);
+  transition: transform var(--ease), color 200ms ease;
 }
 
 .card:hover .arrow {
@@ -125,5 +174,11 @@
     grid-template-columns: 1fr;
     gap: 18px;
     margin-top: 36px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arrow {
+    transition: none;
   }
 }
