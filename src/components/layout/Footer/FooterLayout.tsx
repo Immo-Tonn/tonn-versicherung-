@@ -29,7 +29,12 @@ export default function FooterLayout({ contactTitle, hours, social, legalLabel, 
     ) : (
       <Link href={l.href}>
         {l.label}
-        {l.german && tag}
+        {l.german && (
+          <>
+            <span className={styles.brk} />
+            {tag}
+          </>
+        )}
       </Link>
     );
   return (
