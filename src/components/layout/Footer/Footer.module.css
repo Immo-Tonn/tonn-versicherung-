@@ -2,7 +2,7 @@
  * Footer (DE/EN/RU, gemeinsame Struktur in FooterLayout.tsx)
  *  ≥ 768px     : drei Spalten (rechtliche Links + Symbole · Geschäftszeiten · Kontakt)
  *  < 768px     : zwei Spalten (Links + Symbole | Geschäftszeiten), Kontakt darunter über die volle Breite;
- *                wenn zwei Spalten nicht passen (≈ 320px), stehen die Gruppen untereinander
+ *                bis 379px passen zwei Spalten nicht, dort stehen die Gruppen untereinander
  *  darunter    : dünne Linie und zentriertes Copyright
  */
 .footer {
@@ -297,8 +297,8 @@
   }
 }
 
-/* sehr schmal (≈ 320px): Links → Kontakt → Geschäftszeiten → Symbole */
-@media (max-width: 359px) {
+/* schmal (≤ 379px): zwei Spalten werden zu eng (RU ab ≈ 373px, sonst ≈ 363px), die Gruppen stehen untereinander: Links → Kontakt → Geschäftszeiten → Symbole */
+@media (max-width: 379px) {
   .main {
     grid-template-columns: minmax(0, 1fr);
   }
