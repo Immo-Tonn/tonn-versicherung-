@@ -30,9 +30,10 @@ export type Dictionary = {
     legalTitle: string;
     contactTitle: string;
     hoursTitle: string;
-    hoursWeekdays: string;
-    hoursSaturday: string;
-    hoursSunday: string;
+    /** Zeilen der Geschäftszeiten als [Tage, Zeit] */
+    hoursWeekdays: [string, string];
+    hoursSaturday: [string, string];
+    hoursSunday: [string, string];
     privateHealth: string;
     disability: string;
     insurances: string;
