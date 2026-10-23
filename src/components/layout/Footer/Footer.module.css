@@ -280,6 +280,11 @@
     padding-top: 12px;
     font-size: 13px;
   }
+
+  /* Platz unten: 16px unter dem Copyright + feste Anruf-Schaltfläche (52px + 10px Abstand) + Safe-Area; überschreibt den größeren Wert aus CallFab */
+  :global(body) > footer.footer {
+    padding-bottom: calc(16px + 52px + 10px + env(safe-area-inset-bottom));
+  }
 }
 
 /* sehr schmal (≈ 320px): Links → Kontakt → Geschäftszeiten → Symbole */
