@@ -34,6 +34,7 @@ export default function LocalizedFooter({ locale }: { locale: Exclude<Locale, "d
         { title: f.companyTitle, links: [item(f.about, "/ueber-uns"), item(f.knowledge, "/wissen"), item(f.contact, "/kontakt")] },
       ]}
       contactTitle={f.contactTitle}
+      hours={{ title: f.hoursTitle, lines: [f.hoursWeekdays, f.hoursSaturday, f.hoursSunday] }}
       social={{ label: f.socialLabel, linkedin: f.linkedin, google: f.googleProfile, email: f.email }}
       legalLabel={f.legalTitle}
       legal={[item(f.imprint, "/impressum"), item(f.privacy, "/datenschutz"), { label: f.cookieSettings, href: "#cookie-einstellungen", cookie: true }]}

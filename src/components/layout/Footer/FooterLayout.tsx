@@ -12,6 +12,7 @@ type Props = {
   cta: { label: string; href: string; german?: boolean };
   columns: { title: string; links: FooterLinkItem[] }[];
   contactTitle: string;
+  hours: { title: string; lines: string[] };
   social: { label: string; linkedin: string; google: string; email: string };
   legalLabel: string;
   legal: FooterLinkItem[];
@@ -23,7 +24,7 @@ type Props = {
  * Gemeinsame, rein CSS-gesteuerte Footer-Struktur für DE/EN/RU (Desktop, Tablet, Mobil):
  * obere Zeile (Claim + Kontaktlink) · Navigation und Kontakt · untere Zeile (Symbole, rechtliche Links, Copyright).
  */
-export default function FooterLayout({ claim, cta, columns, contactTitle, social, legalLabel, legal, tag }: Props) {
+export default function FooterLayout({ claim, cta, columns, contactTitle, hours, social, legalLabel, legal, tag }: Props) {
   const { contact, profiles } = siteConfig;
   const link = (l: FooterLinkItem) =>
     l.cookie || l.href === "#cookie-einstellungen" ? (
@@ -80,6 +81,15 @@ export default function FooterLayout({ claim, cta, columns, contactTitle, social
                 <a href={contact.emailHref} className={styles.email}>
                   {contact.email}
                 </a>
+              </li>
+              <li className={styles.hoursItem}>
+                <Icon name="clock" size={18} />
+                <div className={styles.hours}>
+                  <span className={styles.hoursTitle}>{hours.title}</span>
+                  {hours.lines.map((line) => (
+                    <span key={line}>{line}</span>
+                  ))}
+                </div>
               </li>
             </ul>
           </div>

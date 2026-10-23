@@ -29,6 +29,10 @@ export type Dictionary = {
     companyTitle: string;
     legalTitle: string;
     contactTitle: string;
+    hoursTitle: string;
+    hoursWeekdays: string;
+    hoursSaturday: string;
+    hoursSunday: string;
     privateHealth: string;
     disability: string;
     insurances: string;

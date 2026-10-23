@@ -134,6 +134,25 @@
   flex-shrink: 0;
 }
 
+/* Geschäftszeiten: Symbol oben bündig, Titel und drei Zeilen untereinander */
+.contact .hoursItem {
+  align-items: flex-start;
+}
+
+.hoursItem svg {
+  margin-top: 2px;
+}
+
+.hours {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+}
+
+.hoursTitle {
+  color: var(--white);
+}
+
 .addressItem svg {
   margin-top: 2px;
 }
@@ -254,6 +273,12 @@
 
   .contact li:nth-child(3) {
     grid-column: 2;
+  }
+
+  /* Geschäftszeiten unter der Anschrift, linke Spalte */
+  .contact li:nth-child(4) {
+    grid-column: 1;
+    grid-row: 3;
   }
 }
 
