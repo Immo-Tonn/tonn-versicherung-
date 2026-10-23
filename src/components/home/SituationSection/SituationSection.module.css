@@ -67,7 +67,13 @@
   background: var(--red);
 }
 
-/* Hover/Fokus: Titel, Erläuterung und Pfeil wechseln gemeinsam weich auf den roten Akzent der Textlinks (nur Maus; Fokus mit bestehendem Fokusring) */
+/* Hover/Fokus: Titel, Erläuterung und Pfeil wechseln gemeinsam weich auf das Hellblau der Schritte 01-04 im PKV-Block „So läuft die Beratung ab“
+   (dieselben Werte wie --step-hover / --step-hover-soft in private-krankenversicherung/_components/Pkv.module.css). Nur Maus; Fokus mit bestehendem Fokusring. */
+.card {
+  --sit-hover: #8fb4dc; /* Titel und Pfeil */
+  --sit-hover-soft: #b8cbe0; /* Erläuterung */
+}
+
 .cardTitle,
 .body p,
 .arrow {
@@ -76,16 +82,22 @@
 
 @media (hover: hover) and (pointer: fine) {
   .card:hover .cardTitle,
-  .card:hover .body p,
   .card:hover .arrow {
-    color: var(--red-dark);
+    color: var(--sit-hover);
+  }
+
+  .card:hover .body p {
+    color: var(--sit-hover-soft);
   }
 }
 
 .card:focus-visible .cardTitle,
-.card:focus-visible .body p,
 .card:focus-visible .arrow {
-  color: var(--red-dark);
+  color: var(--sit-hover);
+}
+
+.card:focus-visible .body p {
+  color: var(--sit-hover-soft);
 }
 
 @media (prefers-reduced-motion: reduce) {
