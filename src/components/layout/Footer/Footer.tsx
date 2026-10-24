@@ -9,8 +9,8 @@ export default function Footer() {
       hours={{
         title: "Geschäftszeiten",
         rows: [
-          ["Mo–Fr", "09:00–20:00"],
-          ["Sa", "09:00–14:00"],
+          ["Mo–Fr", "08:00–20:00"],
+          ["Sa", "08:00–14:00"],
           ["So", "geschlossen"],
         ],
       }}

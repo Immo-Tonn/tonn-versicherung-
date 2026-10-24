@@ -50,7 +50,10 @@ export function KtCards() {
             </span>
             <span className={styles.cardLine} aria-hidden="true" />
             <h2>Telefon</h2>
-            <span />
+            <a href={siteConfig.contact.phoneSecondaryHref} className={`${styles.cardMail} ${styles.cardPhone}`}>
+              <Icon name="phone" size={18} strokeWidth={1.4} />
+              {siteConfig.contact.phoneSecondary}
+            </a>
             <div className={styles.cardAction}>
               <a href={siteConfig.contact.phoneHref} className={styles.cardBtn}>
                 {siteConfig.contact.phone}

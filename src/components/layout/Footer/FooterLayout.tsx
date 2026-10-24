@@ -96,6 +96,10 @@ export default function FooterLayout({ contactTitle, hours, social, legalLabel, 
                 <a href={contact.phoneHref}>{contact.phone}</a>
               </li>
               <li>
+                <Icon name="phone" size={18} />
+                <a href={contact.phoneSecondaryHref}>{contact.phoneSecondary}</a>
+              </li>
+              <li>
                 <Icon name="mail" size={18} />
                 <a href={contact.emailHref} className={styles.email}>
                   {contact.email}

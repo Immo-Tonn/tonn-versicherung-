@@ -183,6 +183,13 @@
   overflow-wrap: anywhere;
 }
 
+/* Büro-Nummer im Telefon-Kasten: Hörer-Symbol vor der Nummer */
+.cardPhone {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
 /* Textlinks: Linie nur so breit wie der Inhalt (inkl. Pfeil) */
 .cardLink {
   display: inline-flex;
