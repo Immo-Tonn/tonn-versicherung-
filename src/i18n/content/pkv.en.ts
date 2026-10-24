@@ -12,10 +12,10 @@ export const pkvEn: PkvContent = {
     serviceType: "Insurance advice and insurance intermediation: private health insurance",
   },
   hero: {
-    eyebrow: "Private health insurance",
+    eyebrow: "PKV advice in Münster and throughout Germany",
     title: ["Private", "health insurance"],
     soft: "That fits your life",
-    subtitle: ["Personal advice. Comparing insurance offers.", "Thinking long term."],
+    subtitle: ["For employees, self-employed people and civil servants.", "Together, we’ll explore whether private health insurance suits your circumstances."],
     primary: "Free initial consultation",
     secondary: "Request an appointment",
     imageAlt: "Andreas Tonn in a consultation",

@@ -1,10 +1,10 @@
 /** Inhalte der Seite „Private Krankenversicherung“ (seitenspezifisch). */
 
 export const hero = {
-  eyebrow: "Private Krankenversicherung",
+  eyebrow: "PKV-Beratung in Münster und deutschlandweit",
   title: ["Private", "Krankenversicherung"], // roter Punkt (Hero) ersetzt den Satzpunkt
   soft: "Die zu Ihrem Leben passt",
-  subtitle: ["Persönlich beraten. Versicherungsangebote vergleichen.", "Langfristig gedacht."],
+  subtitle: ["Für Angestellte, Selbstständige und Beamte.", "Gemeinsam klären wir, ob die private Krankenversicherung zu Ihrer Situation passt."],
   primary: { label: "Kostenloses Erstgespräch", href: "/kontakt" },
   secondary: { label: "Termin anfragen", href: "/kontakt" },
   image: "/images/pkv/andreas-hero.webp",
