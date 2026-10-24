@@ -1,0 +1,86 @@
+/* "Nach oben": Klickfläche 44 × 44 px, sichtbar ein Kreis von 36 px (halbtransparentes Marineblau) unten rechts mit Safe-Area; nur ab 768 px */
+.btn {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: calc(20px + env(safe-area-inset-bottom));
+  z-index: 39; /* unter der Anrufen-Schaltfläche (40), Kopfzeile (50), Menü (48/49) und Cookie-Banner (60) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  color: var(--white);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: opacity 160ms ease, transform 160ms ease, visibility 0s linear 160ms;
+}
+
+.btn[data-visible] {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+  transition: opacity 160ms ease, transform 160ms ease, visibility 0s;
+}
+
+/* Sichtbarer Kreis: die Transparenz gilt nur für den Hintergrund, Pfeil und Rahmen bleiben deckend bzw. hell */
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  background: color-mix(in srgb, var(--navy-900) 50%, transparent);
+  border: 1px solid rgba(255, 255, 255, 0.45); /* trägt auch auf dunklem Grund */
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(6, 38, 63, 0.28);
+  transform: translate(-50%, -50%);
+  transition: background-color 200ms ease;
+}
+
+.btn:hover::before {
+  background: color-mix(in srgb, var(--navy-900) 80%, transparent);
+}
+
+/* Sichtbarer Fokus auf hellem UND dunklem Grund: weißer Ring innen, blauer außen (wie bei der Anrufen-Schaltfläche) */
+.btn:focus-visible {
+  outline: none;
+}
+
+.btn:focus-visible::before {
+  outline: 2px solid var(--white);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px var(--blue), 0 4px 16px rgba(6, 38, 63, 0.28);
+}
+
+/* Pfeil zeigt nach oben, liegt über dem Kreis */
+.icon {
+  position: relative;
+  transform: rotate(-90deg);
+}
+
+/* Telefon (≤ 767 px): Schaltfläche nicht anzeigen */
+@media (max-width: 767px) {
+  .btn {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .btn[data-visible] {
+    transform: none;
+    transition: none;
+  }
+
+  .btn::before {
+    transition: none;
+  }
+}

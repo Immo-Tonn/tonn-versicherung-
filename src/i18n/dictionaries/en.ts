@@ -23,6 +23,7 @@ export const en: Dictionary = {
     germanOnlyBadge: "DE",
     germanOnlyHint: "Page available in German only",
     homeAria: "Andreas Tonn Versicherungen – Home page",
+    backToTop: "Back to top",
     homeName: "Home",
     languageButtonAria: "Select language, current: {current}",
     languageList: "Language",

@@ -10,6 +10,8 @@ export type Dictionary = {
     germanOnlyBadge: string;
     germanOnlyHint: string;
     homeAria: string;
+    /** Beschriftung der Schaltfläche „nach oben“ (nur für Screenreader/Tooltip) */
+    backToTop: string;
     /** Name der Startseite (Brotkrumen, JSON-LD) */
     homeName: string;
     /** Platzhalter {current} */
