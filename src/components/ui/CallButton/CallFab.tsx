@@ -39,11 +39,21 @@ function heroCta(): HTMLElement | null {
   return null;
 }
 
+/** Unterkante der Hero-Aktionen: Hero-Button und weitere Kontakt-Links im selben Block (z. B. "Termin anfragen" samt Unterstreichung). */
+function heroCtaBottom(cta: HTMLElement): number {
+  let bottom = cta.getBoundingClientRect().bottom;
+  for (const a of cta.parentElement?.querySelectorAll<HTMLAnchorElement>("a[href]") ?? []) {
+    if (!/\/kontakt\/?(#.*)?$/.test(a.getAttribute("href") ?? "")) continue;
+    bottom = Math.max(bottom, a.getBoundingClientRect().bottom);
+  }
+  return bottom;
+}
+
 /**
  * Nur Telefon (≤ 767 px, siehe CSS): EINE feste Schaltfläche "Anrufen" am unteren Rand, direkt unter dem Hero-Button.
  * Ausgeblendet bei geöffnetem Menü (CSS), sichtbarer Cookie-Einwilligung und solange ein Formularfeld den Fokus hat (Bildschirmtastatur).
- * Außerdem, solange der Hero-Button in der unteren Zone des Bildschirms liegt (dort würde sie ihn überdecken): sie erscheint, sobald der Hero-Button
- * über diese Zone hinausgescrollt ist, und verschwindet beim Zurückscrollen wieder. Mit 12 px Hysterese, damit sie an der Grenze nicht flackert.
+ * Außerdem, solange der Hero-Button (und ein zweiter Kontakt-Link im selben Block) in der unteren Zone des Bildschirms liegt (dort würde sie ihn überdecken): sie erscheint, sobald
+ * diese Links über die Zone hinausgescrollt sind, und verschwindet beim Zurückscrollen wieder. Mit 12 px Hysterese, damit sie an der Grenze nicht flackert.
  * Ohne JavaScript bleibt sie sichtbar. Wie der Header-Button ein normaler tel:-Link (Zählung click_phone über GoogleAnalytics.tsx).
  */
 export default function CallFab({ label, ariaLabel }: { label: string; ariaLabel: string }) {
@@ -62,7 +72,7 @@ export default function CallFab({ label, ariaLabel }: { label: string; ariaLabel
       const fab = ref.current;
       if (cta && fab) {
         const zoneTop = fab.getBoundingClientRect().top - 8; // Oberkante der Schaltfläche samt Abstand
-        const bottom = cta.getBoundingClientRect().bottom;
+        const bottom = heroCtaBottom(cta);
         overCta = overCta ? bottom > zoneTop - 12 : bottom > zoneTop;
       } else overCta = false;
       setHidden(typing || overCta || consentOpen());
