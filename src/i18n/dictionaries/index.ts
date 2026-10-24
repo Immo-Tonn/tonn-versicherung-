@@ -42,7 +42,6 @@ const de: Dictionary = {
     hoursTitle: "Geschäftszeiten",
     hoursWeekdays: ["Mo–Fr", "08:00–20:00"],
     hoursSaturday: ["Sa", "08:00–14:00"],
-    hoursSunday: ["So", "geschlossen"],
     privateHealth: "Private Krankenversicherung",
     disability: "Berufsunfähigkeitsversicherung",
     insurances: "Weitere Versicherungen",

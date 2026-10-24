@@ -52,7 +52,6 @@ export const ru: Dictionary = {
     hoursTitle: "Рабочее время",
     hoursWeekdays: ["Пн–пт", "08:00–20:00"],
     hoursSaturday: ["Сб", "08:00–14:00"],
-    hoursSunday: ["Вс", "выходной"],
     privateHealth: "Частное медицинское страхование",
     disability: "Страхование на случай потери трудоспособности",
     insurances: "Другие виды страхования",
