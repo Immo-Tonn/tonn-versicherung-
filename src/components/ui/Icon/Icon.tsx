@@ -1,6 +1,6 @@
 import type { IconName } from "@/data/home";
 
-const paths: Record<IconName | "arrow" | "play" | "globe" | "chevron" | "menu" | "close" | "linkedin" | "google" | "mail" | "pin" | "phone", React.ReactNode> = {
+const paths: Record<IconName | "arrow" | "play" | "globe" | "chevron" | "menu" | "close" | "linkedin" | "google" | "mail" | "pin" | "phone" | "mobile", React.ReactNode> = {
   people: (
     <>
       <circle cx="12" cy="8" r="3.2" />
@@ -87,6 +87,12 @@ const paths: Record<IconName | "arrow" | "play" | "globe" | "chevron" | "menu" |
     <>
       <path d="M12 21s6.500-5.800 6.500-11A6.500 6.500 0 0 0 5.500 10c0 5.200 6.500 11 6.500 11Z" />
       <circle cx="12" cy="10" r="2.300" />
+    </>
+  ),
+  mobile: (
+    <>
+      <rect x="7" y="2.500" width="10" height="19" rx="2" />
+      <path d="M11 18.500h2" />
     </>
   ),
   phone: <path d="M5 4h4l1.600 4-2.100 1.400a11 11 0 0 0 6.100 6.100L16 13.400l4 1.600v4a1.500 1.500 0 0 1-1.600 1.500C10.700 20 4 13.300 3.500 5.600A1.500 1.500 0 0 1 5 4Z" />,
