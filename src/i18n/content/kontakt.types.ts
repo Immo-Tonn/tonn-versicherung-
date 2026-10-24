@@ -37,7 +37,10 @@ export type KontaktContent = {
     submit: string;
     sending: string;
     required: string;
+    /** Der Teil in [eckigen Klammern] wird zum Telefonlink (CallText) */
     serverError: string;
+    /** Hinweis zur Antwortzeit unter der Schaltfläche */
+    responseTime: string;
   };
   errors: {
     topic: string;
@@ -59,6 +62,8 @@ export type DankeContent = {
   title: [string, string];
   lead: string;
   note: string;
+  /** Sekundärer Telefonlink; der Teil in [eckigen Klammern] ist der Link */
+  callPrompt: string;
   home: string;
   /** Anzeige, wenn die Seite ohne bestätigte Übermittlung aufgerufen wird */
   unconfirmed: { eyebrow: string; title: string; lead: string; toForm: string };

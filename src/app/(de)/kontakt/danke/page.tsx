@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import CallText from "@/components/kontakt-i18n/CallText";
 import Icon from "@/components/ui/Icon/Icon";
 import styles from "./Danke.module.css";
 
@@ -54,10 +55,13 @@ export default function Page() {
         <div className={styles.text}>
           <p className={styles.eyebrow}>Nachricht gesendet</p>
           <h1 id="danke-title" className={styles.title}>
-            <span>Vielen Dank.</span> <span>Ihre Anfrage ist auf dem Weg.</span>
+            <span>Vielen Dank!</span> <span>Ihre Anfrage wurde erfolgreich übermittelt.</span>
           </h1>
-          <p className={styles.lead}>Wir melden uns persönlich bei Ihnen über den gewünschten Kontaktweg.</p>
+          <p className={styles.lead}>Andreas Tonn meldet sich während der Geschäftszeiten in der Regel innerhalb von 15 Minuten über den von Ihnen gewählten Kontaktweg. Während eines Beratungstermins kann es etwas länger dauern.</p>
           <p className={styles.note}>Sie müssen vorerst nichts weiter tun.</p>
+          <p className={styles.note}>
+            <CallText text="Sie möchten direkt mit uns sprechen? [Jetzt anrufen]." linkClassName={styles.callLink} />
+          </p>
           <Link href="/" className={styles.link}>
             Zur Startseite
             <Icon name="arrow" size={20} strokeWidth={1.6} />

@@ -166,6 +166,20 @@
   color: var(--text-muted);
 }
 
+/* Telefonlink im Satz "Sie möchten direkt mit uns sprechen? Jetzt anrufen." */
+.callLink {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--red);
+  text-decoration-thickness: var(--accent-line-thickness);
+  text-underline-offset: 3px;
+}
+
+.callLink:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
 .link {
   display: inline-flex;
   align-items: center;
@@ -189,6 +203,13 @@
 @media (hover: hover) and (pointer: fine) {
   .link:hover svg {
     transform: translateX(4px);
+  }
+}
+
+/* Schmales Tablet: die längere Titelzeile ("Ihre Anfrage wurde erfolgreich übermittelt.") darf umbrechen, statt am Rand abgeschnitten zu werden */
+@media (min-width: 768px) and (max-width: 899px) {
+  .title span {
+    white-space: normal;
   }
 }
 

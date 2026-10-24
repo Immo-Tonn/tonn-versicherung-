@@ -4,11 +4,14 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useId, useRef, useState, type FormEvent } from "react";
 import { trackEvent } from "@/components/consent/track";
+import CallText from "@/components/kontakt-i18n/CallText";
 import Icon from "@/components/ui/Icon/Icon";
 import { REPLY_VIA, TOPICS, validate, type FieldErrors } from "../_lib/schema";
 import styles from "./Kontakt.module.css";
 
-const GENERIC_ERROR = "Ihre Nachricht konnte leider nicht gesendet werden. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.";
+// Der Teil in [Klammern] wird zum Telefonlink (CallText)
+const GENERIC_ERROR = "Ihre Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder [rufen Sie uns direkt an].";
+const RESPONSE_TIME = "Während unserer Geschäftszeiten melden wir uns in der Regel innerhalb von 15 Minuten über Ihren gewählten Kontaktweg; während eines Beratungstermins kann es etwas länger dauern.";
 
 export default function ContactForm() {
   const router = useRouter();
@@ -187,7 +190,7 @@ export default function ContactForm() {
         </p>
         {serverError && (
           <p className={styles.formErr} role="alert">
-            {serverError}
+            <CallText text={serverError} linkClassName={styles.callLink} />
           </p>
         )}
         <div className={styles.privacy}>
@@ -222,6 +225,7 @@ export default function ContactForm() {
           </button>
           <p className={styles.req}>* Pflichtfelder</p>
         </div>
+        <p className={styles.hint}>{RESPONSE_TIME}</p>
       </div>
     </form>
   );

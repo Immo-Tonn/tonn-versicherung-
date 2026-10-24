@@ -42,7 +42,8 @@ export const kontaktEn: KontaktContent = {
     submit: "Send message",
     sending: "Sending …",
     required: "* Required fields",
-    serverError: "Unfortunately your message could not be sent. Please try again or contact us directly.",
+    serverError: "Your message could not be sent. Please try again or [call us directly].",
+    responseTime: "During business hours, we usually respond within 15 minutes using your preferred contact method; it may take a little longer if we are in a consultation.",
   },
   errors: {
     topic: "Please choose a valid topic.",
@@ -60,9 +61,10 @@ export const kontaktEn: KontaktContent = {
 export const dankeEn: DankeContent = {
   meta: { title: "Thank you | TONN" },
   eyebrow: "Message sent",
-  title: ["Thank you!", "Your message has been sent successfully."],
-  lead: "We will get back to you personally via your preferred way of contact.",
+  title: ["Thank you!", "Your enquiry has been submitted successfully."],
+  lead: "Andreas Tonn will usually respond within 15 minutes during business hours using your preferred contact method. It may take a little longer if he is in a consultation.",
   note: "You do not need to do anything else for now.",
+  callPrompt: "Would you like to speak to us directly? [Call now].",
   home: "To the homepage",
   unconfirmed: {
     eyebrow: "Contact",

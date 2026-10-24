@@ -583,6 +583,13 @@
   background: #fbf1f0;
 }
 
+/* Telefonlink in der Fehlermeldung: Farbe der Meldung, unterstrichen */
+.callLink {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .submitRow {
   display: flex;
   flex-wrap: wrap;

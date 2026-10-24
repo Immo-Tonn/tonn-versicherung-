@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useSyncExternalStore } from "react";
 import styles from "@/app/(de)/kontakt/danke/Danke.module.css";
+import CallText from "./CallText";
 import DeTag from "@/components/layout-i18n/DeTag";
 import Icon from "@/components/ui/Icon/Icon";
 import type { Locale } from "@/i18n/config";
@@ -88,6 +89,9 @@ export default function LocalizedDankePage({ locale }: { locale: L }) {
               </h1>
               <p className={styles.lead}>{t.lead}</p>
               <p className={styles.note}>{t.note}</p>
+              <p className={styles.note}>
+                <CallText text={t.callPrompt} linkClassName={styles.callLink} />
+              </p>
             </>
           ) : (
             <>
