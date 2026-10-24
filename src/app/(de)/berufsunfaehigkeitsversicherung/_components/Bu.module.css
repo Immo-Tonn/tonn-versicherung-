@@ -186,6 +186,12 @@
   max-width: 560px;
 }
 
+/* Sehr langes Wort in der Hero-Zeile („Berufsunfähigkeitsversicherung“) darf bei 320 px umbrechen, statt über den Rand zu laufen; sonst keine Wirkung */
+.heroCopy :global(.eyebrow) {
+  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
 .heroTitle {
   margin: 0;
   font-family: var(--font-serif);
