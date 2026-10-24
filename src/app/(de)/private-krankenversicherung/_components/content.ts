@@ -6,13 +6,13 @@ export const hero = {
   soft: "Die zu Ihrem Leben passt",
   subtitle: ["Persönlich beraten. Versicherungsangebote vergleichen.", "Langfristig gedacht."],
   primary: { label: "Kostenloses Erstgespräch", href: "/kontakt" },
-  secondary: { label: "Online-Termin vereinbaren", href: "/kontakt" },
+  secondary: { label: "Termin anfragen", href: "/kontakt" },
   image: "/images/pkv/andreas-hero.webp",
   imageAlt: "Andreas Tonn im Beratungsgespräch",
 };
 
 export const trust = [
-  { icon: "shield" as const, title: "Persönliche Versicherungsberatung", text: "ohne Verpflichtung" },
+  { icon: "shield" as const, title: "Persönliche Beratung", text: "ohne Verpflichtung" },
   { icon: "document" as const, title: "Anonyme Risikovoranfrage", text: "bei mehreren Versicherern" },
   { icon: "user" as const, title: "Persönliche Betreuung", text: "in Münster und deutschlandweit" },
 ];
@@ -107,7 +107,7 @@ export const faq = {
     },
     {
       q: "Was passiert mit meinem Beitrag im Alter?",
-      a: "Beiträge in der PKV können sich im Laufe der Zeit verändern, zum Beispiel durch steigende Gesundheitskosten. In die Beitragsberechnung fließen Altersrückstellungen ein, die genau dafür aufgebaut werden. Wir besprechen mit Ihnen, worauf Sie bei der Tarifwahl achten sollten.",
+      a: "Beiträge in der PKV können sich im Laufe der Zeit verändern, zum Beispiel durch steigende Gesundheitskosten. In die Beitragsberechnung fließen Alterungsrückstellungen ein, die genau dafür aufgebaut werden. Wir besprechen mit Ihnen, worauf Sie bei der Tarifwahl achten sollten.",
     },
     {
       q: "Was ist eine anonyme Risikovoranfrage?",
@@ -115,7 +115,7 @@ export const faq = {
     },
   ],
 
-  more: { label: "Alle Fragen anzeigen", href: "/wissen" },
+  more: { label: "Weitere Fragen im Ratgeber", href: "/wissen" },
 };
 
 export const finalCta = {

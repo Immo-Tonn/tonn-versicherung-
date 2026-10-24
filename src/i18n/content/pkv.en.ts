@@ -17,13 +17,13 @@ export const pkvEn: PkvContent = {
     soft: "That fits your life",
     subtitle: ["Personal advice. Comparing insurance offers.", "Thinking long term."],
     primary: "Free initial consultation",
-    secondary: "Arrange an online appointment",
+    secondary: "Request an appointment",
     imageAlt: "Andreas Tonn in a consultation",
   },
   trust: {
     ariaLabel: "Your benefits",
     items: [
-      { title: "Personal insurance advice", text: "without obligation" },
+      { title: "Personal advice", text: "without obligation" },
       { title: "Anonymous preliminary risk assessment", text: "with several insurers" },
       { title: "Personal support", text: "in Münster and across Germany" },
     ],
@@ -106,14 +106,14 @@ export const pkvEn: PkvContent = {
       },
       {
         q: "What happens to my contribution in old age?",
-        a: "Contributions in PKV can change over time, for example because of rising healthcare costs. The contribution calculation includes ageing reserves (Altersrückstellungen), which are built up for exactly this purpose. We will discuss with you what to look out for when choosing a tariff.",
+        a: "Contributions in PKV can change over time, for example because of rising healthcare costs. The contribution calculation includes ageing reserves (Alterungsrückstellungen), which are built up for exactly this purpose. We will discuss with you what to look out for when choosing a tariff.",
       },
       {
         q: "What is an anonymous preliminary risk assessment?",
         a: "In an anonymous preliminary risk assessment, your health information is submitted to several insurers without your name – before an application is made. This shows you how the insurers are likely to assess your risk.",
       },
     ],
-    more: "Show all questions",
+    more: "More questions in our guide",
   },
   finalCta: {
     eyebrow: "Get advice now",
