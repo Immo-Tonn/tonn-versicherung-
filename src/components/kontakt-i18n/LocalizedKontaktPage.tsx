@@ -52,7 +52,13 @@ export default function LocalizedKontaktPage({ locale }: { locale: L }) {
               </span>
               <span className={styles.cardLine} aria-hidden="true" />
               <h2>{t.cards.phone}</h2>
-              <span />
+              <div className={styles.phoneOffice}>
+                <span>{t.cards.office}</span>
+                <a href={contact.phoneSecondaryHref} className={styles.phoneOfficeLink}>
+                  {contact.phoneSecondary}
+                  <Icon name="arrow" size={16} strokeWidth={1.6} />
+                </a>
+              </div>
               <div className={styles.cardAction}>
                 <a href={contact.phoneHref} className={styles.cardBtn}>
                   {contact.phone}

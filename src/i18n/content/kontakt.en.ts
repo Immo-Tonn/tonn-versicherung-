@@ -12,6 +12,7 @@ export const kontaktEn: KontaktContent = {
   cardsAria: "Ways to get in touch",
   cards: {
     phone: "Phone",
+    office: "Office",
     email: "Email",
     emailAction: "Write an email",
     appointment: "Request an appointment",
