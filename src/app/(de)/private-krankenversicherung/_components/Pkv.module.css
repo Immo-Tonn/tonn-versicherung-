@@ -272,6 +272,9 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  /* Hover/Fokus wie bei den Karten der Startseite (SituationSection): Titel und Pfeil / Link dunkleres Blau, Erläuterung etwas heller */
+  --tg-hover: #2e5f94;
+  --tg-hover-soft: #3873b3;
 }
 
 .target .more {
@@ -308,19 +311,25 @@
   transition: color 200ms ease;
 }
 
-/* Hover (nur Maus) und Tastaturfokus: Titel, Text, Link und Pfeil wechseln gemeinsam auf Marineblau; die rote Linie bleibt rot */
+/* Hover (nur Maus) und Tastaturfokus: Titel, Text, Link und Pfeil wechseln gemeinsam die Farbe (Werte wie Startseite); die rote Linie bleibt rot */
 @media (hover: hover) and (pointer: fine) {
   .target:hover h3,
-  .target:hover p,
   .target:hover .more {
-    color: var(--navy-700);
+    color: var(--tg-hover);
+  }
+
+  .target:hover p {
+    color: var(--tg-hover-soft);
   }
 }
 
 .target:has(:focus-visible) h3,
-.target:has(:focus-visible) p,
 .target:has(:focus-visible) .more {
-  color: var(--navy-700);
+  color: var(--tg-hover);
+}
+
+.target:has(:focus-visible) p {
+  color: var(--tg-hover-soft);
 }
 
 @media (prefers-reduced-motion: reduce) {
