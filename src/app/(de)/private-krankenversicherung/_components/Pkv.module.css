@@ -1249,3 +1249,25 @@
     color: var(--red-dark);
   }
 }
+
+/* Sehr schmale Bildschirme (< 350 px): Die Seite wurde bis 350 px breit (horizontales Scrollen). Ursachen:
+   – Ablauf der Risikovoranfrage: 4 Schritte à 64 px + 3 Pfeile brauchen mindestens 306 px; zudem dehnte das längste Wort (RU „страховщиков“)
+     die Spalte. Jetzt: Spalte darf schrumpfen, Schritt 48 px, Beschriftung mittig zum Symbol.
+   – RU: lange Schaltflächen („Подробнее об оценке рисков“, „Подробнее об Андреасе Тонне“) brechen nicht um; hier dürfen sie zweizeilig sein.
+   Ab 350 px unverändert. */
+@media (max-width: 349px) {
+  .riskGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .flowItem {
+    width: 48px;
+    justify-content: center;
+  }
+
+  .riskGrid a,
+  .bleedCopy a {
+    white-space: normal;
+    text-align: center;
+  }
+}
