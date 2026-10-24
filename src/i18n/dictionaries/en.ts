@@ -52,7 +52,6 @@ export const en: Dictionary = {
     hoursTitle: "Business hours",
     hoursWeekdays: ["Mon–Fri", "08:00–20:00"],
     hoursSaturday: ["Sat", "08:00–14:00"],
-    hoursSunday: ["Sun", "closed"],
     privateHealth: "Private health insurance",
     disability: "Occupational disability insurance",
     insurances: "Other insurance",

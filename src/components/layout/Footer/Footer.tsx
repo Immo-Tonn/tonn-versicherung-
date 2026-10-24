@@ -11,7 +11,6 @@ export default function Footer() {
         rows: [
           ["Mo–Fr", "08:00–20:00"],
           ["Sa", "08:00–14:00"],
-          ["So", "geschlossen"],
         ],
       }}
       social={{ label: "Soziale Netzwerke und Kontakt", linkedin: "LinkedIn", google: "Google-Profil", email: "E-Mail" }}

@@ -35,7 +35,6 @@ export type Dictionary = {
     /** Zeilen der Geschäftszeiten als [Tage, Zeit] */
     hoursWeekdays: [string, string];
     hoursSaturday: [string, string];
-    hoursSunday: [string, string];
     privateHealth: string;
     disability: string;
     insurances: string;

@@ -19,7 +19,7 @@ export default function LocalizedFooter({ locale }: { locale: Exclude<Locale, "d
   return (
     <FooterLayout
       contactTitle={f.contactTitle}
-      hours={{ title: f.hoursTitle, rows: [f.hoursWeekdays, f.hoursSaturday, f.hoursSunday] }}
+      hours={{ title: f.hoursTitle, rows: [f.hoursWeekdays, f.hoursSaturday] }}
       social={{ label: f.socialLabel, linkedin: f.linkedin, google: f.googleProfile, email: f.email }}
       legalLabel={f.legalTitle}
       legal={[item(f.imprint, "/impressum"), item(f.privacy, "/datenschutz"), { label: f.cookieSettings, href: "#cookie-einstellungen", cookie: true }]}
