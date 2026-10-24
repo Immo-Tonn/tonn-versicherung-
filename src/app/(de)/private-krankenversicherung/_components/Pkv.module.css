@@ -272,6 +272,9 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  /* Hover/Fokus wie bei den Karten der Startseite (SituationSection): Titel und Pfeil / Link dunkleres Blau, Erläuterung etwas heller */
+  --tg-hover: #2e5f94;
+  --tg-hover-soft: #3873b3;
 }
 
 .target .more {
@@ -280,18 +283,23 @@
   transition: color var(--ease);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .target .more:hover {
-    color: var(--red-dark);
-  }
-}
-
+/* Rote Akzentlinie zwischen Foto und Titel (wie bei den Karten der Startseite: 12 px unter dem Foto, 12 px über dem Titel) */
 .target h3 {
-  margin: 18px 0 6px;
+  margin: 12px 0 6px;
   font-family: var(--font-sans);
   font-size: 16px;
   font-weight: 600;
   color: var(--navy-900);
+  transition: color 200ms ease;
+}
+
+.target h3::before {
+  content: "";
+  display: block;
+  width: 22px;
+  height: var(--accent-line-thickness);
+  margin-bottom: 12px;
+  background: var(--red);
 }
 
 .target p {
@@ -300,6 +308,35 @@
   font-size: 14px;
   line-height: 1.5;
   color: var(--text-muted);
+  transition: color 200ms ease;
+}
+
+/* Hover (nur Maus) und Tastaturfokus: Titel, Text, Link und Pfeil wechseln gemeinsam die Farbe (Werte wie Startseite); die rote Linie bleibt rot */
+@media (hover: hover) and (pointer: fine) {
+  .target:hover h3,
+  .target:hover .more {
+    color: var(--tg-hover);
+  }
+
+  .target:hover p {
+    color: var(--tg-hover-soft);
+  }
+}
+
+.target:has(:focus-visible) h3,
+.target:has(:focus-visible) .more {
+  color: var(--tg-hover);
+}
+
+.target:has(:focus-visible) p {
+  color: var(--tg-hover-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .target h3,
+  .target p {
+    transition: none;
+  }
 }
 
 .more {
@@ -357,16 +394,6 @@
   .more svg {
     transition: none;
   }
-}
-
-.more::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 20px;
-  height: var(--accent-line-thickness);
-  background: var(--red);
 }
 
 .more svg {
