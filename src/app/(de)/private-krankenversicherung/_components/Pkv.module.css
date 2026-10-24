@@ -1265,6 +1265,11 @@
     justify-content: center;
   }
 
+  /* Ablauf darf 10 px je Seite in den Seitenrand (22 px) ragen: mehr Platz zwischen den Beschriftungen, Schriftgröße unverändert */
+  .flow {
+    margin-inline: -10px;
+  }
+
   .riskGrid a,
   .bleedCopy a {
     white-space: normal;
