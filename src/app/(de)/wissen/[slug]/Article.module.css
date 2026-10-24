@@ -130,6 +130,9 @@
   font-size: clamp(25px, 2.6vw, 32px);
   line-height: 1.2;
   letter-spacing: -0.01em;
+  /* sehr lange Wörter (z. B. „Nachversicherungsgarantie“) dürfen umbrechen, statt über den Rand zu laufen; sonst keine Wirkung */
+  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 
 .h3 {

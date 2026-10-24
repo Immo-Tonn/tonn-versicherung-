@@ -391,6 +391,12 @@
   align-items: center;
 }
 
+/* lange Wörter in der Überschrift (RU „консультационной“) dürfen umbrechen, statt über den Rand zu laufen; sonst keine Wirkung */
+.expGrid .h2 {
+  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
 .expPhoto {
   width: 100%;
 }
