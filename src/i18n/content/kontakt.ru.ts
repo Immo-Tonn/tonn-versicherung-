@@ -12,6 +12,7 @@ export const kontaktRu: KontaktContent = {
   cardsAria: "Способы связи",
   cards: {
     phone: "Телефон",
+    office: "Бюро",
     email: "Электронная почта",
     emailAction: "Написать письмо",
     appointment: "Согласовать время",

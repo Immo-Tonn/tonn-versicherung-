@@ -5,6 +5,8 @@ export type KontaktContent = {
   cardsAria: string;
   cards: {
     phone: string;
+    /** Beschriftung der Büro-Nummer im Telefon-Kasten */
+    office: string;
     email: string;
     emailAction: string;
     appointment: string;
