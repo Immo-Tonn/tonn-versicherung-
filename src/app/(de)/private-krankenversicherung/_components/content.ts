@@ -6,7 +6,7 @@ export const hero = {
   soft: "Die zu Ihrem Leben passt",
   subtitle: ["Für Angestellte, Selbstständige und Beamte.", "Gemeinsam klären wir, ob die private Krankenversicherung zu Ihrer Situation passt."],
   primary: { label: "Kostenloses Erstgespräch", href: "/kontakt" },
-  secondary: { label: "Termin anfragen", href: "/kontakt" },
+  secondary: { label: "Termin anfragen", href: "/kontakt#formular" },
   image: "/images/pkv/andreas-hero.webp",
   imageAlt: "Andreas Tonn im Beratungsgespräch",
 };

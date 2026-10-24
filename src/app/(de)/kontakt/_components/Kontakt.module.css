@@ -241,6 +241,7 @@
   padding-block: clamp(40px, 5vw, 72px) clamp(56px, 7vw, 104px);
   background: #e8edf1;
   overflow: hidden;
+  scroll-margin-top: var(--header-h); /* Sprung zu #formular: Formularbeginn nicht unter der festen Kopfzeile */
 }
 
 /* breite, weiche Lichtflächen mit sehr geringem Kontrast – rein dekorativ */
