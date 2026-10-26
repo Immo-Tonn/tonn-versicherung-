@@ -27,6 +27,11 @@
   color: var(--white);
 }
 
+/* Überschrift im dunkelblauen Block: .onDark (0,1,0) verlor gegen das globale .h2 (gleiche Spezifität, späteres CSS) und blieb dunkel (#082a46) */
+.navy .h2.onDark {
+  color: var(--white);
+}
+
 .dot {
   display: inline-block;
   width: 0.11em;
