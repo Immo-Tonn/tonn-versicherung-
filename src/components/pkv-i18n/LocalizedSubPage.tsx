@@ -5,6 +5,7 @@ import DeTag from "@/components/layout-i18n/DeTag";
 import LocalizedPageJsonLd from "@/components/seo/LocalizedPageJsonLd";
 import Button from "@/components/ui/Button/Button";
 import Container from "@/components/ui/Container/Container";
+import Icon from "@/components/ui/Icon/Icon";
 import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
 import type { Locale } from "@/i18n/config";
 import { pkvSubLabels } from "@/i18n/content";
@@ -116,6 +117,12 @@ export default function LocalizedSubPage({ content, description, locale }: { con
           <div className={styles.answer}>
             <p className={styles.answerLabel}>{labels.answerLabel}</p>
             <p>{content.answer}</p>
+            <p className={styles.answerLink}>
+              <Link href={lk("/kontakt#formular").href} className={styles.earlyLink}>
+                {labels.earlyCta}
+                <Icon name="arrow" size={18} strokeWidth={1.6} />
+              </Link>
+            </p>
           </div>
 
           <div className={styles.body}>{content.blocks.map(render)}</div>

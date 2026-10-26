@@ -133,6 +133,7 @@ export const subLabelsEn: SubLabels = {
   ctaTitle: "How does private health insurance fit your situation?",
   ctaText: "We discuss your situation personally and compare suitable tariffs from our insurance partners together.",
   ctaButton: "Arrange a free initial consultation",
+  earlyCta: "Request a consultation",
   pkvCrumb: "Private health insurance",
   sourceLang: "(in German)",
 };

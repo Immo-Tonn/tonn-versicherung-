@@ -57,6 +57,8 @@ export type SubLabels = {
   ctaTitle: string;
   ctaText: string;
   ctaButton: string;
+  /** frühe Textlink-Zeile unter „Kurz beantwortet“ */
+  earlyCta: string;
   pkvCrumb: string;
   /** Hinweis an Quellenlinks, deren Zielseite deutsch ist */
   sourceLang: string;

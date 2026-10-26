@@ -88,6 +88,36 @@
   text-transform: uppercase;
 }
 
+/* Frühe Textlink-Zeile unter „Kurz beantwortet“: Link zum Kontaktformular, Farbe wie die Karten der Startseite beim Überfahren (#2e5f94) */
+.answer .answerLink {
+  margin-top: 18px;
+}
+
+.earlyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  color: var(--navy-900);
+  transition: color 200ms ease;
+}
+
+.earlyLink svg {
+  flex-shrink: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .earlyLink:hover {
+    color: #2e5f94;
+  }
+}
+
+.earlyLink:focus-visible {
+  color: #2e5f94;
+  outline: 2px solid var(--text);
+  outline-offset: 4px;
+}
+
 .body p,
 .sources li,
 .cta p {
@@ -201,6 +231,7 @@
 @media (prefers-reduced-motion: reduce) {
   .crumbs a,
   .inlineLink,
+  .earlyLink,
   .sources a {
     transition: none;
   }

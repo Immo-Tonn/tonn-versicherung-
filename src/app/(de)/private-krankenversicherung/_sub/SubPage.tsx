@@ -2,6 +2,7 @@ import Link from "next/link";
 import PageJsonLd from "@/components/seo/PageJsonLd";
 import Button from "@/components/ui/Button/Button";
 import Container from "@/components/ui/Container/Container";
+import Icon from "@/components/ui/Icon/Icon";
 import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
 import type { SubBlock, SubPageContent } from "./types";
 import styles from "./Sub.module.css";
@@ -97,6 +98,12 @@ export default function SubPage({ content, description }: Props) {
           <div className={styles.answer}>
             <p className={styles.answerLabel}>Kurz beantwortet</p>
             <p>{content.answer}</p>
+            <p className={styles.answerLink}>
+              <Link href="/kontakt#formular" className={styles.earlyLink}>
+                Beratung anfragen
+                <Icon name="arrow" size={18} strokeWidth={1.6} />
+              </Link>
+            </p>
           </div>
 
           <div className={styles.body}>{content.blocks.map(render)}</div>
