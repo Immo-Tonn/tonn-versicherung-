@@ -1,10 +1,10 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import PageJsonLd from "@/components/seo/PageJsonLd";
 import Button from "@/components/ui/Button/Button";
 import Container from "@/components/ui/Container/Container";
-import Icon from "@/components/ui/Icon/Icon";
 import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
-import type { SubBlock, SubPageContent } from "./types";
+import { MID_CTA_AFTER_SECTIONS, type SubBlock, type SubPageContent } from "./types";
 import styles from "./Sub.module.css";
 
 const PKV_PATH = "/private-krankenversicherung";
@@ -54,6 +54,8 @@ function render(b: SubBlock, i: number) {
 type Props = { content: SubPageContent; description: string };
 
 export default function SubPage({ content, description }: Props) {
+  const midAfter = MID_CTA_AFTER_SECTIONS[content.path.split("/").pop() ?? ""] ?? 0;
+  const midIndex = content.blocks.map((b, i) => (b.t === "h2" ? i : -1)).filter((i) => i >= 0)[midAfter];
   return (
     <article className={styles.page} aria-labelledby="pkv-sub-title">
       {/* WebPage + BreadcrumbList; Organization/WebSite stammen aus dem globalen Markup */}
@@ -98,15 +100,32 @@ export default function SubPage({ content, description }: Props) {
           <div className={styles.answer}>
             <p className={styles.answerLabel}>Kurz beantwortet</p>
             <p>{content.answer}</p>
-            <p className={styles.answerLink}>
-              <Link href="/kontakt#formular" className={styles.earlyLink}>
-                Beratung anfragen
-                <Icon name="arrow" size={18} strokeWidth={1.6} />
-              </Link>
-            </p>
           </div>
 
-          <div className={styles.body}>{content.blocks.map(render)}</div>
+          <div className={styles.body}>
+            {content.blocks.map((b, i) => {
+              return (
+                <Fragment key={i}>
+                  {i === midIndex && (
+                    <div className={styles.midCta}>
+                      <Button href="/kontakt#formular" size="lg">
+                        Persönliches Gespräch anfragen
+                      </Button>
+                    </div>
+                  )}
+                  {render(b, i)}
+                </Fragment>
+              );
+            })}
+          </div>
+
+          <div className={styles.cta}>
+            <h2 className={styles.h2}>Wie passt die private Krankenversicherung zu Ihrer Situation?</h2>
+            <p>Wir besprechen Ihre Situation persönlich und vergleichen gemeinsam passende Tarife unserer Versicherungspartner.</p>
+            <Button href="/kontakt" size="lg">
+              Kostenloses Erstgespräch vereinbaren
+            </Button>
+          </div>
 
           <section className={styles.sources} aria-labelledby="pkv-sub-sources">
             <h2 id="pkv-sub-sources" className={styles.h2}>
@@ -122,14 +141,6 @@ export default function SubPage({ content, description }: Props) {
               ))}
             </ul>
           </section>
-
-          <div className={styles.cta}>
-            <h2 className={styles.h2}>Wie passt die private Krankenversicherung zu Ihrer Situation?</h2>
-            <p>Wir besprechen Ihre Situation persönlich und vergleichen gemeinsam passende Tarife unserer Versicherungspartner.</p>
-            <Button href="/kontakt" size="lg">
-              Kostenloses Erstgespräch vereinbaren
-            </Button>
-          </div>
         </div>
       </Container>
     </article>
