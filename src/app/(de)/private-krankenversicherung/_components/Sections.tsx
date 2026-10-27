@@ -105,6 +105,13 @@ export function PkvTargets() {
             </li>
           ))}
         </ul>
+        <p className={styles.existing}>
+          {targets.existing.question}{" "}
+          <Link href={targets.existing.href} className={styles.existingLink}>
+            {targets.existing.link}&nbsp;
+            <Icon name="arrow" size={16} />
+          </Link>
+        </p>
       </Container>
     </section>
   );

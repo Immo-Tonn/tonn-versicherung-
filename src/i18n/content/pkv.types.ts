@@ -14,6 +14,8 @@ export type PkvContent = {
     title: Pair;
     text: string;
     cards: [Card & { alt: string }, Card & { alt: string }, Card & { alt: string }];
+    /** Zeile unter den Karten: Frage (Text) + Link */
+    existing: { question: string; link: string };
     cta: string;
     /** Platzhalter {title}; nur für Screenreader */
     srSuffix: string;
