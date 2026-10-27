@@ -383,6 +383,11 @@
   color: var(--white);
 }
 
+/* das globale .h2 (gleiche Spezifität, später geladen) überschrieb das Weiß → dunkler Text auf dunkelblauem Block */
+.cta .ctaTitle {
+  color: var(--white);
+}
+
 .ctaText {
   max-width: 380px;
   margin: 0 0 32px;
