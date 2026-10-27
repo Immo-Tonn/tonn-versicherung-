@@ -423,6 +423,7 @@
 
 .processHead .h2 {
   margin-bottom: 0;
+  scroll-margin-top: calc(var(--header-h) + 76px); /* Sprung zu #pkv-process („Mehr zum Ablauf“): Label „So läuft die Beratung ab“ bleibt unter der festen Kopfzeile sichtbar */
   /* Abstand Label → Überschrift verdoppelt (vorher 31 px bei 1440 px, 27-34 px je Breite). Sichtbarer Abstand = Label-Außenabstand 22 px + Padding − Versatz der
      Glyphenoberkante (~0,155 em, Zeilenhöhe 1,1); Padding statt Margin, da Margins verschmelzen würden. */
   padding-top: calc(54px - 0.155em);

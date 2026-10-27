@@ -60,7 +60,7 @@ export const processSection = {
   eyebrow: "Klarer Prozess. Volle Transparenz.",
   title: ["Erst prüfen.", "Dann entscheiden."],
   text: "Mit der anonymen Risikovoranfrage prüfen wir Ihre Gesundheitsangaben bei mehreren Versicherern – vorab und unverbindlich.",
-  cta: { label: "Mehr zum Ablauf", href: "/private-krankenversicherung" },
+  cta: { label: "Mehr zum Ablauf", href: "/private-krankenversicherung#pkv-process" },
   steps: [
     { icon: "document" as IconName, title: "Angaben", text: "Wir besprechen Ihre Situation und erfassen die relevanten Daten." },
     { icon: "shield" as IconName, title: "Anonym prüfen", text: "Wir prüfen Ihre Gesundheitsangaben bei mehreren Versicherern." },
