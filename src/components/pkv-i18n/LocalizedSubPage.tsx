@@ -1,6 +1,7 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import styles from "@/app/(de)/private-krankenversicherung/_sub/Sub.module.css";
-import type { SubBlock, SubPageContent } from "@/app/(de)/private-krankenversicherung/_sub/types";
+import { MID_CTA_AFTER_SECTIONS, type SubBlock, type SubPageContent } from "@/app/(de)/private-krankenversicherung/_sub/types";
 import DeTag from "@/components/layout-i18n/DeTag";
 import LocalizedPageJsonLd from "@/components/seo/LocalizedPageJsonLd";
 import Button from "@/components/ui/Button/Button";
@@ -67,6 +68,8 @@ export default function LocalizedSubPage({ content, description, locale }: { con
     }
   }
 
+  const midAfter = MID_CTA_AFTER_SECTIONS[content.path.split("/").pop() ?? ""] ?? 0;
+  const midIndex = content.blocks.map((b, i) => (b.t === "h2" ? i : -1)).filter((i) => i >= 0)[midAfter];
   const home = lk("/");
   const pkv = lk(PKV_PATH);
   return (
@@ -118,7 +121,31 @@ export default function LocalizedSubPage({ content, description, locale }: { con
             <p>{content.answer}</p>
           </div>
 
-          <div className={styles.body}>{content.blocks.map(render)}</div>
+          <div className={styles.body}>
+            {content.blocks.map((b, i) => {
+              return (
+                <Fragment key={i}>
+                  {i === midIndex && (
+                    <div className={styles.midCta}>
+                      <Button href={lk("/kontakt#formular").href} size="lg">
+                        {labels.earlyCta}
+                      </Button>
+                    </div>
+                  )}
+                  {render(b, i)}
+                </Fragment>
+              );
+            })}
+          </div>
+
+          <div className={styles.cta}>
+            <h2 className={styles.h2}>{labels.ctaTitle}</h2>
+            <p>{labels.ctaText}</p>
+            <Button href={lk("/kontakt").href} size="lg">
+              {labels.ctaButton}
+              {tag("/kontakt")}
+            </Button>
+          </div>
 
           <section className={styles.sources} aria-labelledby="pkv-sub-sources">
             <h2 id="pkv-sub-sources" className={styles.h2}>
@@ -135,15 +162,6 @@ export default function LocalizedSubPage({ content, description, locale }: { con
               ))}
             </ul>
           </section>
-
-          <div className={styles.cta}>
-            <h2 className={styles.h2}>{labels.ctaTitle}</h2>
-            <p>{labels.ctaText}</p>
-            <Button href={lk("/kontakt").href} size="lg">
-              {labels.ctaButton}
-              {tag("/kontakt")}
-            </Button>
-          </div>
         </div>
       </Container>
     </article>

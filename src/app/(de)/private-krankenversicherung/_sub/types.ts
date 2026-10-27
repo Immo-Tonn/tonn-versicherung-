@@ -20,3 +20,10 @@ export type SubPageContent = {
   blocks: SubBlock[];
   sources: SubSource[];
 };
+
+/** Mittlere Kontakt-Schaltfläche: Anzahl der H2-Abschnitte, nach denen sie steht (Schlüssel: letztes Pfadsegment) */
+export const MID_CTA_AFTER_SECTIONS: Record<string, number> = {
+  angestellte: 3,
+  selbststaendige: 3,
+  beamte: 4,
+};
