@@ -407,19 +407,26 @@
 /* Zeile unter den Karten: Frage als Text, danach ein Link (Hover wie die Karten der Startseite: #2e5f94 für Text und Pfeil) */
 .existing {
   margin: clamp(28px, 3vw, 40px) 0 0;
-  font-size: 15px;
+  font-size: 17px;
+  font-weight: 500;
   line-height: 1.6;
-  color: var(--text-muted);
+  color: var(--navy-900);
 }
 
 .existingLink {
-  font-weight: 500;
+  font-weight: 600;
   color: var(--navy-900);
   transition: color 200ms ease;
 }
 
+/* letztes Wort und Pfeil bleiben zusammen (kein Umbruch zwischen beiden) */
+.existingEnd {
+  white-space: nowrap;
+}
+
 .existingLink svg {
   display: inline-block;
+  margin-left: 6px;
   vertical-align: -0.15em;
 }
 
@@ -433,6 +440,12 @@
   color: #2e5f94;
   outline: 2px solid var(--navy-900);
   outline-offset: 4px;
+}
+
+@media (max-width: 767px) {
+  .existing {
+    font-size: 16px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

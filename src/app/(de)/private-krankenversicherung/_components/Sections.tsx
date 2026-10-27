@@ -108,8 +108,11 @@ export function PkvTargets() {
         <p className={styles.existing}>
           {targets.existing.question}{" "}
           <Link href={targets.existing.href} className={styles.existingLink}>
-            {targets.existing.link}&nbsp;
-            <Icon name="arrow" size={16} />
+            {targets.existing.link.slice(0, targets.existing.link.lastIndexOf(" ") + 1)}
+            <span className={styles.existingEnd}>
+              {targets.existing.link.slice(targets.existing.link.lastIndexOf(" ") + 1)}
+              <Icon name="arrow" size={16} />
+            </span>
           </Link>
         </p>
       </Container>
