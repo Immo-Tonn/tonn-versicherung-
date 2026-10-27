@@ -24,6 +24,11 @@
   color: var(--white);
 }
 
+/* gleiche Ursache wie bei Kapitalanlage: das globale .h2 (gleiche Spezifität, später geladen) überschrieb .onDark → dunkler Text auf dunkelblauem Block */
+.navy .h2.onDark {
+  color: var(--white);
+}
+
 .dot {
   display: inline-block;
   width: 0.11em;

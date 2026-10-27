@@ -27,6 +27,12 @@
   color: var(--white);
 }
 
+/* Überschriften in den dunkelblauen Blöcken („Gute Entscheidungen…“, „Was haben Sie mit Ihrem Kapital vor?“): .onDark (0,1,0) verlor gegen das globale .h2 (gleiche Spezifität, späteres CSS) und blieb dunkel (#082a46) */
+.navy .h2.onDark,
+.final .h2.onDark {
+  color: var(--white);
+}
+
 .dot {
   display: inline-block;
   width: 0.11em;
