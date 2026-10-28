@@ -442,7 +442,18 @@
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
+}
+
+/* Zwei Lagen mit sanfter Überblendung: heller Strahl auf Grau, bläulicher Strahl auf dem dunkelblauen Hover-/Fokus-Zustand */
+.existingSweepLight,
+.existingSweepDark {
+  position: absolute;
+  inset: 0;
   transition: opacity 200ms ease;
+}
+
+.existingSweepDark {
+  opacity: 0;
 }
 
 .existingSweepBar {
@@ -456,7 +467,11 @@
   will-change: transform;
 }
 
-.existingSweep[data-play="true"] .existingSweepBar {
+.existingSweepBarDark {
+  background: linear-gradient(90deg, rgba(184, 203, 224, 0), rgba(184, 203, 224, 0.1) 25%, rgba(184, 203, 224, 0.24) 50%, rgba(184, 203, 224, 0.1) 75%, rgba(184, 203, 224, 0));
+}
+
+.existingSweep[data-play="true"] .existingSweepLight .existingSweepBar {
   animation: existingSweep 4s linear 1 forwards;
 }
 
@@ -475,13 +490,29 @@
   }
 }
 
-.existing:focus-visible .existingSweep {
+.existing:focus-visible .existingSweepLight {
   opacity: 0;
 }
 
+.existing:focus-visible .existingSweepDark {
+  opacity: 1;
+}
+
+.existing:focus-visible .existingSweepBarDark {
+  animation: existingSweep 4s linear 1 forwards;
+}
+
 @media (hover: hover) and (pointer: fine) {
-  .existing:hover .existingSweep {
+  .existing:hover .existingSweepLight {
     opacity: 0;
+  }
+
+  .existing:hover .existingSweepDark {
+    opacity: 1;
+  }
+
+  .existing:hover .existingSweepBarDark {
+    animation: existingSweep 4s linear 1 forwards;
   }
 }
 

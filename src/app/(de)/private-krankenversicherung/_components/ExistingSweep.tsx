@@ -24,7 +24,12 @@ export default function ExistingSweep() {
 
   return (
     <span ref={ref} className={styles.existingSweep} aria-hidden="true">
-      <span className={styles.existingSweepBar} />
+      <span className={styles.existingSweepLight}>
+        <span className={styles.existingSweepBar} />
+      </span>
+      <span className={styles.existingSweepDark}>
+        <span className={`${styles.existingSweepBar} ${styles.existingSweepBarDark}`} />
+      </span>
     </span>
   );
 }
