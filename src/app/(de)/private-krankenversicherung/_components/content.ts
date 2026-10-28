@@ -26,7 +26,7 @@ export const targets = {
     { title: "Selbstständige", href: "/private-krankenversicherung/selbststaendige", text: "Mehr Flexibilität und individueller Schutz.", more: "Selbstständige und Freiberufler können ihren Krankenversicherungsschutz individuell gestalten. Gemeinsam vergleichen wir Tarife und Leistungen unserer Versicherungspartner und achten darauf, dass die Absicherung auch langfristig zu Ihrer beruflichen und privaten Situation passt.", image: "/images/pkv/pkv-selbststaendige.webp", alt: "Arbeitsplatz mit Laptop, Notizbuch und Blick über die Stadt" },
     { title: "Beamte", href: "/private-krankenversicherung/beamte", text: "PKV in Kombination mit Beihilfe.", more: "Für Beamte und Beamtenanwärter kann die private Krankenversicherung in Verbindung mit der Beihilfe eine passende Lösung sein. Dabei berücksichtigen wir Beihilfeanspruch, gewünschte Leistungen und die persönliche Situation.", image: "/images/pkv/pkv-beamte.webp", alt: "Rathaus-Fassade im Sonnenlicht" },
   ],
-  existing: { question: "Bereits privat versichert?", link: "Mehr zum Tarifwechsel", href: "/wissen/tarifwechsel-pkv" },
+  existing: { question: "Bereits privat versichert?", link: "Möglichkeiten prüfen", href: "/wissen/tarifwechsel-pkv" },
   cta: "Mehr erfahren",
   ctaClose: "Weniger anzeigen",
 };

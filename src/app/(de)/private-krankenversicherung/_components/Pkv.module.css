@@ -406,23 +406,31 @@
 
 /* Zeile unter den Karten: Frage als Text, danach ein Link (Hover wie die Karten der Startseite: #2e5f94 für Text und Pfeil) */
 .existing {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 32px;
   margin: clamp(28px, 3vw, 40px) 0 0;
-  font-size: 17px;
-  font-weight: 500;
-  line-height: 1.6;
+  padding-left: 16px;
+  border-left: var(--accent-line-thickness) solid var(--red); /* rote Linie wie am Logo */
   color: var(--navy-900);
 }
 
-/* Frage: doppelt so groß wie der Link (34 px, mobil 32 px), kein Link */
+/* Frage: gleiche Serifenschrift wie die Überschriften (.h2), kein Link */
 .existingQuestion {
-  font-size: 34px;
-  font-weight: 700;
-  line-height: 1.25;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.2;
+  letter-spacing: -0.012em;
   transition: color 200ms ease;
 }
 
 .existingLink {
+  font-size: 17px;
   font-weight: 600;
+  line-height: 1.4;
   color: var(--navy-900);
   transition: color 200ms ease;
 }
@@ -454,11 +462,16 @@
 
 @media (max-width: 767px) {
   .existing {
-    font-size: 16px;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .existingQuestion {
-    font-size: 32px;
+    font-size: 25px;
+  }
+
+  .existingLink {
+    font-size: 16px;
   }
 }
 

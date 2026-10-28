@@ -133,8 +133,8 @@ export default function LocalizedPkvPage({ locale }: { locale: L }) {
               </li>
             ))}
           </ul>
-          <p className={styles.existing}>
-            <span className={styles.existingQuestion}>{t.targets.existing.question}</span>{" "}
+          <div className={styles.existing}>
+            <p className={styles.existingQuestion}>{t.targets.existing.question}</p>
             <Link href={lk(targets.existing.href).href} className={styles.existingLink}>
               {t.targets.existing.link.slice(0, t.targets.existing.link.lastIndexOf(" ") + 1)}
               <span className={styles.existingEnd}>
@@ -142,7 +142,7 @@ export default function LocalizedPkvPage({ locale }: { locale: L }) {
                 <Icon name="arrow" size={16} />
               </span>
             </Link>
-          </p>
+          </div>
         </Container>
       </section>
 
