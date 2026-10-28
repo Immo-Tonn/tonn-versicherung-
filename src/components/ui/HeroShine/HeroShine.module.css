@@ -1,5 +1,5 @@
 /* Heller Lichtstrahl auf der Haupt-Schaltfläche des Hero (nur dort eingebunden, die Button-Komponente bleibt unverändert).
-   Gleicher schräger (25°) cremefarben-goldener Strahl wie in der Tarifwechsel-Zeile der PKV-Seite, an die Breite der Schaltfläche angepasst:
+   Schräger (25°) weißer Strahl mit kaum merklichem Cremeton, an die Breite der Schaltfläche angepasst:
    Zyklus 5 s (4 s Durchlauf, 1 s Pause). Die Ebene liegt hinter dem Text, ohne Layout-Einfluss, Klicks gehen hindurch. */
 .host {
   position: relative;
@@ -18,7 +18,7 @@
 .bar {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(250, 225, 170, 0) 20%, rgba(250, 225, 170, 0.1) 35%, rgba(250, 225, 170, 0.24) 50%, rgba(250, 225, 170, 0.1) 65%, rgba(250, 225, 170, 0) 80%);
+  background: linear-gradient(90deg, rgba(255, 252, 243, 0) 18%, rgba(255, 252, 243, 0.16) 34%, rgba(255, 252, 243, 0.38) 50%, rgba(255, 252, 243, 0.16) 66%, rgba(255, 252, 243, 0) 82%);
   transform: translateX(-100%) skewX(-25deg);
   will-change: transform;
 }

@@ -3,9 +3,9 @@
 import { useEffect, useRef } from "react";
 import styles from "./HeroShine.module.css";
 
-const FIRST_PASS_MS = 5000;
+const FIRST_PASS_MS = 2000;
 
-/** Lichtstrahl-Ebene für die Haupt-Schaltfläche im Hero: erster Durchlauf 5 s nach dem Laden (nach dem Einblenden), danach Zyklus aus 4 s Bewegung und 1 s Pause. Pausiert außerhalb des Sichtbereichs und bei verstecktem Tab. */
+/** Lichtstrahl-Ebene für die Haupt-Schaltfläche im Hero: erster Durchlauf 2 s nach dem Laden (nach dem Einblenden), danach Zyklus aus 4 s Bewegung und 1 s Pause. Pausiert außerhalb des Sichtbereichs und bei verstecktem Tab. */
 export default function HeroShine() {
   const ref = useRef<HTMLSpanElement>(null);
 

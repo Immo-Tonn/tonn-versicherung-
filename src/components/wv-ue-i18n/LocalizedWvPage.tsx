@@ -3,8 +3,6 @@ import { consulting, contactHref, finalCta, hero, overview } from "@/app/(de)/ve
 import DeTag from "@/components/layout-i18n/DeTag";
 import LocalizedPageJsonLd from "@/components/seo/LocalizedPageJsonLd";
 import Button from "@/components/ui/Button/Button";
-import HeroShine from "@/components/ui/HeroShine/HeroShine";
-import shine from "@/components/ui/HeroShine/HeroShine.module.css";
 import Container from "@/components/ui/Container/Container";
 import Photo from "@/components/ui/Photo/Photo";
 import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
@@ -51,10 +49,9 @@ export default function LocalizedWvPage({ locale }: { locale: L }) {
             ))}
           </h1>
           <p className={styles.heroText}>{t.hero.text}</p>
-          <Button href={lk(hero.cta.href).href} size="lg" className={shine.host}>
+          <Button href={lk(hero.cta.href).href} size="lg">
             {t.hero.cta}
             {tag(hero.cta.href)}
-            <HeroShine />
           </Button>
         </div>
         <Photo src={hero.image} alt={t.hero.imageAlt} priority sizes="(max-width: 767px) 100vw, 55vw" position="50% 55%" className={styles.heroPhoto} />
