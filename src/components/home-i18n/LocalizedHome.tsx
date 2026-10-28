@@ -2,6 +2,8 @@ import Link from "next/link";
 import SharedDeTag from "@/components/layout-i18n/DeTag";
 import LocalizedConsentMap from "./LocalizedConsentMap";
 import Button from "@/components/ui/Button/Button";
+import HeroShine from "@/components/ui/HeroShine/HeroShine";
+import shine from "@/components/ui/HeroShine/HeroShine.module.css";
 import btn from "@/components/ui/Button/Button.module.css";
 import Container from "@/components/ui/Container/Container";
 import Icon from "@/components/ui/Icon/Icon";
@@ -77,9 +79,10 @@ export default async function LocalizedHome({ locale }: { locale: L }) {
           </p>
           <p className={heroStyles.text}>{t.hero.text}</p>
           <div className={heroStyles.actions}>
-            <Button href={lk(hero.primaryCta.href).href} size="lg" className={heroStyles.primary}>
+            <Button href={lk(hero.primaryCta.href).href} size="lg" className={`${heroStyles.primary} ${shine.host}`}>
               {t.hero.primaryCta}
               {tagFor(hero.primaryCta.href)}
+              <HeroShine />
             </Button>
             <Link href={hero.secondaryCta.href} className={heroStyles.secondary}>
               <span className={heroStyles.play}>

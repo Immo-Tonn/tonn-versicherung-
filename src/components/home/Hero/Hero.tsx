@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { hero } from "@/data/home";
 import Button from "@/components/ui/Button/Button";
+import HeroShine from "@/components/ui/HeroShine/HeroShine";
+import shine from "@/components/ui/HeroShine/HeroShine.module.css";
 import Container from "@/components/ui/Container/Container";
 import Icon from "@/components/ui/Icon/Icon";
 import HeroEyebrow from "./HeroEyebrow";
@@ -33,8 +35,9 @@ export default function Hero() {
         </p>
         <p className={styles.text}>{hero.text}</p>
         <div className={styles.actions}>
-          <Button href={hero.primaryCta.href} size="lg" className={styles.primary}>
+          <Button href={hero.primaryCta.href} size="lg" className={`${styles.primary} ${shine.host}`}>
             {hero.primaryCta.label}
+            <HeroShine />
           </Button>
           <Link href={hero.secondaryCta.href} className={styles.secondary}>
             <span className={styles.play}>
