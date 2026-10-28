@@ -81,7 +81,7 @@ export function PkvTrust() {
 
 export function PkvTargets() {
   return (
-    <section className={`${styles.section} ${styles.bgOff}`} aria-labelledby="pkv-targets">
+    <section className={`${styles.section} ${styles.bgOff} ${styles.targetsEnd}`} aria-labelledby="pkv-targets">
       <Container>
         <div className={styles.split}>
           <div>
@@ -105,7 +105,9 @@ export function PkvTargets() {
             </li>
           ))}
         </ul>
-        <Link href={targets.existing.href} className={styles.existing}>
+      </Container>
+      <Link href={targets.existing.href} className={styles.existing}>
+        <Container>
           <span className={styles.existingInner}>
             <span className={styles.existingQuestion}>{targets.existing.question}</span>
             <span className={styles.existingLink}>
@@ -116,8 +118,8 @@ export function PkvTargets() {
               </span>
             </span>
           </span>
-        </Link>
-      </Container>
+        </Container>
+      </Link>
     </section>
   );
 }

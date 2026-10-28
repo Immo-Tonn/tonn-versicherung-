@@ -105,7 +105,7 @@ export default function LocalizedPkvPage({ locale }: { locale: L }) {
       </section>
 
       {/* Zielgruppen */}
-      <section className={`${styles.section} ${styles.bgOff}`} aria-labelledby="pkv-targets">
+      <section className={`${styles.section} ${styles.bgOff} ${styles.targetsEnd}`} aria-labelledby="pkv-targets">
         <Container>
           <div className={styles.split}>
             <div>
@@ -133,7 +133,9 @@ export default function LocalizedPkvPage({ locale }: { locale: L }) {
               </li>
             ))}
           </ul>
-          <Link href={lk(targets.existing.href).href} className={styles.existing}>
+        </Container>
+        <Link href={lk(targets.existing.href).href} className={styles.existing}>
+          <Container>
             <span className={styles.existingInner}>
               <span className={styles.existingQuestion}>{t.targets.existing.question}</span>
               <span className={styles.existingLink}>
@@ -144,8 +146,8 @@ export default function LocalizedPkvPage({ locale }: { locale: L }) {
                 </span>
               </span>
             </span>
-          </Link>
-        </Container>
+          </Container>
+        </Link>
       </section>
 
       {/* Ablauf */}

@@ -404,11 +404,28 @@
   transform: translateX(3px);
 }
 
+/* Abschnitt endet mit der Zeile: Abstand zum dunklen Block (Desktop 96 / Tablet 64 / Telefon 48 px) */
+.section.targetsEnd {
+  padding-bottom: 96px;
+}
+
+@media (max-width: 1199px) {
+  .section.targetsEnd {
+    padding-bottom: 64px;
+  }
+}
+
+@media (max-width: 767px) {
+  .section.targetsEnd {
+    padding-bottom: 48px;
+  }
+}
+
 /* Zeile unter den Karten: die ganze graue Fläche ist ein einziger Link (Hover/Fokus: dunkelblau wie der nächste Block) */
 .existing {
   display: block;
   margin: clamp(28px, 3vw, 40px) 0 0;
-  padding: 20px 24px;
+  padding: 20px 0;
   background: var(--gray-100);
   color: var(--navy-900);
   text-decoration: none;
@@ -421,6 +438,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 12px 32px;
+  margin-inline: 24px;
   padding-left: 16px;
   border-left: var(--accent-line-thickness) solid var(--red); /* rote Linie wie am Logo */
 }
@@ -482,10 +500,11 @@
 
 @media (max-width: 767px) {
   .existing {
-    padding: 16px;
+    padding: 16px 0;
   }
 
   .existingInner {
+    margin-inline: 16px;
     flex-direction: column;
     align-items: flex-start;
   }
