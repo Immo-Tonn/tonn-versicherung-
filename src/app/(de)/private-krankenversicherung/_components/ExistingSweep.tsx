@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import styles from "./Pkv.module.css";
 
-/** Dekorativer Schimmer auf dem grauen Hintergrund der Tarifwechsel-Zeile: Durchlauf alle 7 s (4 s Bewegung, 3 s Pause), solange die Zeile im Sichtbereich ist. */
+/** Dekorativer Schimmer auf dem grauen Hintergrund der Tarifwechsel-Zeile: Durchlauf alle 5 s (4 s Bewegung, 1 s Pause), solange die Zeile im Sichtbereich ist. */
 export default function ExistingSweep() {
   const ref = useRef<HTMLSpanElement>(null);
 
