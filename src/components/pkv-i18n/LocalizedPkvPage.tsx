@@ -134,7 +134,7 @@ export default function LocalizedPkvPage({ locale }: { locale: L }) {
             ))}
           </ul>
           <p className={styles.existing}>
-            {t.targets.existing.question}{" "}
+            <span className={styles.existingQuestion}>{t.targets.existing.question}</span>{" "}
             <Link href={lk(targets.existing.href).href} className={styles.existingLink}>
               {t.targets.existing.link.slice(0, t.targets.existing.link.lastIndexOf(" ") + 1)}
               <span className={styles.existingEnd}>

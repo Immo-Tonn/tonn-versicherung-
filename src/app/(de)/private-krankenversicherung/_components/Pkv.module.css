@@ -413,6 +413,14 @@
   color: var(--navy-900);
 }
 
+/* Frage: doppelt so groß wie der Link (34 px, mobil 32 px), kein Link */
+.existingQuestion {
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.25;
+  transition: color 200ms ease;
+}
+
 .existingLink {
   font-weight: 600;
   color: var(--navy-900);
@@ -430,8 +438,10 @@
   vertical-align: -0.15em;
 }
 
+/* Hover (nur Maus; auf Touch kein Hängenbleiben): über Frage oder Link wechseln Frage, Linktext und Pfeil gemeinsam auf #2e5f94 */
 @media (hover: hover) and (pointer: fine) {
-  .existingLink:hover {
+  .existing:has(.existingQuestion:hover, .existingLink:hover) .existingQuestion,
+  .existing:has(.existingQuestion:hover, .existingLink:hover) .existingLink {
     color: #2e5f94;
   }
 }
@@ -446,9 +456,14 @@
   .existing {
     font-size: 16px;
   }
+
+  .existingQuestion {
+    font-size: 32px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .existingQuestion,
   .existingLink {
     transition: none;
   }

@@ -106,7 +106,7 @@ export function PkvTargets() {
           ))}
         </ul>
         <p className={styles.existing}>
-          {targets.existing.question}{" "}
+          <span className={styles.existingQuestion}>{targets.existing.question}</span>{" "}
           <Link href={targets.existing.href} className={styles.existingLink}>
             {targets.existing.link.slice(0, targets.existing.link.lastIndexOf(" ") + 1)}
             <span className={styles.existingEnd}>
