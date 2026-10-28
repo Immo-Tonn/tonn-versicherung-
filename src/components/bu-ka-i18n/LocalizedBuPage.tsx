@@ -7,6 +7,8 @@ import Reveal from "@/app/(de)/berufsunfaehigkeitsversicherung/_components/Revea
 import DeTag from "@/components/layout-i18n/DeTag";
 import LocalizedPageJsonLd from "@/components/seo/LocalizedPageJsonLd";
 import Button from "@/components/ui/Button/Button";
+import HeroShine from "@/components/ui/HeroShine/HeroShine";
+import shine from "@/components/ui/HeroShine/HeroShine.module.css";
 import Container from "@/components/ui/Container/Container";
 import Icon from "@/components/ui/Icon/Icon";
 import Photo from "@/components/ui/Photo/Photo";
@@ -59,9 +61,10 @@ export default function LocalizedBuPage({ locale }: { locale: L }) {
             </h1>
             <p className={`${styles.heroText} ${styles.heroIn} ${styles.d2}`}>{t.hero.text}</p>
             <div className={`${styles.heroActions} ${styles.heroIn} ${styles.d3}`}>
-              <Button href={lk(hero.primary.href).href}>
+              <Button href={lk(hero.primary.href).href} className={shine.host}>
                 {t.hero.primary}
                 {tag(hero.primary.href)}
+                <HeroShine />
               </Button>
               <Link href={lk(hero.secondary.href).href} className={styles.textLink}>
                 {t.hero.secondary}
