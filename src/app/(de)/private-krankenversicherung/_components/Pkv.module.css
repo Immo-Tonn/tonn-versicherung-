@@ -496,6 +496,10 @@
   }
 }
 
+.existing:focus-visible .existingSweepLight {
+  opacity: 0;
+}
+
 .existing:focus-visible .existingSweepDark {
   opacity: 1;
 }
