@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Button from "@/components/ui/Button/Button";
+import HeroShine from "@/components/ui/HeroShine/HeroShine";
+import shine from "@/components/ui/HeroShine/HeroShine.module.css";
 import Container from "@/components/ui/Container/Container";
 import Icon from "@/components/ui/Icon/Icon";
 import Photo from "@/components/ui/Photo/Photo";
@@ -45,7 +47,10 @@ export function PkvHero() {
           <Lines lines={hero.subtitle} />
         </p>
         <div className={styles.heroActions}>
-          <Button href={hero.primary.href}>{hero.primary.label}</Button>
+          <Button href={hero.primary.href} className={shine.host}>
+            {hero.primary.label}
+            <HeroShine />
+          </Button>
           <Link href={hero.secondary.href} className={styles.textLink}>
             {hero.secondary.label}
             <Icon name="arrow" size={16} />

@@ -1,4 +1,6 @@
 import Button from "@/components/ui/Button/Button";
+import HeroShine from "@/components/ui/HeroShine/HeroShine";
+import shine from "@/components/ui/HeroShine/HeroShine.module.css";
 import Container from "@/components/ui/Container/Container";
 import Photo from "@/components/ui/Photo/Photo";
 import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
@@ -23,8 +25,9 @@ export function WvHero() {
           ))}
         </h1>
         <p className={styles.heroText}>{hero.text}</p>
-        <Button href={hero.cta.href} size="lg">
+        <Button href={hero.cta.href} size="lg" className={shine.host}>
           {hero.cta.label}
+          <HeroShine />
         </Button>
       </div>
       <Photo src={hero.image} alt={hero.imageAlt} priority sizes="(max-width: 767px) 100vw, 55vw" position="50% 55%" className={styles.heroPhoto} />
