@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "@/app/(de)/private-krankenversicherung/_components/Pkv.module.css";
+import ExistingSweep from "@/app/(de)/private-krankenversicherung/_components/ExistingSweep";
 import PkvIcon from "@/app/(de)/private-krankenversicherung/_components/PkvIcon";
 import { about, compare, faq, finalCta, hero, process, risk, secondOpinion, targets, trust } from "@/app/(de)/private-krankenversicherung/_components/content";
 import DeTag from "@/components/layout-i18n/DeTag";
@@ -105,7 +106,7 @@ export default function LocalizedPkvPage({ locale }: { locale: L }) {
       </section>
 
       {/* Zielgruppen */}
-      <section className={`${styles.section} ${styles.bgOff}`} aria-labelledby="pkv-targets">
+      <section className={`${styles.section} ${styles.bgOff} ${styles.targetsEnd}`} aria-labelledby="pkv-targets">
         <Container>
           <div className={styles.split}>
             <div>
@@ -134,6 +135,21 @@ export default function LocalizedPkvPage({ locale }: { locale: L }) {
             ))}
           </ul>
         </Container>
+        <Link href={lk(targets.existing.href).href} className={styles.existing}>
+          <ExistingSweep />
+          <Container>
+            <span className={styles.existingInner}>
+              <span className={styles.existingQuestion}>{t.targets.existing.question}</span>
+              <span className={styles.existingLink}>
+                {t.targets.existing.link.slice(0, t.targets.existing.link.lastIndexOf(" ") + 1)}
+                <span className={styles.existingEnd}>
+                  {t.targets.existing.link.slice(t.targets.existing.link.lastIndexOf(" ") + 1)}
+                  <Icon name="arrow" size={16} />
+                </span>
+              </span>
+            </span>
+          </Container>
+        </Link>
       </section>
 
       {/* Ablauf */}

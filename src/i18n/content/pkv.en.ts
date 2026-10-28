@@ -37,6 +37,7 @@ export const pkvEn: PkvContent = {
       { title: "Self-employed", text: "More flexibility and individual cover.", alt: "Workspace with a laptop, notebook and a view over the city" },
       { title: "Civil servants (Beamte)", text: "PKV combined with government assistance with healthcare costs (Beihilfe).", alt: "Town hall façade in the sunlight" },
     ],
+    existing: { question: "Already have private health insurance?", link: "Explore your options" },
     cta: "Learn more",
     srSuffix: " about {title}",
   },
