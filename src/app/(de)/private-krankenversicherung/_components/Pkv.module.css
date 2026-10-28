@@ -404,38 +404,44 @@
   transform: translateX(3px);
 }
 
-/* Zeile unter den Karten: Frage als Text, danach ein Link (Hover wie die Karten der Startseite: #2e5f94 für Text und Pfeil) */
+/* Zeile unter den Karten: die ganze graue Fläche ist ein einziger Link (Hover/Fokus: dunkelblau wie der nächste Block) */
 .existing {
+  display: block;
+  margin: clamp(28px, 3vw, 40px) 0 0;
+  padding: 20px 24px;
+  background: var(--gray-100);
+  color: var(--navy-900);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 200ms linear;
+}
+
+.existingInner {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 12px 32px;
-  margin: clamp(28px, 3vw, 40px) 0 0;
   padding-left: 16px;
   border-left: var(--accent-line-thickness) solid var(--red); /* rote Linie wie am Logo */
-  color: var(--navy-900);
 }
 
-/* Frage: gleiche Serifenschrift wie die Überschriften (.h2), kein Link */
+/* Frage: gleiche Serifenschrift wie die Überschriften (.h2) */
 .existingQuestion {
-  margin: 0;
   font-family: var(--font-serif);
   font-weight: 500;
   font-size: 30px;
   line-height: 1.2;
   letter-spacing: -0.012em;
-  transition: color 200ms ease;
+  transition: color 0s linear 100ms; /* Textfarbe wechselt erst, wenn der Hintergrund die Mitte passiert hat (Lesbarkeit im Übergang) */
 }
 
 .existingLink {
   font-size: 17px;
   font-weight: 600;
   line-height: 1.4;
-  color: var(--navy-900);
-  transition: color 200ms ease;
+  transition: color 0s linear 100ms;
 }
 
-/* letztes Wort und Pfeil bleiben zusammen (kein Umbruch zwischen beiden) */
 .existingEnd {
   white-space: nowrap;
 }
@@ -446,22 +452,40 @@
   vertical-align: -0.15em;
 }
 
-/* Hover (nur Maus; auf Touch kein Hängenbleiben): über Frage oder Link wechseln Frage, Linktext und Pfeil gemeinsam auf #2e5f94 */
 @media (hover: hover) and (pointer: fine) {
-  .existing:has(.existingQuestion:hover, .existingLink:hover) .existingQuestion,
-  .existing:has(.existingQuestion:hover, .existingLink:hover) .existingLink {
-    color: #2e5f94;
+  .existing:hover {
+    background: var(--navy-900);
+  }
+
+  .existing:hover .existingQuestion {
+    color: var(--white);
+  }
+
+  .existing:hover .existingLink {
+    color: #b8cbe0;
   }
 }
 
-.existingLink:focus-visible {
-  color: #2e5f94;
-  outline: 2px solid var(--navy-900);
-  outline-offset: 4px;
+.existing:focus-visible {
+  background: var(--navy-900);
+  outline: 3px solid var(--navy-900);
+  outline-offset: 3px;
+}
+
+.existing:focus-visible .existingQuestion {
+  color: var(--white);
+}
+
+.existing:focus-visible .existingLink {
+  color: #b8cbe0;
 }
 
 @media (max-width: 767px) {
   .existing {
+    padding: 16px;
+  }
+
+  .existingInner {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -476,6 +500,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .existing,
   .existingQuestion,
   .existingLink {
     transition: none;
