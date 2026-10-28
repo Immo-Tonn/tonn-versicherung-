@@ -426,7 +426,7 @@
   display: block;
   margin: clamp(28px, 3vw, 40px) 0 0;
   padding: 20px 0;
-  background: var(--gray-100);
+  background: #e2e2de;
   color: var(--navy-900);
   text-decoration: none;
   cursor: pointer;
@@ -435,7 +435,7 @@
   transition: background-color 200ms linear;
 }
 
-/* Perlen-Schimmer auf dem grauen Hintergrund: eine weiche helle Welle, ein Durchlauf (4 s) beim ersten Erscheinen; liegt hinter dem Text, ohne Layout-Einfluss, Klicks gehen hindurch */
+/* Lichtstrahl auf dem grauen Hintergrund: eine weiche helle, um 25° geneigte Bahn, ein Durchlauf (4 s) beim ersten Erscheinen; liegt hinter dem Text, ohne Layout-Einfluss, Klicks gehen hindurch */
 .existingSweep {
   position: absolute;
   inset: 0;
@@ -449,9 +449,9 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: -420px;
-  width: 420px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0));
+  left: -640px;
+  width: 560px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.28) 25%, rgba(255, 255, 255, 0.72) 50%, rgba(255, 255, 255, 0.28) 75%, rgba(255, 255, 255, 0));
   opacity: 0;
   will-change: transform;
 }
@@ -463,7 +463,7 @@
 @keyframes existingSweep {
   0% {
     opacity: 0;
-    transform: translateX(0);
+    transform: translateX(0) skewX(-25deg);
   }
   10%,
   90% {
@@ -471,7 +471,7 @@
   }
   100% {
     opacity: 0;
-    transform: translateX(calc(100vw + 420px));
+    transform: translateX(calc(100vw + 720px)) skewX(-25deg);
   }
 }
 
