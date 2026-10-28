@@ -471,8 +471,13 @@
   background: linear-gradient(90deg, rgba(184, 203, 224, 0), rgba(184, 203, 224, 0.1) 25%, rgba(184, 203, 224, 0.24) 50%, rgba(184, 203, 224, 0.1) 75%, rgba(184, 203, 224, 0));
 }
 
-.existingSweep[data-play="true"] .existingSweepLight .existingSweepBar {
-  animation: existingSweep 4s linear 1 forwards;
+/* Zyklus 7 s: 4 s Durchlauf, 3 s Pause; beide Lagen laufen im Gleichtakt, nur die Überblendung wechselt. Außerhalb des Sichtbereichs pausiert. */
+.existingSweep[data-play] .existingSweepBar {
+  animation: existingSweep 7s linear infinite;
+}
+
+.existingSweep[data-play="false"] .existingSweepBar {
+  animation-play-state: paused;
 }
 
 @keyframes existingSweep {
@@ -480,26 +485,19 @@
     opacity: 0;
     transform: translateX(0) skewX(-25deg);
   }
-  10%,
-  90% {
+  5.7%,
+  51.4% {
     opacity: 1;
   }
+  57.14%,
   100% {
     opacity: 0;
     transform: translateX(calc(100vw + 720px)) skewX(-25deg);
   }
 }
 
-.existing:focus-visible .existingSweepLight {
-  opacity: 0;
-}
-
 .existing:focus-visible .existingSweepDark {
   opacity: 1;
-}
-
-.existing:focus-visible .existingSweepBarDark {
-  animation: existingSweep 4s linear 1 forwards;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -509,10 +507,6 @@
 
   .existing:hover .existingSweepDark {
     opacity: 1;
-  }
-
-  .existing:hover .existingSweepBarDark {
-    animation: existingSweep 4s linear 1 forwards;
   }
 }
 
