@@ -431,16 +431,15 @@
   text-decoration: none;
   cursor: pointer;
   position: relative;
+  isolation: isolate;
   transition: background-color 200ms linear;
 }
 
-/* Lichtstrich am oberen Rand: ein Durchlauf (4 s) beim ersten Erscheinen, ohne Layout-Einfluss, Klicks gehen hindurch */
+/* Perlen-Schimmer auf dem grauen Hintergrund: eine weiche helle Welle, ein Durchlauf (4 s) beim ersten Erscheinen; liegt hinter dem Text, ohne Layout-Einfluss, Klicks gehen hindurch */
 .existingSweep {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
+  inset: 0;
+  z-index: -1;
   overflow: hidden;
   pointer-events: none;
   transition: opacity 200ms ease;
@@ -449,10 +448,10 @@
 .existingSweepBar {
   position: absolute;
   top: 0;
-  left: -100px;
-  width: 100px;
-  height: 2px;
-  background: linear-gradient(90deg, rgba(46, 95, 148, 0), rgba(46, 95, 148, 0.5) 50%, rgba(46, 95, 148, 0));
+  bottom: 0;
+  left: -420px;
+  width: 420px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0));
   opacity: 0;
   will-change: transform;
 }
@@ -472,7 +471,7 @@
   }
   100% {
     opacity: 0;
-    transform: translateX(calc(100vw + 100px));
+    transform: translateX(calc(100vw + 420px));
   }
 }
 

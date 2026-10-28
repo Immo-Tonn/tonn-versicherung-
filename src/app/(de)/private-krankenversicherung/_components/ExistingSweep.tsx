@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import styles from "./Pkv.module.css";
 
-/** Dekorativer Lichtstrich am oberen Rand der Tarifwechsel-Zeile: ein Durchlauf, sobald die Zeile erstmals im Sichtbereich ist. */
+/** Dekorativer Schimmer auf dem grauen Hintergrund der Tarifwechsel-Zeile: ein Durchlauf, sobald die Zeile erstmals im Sichtbereich ist. */
 export default function ExistingSweep() {
   const ref = useRef<HTMLSpanElement>(null);
 
