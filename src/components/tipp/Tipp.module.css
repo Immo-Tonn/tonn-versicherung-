@@ -1,0 +1,293 @@
+/* Tippgeberprämie: Banner auf der PKV-Seite und eigene Seite. Alle Klassen sind lokal (CSS-Modul), kein Einfluss auf andere Seiten. */
+
+/* ---------- Banner (PKV-Seite, zwischen Vorteilsleiste und „Für wen ist die PKV interessant?“) ---------- */
+.bannerWrap {
+  /* Abstand oben 76 px; unten ergänzt der folgende Abschnitt (eigenes Padding) auf insgesamt ca. 76 px */
+  padding-block: 76px calc(76px - clamp(44px, 4.2vw, 68px));
+  background: var(--off-white);
+}
+
+.banner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px 56px;
+  padding: clamp(32px, 3.4vw, 48px) clamp(28px, 3.6vw, 56px);
+  background: var(--navy-900);
+  color: var(--white);
+}
+
+.accent {
+  display: block;
+  width: 36px;
+  height: var(--accent-line-thickness);
+  margin-bottom: 20px;
+  background: var(--red);
+}
+
+.bannerTitle {
+  max-width: 24em;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(26px, 2.5vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  color: var(--white);
+}
+
+.bannerText {
+  max-width: 44em;
+  margin: 16px 0 0;
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.bannerNote {
+  grid-column: 1 / -1;
+  max-width: 60em;
+  margin: 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.bannerNote a,
+.termsLink {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.bannerNote a:hover {
+  color: var(--white);
+}
+
+.bannerNote a:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+  .bannerWrap {
+    padding-block: 44px 0;
+  }
+
+  .banner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    padding: 28px 24px;
+  }
+
+  .accent {
+    margin-bottom: 16px;
+  }
+}
+
+/* ---------- Seite /tippgeberpraemie ---------- */
+.page {
+  background: var(--off-white);
+  color: var(--navy-900);
+}
+
+.hero {
+  padding: calc(var(--header-h) + clamp(40px, 5vw, 72px)) 0 clamp(40px, 5vw, 72px);
+}
+
+.heroTitle {
+  max-width: 18em;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(32px, 3.7vw, 54px);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  color: var(--navy-900);
+}
+
+.lead {
+  max-width: 44em;
+  margin: 24px 0 0;
+  font-size: clamp(16px, 1.3vw, 18.5px);
+  line-height: 1.6;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 32px;
+  margin-top: 32px;
+}
+
+.textLink {
+  font-weight: 500;
+  border-bottom: 1px solid var(--navy-900);
+  padding-bottom: 3px;
+  transition: color var(--ease), border-color var(--ease);
+}
+
+.textLink:hover {
+  color: #2e5f94;
+  border-color: #2e5f94;
+}
+
+.section {
+  padding-block: clamp(44px, 4.6vw, 72px);
+}
+
+.sectionTitle {
+  max-width: 24em;
+  margin: 0 0 32px;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(26px, 2.6vw, 38px);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  color: var(--navy-900);
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  padding: 28px 28px 32px;
+  background: var(--white);
+  border-top: var(--accent-line-thickness) solid var(--red);
+}
+
+.stepNum {
+  display: block;
+  margin-bottom: 14px;
+  font-family: var(--font-serif);
+  font-size: 30px;
+  line-height: 1;
+  color: var(--gray-500);
+}
+
+.stepTitle {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--navy-900);
+}
+
+.stepText {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--gray-700);
+}
+
+.self {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px 48px;
+  padding: clamp(28px, 3vw, 44px) clamp(24px, 3.4vw, 52px);
+  background: var(--navy-900);
+  color: var(--white);
+}
+
+.selfTitle {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(24px, 2.3vw, 32px);
+  line-height: 1.15;
+  color: var(--white);
+}
+
+.selfText {
+  max-width: 40em;
+  margin: 12px 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.selfHint {
+  max-width: 40em;
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.terms {
+  /* Anker #teilnahmebedingungen: unter der festen Kopfzeile sichtbar */
+  scroll-margin-top: calc(var(--header-h) + 16px);
+}
+
+.termsList {
+  max-width: 52em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.termsItem {
+  padding: 18px 0;
+  border-top: 1px solid var(--gray-300);
+}
+
+.termsItem:last-child {
+  border-bottom: 1px solid var(--gray-300);
+}
+
+.termsItemTitle {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--navy-900);
+}
+
+.termsItemText {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: var(--gray-700);
+}
+
+.privacy {
+  max-width: 52em;
+  margin: 24px 0 0;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--gray-700);
+}
+
+.privacy a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.page :focus-visible {
+  outline-offset: 3px;
+}
+
+@media (max-width: 1023px) {
+  .steps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    padding-top: calc(var(--header-h) + 32px);
+  }
+
+  .self {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -22,6 +22,7 @@ export default function ContactForm() {
   const [replyVia, setReplyVia] = useState<string>("E-Mail");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+  const [referrer, setReferrer] = useState("");
   const [privacy, setPrivacy] = useState(false);
   const [website, setWebsite] = useState(""); // Honeypot
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -34,7 +35,7 @@ export default function ContactForm() {
   const id = (k: string) => `${uid}-${k}`;
 
   function focusFirst(e: FieldErrors) {
-    const order: (keyof FieldErrors)[] = ["topic", "name", "email", "replyVia", "phone", "message", "privacy"];
+    const order: (keyof FieldErrors)[] = ["topic", "name", "email", "replyVia", "phone", "referrer", "message", "privacy"];
     const first = order.find((k) => e[k]);
     if (!first) return;
     const form = formRef.current;
@@ -46,7 +47,7 @@ export default function ContactForm() {
     ev.preventDefault();
     if (lockRef.current) return;
     setServerError("");
-    const input = { topic, name, email, replyVia, phone, message, privacyAcknowledged: privacy };
+    const input = { topic, name, email, replyVia, phone, message, referrer, privacyAcknowledged: privacy };
     const found = validate(input);
     setErrors(found);
     if (Object.keys(found).length) {
@@ -174,6 +175,19 @@ export default function ContactForm() {
             </p>
           )}
         </div>
+      </div>
+
+      <div className={styles.field}>
+        <label htmlFor={id("referrer")}>Empfohlen von (optional)</label>
+        <input id={id("referrer")} name="referrer" type="text" autoComplete="off" value={referrer} onChange={(e) => setReferrer(e.target.value)} aria-invalid={errors.referrer ? true : undefined} aria-describedby={`${id("referrer")}-hint${errors.referrer ? ` ${err("referrer")}` : ""}`} />
+        <p id={`${id("referrer")}-hint`} className={styles.hint}>
+          Falls Sie von jemandem empfohlen wurden: Name der empfehlenden Person. Bitte keine Kontaktdaten Dritter angeben.
+        </p>
+        {errors.referrer && (
+          <p id={err("referrer")} className={styles.err}>
+            {errors.referrer}
+          </p>
+        )}
       </div>
 
       {/* Honeypot: für Menschen unsichtbar und nicht erreichbar */}

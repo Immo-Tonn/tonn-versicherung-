@@ -1,4 +1,5 @@
 import PageJsonLd from "@/components/seo/PageJsonLd";
+import TippBanner from "@/components/tipp/TippBanner";
 import { pageMetadata } from "@/lib/seo";
 import { faq } from "./_components/content";
 import { PkvAbout, PkvCompare, PkvFaq, PkvFinalCta, PkvHero, PkvProcess, PkvRisk, PkvSecondOpinion, PkvTargets, PkvTrust } from "./_components/Sections";
@@ -27,6 +28,7 @@ export default function Page() {
       />
       <PkvHero />
       <PkvTrust />
+      <TippBanner locale="de" />
       <PkvTargets />
       <PkvProcess />
       <PkvRisk />
