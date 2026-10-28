@@ -430,7 +430,60 @@
   color: var(--navy-900);
   text-decoration: none;
   cursor: pointer;
+  position: relative;
   transition: background-color 200ms linear;
+}
+
+/* Lichtstrich am oberen Rand: ein Durchlauf (4 s) beim ersten Erscheinen, ohne Layout-Einfluss, Klicks gehen hindurch */
+.existingSweep {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  overflow: hidden;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+.existingSweepBar {
+  position: absolute;
+  top: 0;
+  left: -100px;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(46, 95, 148, 0), rgba(46, 95, 148, 0.5) 50%, rgba(46, 95, 148, 0));
+  opacity: 0;
+  will-change: transform;
+}
+
+.existingSweep[data-play="true"] .existingSweepBar {
+  animation: existingSweep 4s linear 1 forwards;
+}
+
+@keyframes existingSweep {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  10%,
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(calc(100vw + 100px));
+  }
+}
+
+.existing:focus-visible .existingSweep {
+  opacity: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .existing:hover .existingSweep {
+    opacity: 0;
+  }
 }
 
 .existingInner {
@@ -519,6 +572,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .existingSweep {
+    display: none;
+  }
+
   .existing,
   .existingQuestion,
   .existingLink {

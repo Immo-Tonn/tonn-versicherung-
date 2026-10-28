@@ -4,6 +4,7 @@ import Container from "@/components/ui/Container/Container";
 import Icon from "@/components/ui/Icon/Icon";
 import Photo from "@/components/ui/Photo/Photo";
 import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
+import ExistingSweep from "./ExistingSweep";
 import PkvIcon from "./PkvIcon";
 import TargetCard from "./TargetCard";
 import { about, compare, faq, finalCta, hero, process, risk, secondOpinion, targets, trust } from "./content";
@@ -107,6 +108,7 @@ export function PkvTargets() {
         </ul>
       </Container>
       <Link href={targets.existing.href} className={styles.existing}>
+        <ExistingSweep />
         <Container>
           <span className={styles.existingInner}>
             <span className={styles.existingQuestion}>{targets.existing.question}</span>
