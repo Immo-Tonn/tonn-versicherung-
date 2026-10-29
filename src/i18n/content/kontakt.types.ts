@@ -30,6 +30,9 @@ export type KontaktContent = {
     phone: string;
     phoneOptional: string;
     phoneHint: string;
+    /** Optionales Feld „Empfohlen von“ (Tippgeberprämie) mit Hinweis */
+    referrer: string;
+    referrerHint: string;
     honeypot: string;
     privacyNote: string;
     privacyLink: string;
