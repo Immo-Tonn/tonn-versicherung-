@@ -45,9 +45,9 @@ export const pkvEn: PkvContent = {
     eyebrow: "How the consultation works",
     title: "Check first. Then decide",
     steps: [
-      { title: "Short conversation", text: "Understanding your situation and goals." },
-      { title: "Anonymous preliminary risk assessment", text: "with several insurers." },
-      { title: "Comparing results", text: "Transparent recommendation." },
+      { title: "Short conversation", text: "By phone, video call or in person, we discuss your situation and goals." },
+      { title: "Anonymous preliminary risk assessment", text: "With your consent, we make enquiries with several insurers." },
+      { title: "Comparing results", text: "We compare tariffs and benefits based on your situation." },
       { title: "Deciding together", text: "Calmly and without pressure." },
     ],
     cta: "Free initial consultation",

@@ -35,9 +35,9 @@ export const process = {
   eyebrow: "So läuft die Beratung ab",
   title: "Erst prüfen. Dann entscheiden",
   steps: [
-    { icon: "chat" as const, title: "Kurzes Gespräch", text: "Ihre Situation und Ziele verstehen." },
-    { icon: "document" as const, title: "Anonyme Risikovoranfrage", text: "bei mehreren Versicherern." },
-    { icon: "chart" as const, title: "Ergebnisse vergleichen", text: "Transparente Empfehlung." },
+    { icon: "chat" as const, title: "Kurzes Gespräch", text: "Telefonisch, per Video oder persönlich klären wir Ihre Situation und Ziele." },
+    { icon: "document" as const, title: "Anonyme Risikovoranfrage", text: "Mit Ihrer Zustimmung fragen wir bei mehreren Versicherern an." },
+    { icon: "chart" as const, title: "Ergebnisse vergleichen", text: "Wir vergleichen Tarife und Leistungen passend zu Ihrer Situation." },
     { icon: "check" as const, title: "Gemeinsam entscheiden", text: "In Ruhe und ohne Druck." },
   ],
   cta: { label: "Kostenloses Erstgespräch", href: "/kontakt" },
