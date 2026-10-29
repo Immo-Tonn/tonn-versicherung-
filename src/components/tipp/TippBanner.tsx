@@ -20,14 +20,14 @@ export default function TippBanner({ locale }: { locale: Locale }) {
             <h2 className={styles.bannerTitle}>{b.title}</h2>
             <p className={styles.bannerText}>{b.text}</p>
           </div>
-          <Button href={page} variant="light">
-            {b.cta}
-          </Button>
           <p className={styles.bannerNote}>
             {b.note[0]}
             <Link href={terms}>{b.note[1]}</Link>
             {b.note[2]}
           </p>
+          <Button href={page} variant="light" className={styles.bannerBtn}>
+            {b.cta}
+          </Button>
         </div>
       </Container>
     </section>

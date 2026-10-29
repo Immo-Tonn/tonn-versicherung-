@@ -10,48 +10,52 @@
 .banner {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
   align-items: center;
-  gap: 24px 56px;
-  padding: clamp(32px, 3.4vw, 48px) clamp(28px, 3.6vw, 56px);
+  gap: 6px 32px;
+  padding: clamp(18px, 1.6vw, 22px) clamp(24px, 3vw, 40px);
   background: var(--navy-900);
   color: var(--white);
+}
+
+.banner > .bannerBtn {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
 }
 
 .accent {
   display: block;
   width: 36px;
   height: var(--accent-line-thickness);
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   background: var(--red);
 }
 
 .bannerTitle {
-  max-width: 24em;
   margin: 0;
   font-family: var(--font-serif);
   font-weight: 500;
-  font-size: clamp(26px, 2.5vw, 34px);
+  font-size: clamp(22px, 2vw, 28px);
   line-height: 1.15;
   letter-spacing: -0.012em;
   color: var(--white);
 }
 
 .bannerText {
-  max-width: 44em;
-  margin: 16px 0 0;
-  font-size: clamp(15px, 1.15vw, 17px);
-  line-height: 1.6;
+  max-width: 64em;
+  margin: 6px 0 0;
+  font-size: clamp(14.5px, 1.05vw, 15.5px);
+  line-height: 1.5;
   color: rgba(255, 255, 255, 0.88);
 }
 
 .bannerNote {
-  grid-column: 1 / -1;
-  max-width: 60em;
+  grid-column: 1;
+  max-width: 80em;
   margin: 0;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.16);
-  font-size: 13.5px;
-  line-height: 1.55;
+  font-size: 13px;
+  line-height: 1.5;
   color: rgba(255, 255, 255, 0.76);
 }
 
@@ -78,12 +82,22 @@
 
   .banner {
     grid-template-columns: minmax(0, 1fr);
-    gap: 20px;
-    padding: 28px 24px;
+    grid-template-rows: none;
+    gap: 12px;
+    padding: 18px 20px;
+  }
+
+  .banner > .bannerBtn {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .bannerNote {
+    order: 2;
   }
 
   .accent {
-    margin-bottom: 16px;
+    margin-bottom: 10px;
   }
 }
 
