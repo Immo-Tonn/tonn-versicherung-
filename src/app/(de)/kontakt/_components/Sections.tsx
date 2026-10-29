@@ -86,7 +86,7 @@ export function KtCards() {
             </span>
             <span className={styles.cardLine} aria-hidden="true" />
             <h2>Termin anfragen</h2>
-            <p>Wir stimmen einen passenden Termin mit Ihnen ab.</p>
+            <p>Wir vereinbaren ein kostenloses, unverbindliches Erstgespräch – telefonisch, per Video oder persönlich. Das erste Telefongespräch dauert etwa 15 Minuten. Unterlagen müssen Sie dafür nicht vorbereiten.</p>
             <div className={styles.cardAction}>
               {/* Terminanfrage: führt zum Kontaktformular auf dieser Seite */}
               <a href="#formular" className={styles.cardLink}>

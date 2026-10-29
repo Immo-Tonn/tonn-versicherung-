@@ -16,7 +16,7 @@ export const kontaktEn: KontaktContent = {
     email: "Email",
     emailAction: "Write an email",
     appointment: "Request an appointment",
-    appointmentText: "We will arrange a suitable time with you.",
+    appointmentText: "We arrange a free initial consultation with no obligation – by phone, video call or in person. The first phone call takes about 15 minutes. You do not need to prepare any documents beforehand.",
     appointmentAction: "Request an appointment",
   },
   formIntro: { title: "Room for your questions", lead: "Choose a topic and leave your contact details." },
