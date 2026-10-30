@@ -118,7 +118,7 @@ export const risikovoranfrageEn: ArticleTranslation = {
     },
     {
       t: "p",
-      text: "In our experience, an insurer's answer can be binding for the assessment of a specific pre-existing condition that was asked about. What matters are the wording, the stated conditions and the information submitted. If an application is made later, we submit this answer with it. No commitment for the entire contract is attached to it.",
+      text: "In our experience, an insurer’s response may be binding regarding the assessment of a specific pre-existing condition included in the enquiry. This depends on the wording, the stated conditions and the information submitted. If an insurance application is submitted later, we include this response with it. The response alone does not guarantee acceptance of the application as a whole.",
     },
     { t: "h2", text: "Why complete information matters" },
     {
