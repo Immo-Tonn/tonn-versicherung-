@@ -258,6 +258,10 @@ export function PkvCompare() {
             {compare.noteText}
           </p>
         </div>
+        <Link href={compare.link.href} className={styles.faqMore}>
+          {compare.link.label}
+          <Icon name="arrow" size={15} />
+        </Link>
       </div>
       </Container>
     </section>

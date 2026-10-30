@@ -73,6 +73,7 @@ export const compare = {
   ],
   note: "PKV ist nicht automatisch besser.",
   noteText: "Entscheidend ist, welches System zu Ihrer Lebenssituation passt.",
+  link: { label: "Mehr zu PKV und GKV im Ratgeber", href: "/wissen/pkv-oder-gkv" },
 };
 
 export const about = {
