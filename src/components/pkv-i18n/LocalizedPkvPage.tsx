@@ -279,6 +279,11 @@ export default function LocalizedPkvPage({ locale }: { locale: L }) {
                 {t.compare.noteText}
               </p>
             </div>
+            <Link href={lk(compare.link.href).href} className={styles.faqMore}>
+              {t.compare.link}
+              {tag(compare.link.href)}
+              <Icon name="arrow" size={15} />
+            </Link>
           </div>
         </Container>
       </section>

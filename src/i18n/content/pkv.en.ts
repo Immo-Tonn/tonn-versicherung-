@@ -78,6 +78,7 @@ export const pkvEn: PkvContent = {
     ],
     note: "PKV is not automatically better.",
     noteText: "What matters is which system fits your life situation.",
+    link: "More on PKV and GKV in our guide",
   },
   about: {
     eyebrow: "Your contact person",

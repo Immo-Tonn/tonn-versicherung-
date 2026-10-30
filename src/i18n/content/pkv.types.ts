@@ -44,6 +44,7 @@ export type PkvContent = {
     rows: [[string, string, string], [string, string, string], [string, string, string], [string, string, string]];
     note: string;
     noteText: string;
+    link: string;
   };
   about: { eyebrow: string; title: string; text: string; cta: string; imageAlt: string };
   secondOpinion: { eyebrow: string; title: string; text: string; cta: string; imageAlt: string };
