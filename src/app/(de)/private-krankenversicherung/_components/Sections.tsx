@@ -9,7 +9,8 @@ import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
 import ExistingSweep from "./ExistingSweep";
 import PkvIcon from "./PkvIcon";
 import TargetCard from "./TargetCard";
-import { about, compare, faq, finalCta, hero, process, risk, secondOpinion, targets, trust } from "./content";
+import { about, compare, faq, finalCta, hero, process, risk, secondOpinion, targets, terms, trust } from "./content";
+import { PkvResultRef } from "./PkvTerms";
 import styles from "./Pkv.module.css";
 
 const Dot = () => <i className={styles.dot} aria-hidden="true" />;
@@ -202,8 +203,11 @@ export function PkvRisk() {
           <div className={styles.results}>
             <p>{risk.resultsLabel}</p>
             <ul>
-              {risk.results.map((r) => (
-                <li key={r}>{r}</li>
+              {risk.results.map((r, i) => (
+                <li key={r}>
+                  {r}
+                  <PkvResultRef n={i + 1} term={r} aria={terms.refAria} />
+                </li>
               ))}
             </ul>
           </div>

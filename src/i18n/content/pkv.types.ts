@@ -2,6 +2,8 @@
  * Übersetzbare Texte der Seite „Private Krankenversicherung“ (Hauptseite). Bilder, Icons, Links und Reihenfolge
  * stammen aus src/app/(de)/private-krankenversicherung/_components/content.ts (gleiche Indizes).
  */
+import type { PkvTermsContent } from "@/app/(de)/private-krankenversicherung/_components/PkvTerms";
+
 type Pair = [string, string];
 type Card = { title: string; text: string };
 
@@ -47,6 +49,7 @@ export type PkvContent = {
   secondOpinion: { eyebrow: string; title: string; text: string; cta: string; imageAlt: string };
   faq: { eyebrow: string; title: Pair; items: [{ q: string; a: string }, { q: string; a: string }, { q: string; a: string }, { q: string; a: string }]; more: string };
   finalCta: { eyebrow: string; title: Pair; text: string; cta: string; checks: [string, string, string] };
+  terms: PkvTermsContent;
 };
 
 /** Beschriftungen der Unterseiten (Brotkrumen, „Kurz beantwortet“, Quellen, Abschluss-CTA). */

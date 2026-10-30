@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "@/app/(de)/private-krankenversicherung/_components/Pkv.module.css";
 import ExistingSweep from "@/app/(de)/private-krankenversicherung/_components/ExistingSweep";
 import PkvIcon from "@/app/(de)/private-krankenversicherung/_components/PkvIcon";
+import PkvTerms, { PkvResultRef } from "@/app/(de)/private-krankenversicherung/_components/PkvTerms";
 import { about, compare, faq, finalCta, hero, process, risk, secondOpinion, targets, trust } from "@/app/(de)/private-krankenversicherung/_components/content";
 import DeTag from "@/components/layout-i18n/DeTag";
 import LocalizedPageJsonLd from "@/components/seo/LocalizedPageJsonLd";
@@ -226,8 +227,11 @@ export default function LocalizedPkvPage({ locale }: { locale: L }) {
             <div className={styles.results}>
               <p>{t.risk.resultsLabel}</p>
               <ul>
-                {t.risk.results.map((r) => (
-                  <li key={r}>{r}</li>
+                {t.risk.results.map((r, i) => (
+                  <li key={r}>
+                    {r}
+                    <PkvResultRef n={i + 1} term={r} aria={t.terms.refAria} />
+                  </li>
                 ))}
               </ul>
             </div>
@@ -378,6 +382,7 @@ export default function LocalizedPkvPage({ locale }: { locale: L }) {
           </ul>
         </Container>
       </section>
+      <PkvTerms terms={t.terms} labels={t.risk.results} />
     </>
   );
 }

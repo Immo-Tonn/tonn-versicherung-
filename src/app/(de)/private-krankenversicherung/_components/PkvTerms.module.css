@@ -1,0 +1,99 @@
+/* Fußnoten „Begriffe kurz erklärt“ (PKV-Seite): Nummern an den Ergebnis-Marken und Erklärliste am Seitenende */
+
+.ref {
+  margin-left: 2px;
+  font-size: 0.72em;
+  line-height: 0;
+  vertical-align: super;
+}
+
+.refLink {
+  position: relative;
+  display: inline-block;
+  font-weight: 600;
+  color: var(--navy-900);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  scroll-margin-top: calc(var(--header-h) + 24px);
+}
+
+/* größere Trefferfläche, ohne die Marke zu vergrößern */
+.refLink::after {
+  content: "";
+  position: absolute;
+  inset: -10px -8px;
+}
+
+.refLink:focus-visible,
+.back:focus-visible {
+  outline: 2px solid var(--navy-900);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.terms {
+  padding-block: clamp(36px, 3.4vw, 52px);
+  background: var(--white);
+}
+
+.terms .title {
+  margin: 0 0 20px;
+  font-size: clamp(22px, 2vw, 28px);
+  line-height: 1.2;
+}
+
+.list {
+  display: grid;
+  gap: 10px;
+  max-width: 760px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1.5em minmax(0, 1fr);
+  gap: 0 8px;
+  align-items: baseline;
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  scroll-margin-top: calc(var(--header-h) + 24px);
+}
+
+.num {
+  font-weight: 600;
+  color: var(--navy-900);
+}
+
+.item b {
+  font-weight: 600;
+  color: var(--navy-900);
+}
+
+/* letztes Wort und Pfeil bleiben zusammen */
+.tail {
+  white-space: nowrap;
+}
+
+.back {
+  position: relative;
+  margin-left: 2px;
+  padding-inline: 4px;
+  font-size: 16px;
+  color: var(--navy-900);
+  text-decoration: none;
+}
+
+.back::after {
+  content: "";
+  position: absolute;
+  inset: -10px -6px;
+}
+
+@media (max-width: 767px) {
+  .item {
+    font-size: 15px;
+  }
+}

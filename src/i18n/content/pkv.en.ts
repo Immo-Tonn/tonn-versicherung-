@@ -123,6 +123,17 @@ export const pkvEn: PkvContent = {
     cta: "Free initial consultation",
     checks: ["Non-binding", "Personal", "Also possible by video"],
   },
+  terms: {
+    title: "Terms explained",
+    items: [
+      ["Standard acceptance", "no individual risk surcharge or coverage exclusion."],
+      ["Risk surcharge", "an additional premium due to an increased health risk."],
+      ["Benefit exclusion", "certain conditions or treatments are excluded from cover."],
+      ["Rejection", "based on the information submitted, acceptance on the requested terms is not offered."],
+    ],
+    refAria: "Explanation of “{term}”",
+    backAria: "Back to “{term}”",
+  },
 };
 
 export const subLabelsEn: SubLabels = {
