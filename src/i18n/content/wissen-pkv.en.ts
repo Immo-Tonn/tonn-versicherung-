@@ -94,7 +94,7 @@ export const risikovoranfrageEn: ArticleTranslation = {
       "What is an anonymous preliminary risk assessment? Process, benefits and limits for private health insurance and occupational disability insurance, clearly explained.",
   },
   answer:
-    "In an anonymous preliminary risk assessment (anonyme Risikovoranfrage), an intermediary or service provider asks insurers in advance whether, and on what terms, they would insure a person, without giving a name or address. No contract and no application come into being. It is helpful above all in the case of pre-existing health conditions, but it does not replace the binding acceptance decision on a later application.",
+    "In an anonymous preliminary risk assessment (anonyme Risikovoranfrage), an intermediary or service provider asks insurers in advance whether, and on what terms, they would insure a person, without giving a name or address. No contract and no application come into being. It is particularly helpful in the case of pre-existing conditions. Whether and to what extent the answer is binding depends on the conditions stated in it.",
   blocks: [
     { t: "h2", text: "What a preliminary risk assessment is for" },
     {
@@ -106,7 +106,7 @@ export const risikovoranfrageEn: ArticleTranslation = {
       t: "ul",
       items: [
         "Your health information is carefully compiled together.",
-        "An intermediary or service provider submits it to several insurers without your name and without your address.",
+        "An intermediary or service provider submits it to several insurers without your name and without your address. This is because the same condition can be assessed differently depending on the insurer.",
         "The insurers report back whether and how they would accept the risk.",
         "Possible outcomes are standard acceptance, risk surcharge, benefit exclusion or rejection.",
         "Only then do you decide whether, and with which insurer, you submit an application.",
@@ -114,7 +114,11 @@ export const risikovoranfrageEn: ArticleTranslation = {
     },
     {
       t: "p",
-      text: "The Verbraucherzentrale consumer advice centre describes the procedure using occupational disability insurance as an example and recommends it especially if problems are to be feared because of pre-existing conditions. As an advantage it mentions that, with your pre-existing conditions, you do not end up in insurers' data records if no contract comes about. Results of the preliminary assessment usually also apply to the final policy.",
+      text: "The Verbraucherzentrale consumer advice centre recommends an anonymous preliminary risk assessment, using occupational disability insurance as its example, if difficulties are to be expected because of pre-existing conditions.",
+    },
+    {
+      t: "p",
+      text: "In our experience, an insurer's answer can be binding for the assessment of a specific pre-existing condition that was asked about. What matters are the wording, the stated conditions and the information submitted. If an application is made later, we submit this answer with it. No commitment for the entire contract is attached to it.",
     },
     { t: "h2", text: "Why complete information matters" },
     {
@@ -125,7 +129,7 @@ export const risikovoranfrageEn: ArticleTranslation = {
     {
       t: "ul",
       items: [
-        "It is a preliminary assessment. The insurer only makes the binding decision on the application.",
+        "The preliminary risk assessment does not replace an insurance application. The answer relates to the information submitted and the conditions stated in it.",
         "Not every insurer accepts anonymous enquiries. An experienced intermediary generally knows which ones do.",
         "Results can change if your health or your information changes.",
         "It does not replace advice on tariff and terms. Acceptance alone says nothing yet about whether the contract suits you.",
