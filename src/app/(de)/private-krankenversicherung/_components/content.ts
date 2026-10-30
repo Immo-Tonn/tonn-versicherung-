@@ -119,6 +119,18 @@ export const faq = {
   more: { label: "Weitere Fragen im Ratgeber", href: "/wissen" },
 };
 
+export const terms = {
+  title: "Begriffe kurz erklärt",
+  items: [
+    ["Normalannahme", "ohne individuellen Risikozuschlag oder Leistungsausschluss."],
+    ["Risikozuschlag", "ein zusätzlicher Beitrag aufgrund eines erhöhten gesundheitlichen Risikos."],
+    ["Leistungsausschluss", "Bestimmte Erkrankungen oder Behandlungen sind vom Versicherungsschutz ausgeschlossen."],
+    ["Ablehnung", "Auf Grundlage der eingereichten Angaben wird keine Annahme zu den angefragten Bedingungen angeboten."],
+  ] as [[string, string], [string, string], [string, string], [string, string]],
+  refAria: "Erklärung zu „{term}“",
+  backAria: "Zurück zu „{term}“",
+};
+
 export const finalCta = {
   eyebrow: "Jetzt beraten lassen",
   title: ["Noch unsicher, ob die PKV", "zu Ihnen passt?"],

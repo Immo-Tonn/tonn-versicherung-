@@ -1,6 +1,7 @@
 import PageJsonLd from "@/components/seo/PageJsonLd";
 import { pageMetadata } from "@/lib/seo";
-import { faq } from "./_components/content";
+import PkvTerms from "./_components/PkvTerms";
+import { faq, risk, terms } from "./_components/content";
 import { PkvAbout, PkvCompare, PkvFaq, PkvFinalCta, PkvHero, PkvProcess, PkvRisk, PkvSecondOpinion, PkvTargets, PkvTrust } from "./_components/Sections";
 
 const path = "/private-krankenversicherung";
@@ -35,6 +36,7 @@ export default function Page() {
       <PkvSecondOpinion />
       <PkvFaq />
       <PkvFinalCta />
+      <PkvTerms terms={terms} labels={risk.results} />
     </>
   );
 }
