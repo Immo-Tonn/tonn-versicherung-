@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import SharedDeTag from "@/components/layout-i18n/DeTag";
 import LocalizedConsentMap from "./LocalizedConsentMap";
@@ -66,10 +67,13 @@ export default async function LocalizedHome({ locale }: { locale: L }) {
           <HeroEyebrow>{t.hero.eyebrow}</HeroEyebrow>
           <h1 id="hero-title" className={heroStyles.title}>
             {t.hero.title.split(" ").map((w, i, all) => (
-              <span key={w}>
-                {w}
-                {i === all.length - 1 && <i className={heroStyles.dot} aria-hidden="true" />}
-              </span>
+              <Fragment key={w}>
+                <span>
+                  {w}
+                  {i === all.length - 1 && <i className={heroStyles.dot} aria-hidden="true" />}
+                </span>
+                {i < all.length - 1 && " "}
+              </Fragment>
             ))}
           </h1>
           <p className={heroStyles.subtitle}>

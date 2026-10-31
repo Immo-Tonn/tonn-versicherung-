@@ -34,11 +34,11 @@ export function PkvHero() {
       <div className={styles.heroCopy}>
         <SectionLabel>{hero.eyebrow}</SectionLabel>
         <h1 id="pkv-title" className={styles.heroTitle}>
-          <span className={styles.line}>{hero.title[0]}</span>
+          <span className={styles.line}>{hero.title[0]}</span>{" "}
           <span className={styles.line}>
             {hero.title[1]}
             <Dot />
-          </span>
+          </span>{" "}
           <span className={`${styles.line} ${styles.soft}`}>
             {hero.soft}
             <Dot />

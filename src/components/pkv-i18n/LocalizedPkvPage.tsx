@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import styles from "@/app/(de)/private-krankenversicherung/_components/Pkv.module.css";
 import ExistingSweep from "@/app/(de)/private-krankenversicherung/_components/ExistingSweep";
@@ -64,7 +65,14 @@ export default function LocalizedPkvPage({ locale }: { locale: L }) {
         <div className={styles.heroCopy}>
           <SectionLabel>{t.hero.eyebrow}</SectionLabel>
           <h1 id="pkv-title" className={styles.heroTitle}>
-            <Lines lines={t.hero.title} dotOnLast />
+            {t.hero.title.map((l, i, all) => (
+              <Fragment key={l}>
+                <span className={styles.line}>
+                  {l}
+                  {i === all.length - 1 && <Dot />}
+                </span>{" "}
+              </Fragment>
+            ))}
             <span className={`${styles.line} ${styles.soft}`}>
               {t.hero.soft}
               <Dot />
