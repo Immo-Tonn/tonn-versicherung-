@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import { hero } from "@/data/home";
 import Button from "@/components/ui/Button/Button";
@@ -22,10 +23,13 @@ export default function Hero() {
         <HeroEyebrow>{hero.eyebrow}</HeroEyebrow>
         <h1 id="hero-title" className={styles.title}>
           {hero.title.split(" ").map((w, i, all) => (
-            <span key={w}>
-              {w}
-              {i === all.length - 1 && <i className={styles.dot} aria-hidden="true" />}
-            </span>
+            <Fragment key={w}>
+              <span>
+                {w}
+                {i === all.length - 1 && <i className={styles.dot} aria-hidden="true" />}
+              </span>
+              {i < all.length - 1 && " "}
+            </Fragment>
           ))}
         </h1>
         <p className={styles.subtitle}>
