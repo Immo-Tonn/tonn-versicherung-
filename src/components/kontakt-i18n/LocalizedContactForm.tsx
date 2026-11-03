@@ -35,6 +35,7 @@ export default function LocalizedContactForm({ locale }: { locale: L }) {
   const [replyVia, setReplyVia] = useState<string>("E-Mail");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+  const [referrer, setReferrer] = useState("");
   const [privacy, setPrivacy] = useState(false);
   const [website, setWebsite] = useState(""); // Honeypot
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -73,6 +74,9 @@ export default function LocalizedContactForm({ locale }: { locale: L }) {
         case "message":
           out.message = t.errors.tooLong.replace("{n}", limit(m));
           break;
+        case "referrer":
+          out.referrer = t.errors.tooLong.replace("{n}", limit(m));
+          break;
         case "privacy":
           out.privacy = t.errors.privacy;
           break;
@@ -82,7 +86,7 @@ export default function LocalizedContactForm({ locale }: { locale: L }) {
   }
 
   function focusFirst(e: FieldErrors) {
-    const order: (keyof FieldErrors)[] = ["topic", "name", "email", "replyVia", "phone", "message", "privacy"];
+    const order: (keyof FieldErrors)[] = ["topic", "name", "email", "replyVia", "phone", "referrer", "message", "privacy"];
     const first = order.find((k) => e[k]);
     if (!first) return;
     const form = formRef.current;
@@ -94,7 +98,7 @@ export default function LocalizedContactForm({ locale }: { locale: L }) {
     ev.preventDefault();
     if (lockRef.current) return;
     setServerError("");
-    const input = { topic, name, email, replyVia, phone, message, privacyAcknowledged: privacy };
+    const input = { topic, name, email, replyVia, phone, message, referrer, privacyAcknowledged: privacy };
     const found = localize(validate(input));
     setErrors(found);
     if (Object.keys(found).length) {
@@ -229,6 +233,19 @@ export default function LocalizedContactForm({ locale }: { locale: L }) {
             </p>
           )}
         </div>
+      </div>
+
+      <div className={styles.field}>
+        <label htmlFor={id("referrer")}>{f.referrer}</label>
+        <input id={id("referrer")} name="referrer" type="text" autoComplete="off" value={referrer} onChange={(e) => setReferrer(e.target.value)} aria-invalid={errors.referrer ? true : undefined} aria-describedby={`${id("referrer")}-hint${errors.referrer ? ` ${err("referrer")}` : ""}`} />
+        <p id={`${id("referrer")}-hint`} className={styles.hint}>
+          {f.referrerHint}
+        </p>
+        {errors.referrer && (
+          <p id={err("referrer")} className={styles.err}>
+            {errors.referrer}
+          </p>
+        )}
       </div>
 
       {/* Honeypot: für Menschen unsichtbar und nicht erreichbar */}

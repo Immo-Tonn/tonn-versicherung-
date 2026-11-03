@@ -63,6 +63,8 @@ export const routes: RouteEntry[] = [
   { path: "/kontakt", status: { ...de, en: "live", ru: "live" } },
   // Danke-Seite: noindex, daher nicht in der Sitemap und ohne hreflang
   { path: "/kontakt/danke", status: { ...de, en: "live", ru: "live" }, noindex: true },
+  // Tippgeberprämie: Entwurf der Teilnahmebedingungen, noindex (nicht in Sitemap/hreflang) bis zur juristischen Prüfung
+  { path: "/tippgeberpraemie", status: { ...de, en: "live", ru: "live" }, noindex: true },
   // Impressum/Datenschutz bleiben vorerst nur deutsch
   { path: "/impressum", status: { ...de } },
   { path: "/datenschutz", status: { ...de } },

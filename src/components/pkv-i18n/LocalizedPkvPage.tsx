@@ -7,6 +7,7 @@ import PkvTerms, { PkvResultRef } from "@/app/(de)/private-krankenversicherung/_
 import { about, compare, faq, finalCta, hero, process, risk, secondOpinion, targets, trust } from "@/app/(de)/private-krankenversicherung/_components/content";
 import DeTag from "@/components/layout-i18n/DeTag";
 import LocalizedPageJsonLd from "@/components/seo/LocalizedPageJsonLd";
+import TippBanner from "@/components/tipp/TippBanner";
 import Button from "@/components/ui/Button/Button";
 import HeroShine from "@/components/ui/HeroShine/HeroShine";
 import shine from "@/components/ui/HeroShine/HeroShine.module.css";
@@ -116,6 +117,8 @@ export default function LocalizedPkvPage({ locale }: { locale: L }) {
           </ul>
         </Container>
       </section>
+
+      <TippBanner locale={locale} />
 
       {/* Zielgruppen */}
       <section className={`${styles.section} ${styles.bgOff} ${styles.targetsEnd}`} aria-labelledby="pkv-targets">

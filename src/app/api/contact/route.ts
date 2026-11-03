@@ -50,6 +50,7 @@ export async function POST(req: Request) {
     replyVia: str(body.replyVia, 20),
     phone: str(body.phone, LIMITS.phone),
     message: str(body.message, LIMITS.message),
+    referrer: str(body.referrer, LIMITS.referrer),
     privacyAcknowledged: body.privacyAcknowledged,
   };
   const errors = validate(input);
@@ -69,6 +70,7 @@ export async function POST(req: Request) {
   const email = input.email.trim();
   const phone = oneLine(input.phone);
   const message = input.message.trim() || "Keine zusätzliche Nachricht angegeben.";
+  const referrer = oneLine(input.referrer ?? "");
   const topic = input.topic || "Kein Thema ausgewählt";
   const rows: [string, string][] = [
     ["Thema", topic],
@@ -77,6 +79,7 @@ export async function POST(req: Request) {
     ["Antwort per", input.replyVia],
     ["Sprache der Anfrage", LOCALE_LABELS[locale]],
     ...(phone ? ([["Telefon", phone]] as [string, string][]) : []),
+    ...(referrer ? ([["Empfohlen von", referrer]] as [string, string][]) : []),
   ];
 
   const text = [...rows.map(([k, v]) => `${k}: ${v}`), "", "Nachricht:", message].join("\n");

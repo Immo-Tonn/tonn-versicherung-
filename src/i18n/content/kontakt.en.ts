@@ -34,6 +34,8 @@ export const kontaktEn: KontaktContent = {
     phone: "Phone *",
     phoneOptional: "Phone (optional)",
     phoneHint: "Required for your callback.",
+    referrer: "Referred by (optional)",
+    referrerHint: "If someone referred you: the name of that person. Please do not provide contact details of third parties.",
     honeypot: "Website",
     privacyNote: "Notes on data protection:",
     privacyLink: "Privacy policy",
