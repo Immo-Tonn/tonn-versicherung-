@@ -4,6 +4,7 @@ import ConsentBanner from "@/components/consent/ConsentBanner";
 import BackToTop from "@/components/ui/BackToTop/BackToTop";
 import CallFab from "@/components/ui/CallButton/CallFab";
 import { getDictionary } from "@/i18n/dictionaries";
+import AdsTracking from "@/components/consent/AdsTracking";
 import GoogleAnalytics from "@/components/consent/GoogleAnalytics";
 import Usercentrics from "@/components/consent/Usercentrics";
 import Footer from "@/components/layout/Footer/Footer";
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <BackToTop label={getDictionary("de").common.backToTop} />
         <GoogleAnalytics />
         <ScrollReveal />
+        <AdsTracking />
         <Usercentrics locale={"de"} />
       </body>
     </html>
