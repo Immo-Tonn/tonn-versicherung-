@@ -266,7 +266,7 @@ export default function LocalizedContactForm({ locale }: { locale: L }) {
                 {f.privacyLinkInline}
               </Link>
               {privacyTarget.german && tag}
-              {f.privacyAfter}
+              {f.privacyAfter} *
             </span>
           </label>
           {errors.privacy && (
