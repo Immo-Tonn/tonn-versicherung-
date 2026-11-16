@@ -37,11 +37,16 @@ ARG GOOGLE_PLACE_ID
 ARG NEXT_PUBLIC_GA_MEASUREMENT_ID
 # Indexierung: 1 = alle Seiten per X-Robots-Tag noindex sperren (Standard, sicher). 0 = Indexierung freigeben (erst nach Endprüfung).
 ARG SITE_NOINDEX=1
+# Werbe-Tracking (Google Ads über Tag Manager): nur aktiv, wenn TRACKING_ENABLED=true UND eine GTM-ID gesetzt ist (Standard: aus).
+ARG NEXT_PUBLIC_TRACKING_ENABLED=false
+ARG NEXT_PUBLIC_GTM_ID
 ENV NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL} \
     NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY=${NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY} \
     GOOGLE_PLACE_ID=${GOOGLE_PLACE_ID} \
     NEXT_PUBLIC_GA_MEASUREMENT_ID=${NEXT_PUBLIC_GA_MEASUREMENT_ID} \
-    SITE_NOINDEX=${SITE_NOINDEX}
+    SITE_NOINDEX=${SITE_NOINDEX} \
+    NEXT_PUBLIC_TRACKING_ENABLED=${NEXT_PUBLIC_TRACKING_ENABLED} \
+    NEXT_PUBLIC_GTM_ID=${NEXT_PUBLIC_GTM_ID}
 
 # Der Places-Key wird nur für diesen einen Befehl als Umgebungsvariable gesetzt, damit die
 # Startseite beim Build bereits mit Bewertungen vorgerendert wird (danach aktualisiert
