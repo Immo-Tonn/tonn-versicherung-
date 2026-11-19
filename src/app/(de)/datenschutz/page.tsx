@@ -127,6 +127,20 @@ export default function Page() {
         <strong>Widerruf.</strong> Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft über den Link „Cookie-Einstellungen“ im Seitenfuß widerrufen (Abschnitt 4). Danach werden keine weiteren Daten an Google Analytics gesendet, und die Website entfernt die Analytics-Cookies. Bereits erfolgte Übermittlungen werden dadurch nicht rückgängig gemacht; die Rechtmäßigkeit der bis dahin erfolgten Verarbeitung bleibt unberührt. Weitere Informationen: <Ext>https://policies.google.com/privacy</Ext>
       </p>
 
+      <h2 id="tagmanager">7a. Google Tag Manager und Google Ads (Conversion-Messung)</h2>
+      <p>
+        <strong>Dienst und Anbieter.</strong> Mit Ihrer Einwilligung können wir den Google Tag Manager der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland, einsetzen. Er dient der Verwaltung und Auslösung von Marketing-Tags und der Conversion-Messung für Google Ads, also der Auswertung, ob eine Anzeige zu einer Kontaktaufnahme (zum Beispiel Kontaktformular oder Klick auf einen Telefonlink) geführt hat.
+      </p>
+      <p>
+        <strong>Rechtsgrundlage und Ihre Wahl.</strong> Rechtsgrundlage ist Ihre Einwilligung über das Einwilligungsbanner (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG). Der Tag Manager wird erst nach Ihrer Einwilligung geladen. Ohne Ihre Zustimmung, nach einer Ablehnung und nach einem Widerruf wird er nicht geladen, und es werden keine Daten an Google übermittelt.
+      </p>
+      <p>
+        <strong>Empfänger und Übermittlung.</strong> Empfänger ist die Google Ireland Limited. Eine Übermittlung von Daten in die USA ist möglich; Grundlage ist der Angemessenheitsbeschluss der EU-Kommission zum EU-US Data Privacy Framework, soweit der Empfänger zertifiziert ist, sonst Standardvertragsklauseln (Abschnitt 9).
+      </p>
+      <p>
+        <strong>Widerruf.</strong> Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft über den Link „Cookie-Einstellungen“ im Seitenfuß widerrufen (Abschnitt 4). Bereits erfolgte Verarbeitungen bleiben rechtmäßig. Weitere Informationen: <Ext>https://policies.google.com/privacy</Ext>
+      </p>
+
       <h2 id="maps">8. Google Maps, Google-Bewertungen und externe Links</h2>
       <p>
         <strong>Google Maps.</strong> Die Karte wird erst geladen, wenn Sie im Einwilligungsbanner zugestimmt haben. Dann übermittelt Ihr Browser unter anderem Ihre IP-Adresse und Angaben zur Nutzung der Karte an die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Daten können in die USA übermittelt werden (siehe Abschnitt 9). Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO. Weitere Informationen: <Ext>https://policies.google.com/privacy</Ext>
