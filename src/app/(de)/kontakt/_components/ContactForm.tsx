@@ -209,7 +209,7 @@ export default function ContactForm() {
               <Link href="/datenschutz" target="_blank" rel="noopener noreferrer">
                 Datenschutzerklärung
               </Link>{" "}
-              zur Kenntnis genommen.
+              zur Kenntnis genommen. *
             </span>
           </label>
           {errors.privacy && (

@@ -1,5 +1,6 @@
 import BackToTop from "@/components/ui/BackToTop/BackToTop";
 import CallFab from "@/components/ui/CallButton/CallFab";
+import AdsTracking from "@/components/consent/AdsTracking";
 import GoogleAnalytics from "@/components/consent/GoogleAnalytics";
 import Usercentrics from "@/components/consent/Usercentrics";
 import JsonLd from "@/components/seo/JsonLd";
@@ -26,6 +27,7 @@ export default function LocalizedShell({ locale, children }: { locale: Exclude<L
       <BackToTop label={getDictionary(locale).common.backToTop} />
       <GoogleAnalytics />
       <ScrollReveal />
+      <AdsTracking />
       <Usercentrics locale={locale} />
     </>
   );
