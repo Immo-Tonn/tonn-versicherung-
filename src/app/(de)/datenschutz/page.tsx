@@ -45,7 +45,7 @@ export default function Page() {
         <strong>Technisch erforderliche Zugriffe.</strong> Dazu gehören zum Beispiel die Speicherung Ihrer Cookie-Auswahl und Funktionen für Sicherheit und Stabilität der Website. Sie benötigen keine Einwilligung. Die damit verbundene Datenverarbeitung beruht auf Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einem sicheren und funktionsfähigen Webangebot).
       </p>
       <p>
-        <strong>Zugriffe nur mit Ihrer Einwilligung.</strong> Die folgenden Dienste setzen wir nur ein, wenn Sie vorher über das Einwilligungsbanner zugestimmt haben (§ 25 Abs. 1 TDDDG, Art. 6 Abs. 1 lit. a DSGVO): Google Analytics zur Reichweitenmessung (Abschnitt 7) und Google Maps zur Anzeige der Karte (Abschnitt 8).
+        <strong>Zugriffe nur mit Ihrer Einwilligung.</strong> Die folgenden Dienste setzen wir nur ein, wenn Sie vorher über das Einwilligungsbanner zugestimmt haben (§ 25 Abs. 1 TDDDG, Art. 6 Abs. 1 lit. a DSGVO): Google Analytics zur Reichweitenmessung (Abschnitt 7), Google Tag Manager mit Google Ads und Google Analytics 4 (Abschnitt 7a) und Google Maps zur Anzeige der Karte (Abschnitt 8).
       </p>
       <p>Bis zu Ihrer Zustimmung, nach einer Ablehnung und nach einem Widerruf werden diese Dienste nicht geladen und es werden keine Daten an Google übermittelt.</p>
       <p>
@@ -115,10 +115,13 @@ export default function Page() {
         <strong>Welche Daten verarbeitet werden.</strong> Nach Ihrer Zustimmung sendet Ihr Browser bei jedem Seitenaufruf an Google: Adresse und Titel der aufgerufenen Seite (ohne Parameter nach dem Fragezeichen und ohne Fragmentteil), die zuvor besuchte Seite, den Zeitpunkt, die Sprache des Browsers, die Bildschirmauflösung, Angaben zu Browser, Gerät und Betriebssystem, eine zufällig vergebene Kennung (Client-ID) und Sitzungsangaben. Nach Angabe von Google werden IP-Adressen in Google Analytics 4 nicht protokolliert oder gespeichert. Zusätzlich erfassen wir drei Ereignisse jeweils ohne Inhalte: das erfolgreiche Absenden des Kontaktformulars, den Klick auf einen Telefonlink und den Klick auf einen E-Mail-Link. Wir übermitteln keine Namen, E-Mail-Adressen, Telefonnummern oder Inhalte des Kontaktformulars an Google Analytics, keine Formulareingaben und nicht den Inhalt der angeklickten Telefon- oder E-Mail-Links.
       </p>
       <p>
-        <strong>Unsere Einstellungen.</strong> Wir haben Google Signals, die Personalisierung von Werbung, die Nutzer-ID-Funktion und die Verknüpfung mit Google Ads nicht aktiviert und nutzen die erweiterte Messung nicht. Die Freigabe der Daten für die Verbesserung von Google-Produkten und -Diensten ist ausgeschaltet.
+        <strong>Unsere Einstellungen.</strong> Diese Angaben betreffen nur Google Analytics 4. In unserem Google-Analytics-Konto sind Google Signals ausgeschaltet, es besteht keine Verknüpfung mit Google Ads, die Personalisierung von Werbung ist für alle Regionen ausgeschaltet, und die Nutzer-ID-Funktion ist ausgeschaltet. Die Messung mit Google Analytics 4 erfolgt ohne Verknüpfung zu Google Ads. Werbung und Remarketing über Google Ads (Conversion-Messung, Nutzerlisten) beschreiben wir getrennt in Abschnitt 7a; die Daten aus Google Analytics 4 werden dafür nicht verwendet.
       </p>
       <p>
-        <strong>Cookies und Speicherdauer.</strong> Google Analytics setzt zwei Cookies auf Ihrem Gerät (Domain dieser Website): „_ga“ (unterscheidet Besucher) und „_ga_&lt;Container-ID&gt;“ (hält den Sitzungsstatus). Nach Angabe von Google beträgt die Standardlaufzeit beider Cookies zwei Jahre; Browser können sie früher begrenzen. Die in Google Analytics gespeicherten Ereignis- und Nutzerdaten werden nach unserer Einstellung zur Datenspeicherung nach zwei Monaten gelöscht; Standardberichte mit aggregierten Daten sind davon nach Angabe von Google weitgehend nicht betroffen.
+        <strong>Detaillierte Standort- und Gerätedaten.</strong> Google Analytics 4 erfasst ergänzend Daten wie Stadt und Region (aus der gekürzten IP-Adresse), Gerätetyp, Betriebssystem, Browser und Bildschirmauflösung. Wir verwenden diese Daten nur für die Reichweitenmessung.
+      </p>
+      <p>
+        <strong>Cookies und Speicherdauer.</strong> Google Analytics setzt zwei Cookies auf Ihrem Gerät (Domain dieser Website): „_ga“ (unterscheidet Besucher) und „_ga_&lt;Container-ID&gt;“ (hält den Sitzungsstatus). Die Laufzeit beider Cookies beträgt 400 Tage; Browser können sie früher begrenzen. Die in Google Analytics gespeicherten Ereignis- und Nutzerdaten werden nach unserer Einstellung zur Datenspeicherung nach zwei Monaten gelöscht; Standardberichte mit aggregierten Daten sind davon nach Angabe von Google weitgehend nicht betroffen.
       </p>
       <p>
         <strong>Empfänger und Übermittlung.</strong> Empfänger ist die Google Ireland Limited; nach der Dienstbeschreibung von Usercentrics kommen auch die Alphabet Inc. und die Google LLC in Betracht. Nach Angabe von Google werden Daten von Nutzern aus der EU über Domains und Server in der EU erhoben. Eine Übermittlung in Drittländer, nach der Dienstbeschreibung von Usercentrics in die USA, nach Singapur, Chile und Taiwan, ist möglich; Grundlage sind der Angemessenheitsbeschluss zum EU-US Data Privacy Framework, soweit der Empfänger zertifiziert ist, sonst Standardvertragsklauseln (Abschnitt 9).
@@ -127,12 +130,26 @@ export default function Page() {
         <strong>Widerruf.</strong> Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft über den Link „Cookie-Einstellungen“ im Seitenfuß widerrufen (Abschnitt 4). Danach werden keine weiteren Daten an Google Analytics gesendet, und die Website entfernt die Analytics-Cookies. Bereits erfolgte Übermittlungen werden dadurch nicht rückgängig gemacht; die Rechtmäßigkeit der bis dahin erfolgten Verarbeitung bleibt unberührt. Weitere Informationen: <Ext>https://policies.google.com/privacy</Ext>
       </p>
 
-      <h2 id="tagmanager">7a. Google Tag Manager und Google Ads (Conversion-Messung)</h2>
+      <h2 id="tagmanager">7a. Google Tag Manager, Google Ads (Conversion-Messung und Remarketing) und Google Analytics 4</h2>
       <p>
-        <strong>Dienst und Anbieter.</strong> Mit Ihrer Einwilligung können wir den Google Tag Manager der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland, einsetzen. Er dient der Verwaltung und Auslösung von Marketing-Tags und der Conversion-Messung für Google Ads, also der Auswertung, ob eine Anzeige zu einer Kontaktaufnahme (zum Beispiel Kontaktformular oder Klick auf einen Telefonlink) geführt hat.
+        <strong>Dienst und Anbieter.</strong> Mit Ihrer Einwilligung setzen wir den Google Tag Manager der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland, ein. Über ihn werden Google Ads (Conversion-Messung und Remarketing) und Google Analytics 4 ausgeführt. Zu Google Analytics siehe auch Abschnitt 7.
       </p>
       <p>
-        <strong>Rechtsgrundlage und Ihre Wahl.</strong> Rechtsgrundlage ist Ihre Einwilligung über das Einwilligungsbanner (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG). Der Tag Manager wird erst nach Ihrer Einwilligung geladen. Ohne Ihre Zustimmung, nach einer Ablehnung und nach einem Widerruf wird er nicht geladen, und es werden keine Daten an Google übermittelt.
+        <strong>Zwecke.</strong>
+      </p>
+      <ul>
+        <li>Conversion-Messung für Google Ads: Wir werten aus, ob eine Anzeige zu einer Kontaktaufnahme geführt hat (Absenden des Kontaktformulars, Klick auf einen Telefonlink).</li>
+        <li>Remarketing: Wir zeigen Anzeigen an Besucher, die unsere Website besucht haben. Dafür werden Listen von Nutzern gebildet.</li>
+        <li>Reichweitenmessung und Analyse der Nutzung der Website mit Google Analytics 4 (Seitenaufrufe, Interaktionen, Herkunft des Besuchs).</li>
+      </ul>
+      <p>
+        <strong>Welche Daten verarbeitet werden.</strong> Nach Ihrer Einwilligung können an Google insbesondere übermittelt werden: Ihre IP-Adresse (bei Google Analytics 4 nach Angabe von Google nicht dauerhaft gespeichert; Daten von Nutzern aus der EU werden nach Angabe von Google über Server in der EU verarbeitet), Geräte- und Browserdaten, die aufgerufenen Seiten, Klicks und Ereignisse (ohne Inhalte aus dem Kontaktformular), Werbe-Klick-Kennungen sowie Kennungen in Cookies und vergleichbaren Online-Kennungen.
+      </p>
+      <p>
+        <strong>Cookies und Speicherdauer.</strong> Je nach Dienst werden nach Ihrer Einwilligung unter anderem folgende Cookies gesetzt: „_ga“ und „_ga_&lt;Container-ID&gt;“ (Google Analytics; Speicherdauer 400 Tage, siehe Abschnitt 7) sowie „_gcl_au“ (Google Ads, Conversion-Messung; Speicherdauer 90 Tage).
+      </p>
+      <p>
+        <strong>Rechtsgrundlage und Ihre Wahl.</strong> Rechtsgrundlage ist Ihre Einwilligung über das Einwilligungsbanner (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG). Der Tag Manager und die darüber ausgeführten Dienste werden erst nach Ihrer Einwilligung geladen. Ohne Ihre Zustimmung, nach einer Ablehnung und nach einem Widerruf werden sie nicht geladen, und es werden keine Daten an Google übermittelt.
       </p>
       <p>
         <strong>Empfänger und Übermittlung.</strong> Empfänger ist die Google Ireland Limited. Eine Übermittlung von Daten in die USA ist möglich; Grundlage ist der Angemessenheitsbeschluss der EU-Kommission zum EU-US Data Privacy Framework, soweit der Empfänger zertifiziert ist, sonst Standardvertragsklauseln (Abschnitt 9).
@@ -154,10 +171,10 @@ export default function Page() {
 
       <h2 id="empfaenger">9. Empfänger und Übermittlung in Drittländer</h2>
       <p>
-        Empfänger Ihrer Daten sind je nach Anlass der technische Betreiber der Website, die Versicherer und Produktgeber, die in Abschnitt 6 genannten Dienstleister, der E-Mail-Dienst Resend (Abschnitt 5), Google (Abschnitte 7 und 8), Usercentrics (Abschnitt 4) sowie, soweit gesetzlich vorgeschrieben, Behörden.
+        Empfänger Ihrer Daten sind je nach Anlass der technische Betreiber der Website, die Versicherer und Produktgeber, die in Abschnitt 6 genannten Dienstleister, der E-Mail-Dienst Resend (Abschnitt 5), Google (Abschnitte 7, 7a und 8), Usercentrics (Abschnitt 4) sowie, soweit gesetzlich vorgeschrieben, Behörden.
       </p>
       <p>
-        Eine Übermittlung in Länder außerhalb der EU und des EWR kommt in den USA in Betracht: bei Google nur nach Ihrer Einwilligung (Google Analytics, Google Maps) und bei Resend, wenn Sie das Kontaktformular absenden. Grundlage ist jeweils der Angemessenheitsbeschluss der EU-Kommission zum EU-US Data Privacy Framework vom 10. Juli 2023, soweit der Anbieter zertifiziert ist, sonst sind es Standardvertragsklauseln. Bei Usercentrics findet die Verarbeitung nach dessen Angabe in der EU statt; für etwaige Übermittlungen in die USA im Zusammenhang mit dem Unterauftragsverarbeiter Google Cloud nennt Usercentrics Standardvertragsklauseln (Abschnitt 4).
+        Eine Übermittlung in Länder außerhalb der EU und des EWR kommt in den USA in Betracht: bei Google nur nach Ihrer Einwilligung (Google Analytics, Google Tag Manager mit Google Ads, Google Maps) und bei Resend, wenn Sie das Kontaktformular absenden. Grundlage ist jeweils der Angemessenheitsbeschluss der EU-Kommission zum EU-US Data Privacy Framework vom 10. Juli 2023, soweit der Anbieter zertifiziert ist, sonst sind es Standardvertragsklauseln. Bei Usercentrics findet die Verarbeitung nach dessen Angabe in der EU statt; für etwaige Übermittlungen in die USA im Zusammenhang mit dem Unterauftragsverarbeiter Google Cloud nennt Usercentrics Standardvertragsklauseln (Abschnitt 4).
       </p>
 
       <h2 id="speicherdauer">10. Speicherdauer</h2>
@@ -171,7 +188,8 @@ export default function Page() {
           Beratungsdokumentation und Vertragsunterlagen: für die Dauer der Betreuung und danach entsprechend den gesetzlichen Aufbewahrungsfristen (nach Handelsgesetzbuch und Abgabenordnung sechs, acht bzw. zehn Jahre, weitere Fristen nach Geldwäsche- und Vermittlerrecht).
         </li>
         <li>Kontaktformular: keine Speicherung auf unserem Server; beim E-Mail-Dienst Resend nach Angabe des Anbieters 30 Tage (Abschnitt 5).</li>
-        <li>Google Analytics: Ereignis- und Nutzerdaten zwei Monate; Cookies „_ga“ und „_ga_&lt;Container-ID&gt;“ nach Angabe von Google bis zu zwei Jahre (Abschnitt 7).</li>
+        <li>Google Analytics: Ereignis- und Nutzerdaten zwei Monate; Cookies „_ga“ und „_ga_&lt;Container-ID&gt;“ 400 Tage (Abschnitt 7).</li>
+        <li>Google Tag Manager, Google Ads: Cookie „_gcl_au“ 90 Tage (Abschnitt 7a).</li>
         <li>Einwilligungsprotokoll bei Usercentrics: nach Angabe des Anbieters ein Jahr.</li>
         <li>Lokale Auswahl im Browser (Local Storage): keine eigene Ablauffrist im Browser; Sie können den Eintrag jederzeit in Ihrem Browser löschen oder über die Cookie-Einstellungen ändern. Das Banner wird nach 366 Tagen seit Ihrer letzten Auswahl erneut angezeigt (Abschnitt 4).</li>
       </ul>
