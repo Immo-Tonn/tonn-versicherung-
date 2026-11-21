@@ -1,4 +1,5 @@
 import PageJsonLd from "@/components/seo/PageJsonLd";
+import UeberTransparenz from "@/components/wv-ue-i18n/UeberTransparenz";
 import { pageMetadata } from "@/lib/seo";
 import { UeCta, UeHero, UeIntro, UePeople } from "./_components/Sections";
 
@@ -16,6 +17,7 @@ export default function Page() {
       <UeHero />
       <UeIntro />
       <UePeople />
+      <UeberTransparenz locale="de" />
       <UeCta />
     </>
   );

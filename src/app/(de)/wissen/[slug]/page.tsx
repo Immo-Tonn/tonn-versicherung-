@@ -87,9 +87,9 @@ export default async function Page({ params }: Props) {
   if (a.publishedAt) articleMeta.datePublished = a.publishedAt;
   if (a.updatedAt ?? a.publishedAt) articleMeta.dateModified = a.updatedAt ?? a.publishedAt;
   const fmt = (iso: string) => new Date(iso).toLocaleDateString("de-DE", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
-  const jsonLd = [
+  // Ein @graph statt eines Arrays: sonst melden Prüfwerkzeuge für das äußere Array einen Eintrag ohne @type.
+  const graph = [
     {
-      "@context": "https://schema.org",
       "@type": "Article",
       "@id": `${url}#article`,
       headline: a.title,
@@ -105,7 +105,6 @@ export default async function Page({ params }: Props) {
       citation: a.sources.map((s) => ({ "@type": "CreativeWork", name: s.label, url: s.url })),
     },
     {
-      "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "@id": `${url}#breadcrumb`,
       itemListElement: [
@@ -115,6 +114,7 @@ export default async function Page({ params }: Props) {
       ],
     },
   ];
+  const jsonLd = { "@context": "https://schema.org", "@graph": graph };
   const related = a.related.map((s) => bySlug(s)).filter((x) => x !== undefined);
 
   return (
