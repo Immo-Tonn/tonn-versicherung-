@@ -1,4 +1,4 @@
-import LegalDocument, { Ext, Mail, Tel, Todo } from "@/components/legal/LegalDocument";
+import LegalDocument, { Ext, Mail, Tel } from "@/components/legal/LegalDocument";
 import { siteConfig } from "@/data/site";
 import { pageMetadata } from "@/lib/seo";
 
@@ -118,7 +118,7 @@ export default function Page() {
         <strong>Unsere Einstellungen.</strong> Wir haben Google Signals, die Personalisierung von Werbung, die Nutzer-ID-Funktion und die Verknüpfung mit Google Ads nicht aktiviert und nutzen die erweiterte Messung nicht. Die Freigabe der Daten für die Verbesserung von Google-Produkten und -Diensten ist ausgeschaltet.
       </p>
       <p>
-        <strong>Cookies und Speicherdauer.</strong> Google Analytics setzt zwei Cookies auf Ihrem Gerät (Domain dieser Website): „_ga“ (unterscheidet Besucher) und „_ga_&lt;Container-ID&gt;“ (hält den Sitzungsstatus). Nach Angabe von Google beträgt die Standardlaufzeit beider Cookies zwei Jahre; Browser können sie früher begrenzen. Die in Google Analytics gespeicherten Ereignis- und Nutzerdaten werden nach unserer Einstellung zur Datenspeicherung nach zwei Monaten gelöscht; Standardberichte mit aggregierten Daten sind davon nach Angabe von Google weitgehend nicht betroffen.
+        <strong>Cookies und Speicherdauer.</strong> Google Analytics setzt zwei Cookies auf Ihrem Gerät (Domain dieser Website): „_ga“ (unterscheidet Besucher) und „_ga_&lt;Container-ID&gt;“ (hält den Sitzungsstatus). Die Laufzeit beider Cookies beträgt 400 Tage; Browser können sie früher begrenzen. Die in Google Analytics gespeicherten Ereignis- und Nutzerdaten werden nach unserer Einstellung zur Datenspeicherung nach zwei Monaten gelöscht; Standardberichte mit aggregierten Daten sind davon nach Angabe von Google weitgehend nicht betroffen.
       </p>
       <p>
         <strong>Empfänger und Übermittlung.</strong> Empfänger ist die Google Ireland Limited; nach der Dienstbeschreibung von Usercentrics kommen auch die Alphabet Inc. und die Google LLC in Betracht. Nach Angabe von Google werden Daten von Nutzern aus der EU über Domains und Server in der EU erhoben. Eine Übermittlung in Drittländer, nach der Dienstbeschreibung von Usercentrics in die USA, nach Singapur, Chile und Taiwan, ist möglich; Grundlage sind der Angemessenheitsbeschluss zum EU-US Data Privacy Framework, soweit der Empfänger zertifiziert ist, sonst Standardvertragsklauseln (Abschnitt 9).
@@ -143,7 +143,7 @@ export default function Page() {
         <strong>Welche Daten verarbeitet werden.</strong> Nach Ihrer Einwilligung können an Google insbesondere übermittelt werden: Ihre IP-Adresse (bei Google Analytics 4 nach Angabe von Google nicht dauerhaft gespeichert; Daten von Nutzern aus der EU werden nach Angabe von Google über Server in der EU verarbeitet), Geräte- und Browserdaten, die aufgerufenen Seiten, Klicks und Ereignisse (ohne Inhalte aus dem Kontaktformular), Werbe-Klick-Kennungen sowie Kennungen in Cookies und vergleichbaren Online-Kennungen.
       </p>
       <p>
-        <strong>Cookies und Speicherdauer.</strong> Je nach Dienst werden nach Ihrer Einwilligung unter anderem folgende Cookies gesetzt: „_ga“ und „_ga_&lt;Container-ID&gt;“ (Google Analytics; nach Angabe von Google beträgt die Standardlaufzeit zwei Jahre, siehe Abschnitt 7) sowie Cookies mit dem Präfix „_gcl_“ (Google Ads, Conversion-Messung). Speicherdauer der „_gcl_“-Cookies: <Todo>TODO: Speicherdauer ergänzen</Todo> Weitere von Google gesetzte oder ausgelesene Kennungen und deren Speicherdauer: <Todo>TODO: Speicherdauer ergänzen</Todo>
+        <strong>Cookies und Speicherdauer.</strong> Je nach Dienst werden nach Ihrer Einwilligung unter anderem folgende Cookies gesetzt: „_ga“ und „_ga_&lt;Container-ID&gt;“ (Google Analytics; Speicherdauer 400 Tage, siehe Abschnitt 7) sowie „_gcl_au“ (Google Ads, Conversion-Messung; Speicherdauer 90 Tage).
       </p>
       <p>
         <strong>Rechtsgrundlage und Ihre Wahl.</strong> Rechtsgrundlage ist Ihre Einwilligung über das Einwilligungsbanner (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG). Der Tag Manager und die darüber ausgeführten Dienste werden erst nach Ihrer Einwilligung geladen. Ohne Ihre Zustimmung, nach einer Ablehnung und nach einem Widerruf werden sie nicht geladen, und es werden keine Daten an Google übermittelt.
@@ -185,8 +185,8 @@ export default function Page() {
           Beratungsdokumentation und Vertragsunterlagen: für die Dauer der Betreuung und danach entsprechend den gesetzlichen Aufbewahrungsfristen (nach Handelsgesetzbuch und Abgabenordnung sechs, acht bzw. zehn Jahre, weitere Fristen nach Geldwäsche- und Vermittlerrecht).
         </li>
         <li>Kontaktformular: keine Speicherung auf unserem Server; beim E-Mail-Dienst Resend nach Angabe des Anbieters 30 Tage (Abschnitt 5).</li>
-        <li>Google Analytics: Ereignis- und Nutzerdaten zwei Monate; Cookies „_ga“ und „_ga_&lt;Container-ID&gt;“ nach Angabe von Google bis zu zwei Jahre (Abschnitt 7).</li>
-        <li>Google Tag Manager, Google Ads: Speicherdauer der Cookies siehe Abschnitt 7a.</li>
+        <li>Google Analytics: Ereignis- und Nutzerdaten zwei Monate; Cookies „_ga“ und „_ga_&lt;Container-ID&gt;“ 400 Tage (Abschnitt 7).</li>
+        <li>Google Tag Manager, Google Ads: Cookie „_gcl_au“ 90 Tage (Abschnitt 7a).</li>
         <li>Einwilligungsprotokoll bei Usercentrics: nach Angabe des Anbieters ein Jahr.</li>
         <li>Lokale Auswahl im Browser (Local Storage): keine eigene Ablauffrist im Browser; Sie können den Eintrag jederzeit in Ihrem Browser löschen oder über die Cookie-Einstellungen ändern. Das Banner wird nach 366 Tagen seit Ihrer letzten Auswahl erneut angezeigt (Abschnitt 4).</li>
       </ul>
