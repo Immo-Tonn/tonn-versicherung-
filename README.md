@@ -17,3 +17,10 @@ Fehlt eine der beiden (oder ist die ID ungültig), erscheint kein Script im HTML
 - Der Tag Manager lädt erst nach Einwilligung: Das Script ist für Usercentrics als Dienst „Google Tag Manager“ markiert. In Usercentrics muss dafür ein Dienst mit genau diesem Namen (Kategorie „Marketing“) angelegt sein; ohne ihn bleibt das Script blockiert.
 - Consent Mode v2 steht vorab auf `denied` (ad_storage, analytics_storage, ad_user_data, ad_personalization; wait_for_update 500). Aktualisiert wird er über die Google-Consent-Mode-Integration von Usercentrics.
 - dataLayer-Ereignisse: `contact_form_submit` (Danke-Seite, einmal je Sitzung) und `phone_click` (Klick auf einen `tel:`-Link).
+
+## IndexNow
+
+Der Schlüssel liegt als Datei `public/f2275d56a2654e25819f1001706ebc92.txt` (nur der Schlüssel, ohne Zeilenumbruch) und ist unter `https://tonn-versicherung.de/f2275d56a2654e25819f1001706ebc92.txt` erreichbar.
+
+- **Automatisch:** Der Workflow `Deploy (Hetzner)` führt nach einem erfolgreichen Production-Deploy von `main` den Job `indexnow` aus (nur wenn `SITE_NOINDEX=0` im Environment `hetzner-production`). Ein Fehler dort bricht den Deploy nicht ab (`continue-on-error`).
+- **Manuell:** `npm run indexnow` liest `https://tonn-versicherung.de/sitemap.xml` und sendet alle URLs (bei mehr als 10 000 in Paketen) an `api.indexnow.org`; ausgegeben werden HTTP-Code und Anzahl. HTTP 200 oder 202 gilt als Erfolg.
