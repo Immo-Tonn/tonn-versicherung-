@@ -1,12 +1,18 @@
+import Link from "next/link";
+import DeTag from "@/components/layout-i18n/DeTag";
 import ueberStyles from "@/app/(de)/ueber-uns/_components/Ueber.module.css";
 import Container from "@/components/ui/Container/Container";
 import type { Locale } from "@/i18n/config";
 import { ueTransparenz } from "@/i18n/content/ueber-transparenz";
+import { getDictionary } from "@/i18n/dictionaries";
+import { localizedHref } from "@/i18n/links";
 import styles from "./UeberTransparenz.module.css";
 
 /** „Wie wir arbeiten“ und „Partner-Versicherer“ für Über uns (de, en, ru). Alle Texte stehen im HTML; die Listen sind per <details> einklappbar. */
 export default function UeberTransparenz({ locale }: { locale: Locale }) {
   const { how, partners } = ueTransparenz[locale];
+  const erstinfo = localizedHref("/erstinformation", locale);
+  const common = getDictionary(locale).common;
   return (
     <>
       <section className={styles.how} aria-labelledby="ue-how">
@@ -29,6 +35,11 @@ export default function UeberTransparenz({ locale }: { locale: Locale }) {
                 {how.status.registerLabel}: {how.status.iht}
                 <br />
                 {how.status.registryBody}
+              </p>
+              <p>
+                {how.status.erstinfo.text}{" "}
+                <Link href={erstinfo.href}>{how.status.erstinfo.label}</Link>
+                {erstinfo.german && <DeTag badge={common.germanOnlyBadge} hint={common.germanOnlyHint} />}.
               </p>
             </div>
             <div className={styles.block}>

@@ -14,6 +14,8 @@ export type ArticleTranslation = {
   blocks: Block[];
   /** Beschriftungen der Quellen in der Reihenfolge der deutschen Quellenliste */
   sourceLabels: string[];
+  /** Häufige Fragen (Übersetzung der deutschen faq-Einträge) */
+  faq?: { q: string; a: string }[];
   cta?: { title: string; text: string; label: string };
 };
 

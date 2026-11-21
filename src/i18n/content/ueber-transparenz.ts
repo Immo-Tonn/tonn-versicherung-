@@ -8,7 +8,7 @@ import type { Locale } from "../config";
 export type UeTransparenz = {
   how: {
     title: string;
-    status: { title: string; text: string; items: string[]; registerLabel: string; iht: string; registryBody: string };
+    status: { title: string; text: string; items: string[]; registerLabel: string; iht: string; registryBody: string; erstinfo: { text: string; label: string } };
     pay: { title: string; text: string };
     complaint: { title: string; text: string; items: { name: string; href: string; host: string }[] };
   };
@@ -63,6 +63,7 @@ const de: UeTransparenz = {
       registerLabel: "Zuständige Behörde",
       iht: "IHK Nord Westfalen, Sentmaringer Weg 61, 48151 Münster",
       registryBody: "Registerstelle: DIHK, www.vermittlerregister.info",
+      erstinfo: { text: "Die gesetzlich vorgeschriebenen Angaben finden Sie in unserer", label: "Erstinformation" },
     },
     pay: {
       title: "Vergütung",
@@ -107,6 +108,7 @@ const en: UeTransparenz = {
       registerLabel: "Competent authority",
       iht: "IHK Nord Westfalen (Chamber of Commerce and Industry), Sentmaringer Weg 61, 48151 Münster",
       registryBody: "Register body: DIHK, www.vermittlerregister.info",
+      erstinfo: { text: "The information required by law is available in our", label: "Erstinformation (initial information, German)" },
     },
     pay: {
       title: "Remuneration",
@@ -151,6 +153,7 @@ const ru: UeTransparenz = {
       registerLabel: "Компетентный орган",
       iht: "IHK Nord Westfalen (Торгово-промышленная палата), Sentmaringer Weg 61, 48151 Münster",
       registryBody: "Регистрирующий орган: DIHK, www.vermittlerregister.info",
+      erstinfo: { text: "Предусмотренные законом сведения приведены в нашей", label: "Erstinformation (первичная информация, на немецком языке)" },
     },
     pay: {
       title: "Вознаграждение",

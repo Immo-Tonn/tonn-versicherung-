@@ -16,6 +16,8 @@ type Props = {
   sources: { label: string; url: string }[];
   /** fachlich geprüft (Andreas Tonn): reviewedBy an der WebPage, kein author, kein Datum */
   reviewed?: boolean;
+  /** Sichtbare Fragen und Antworten des Beitrags (FAQPage) */
+  faq?: { q: string; a: string }[];
 };
 
 /**
@@ -23,7 +25,7 @@ type Props = {
  * mit sprachspezifischen URLs, inLanguage und übersetzten Texten. Kein author und keine Datumsfelder (nicht bekannt); die bestätigte
  * fachliche Prüfung steht als reviewedBy an der WebPage.
  */
-export default function LocalizedArticleJsonLd({ slug, locale, headline, description, section, homeName, guidesName, sources, reviewed }: Props) {
+export default function LocalizedArticleJsonLd({ slug, locale, headline, description, section, homeName, guidesName, sources, reviewed, faq }: Props) {
   const abs = (p: string) => `${siteConfig.url}${localizedPath(p, locale)}`;
   const url = abs(`/wissen/${slug}`);
   const data = [
@@ -52,6 +54,17 @@ export default function LocalizedArticleJsonLd({ slug, locale, headline, descrip
         { "@type": "ListItem", position: 3, name: headline, item: url },
       ],
     },
+    ...(faq?.length
+      ? [
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "@id": `${url}#faq`,
+            inLanguage: inLanguage(locale),
+            mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+          },
+        ]
+      : []),
   ];
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />;
 }

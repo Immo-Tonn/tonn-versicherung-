@@ -93,6 +93,20 @@ export const angestellte: SubPageContent = {
       text: "Diese Seite ist eine allgemeine Information und ersetzt keine persönliche Beratung. Zahlen wie die Versicherungspflichtgrenze ändern sich jedes Jahr, die genannten Werte gelten für 2026.",
     },
   ],
+  faq: [
+    {
+      q: "Ab welchem Einkommen können Angestellte in die private Krankenversicherung wechseln?",
+      a: "Angestellte können in die PKV wechseln, wenn ihr regelmäßiges Jahreseinkommen die Versicherungspflichtgrenze (Jahresarbeitsentgeltgrenze) überschreitet. Diese Grenze wird jedes Jahr angepasst. Für 2026 liegt sie bei 77.400 Euro brutto im Jahr. Maßgeblich ist das regelmäßige Einkommen, das auch im Folgejahr erwartet wird. Wir prüfen gern gemeinsam mit Ihnen, ob Sie die Voraussetzungen erfüllen.",
+    },
+    {
+      q: "Wovon hängt der Beitrag in der privaten Krankenversicherung ab?",
+      a: "Der Beitrag richtet sich nach dem Eintrittsalter, dem Gesundheitszustand bei Vertragsbeginn, den vereinbarten Leistungen und der Selbstbeteiligung. Anders als in der gesetzlichen Krankenversicherung hängt er nicht vom Einkommen ab. Angestellte erhalten vom Arbeitgeber in der Regel einen Zuschuss zum Beitrag. Die genaue Höhe hängt vom Tarif und von der individuellen Situation ab, deshalb nennen wir hier keine pauschalen Zahlen.",
+    },
+    {
+      q: "Kann ich später aus der PKV wieder in die gesetzliche Krankenversicherung zurückkehren?",
+      a: "Eine Rückkehr ist nur unter bestimmten Voraussetzungen möglich, etwa bei einer neu entstehenden Versicherungspflicht. Mit zunehmendem Alter, insbesondere ab 55 Jahren, ist sie stark eingeschränkt. Der Wechsel in die PKV sollte deshalb gut überlegt sein, auch mit Blick auf Familienplanung und die langfristige Beitragsentwicklung.",
+    },
+  ],
   sources: [
     { label: "Bundesregierung: Beitragsbemessungsgrenzen 2026 (Versicherungspflichtgrenze)", url: "https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514" },
     { label: "Gesetze im Internet: § 6 SGB V, Versicherungsfreiheit", url: "https://www.gesetze-im-internet.de/sgb_5/__6.html" },

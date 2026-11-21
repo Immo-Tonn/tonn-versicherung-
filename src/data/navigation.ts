@@ -52,6 +52,7 @@ export const footerColumns: { title: string; links: (NavItem | { label: string; 
     title: "Rechtliches",
     links: [
       { label: "Impressum", href: "/impressum" },
+      { label: "Erstinformation", href: "/erstinformation" },
       { label: "Datenschutz", href: "/datenschutz" },
       // öffnet das Einstellungsfenster für Cookies/Einwilligungen (kein Seitenwechsel)
       { label: "Cookie-Einstellungen", href: "#cookie-einstellungen" },

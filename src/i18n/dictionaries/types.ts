@@ -43,6 +43,7 @@ export type Dictionary = {
     knowledge: string;
     contact: string;
     imprint: string;
+    erstinformation: string;
     privacy: string;
     cookieSettings: string;
     contactCta: string;

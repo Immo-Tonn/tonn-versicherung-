@@ -44,6 +44,7 @@ export function GET() {
 - [Ratgeber](${u}/wissen)
 - [Kontakt](${u}/kontakt)
 - [Impressum](${u}/impressum)
+- [Erstinformation](${u}/erstinformation)
 - [Datenschutz](${u}/datenschutz)
 - [Sitemap](${u}/sitemap.xml)
 `;

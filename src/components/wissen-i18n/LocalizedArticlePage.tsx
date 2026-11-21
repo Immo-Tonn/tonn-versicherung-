@@ -1,3 +1,4 @@
+import FaqList from "@/components/faq/FaqList";
 import Link from "next/link";
 import styles from "@/app/(de)/wissen/[slug]/Article.module.css";
 import { bySlug, type Block } from "@/app/(de)/wissen/_lib/articles";
@@ -94,7 +95,7 @@ export default function LocalizedArticlePage({ slug, locale }: { slug: string; l
   const guides = lk("/wissen");
   return (
     <article className={styles.page} aria-labelledby="art-title">
-      <LocalizedArticleJsonLd slug={slug} locale={locale} headline={tr.title} description={tr.seo.description} section={tr.topic} reviewed={Boolean(de.review)} homeName={labels.home} guidesName={labels.guides} sources={sources} />
+      <LocalizedArticleJsonLd slug={slug} locale={locale} headline={tr.title} description={tr.seo.description} section={tr.topic} reviewed={Boolean(de.review)} homeName={labels.home} guidesName={labels.guides} sources={sources} faq={tr.faq} />
       <Container>
         <div className={styles.column}>
           <nav className={styles.crumbs} aria-label={labels.breadcrumbAria}>
@@ -130,6 +131,8 @@ export default function LocalizedArticlePage({ slug, locale }: { slug: string; l
             <p>{tr.answer}</p>
           </div>
           <div className={styles.body}>{tr.blocks.map(render)}</div>
+
+          {tr.faq?.length ? <FaqList items={tr.faq} locale={locale} id="art-faq" /> : null}
 
           <section className={styles.sources} aria-labelledby="art-sources">
             <h2 id="art-sources" className={styles.h2}>

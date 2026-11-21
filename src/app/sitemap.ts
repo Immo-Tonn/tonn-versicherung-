@@ -19,6 +19,7 @@ const routes = [
   "/kontakt",
   "/impressum",
   "/datenschutz",
+  "/erstinformation",
 ];
 
 const abs = (p: string) => `${siteConfig.url}${p === "/" ? "" : p}`;

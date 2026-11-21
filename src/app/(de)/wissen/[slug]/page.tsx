@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import FaqList from "@/components/faq/FaqList";
 import Button from "@/components/ui/Button/Button";
 import Container from "@/components/ui/Container/Container";
 import SectionLabel from "@/components/ui/SectionLabel/SectionLabel";
@@ -113,6 +114,16 @@ export default async function Page({ params }: Props) {
         { "@type": "ListItem", position: 3, name: a.title, item: url },
       ],
     },
+    // FAQPage nur aus den sichtbaren Fragen und Antworten des Beitrags
+    ...(a.faq?.length
+      ? [
+          {
+            "@type": "FAQPage",
+            "@id": `${url}#faq`,
+            mainEntity: a.faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+          },
+        ]
+      : []),
   ];
   const jsonLd = { "@context": "https://schema.org", "@graph": graph };
   const related = a.related.map((s) => bySlug(s)).filter((x) => x !== undefined);
@@ -164,6 +175,8 @@ export default async function Page({ params }: Props) {
             <p>{a.answer}</p>
           </div>
           <div className={styles.body}>{a.blocks.map(render)}</div>
+
+          {a.faq?.length ? <FaqList items={a.faq} locale="de" id="art-faq" /> : null}
 
           <section className={styles.sources} aria-labelledby="art-sources">
             <h2 id="art-sources" className={styles.h2}>

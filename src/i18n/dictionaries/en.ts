@@ -60,6 +60,7 @@ export const en: Dictionary = {
     knowledge: "Guides",
     contact: "Contact",
     imprint: "Legal notice (Impressum)",
+    erstinformation: "Initial information (Erstinformation)",
     privacy: "Privacy policy",
     cookieSettings: "Cookie settings",
     contactCta: "Get in touch",
