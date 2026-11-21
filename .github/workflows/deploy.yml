@@ -235,6 +235,34 @@ jobs:
         run: |
           ssh -i ~/.ssh/id_deploy -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o BatchMode=yes "$DEPLOY_USER@$HOST" status | tee -a "$GITHUB_STEP_SUMMARY"
 
+  # IndexNow: nach erfolgreichem Production-Deploy von main alle Sitemap-URLs melden (nur bei freigegebener Indexierung, SITE_NOINDEX=0).
+  # Ein Fehler hier bricht den Deploy nicht ab (continue-on-error); der Deploy-Job ist zu diesem Zeitpunkt bereits erfolgreich beendet.
+  indexnow:
+    needs: [plan, deploy]
+    if: needs.deploy.result == 'success' && needs.plan.outputs.mode == 'production' && github.ref == 'refs/heads/main'
+    environment: hetzner-${{ needs.plan.outputs.mode }} # SITE_NOINDEX ist eine Variable dieses Environments
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    continue-on-error: true
+    permissions:
+      contents: read
+    steps:
+      - name: Indexierung nicht freigegeben (SITE_NOINDEX ist nicht 0): IndexNow übersprungen
+        if: vars.SITE_NOINDEX != '0'
+        run: echo "IndexNow übersprungen."
+      - uses: actions/checkout@v4
+        if: vars.SITE_NOINDEX == '0'
+        with:
+          sparse-checkout: scripts/indexnow.mjs
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-node@v4
+        if: vars.SITE_NOINDEX == '0'
+        with:
+          node-version: 22
+      - name: IndexNow senden
+        if: vars.SITE_NOINDEX == '0'
+        run: node scripts/indexnow.mjs
+
   rollback:
     needs: plan
     if: needs.plan.outputs.run == 'true' && needs.plan.outputs.action == 'rollback'
