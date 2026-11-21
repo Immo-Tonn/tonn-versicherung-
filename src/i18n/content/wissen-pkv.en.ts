@@ -149,6 +149,12 @@ export const risikovoranfrageEn: ArticleTranslation = {
 
 export const tarifwechselEn: ArticleTranslation = {
   slug: "tarifwechsel-pkv",
+  faq: [
+    {
+      q: "Can I change the tariff within my private health insurance?",
+      a: "Yes. Under § 204 VVG, policyholders have the right to switch to another tariff of the same insurer with equivalent insurance cover. For additional benefits in the new tariff, the insurer may require a health assessment or charge a risk surcharge. A tariff change can help to stabilise premiums, but it should always be examined with a view to the benefits.",
+    },
+  ],
   topic: "Private health insurance",
   title: "Changing tariff in PKV: options within an existing contract",
   seo: {

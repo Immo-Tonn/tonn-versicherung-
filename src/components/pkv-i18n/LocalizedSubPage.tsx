@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import Link from "next/link";
 import styles from "@/app/(de)/private-krankenversicherung/_sub/Sub.module.css";
 import { MID_CTA_AFTER_SECTIONS, type SubBlock, type SubPageContent } from "@/app/(de)/private-krankenversicherung/_sub/types";
+import FaqList from "@/components/faq/FaqList";
 import DeTag from "@/components/layout-i18n/DeTag";
 import LocalizedPageJsonLd from "@/components/seo/LocalizedPageJsonLd";
 import Button from "@/components/ui/Button/Button";
@@ -84,6 +85,7 @@ export default function LocalizedSubPage({ content, description, locale }: { con
           { name: labels.pkvCrumb, path: PKV_PATH },
           { name: content.crumb, path: content.path },
         ]}
+        faq={content.faq}
       />
       <Container>
         <div className={styles.column}>
@@ -137,6 +139,8 @@ export default function LocalizedSubPage({ content, description, locale }: { con
               );
             })}
           </div>
+
+          {content.faq && <FaqList items={content.faq} locale={locale} id="pkv-sub-faq" />}
 
           <div className={styles.cta}>
             <h2 className={styles.h2}>{labels.ctaTitle}</h2>

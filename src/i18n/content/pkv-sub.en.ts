@@ -95,6 +95,20 @@ export const angestellteEn: SubPageContent = {
       text: "This page is general information and does not replace personal advice. Figures such as the compulsory insurance threshold change every year; the values given apply to 2026.",
     },
   ],
+  faq: [
+    {
+      q: "From what income can employees switch to private health insurance?",
+      a: "Employees can switch to PKV if their regular annual income exceeds the compulsory insurance threshold (Versicherungspflichtgrenze, also called Jahresarbeitsentgeltgrenze). This threshold is adjusted every year. For 2026 it is EUR 77,400 gross per year. What counts is the regular income that is also expected in the following year. We are happy to check together with you whether you meet the requirements.",
+    },
+    {
+      q: "What does the premium in private health insurance depend on?",
+      a: "The premium depends on your age at entry, your state of health at the start of the contract, the agreed benefits and the deductible. Unlike in statutory health insurance, it does not depend on income. Employees usually receive a subsidy towards the premium from their employer. The exact amount depends on the tariff and on your individual situation, which is why we do not give flat figures here.",
+    },
+    {
+      q: "Can I return from PKV to statutory health insurance later?",
+      a: "A return is only possible under certain conditions, for example when compulsory insurance newly arises. With increasing age, especially from age 55, it is severely restricted. The switch to PKV should therefore be carefully considered, also with a view to family planning and the long-term development of premiums.",
+    },
+  ],
   sources: [
     { label: "Federal Government: contribution assessment ceilings 2026 (compulsory insurance threshold)", url: "https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514" },
     { label: "Gesetze im Internet: § 6 SGB V, exemption from compulsory insurance", url: "https://www.gesetze-im-internet.de/sgb_5/__6.html" },

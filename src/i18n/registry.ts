@@ -66,6 +66,7 @@ export const routes: RouteEntry[] = [
   // Impressum/Datenschutz bleiben vorerst nur deutsch
   { path: "/impressum", status: { ...de } },
   { path: "/datenschutz", status: { ...de } },
+  { path: "/erstinformation", status: { ...de } },
 ];
 
 export const isNoindex = (germanPath: string): boolean => routes.find((r) => r.path === germanPath)?.noindex === true;

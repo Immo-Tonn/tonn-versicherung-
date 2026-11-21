@@ -18,6 +18,8 @@ export type SubPageContent = {
   /** „Kurz beantwortet“ */
   answer: string;
   blocks: SubBlock[];
+  /** Häufige Fragen: sichtbar auf der Seite und identisch als FAQPage im JSON-LD */
+  faq?: { q: string; a: string }[];
   sources: SubSource[];
 };
 

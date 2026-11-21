@@ -60,6 +60,7 @@ export const ru: Dictionary = {
     knowledge: "Полезное",
     contact: "Контакты",
     imprint: "Выходные данные (Impressum)",
+    erstinformation: "Первичная информация (Erstinformation)",
     privacy: "Политика конфиденциальности",
     cookieSettings: "Настройки cookie",
     contactCta: "Связаться с нами",

@@ -40,6 +40,8 @@ export type Article = {
    * Die Texte sind KI-gestützt erstellt, der Inhalt wurde von ihm geprüft.
    */
   review?: { by: "Andreas Tonn"; month: string };
+  /** Häufige Fragen: sichtbar im Beitrag und identisch als FAQPage im JSON-LD */
+  faq?: { q: string; a: string }[];
 };
 
 /** Bestätigte fachliche Prüfung aller neun Ratgeber-Beiträge im Oktober 2026 (Tag unbekannt, nicht ergänzen). */
@@ -134,6 +136,12 @@ export const articles: Article[] = [
     slug: "tarifwechsel-pkv",
     published: true,
     review: REVIEWED_OCT_2026,
+    faq: [
+      {
+        q: "Kann ich innerhalb meiner privaten Krankenversicherung den Tarif wechseln?",
+        a: "Ja. Versicherte haben nach § 204 VVG das Recht, in einen anderen Tarif desselben Versicherers mit gleichartigem Versicherungsschutz zu wechseln. Für Mehrleistungen im neuen Tarif kann der Versicherer eine Gesundheitsprüfung verlangen oder einen Risikozuschlag erheben. Ein Tarifwechsel kann helfen, Beiträge zu stabilisieren, sollte aber immer mit Blick auf die Leistungen geprüft werden.",
+      },
+    ],
     topic: "Private Krankenversicherung",
     title: "Tarifwechsel in der PKV: Möglichkeiten im bestehenden Vertrag",
     metaTitle: "Tarifwechsel in der PKV: Möglichkeiten im bestehenden Vertrag",

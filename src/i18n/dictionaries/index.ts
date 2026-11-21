@@ -50,6 +50,7 @@ const de: Dictionary = {
     knowledge: "Ratgeber",
     contact: "Kontakt",
     imprint: "Impressum",
+    erstinformation: "Erstinformation",
     privacy: "Datenschutz",
     cookieSettings: "Cookie-Einstellungen",
     contactCta: "Kontakt aufnehmen",

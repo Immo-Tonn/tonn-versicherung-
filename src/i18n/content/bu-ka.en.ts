@@ -127,6 +127,14 @@ export const buEn: BuContent = {
         q: "How does an anonymous preliminary risk assessment work?",
         a: "Your health information is submitted to several insurers without your name – before an application is made. This way you can see in advance how your chances of cover are likely to look.",
       },
+      {
+        q: "Who needs occupational disability insurance?",
+        a: "In principle anyone who lives on their earned income, that is employees, self-employed people and those starting their careers. The statutory pension for reduced earning capacity often replaces only part of the income. Occupational disability insurance pays an agreed monthly pension if you can no longer practise your profession permanently for health reasons.",
+      },
+      {
+        q: "When is the best time to take out the policy and what matters in the health questions?",
+        a: "The earlier you take it out, the lower the premiums usually are and the better the health assessment often turns out. It is important to answer all health questions completely and truthfully, because false information can jeopardise your cover. If you have pre-existing conditions, an anonymous risk enquiry can be sent to several insurers beforehand.",
+      },
     ],
     more: "Show all questions",
   },

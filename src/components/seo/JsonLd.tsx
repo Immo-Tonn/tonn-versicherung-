@@ -5,9 +5,28 @@ import { ids } from "@/lib/seo";
 
 /**
  * Globales Markup (WebSite, Organization, Person). Seitenspezifisches Markup liegt in PageJsonLd.
- * Es werden nur belegte Angaben verwendet (Kontakt, Anschrift, Impressum, sichtbare Texte) –
- * keine Bewertungen, Auszeichnungen, Zertifikate oder Registernummern.
+ * Es werden nur belegte Angaben verwendet (Kontakt, Anschrift, Impressum, sichtbare Texte) – keine Bewertungen.
+ * Registernummern und Erlaubnisse stehen so im Impressum; Geschäftszeiten wie im Seitenfuß.
  */
+/** Erlaubnisse nach § 34d/34f/34i GewO mit Registernummer (identisch mit dem Impressum); erteilt von der IHK Nord Westfalen. */
+const iht = {
+  "@type": "Organization",
+  name: "IHK Nord Westfalen",
+  address: { "@type": "PostalAddress", streetAddress: "Sentmaringer Weg 61", postalCode: "48151", addressLocality: "Münster", addressCountry: "DE" },
+  url: "https://www.ihk-nordwestfalen.de",
+};
+const credential = (name: string, identifier: string) => ({
+  "@type": "EducationalOccupationalCredential",
+  name,
+  credentialCategory: "license",
+  identifier,
+  recognizedBy: iht,
+});
+const credentials = [
+  credential("Erlaubnis nach § 34d Abs. 1 GewO (Versicherungsvertreter)", "D-A18Z-BI6ZD-48"),
+  credential("Erlaubnis nach § 34f Abs. 1 GewO (Finanzanlagenvermittler)", "D-F-156-SNEC-18"),
+  credential("Erlaubnis nach § 34i Abs. 1 GewO (Immobiliardarlehensvermittler)", "D-W-156-DSNU-13"),
+];
 /** Beschreibende Felder je Sprache (Deutsch = bisherige Werte, unverändert). Rechtliche Angaben bleiben bewusst deutsch. */
 const descriptive: Record<Locale, { country: string; topics: string[] }> = {
   de: { country: "Deutschland", topics: ["Private Krankenversicherung", "Berufsunfähigkeitsversicherung", "Kapitalanlage"] },
@@ -55,13 +74,18 @@ export default function JsonLd({ locale = defaultLocale }: { locale?: Locale } =
           contactType: "customer service",
           telephone: phone,
           email: siteConfig.contact.email,
-          availableLanguage: "de",
+          availableLanguage: ["de", "en", "ru"],
         },
+        knowsLanguage: ["de", "en", "ru"],
+        // Wie im Seitenfuß (Geschäftszeiten)
+        openingHours: ["Mo-Fr 08:00-20:00", "Sa 08:00-14:00"],
+        // Koordinaten der Anschrift (Sessendrupweg 54, 48161 Münster) laut OpenStreetMap
+        geo: { "@type": "GeoCoordinates", latitude: 52.00088, longitude: 7.55199 },
         knowsAbout: topics,
         // Nur vom Inhaber bestätigte Profile; weitere nur nach Bestätigung ergänzen
         sameAs: [siteConfig.profiles.googleBusinessProfile],
         hasMap: siteConfig.profiles.googleBusinessProfile,
-        // TODO(PLACEHOLDER): logo ergänzen, sobald echte Daten vorliegen
+        // TODO(PLACEHOLDER): logo ergänzen, sobald eine Logodatei im Projekt liegt (public/logo ist leer)
       },
       {
         "@type": "Person",
@@ -75,6 +99,8 @@ export default function JsonLd({ locale = defaultLocale }: { locale?: Locale } =
         telephone: phone,
         email: siteConfig.contact.email,
         knowsAbout: topics.slice(0, 2),
+        knowsLanguage: ["de", "en", "ru"],
+        hasCredential: credentials,
       },
     ],
   };

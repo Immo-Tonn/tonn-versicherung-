@@ -15,6 +15,7 @@ import { ueContent } from "@/i18n/content";
 import type { UePart } from "@/i18n/content/wv-ue.types";
 import { getDictionary } from "@/i18n/dictionaries";
 import { localizedHref } from "@/i18n/links";
+import UeberTransparenz from "./UeberTransparenz";
 
 type L = Exclude<Locale, "de">;
 
@@ -144,6 +145,8 @@ export default function LocalizedUeberPage({ locale }: { locale: L }) {
           </div>
         </Container>
       </section>
+
+      <UeberTransparenz locale={locale} />
 
       <section className={styles.cta} aria-labelledby="ue-cta">
         <Photo src={cta.image} alt={t.cta.imageAlt} sizes="(max-width: 767px) 100vw, 55vw" position="25% 55%" className={styles.ctaPhoto} />

@@ -142,6 +142,14 @@ export const faq = {
       q: "Wie läuft eine anonyme Risikovoranfrage ab?",
       a: "Ihre gesundheitlichen Angaben werden ohne Namen bei mehreren Versicherern angefragt – noch bevor ein Antrag gestellt wird. So sehen Sie vorab, wie Ihre Chancen auf eine Absicherung voraussichtlich stehen.",
     },
+    {
+      q: "Wer braucht eine Berufsunfähigkeitsversicherung?",
+      a: "Grundsätzlich jeder, der von seinem Arbeitseinkommen lebt, also Angestellte, Selbstständige und Berufseinsteiger. Die gesetzliche Erwerbsminderungsrente ersetzt das Einkommen oft nur zu einem Teil. Eine Berufsunfähigkeitsversicherung zahlt eine vereinbarte monatliche Rente, wenn Sie Ihren Beruf aus gesundheitlichen Gründen dauerhaft nicht mehr ausüben können.",
+    },
+    {
+      q: "Wann ist der beste Zeitpunkt für den Abschluss und worauf kommt es bei den Gesundheitsfragen an?",
+      a: "Je früher der Abschluss, desto günstiger sind meist die Beiträge und desto besser ist oft die Gesundheitsprüfung. Wichtig ist, alle Gesundheitsfragen vollständig und wahrheitsgemäß zu beantworten, denn falsche Angaben können den Versicherungsschutz gefährden. Bei Vorerkrankungen kann vorab eine anonyme Risikovoranfrage an mehrere Versicherer gestellt werden.",
+    },
   ],
   more: { label: "Alle Fragen anzeigen", href: "/wissen" },
 };

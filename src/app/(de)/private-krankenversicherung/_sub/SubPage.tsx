@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import Link from "next/link";
+import FaqList from "@/components/faq/FaqList";
 import PageJsonLd from "@/components/seo/PageJsonLd";
 import Button from "@/components/ui/Button/Button";
 import Container from "@/components/ui/Container/Container";
@@ -67,6 +68,7 @@ export default function SubPage({ content, description }: Props) {
           { name: "Private Krankenversicherung", path: PKV_PATH },
           { name: content.crumb, path: content.path },
         ]}
+        faq={content.faq}
       />
       <Container>
         <div className={styles.column}>
@@ -118,6 +120,8 @@ export default function SubPage({ content, description }: Props) {
               );
             })}
           </div>
+
+          {content.faq && <FaqList items={content.faq} locale="de" id="pkv-sub-faq" />}
 
           <div className={styles.cta}>
             <h2 className={styles.h2}>Wie passt die private Krankenversicherung zu Ihrer Situation?</h2>
