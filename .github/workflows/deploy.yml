@@ -247,7 +247,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - name: Indexierung nicht freigegeben (SITE_NOINDEX ist nicht 0): IndexNow übersprungen
+      - name: IndexNow übersprungen (Indexierung nicht freigegeben, SITE_NOINDEX ist nicht 0)
         if: vars.SITE_NOINDEX != '0'
         run: echo "IndexNow übersprungen."
       - uses: actions/checkout@v4
